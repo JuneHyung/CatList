@@ -145,7 +145,7 @@ append_list(){
 
 ## 추가할 사항
 
-* 카드를 클릭 시 카드의 detail 내용을 dialog로 보여줄 예정.
+* 카드를 클릭 시 카드의 detail 내용을 dialog로 보여줄 예정.(진행중)
 
 * 데이터 불러 올 때 Loading UI구현
 
