@@ -154,3 +154,5 @@ append_list(){
 
 ---
 * 다시켰을떄 서버와 Vue를 실행시키고 목록을 받는과정에서 Access Denied for User 'root'@'localhost' (using password: YES) 발생
+
+
