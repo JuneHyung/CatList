@@ -155,4 +155,14 @@ append_list(){
 ---
 * 다시켰을떄 서버와 Vue를 실행시키고 목록을 받는과정에서 Access Denied for User 'root'@'localhost' (using password: YES) 발생
 
+```
+git에 올리면서 application.properties에 'write your user name' 이부분을 ''를 안지우고 적어 발생.
 
+
+만약 다른경우에 생긴다면 권한이 없다는 문제. or id나 pw를 잘못 입력한경우.
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;
+```
+
+
+
+<strong>v1.1</strong> : detail관련 backend추가.
