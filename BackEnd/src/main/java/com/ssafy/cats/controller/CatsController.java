@@ -29,11 +29,11 @@ public class CatsController {
 	public ResponseEntity<List<Cats>> listCats(@PathVariable int start)throws Exception{
 		return new ResponseEntity<List<Cats>>(service.listCats(start), HttpStatus.OK);
 	}
-//	
-//	@GetMapping("{catsNo}")
-//	public ResponseEntity<Cats> detailCats(@PathVariable int cat_num){
-//		return new ResponseEntity<Cats>(catsService.detailCats(cat_num), HttpStatus.OK);
-//	}
+	
+	@GetMapping("/detail/{cat_num}")
+	public ResponseEntity<Cats> detailCats(@PathVariable int cat_num){
+		return new ResponseEntity<Cats>(service.detailCats(cat_num), HttpStatus.OK);
+	}
 	
 	
 }

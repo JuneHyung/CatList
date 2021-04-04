@@ -9,10 +9,10 @@
 	from cat
 	limit #{start}, 6
 </select>
-<!-- 
+
 <select id="detailCats" resultType="cats">
 	select *
 	from cat
-	where cats_num = #{cat_num}
-</select> -->
+	where cat_num = #{cat_num}
+</select>
 </mapper>

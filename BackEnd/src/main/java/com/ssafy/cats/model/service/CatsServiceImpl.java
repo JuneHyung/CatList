@@ -20,10 +20,10 @@ public class CatsServiceImpl implements CatsService{
 		return catsDao.listCats(start);
 	}
 
-//	@Override
-//	public Cats detailCats(int cat_num) {
-//		// TODO Auto-generated method stub
-//		return catsDao.detailCats(cat_num);
-//	}
+	@Override
+	public Cats detailCats(int cat_num) {
+		// TODO Auto-generated method stub
+		return catsDao.detailCats(cat_num);
+	}
 
 }
