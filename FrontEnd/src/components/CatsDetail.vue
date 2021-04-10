@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="detailDialog" max-width="500px">
+    <v-dialog v-model="detailDialog" persistent max-width="500px">
         <v-card>
             <v-card-title class="headline">
                 {{ catsDetail.cat_name }}
@@ -24,7 +24,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="green darken-1" text @click="close"> 확인 </v-btn>
+                <v-btn color="green darken-1" text @click="closeDetail"> 확인 </v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -34,6 +34,11 @@
 import { mapState } from 'vuex';
 export default {
     name: 'CatsDetail',
+    data() {
+        return {
+            dialog: false,
+        };
+    },
     props: {
         detailDialog: Boolean,
     },
@@ -43,8 +48,8 @@ export default {
     },
 
     methods: {
-        close() {
-            this.detailDialog = false;
+        closeDetail() {
+            this.$emit('closeDetail', this.detailDialog);
         },
     },
 };

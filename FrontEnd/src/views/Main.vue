@@ -53,15 +53,10 @@ export default {
     computed: {
         ...mapState(['catsDetail']),
     },
-    watch: {
-        detailDialog(val) {
-            val || this.closeDetail() || this.openDetail();
-        },
-    },
+
     data() {
         return {
             cats: [],
-            tempItem: {},
             start: 0,
             limit: 6,
             detailDialog: false,
@@ -132,8 +127,10 @@ export default {
             this.$store.commit('setCatsDetail', cat);
             this.detailDialog = true;
         },
-        closeDetail() {
-            this.detailDialog = false;
+        closeDetail(detailDialog) {
+            console.log('이전 : ' + detailDialog);
+            this.detailDialog = !detailDialog;
+            console.log('즤금 : ' + this.detailDialog);
         },
     },
 };
