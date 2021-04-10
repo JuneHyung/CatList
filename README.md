@@ -17,9 +17,22 @@ Run application
 
 <Strong>DB : mysql</strong>
 
+## 주요기능
+
+* 무한 스크롤 (완료)
+* detail 정보 띄우기 (vuex, props이용.) (완료)
+* 다크 모드 ( 진행중 )
+* 데이터 로딩 UI
+* 검색 기능.
+* 검색 후 최근 검색어 태그 추가.
 
 
-## 로직
+
+---
+
+
+
+## 무한스크롤 로직
 
 ```vue
 data(){
@@ -131,28 +144,29 @@ append_list(){
 
 ---
 
-## 추가할 사항
-
-* 카드를 클릭 시 카드의 detail 내용을 dialog로 보여줄 예정.(진행중)
-
-* 데이터 불러 올 때 Loading UI구현
-
-* 검색 기능 추가.
-
-
-
 
 
 ## 진행상황
 
 <strong>v1.0</strong> : 고양이 목록을 스크롤 시 1초 후 계속 추가해나가 무한 스크롤 동작.
 
+<strong>v1.1</strong> : 
+
+- 고양이 카드를 클릭 시 vuex에 그 정보를 저장하고, modal창으로 정보를 출력함.
+- modal창은 component로 구분하였고, props를 통해 dialog를 주고받음.
+- modal창의 정보는 vuex를 이용하여 출력해보았음.
+
+​		  
+
 ## Issue 및 Error
+<strong>v1.0 무한스크롤 </strong>
+
 * 처음 cats에 바로 받아온 data를 넣었더니, 스크롤 시 데이터들이 쌓이는게 아니라, 6개만 게속 보여줌.
 즉, 처음에 0번째 ~ 5번째까지 데이터를 cats에 넣었다면, 스크롤 했을 때 6번째 ~ 11번째까지가 다시 cats에 들어가서 6번째 ~ 11번째 데이터만 보임.
 그래서 cats에 바로 data를 넣지 않고, push를 이용하여 계속 데이터를 추가해나감.
 
----
+
+
 * 다시켰을떄 서버와 Vue를 실행시키고 목록을 받는과정에서 Access Denied for User 'root'@'localhost' (using password: YES) 발생
 
 ```
@@ -165,4 +179,46 @@ GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'PASSWORD' W
 
 
 
-<strong>v1.1</strong> : detail관련 backend추가.
+---
+
+<strong>v1.1 상세정보 띄우기</strong>
+
+```vue
+모달창을 클릭하고 닫을 때 Vue warn발생.
+[경고 내용]
+Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders.
+
+[원인]
+하위 컴포넌트(CatsDetail.vue)에서 부모에서 받은 data를 직접 변경하려 해서 경고 발생.
+CatsDetail.vue
+closeDetail() {
+    		this.detailDialog = false;
+            this.$emit('closeDetail', this.detailDialog);
+        },
+         
+
+[해결]
+detailDialog를 하위에서 바꾸지않고, 그대로 detailDialog를 상위로 보내 상위 컴포넌트에서 처리.
+CatsDetail.vue
+closeDetail() {
+    		this.detailDialog = false;
+            this.$emit('closeDetail', this.detailDialog);
+        },
+
+Main.vue
+closeDetail(detailDialog) {
+            this.detailDialog = !detailDialog;
+        },
+
+```
+
+추가로, watch에서 val뿐만 아니라 openDetail과 closeDetail까지 보고있어서 값을 바꾼 후 한번 더 바꾸는 걸 확인함.
+
+그래서 watch에서 지켜보는걸 삭제하였음.
+
+
+
+---
+
+<strong>v1.2</strong>
+
