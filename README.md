@@ -220,5 +220,5 @@ closeDetail(detailDialog) {
 
 ---
 
-<strong>v1.2</strong>
+<strong>v1.2 다크모드</strong>
 
