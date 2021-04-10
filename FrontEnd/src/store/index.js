@@ -4,8 +4,25 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    catsDetail: {},
+  },
+  getters: {
+    getCatsDetail(state) {
+      return state.catsDetail;
+    }
+  },
+  mutations: {
+    setCatsDetail(state, catsDetail) {
+      state.catsDetail = catsDetail;
+    },
+    updateCustomerInfo(state, catsDetail) {
+      state.catsDetail = catsDetail
+    },
+    deleteCatsDetail(state) {
+      state.catsDetail = {};
+    }
+  },
   actions: {},
   modules: {},
 });
