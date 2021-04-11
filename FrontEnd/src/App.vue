@@ -1,17 +1,18 @@
 <template>
-<v-app>
-  <router-view></router-view>
-  </v-app>
+    <v-app>
+        <router-view></router-view>
+    </v-app>
 </template>
 
 <script>
-
 export default {
-  name: "App",
+    name: 'App',
 
-
-  data: () => ({
-    //
-  }),
+    data: () => ({
+        //
+    }),
 };
 </script>
+<style>
+@import './assets/css/reset.css';
+</style>
