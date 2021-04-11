@@ -1,12 +1,12 @@
 <template>
-    <v-container>
+    <v-container class="outerBox">
         <div id="infinite">
             <div>
                 <div class="wrapBox">
                     <div class="topBox">
                         <p class="title">이미지영역</p>
 
-                        <button class="darkBtn">다크모드</button>
+                        <button class="darkBtn" @click="changeDark">다크모드</button>
 
                         <input type="text" placeholder="검색하고 싶은 품종을 검색해주세요." />
                     </div>
@@ -28,12 +28,12 @@
                             </v-card>
                         </div>
                     </v-row>
+
+                    <v-row class="more"> </v-row>
                     <catsDetail
                         :detailDialog="detailDialog"
                         @closeDetail="closeDetail"
                     ></catsDetail>
-
-                    <v-row class="more"> </v-row>
                 </div>
             </div>
         </div>
@@ -73,11 +73,27 @@ export default {
     },
     mounted() {
         this.isLoading = false;
+
+        // 로컬 스토리지에 변수 값 확인.
+        const theme = localStorage.getItem('dark_theme');
+        if (theme) {
+            // 존재하는 경우.
+            if (theme === 'true') {
+                this.$vuetify.theme.dark = true;
+            } else {
+                this.$vuetify.theme.dark = false;
+            }
+        }
+        // 존재하지 않는 경우 시스템에서 다크모드를 활성화 했는지 확인 후 설정.
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.$vuetify.theme.dark = true;
+            localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+        }
     },
     methods: {
         scroll() {
             let scrolledToBottom =
-                document.documentElement.scrollTop + window.innerHeight ===
+                document.documentElement.scrollTop + window.innerHeight ==
                 document.documentElement.offsetHeight;
             console.log(this.isLoading);
 
@@ -132,11 +148,16 @@ export default {
             this.detailDialog = !detailDialog;
             console.log('즤금 : ' + this.detailDialog);
         },
+        changeDark() {
+            // console.log('dark : ' + this.$vuetify.theme.dark.toString());
+
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+            localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+        },
     },
 };
 </script>
 
 <style>
-@import '../assets/css/reset.css';
 @import '../assets/css/cat.css';
 </style>
