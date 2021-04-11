@@ -411,7 +411,8 @@ https://velog.io/@yejinh/Intersection-Observer%EB%A1%9C-Lazy-Image-%EA%B5%AC%ED%
 
 ```
 예를 들어 스크롤 이벤트를 통해 한번에 50개씩 데이터를 받는다고 할 때, 
-50개씩 데이터 요청 하는 것이 infinite scroll로, 응답된 50개의 이미지를 바로 그리지 않고 화면 상에 보여질 차례가 되었을 때 그리는 것이 lazy image loading 인 것이다.
+50개씩 데이터 요청 하는 것이 infinite scroll로, 응답된 50개의 이미지를 바로 그리지 않고 
+화면 상에 보여질 차례가 되었을 때 그리는 것이 lazy image loading 인 것이다.
 ```
 
 검색 기능 구현이 끝나면 lazy loading의 구현과 공부해보자.
