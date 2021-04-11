@@ -201,9 +201,17 @@ methods:{
 }
 ```
 
-버튼으르 만들고 버튼 클릭 시 마다 <strong>this.$vuetify.theme.dark</strong>의 상태를 바꿔주고,  **localStorage에 'dark_theme'을 저장**
+버튼을 만들고 버튼 클릭 시 마다 <strong>this.$vuetify.theme.dark</strong>의 상태를 바꿔주고,  **localStorage에 'dark_theme'을 저장**
 
 
+
+참고 :
+
+* https://velog.io/@yijaee/%EB%8B%A4%ED%81%AC%EB%AA%A8%EB%93%9C-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
+* https://marshall-ku.com/web/tips/%EC%9B%B9%EC%97%90%EC%84%9C-%EB%8B%A4%ED%81%AC-%EB%AA%A8%EB%93%9C-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
+* https://hkamran.medium.com/using-local-storage-to-store-vuetifys-dark-theme-state-6158786449c
+* https://developer.mozilla.org/ko/docs/Web/CSS/@media/prefers-color-scheme
+* https://developer.mozilla.org/ko/docs/Web/API/Window/matchMedia
 
 ---
 
