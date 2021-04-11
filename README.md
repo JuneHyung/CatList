@@ -17,11 +17,13 @@ Run application
 
 <Strong>DB : mysql</strong>
 
+
+
 ## 주요기능
 
 * 무한 스크롤 (완료)
 * detail 정보 띄우기 (vuex, props이용.) (완료)
-* 다크 모드 ( 진행중 )
+* 다크 모드 ( 완료)
 * 데이터 로딩 UI
 * 검색 기능.
 * 검색 후 최근 검색어 태그 추가.
@@ -146,6 +148,67 @@ append_list(){
 
 
 
+## 다크모드
+
+```vue
+export default new Vuetify({
+    theme: {
+        dark:true
+    }
+});
+```
+
+<strong> 먼저 vuetify 플러그인 파일 (plugin/vuetify.js)에 dark모드를 사용한다고 설정.</strong>
+
+
+
+```vue
+// 로컬 스토리지에 변수 값 확인.
+const theme = localStorage.getItem('dark_theme');
+```
+
+로컬 스토리지에 변수 'dark_theme'의 값을 확인 후
+
+```vue
+ this.$vuetify.theme.dark
+```
+
+dark_theme에 따라 위의 값을 설정해줌.
+
+
+
+```vue
+window.matchMedia('(prefers-color-scheme: dark)').matches
+```
+
+만약 dark_theme이 존재 하지 않는다면, 시스템에서 다크모드를 활성화 했는지 확인 하고, 활성화 되었다면   this.$vuetify.theme.dark를 true로 설정.
+
+그리고 <strong>localStorage에 'dark_theme'을 저장</strong>한다.
+
+
+
+```vue
+<button class="darkBtn" @click="changeDark">다크모드</button>
+
+
+methods:{
+    changeDark() {
+                // console.log('dark : ' + this.$vuetify.theme.dark.toString());
+
+                this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+                localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+            },
+}
+```
+
+버튼으르 만들고 버튼 클릭 시 마다 <strong>this.$vuetify.theme.dark</strong>의 상태를 바꿔주고,  **localStorage에 'dark_theme'을 저장**
+
+
+
+---
+
+
+
 ## 진행상황
 
 <strong>v1.0</strong> : 고양이 목록을 스크롤 시 1초 후 계속 추가해나가 무한 스크롤 동작.
@@ -156,7 +219,11 @@ append_list(){
 - modal창은 component로 구분하였고, props를 통해 dialog를 주고받음.
 - modal창의 정보는 vuex를 이용하여 출력해보았음.
 
-​		  
+<strong>v1.2 :</strong>
+
+* 처음에 dark클래스를 토글하는 방식으로 적용.
+* 원하는 대로 잘 적용 되지 않음.
+* vuetify에서 제공하는 darkMode를 적용함.
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
@@ -220,5 +287,17 @@ closeDetail(detailDialog) {
 
 ---
 
-<strong>v1.2</strong>
+<strong>v1.2 다크모드</strong>
+
+dark클래스를 추가했다가 제거하는 방식으로 토글하려고 했는데 전체 적용이 되긴하지만, 카드 내용이 적용되지않았음.
+
+그래서 방법을 찾던 중 vuetify에서 제공하는 dark모드가 있는 것을 확인.
+
+적용은 되었지만, 새로고침시 유지가 되지않음.
+
+```vue
+[해결]
+처음에 localStorage에서 dark_theme의 변수 값을 확인하고, 그에 따라 dark모드를 적용.
+만약 존재하지 않는다면, 시스템에서 다크모드가 활성화 되었는지 window.matchMedia('(prefers-color-scheme: dark)'를 통해 확인 후 dark모드 설정함. 
+```
 
