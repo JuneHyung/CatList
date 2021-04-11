@@ -28,8 +28,19 @@
                             </v-card>
                         </div>
                     </v-row>
-
-                    <v-row class="more"> </v-row>
+                    <div class="loadingBox" v-if="loadingFlag">
+                        <!-- <v-progress-circular
+                            :size="70"
+                            :width="7"
+                            color="purple"
+                            indeterminate
+                            class="loading"
+                        ></v-progress-circular> -->
+                        <v-img
+                            :src="require(`@/assets/images/Loading_cat.gif`)"
+                            class="loading"
+                        ></v-img>
+                    </div>
                     <catsDetail
                         :detailDialog="detailDialog"
                         @closeDetail="closeDetail"
@@ -62,6 +73,7 @@ export default {
             detailDialog: false,
             isLoading: true,
             darkDialog: false,
+            loadingFlag: false,
         };
     },
     created() {
@@ -73,22 +85,8 @@ export default {
     },
     mounted() {
         this.isLoading = false;
-
-        // 로컬 스토리지에 변수 값 확인.
-        const theme = localStorage.getItem('dark_theme');
-        if (theme) {
-            // 존재하는 경우.
-            if (theme === 'true') {
-                this.$vuetify.theme.dark = true;
-            } else {
-                this.$vuetify.theme.dark = false;
-            }
-        }
-        // 존재하지 않는 경우 시스템에서 다크모드를 활성화 했는지 확인 후 설정.
-        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            this.$vuetify.theme.dark = true;
-            localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
-        }
+        this.loadingFlag = false;
+        this.checkDark();
     },
     methods: {
         scroll() {
@@ -99,7 +97,9 @@ export default {
 
             if (this.isLoading && scrolledToBottom) {
                 this.isLoading = true;
-                setTimeout(this.append_list, 1000);
+                this.loadingFlag = true;
+                console.log('loading : ' + this.loadingFlag);
+                setTimeout(this.append_list, 3000);
             }
         },
         append_list() {
@@ -117,6 +117,7 @@ export default {
                                 profile: response.data[i].profile,
                             });
                         }
+
                         this.start += this.limit;
                         console.log(this.start);
                     } else {
@@ -134,6 +135,7 @@ export default {
                         console.log(this.start);
                         this.isLoading = false;
                     }
+                    this.loadingFlag = false;
                 })
                 .catch(() => {
                     alert('정보를 받아오는데 실패!');
@@ -148,6 +150,23 @@ export default {
             this.detailDialog = !detailDialog;
             console.log('즤금 : ' + this.detailDialog);
         },
+        checkDark() {
+            // 로컬 스토리지에 변수 값 확인.
+            const theme = localStorage.getItem('dark_theme');
+            if (theme) {
+                // 존재하는 경우.
+                if (theme === 'true') {
+                    this.$vuetify.theme.dark = true;
+                } else {
+                    this.$vuetify.theme.dark = false;
+                }
+            }
+            // 존재하지 않는 경우 시스템에서 다크모드를 활성화 했는지 확인 후 설정.
+            else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                this.$vuetify.theme.dark = true;
+                localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+            }
+        },
         changeDark() {
             // console.log('dark : ' + this.$vuetify.theme.dark.toString());
 
@@ -160,4 +179,22 @@ export default {
 
 <style>
 @import '../assets/css/cat.css';
+.loadingBox {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.loading {
+    width: 500px;
+    height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -250px;
+}
 </style>
