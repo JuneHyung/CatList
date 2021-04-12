@@ -8,7 +8,17 @@
 
                         <button class="darkBtn" @click="changeDark">다크모드</button>
 
-                        <input type="text" placeholder="검색하고 싶은 품종을 검색해주세요." />
+                        <v-row style="margin: 0; padding: 0">
+                            <input
+                                type="text"
+                                placeholder="검색하고 싶은 품종을 검색해주세요."
+                                v-model="keyword"
+                                class="col-11"
+                                style="color: #a0a0a0"
+                            />
+                            <v-spacer></v-spacer>
+                            <v-icon @click="searchByKeyword()" class="col-1">mdi-magnify</v-icon>
+                        </v-row>
                     </div>
 
                     <v-row>
@@ -29,13 +39,6 @@
                         </div>
                     </v-row>
                     <div class="loadingBox" v-if="loadingFlag">
-                        <!-- <v-progress-circular
-                            :size="70"
-                            :width="7"
-                            color="purple"
-                            indeterminate
-                            class="loading"
-                        ></v-progress-circular> -->
                         <v-img
                             :src="require(`@/assets/images/Loading_cat.gif`)"
                             class="loading"
@@ -68,12 +71,14 @@ export default {
     data() {
         return {
             cats: [],
+            searchCats: {},
             start: 0,
             limit: 6,
             detailDialog: false,
             isLoading: true,
             darkDialog: false,
             loadingFlag: false,
+            keyword: '',
         };
     },
     created() {
@@ -107,6 +112,7 @@ export default {
                 .then((response) => {
                     if (response.data.length >= 6) {
                         this.isLoading = true;
+
                         for (var i = 0; i < 6; i++) {
                             this.cats.push({
                                 cat_name: response.data[i].cat_name,
@@ -172,6 +178,38 @@ export default {
 
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
             localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+        },
+        searchByKeyword() {
+            this.cats.splice(0);
+            // this.cats = [];
+            if (this.keyword == '') {
+                this.start = 0;
+                this.loadingFlag = true;
+                setTimeout(this.append_list, 3000);
+            } else {
+                this.loadingFlag = true;
+                setTimeout(this.searching, 3000);
+            }
+        },
+        searching() {
+            http.get(`/cats/search/${this.keyword}`)
+                .then((response) => {
+                    for (var i = 0; i < response.data.length; i++) {
+                        this.cats.push({
+                            cat_name: response.data[i].cat_name,
+                            cat_num: response.data[i].cat_num,
+                            create_date: response.data[i].create_date,
+                            description: response.data[i].description,
+                            kind: response.data[i].kind,
+                            profile: response.data[i].profile,
+                        });
+                    }
+                    this.keyword = '';
+                    this.loadingFlag = false;
+                })
+                .catch(() => {
+                    console.log('실패');
+                });
         },
     },
 };
