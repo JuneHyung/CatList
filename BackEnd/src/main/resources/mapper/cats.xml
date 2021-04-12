@@ -17,6 +17,6 @@
 </select>
 
 <select id="searchCats" resultType="cats" parameterType="String" >
-	select * from cat where cat_name LIKE CONCAT("%", #{topic}, "%");
+	select * from cat where cat_name LIKE CONCAT("%", #{cat_name}, "%");
 </select>
 </mapper>
