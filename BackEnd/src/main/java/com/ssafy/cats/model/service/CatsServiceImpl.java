@@ -26,4 +26,10 @@ public class CatsServiceImpl implements CatsService{
 		return catsDao.detailCats(cat_num);
 	}
 
+	@Override
+	public List<Cats> searchCats(String keyword) {
+		// TODO Auto-generated method stub
+		return catsDao.searchCats(keyword);
+	}
+
 }
