@@ -25,7 +25,7 @@ Run application
 * detail 정보 띄우기 (vuex, props이용.) (완료)
 * 다크 모드 ( 완료)
 * 데이터 로딩 UI (완료)
-* 검색 기능.(완료)
+* 검색 기능. (완료)
 * 검색 후 최근 검색어 태그 추가.
 
 
@@ -309,6 +309,7 @@ append_list() {
 * 기존의 cats배열을 빈 배열로 시키고, 받은 데이터를 다시 넣음.
 * 검색 동안 로딩UI가 뜨게 변경
 * 해당 이름검색을 LIKE를 이용해 keyword가 포함된 아이들 다 검색.
+* 검색 후 키워드를 초기화시켜 placeholder가 보이게 하고, 스크롤이 내려가면 다음 목록이 출력되는 현상 막음.
 * 참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 
 ## Issue 및 Error
@@ -459,4 +460,12 @@ select * from cat where cat_name LIKE CONCAT("%", #{cat_name}, "%");
 ```
 
 
+
+검색 후 스크롤이 내려가면 다음 목록을 가져오는 현상이 발생.
+
+```
+[해결]
+검색이 끝나는 지점에서 isLoading의 상태를 false로 두어 더 검색되지 않게 함.
+추가로 검색창에 값이 남아있어 초기화도 시켜둠.
+```
 
