@@ -25,7 +25,7 @@ Run application
 * detail 정보 띄우기 (vuex, props이용.) (완료)
 * 다크 모드 ( 완료)
 * 데이터 로딩 UI (완료)
-* 검색 기능.
+* 검색 기능.(완료)
 * 검색 후 최근 검색어 태그 추가.
 
 
@@ -303,7 +303,13 @@ append_list() {
 * console로 찍었을 때 flag는 변화하지만, 화면은 노출되지않음.
 * flag를 false로 바꾸는 지점을 axios통신이 끝날 때로 변경.
 
+<strong>v1.4 :</strong>
 
+* 검색한 키워드(고양이 이름)를 받아 해당 이름의 고양이 카드 리스트를 받아옴.
+* 기존의 cats배열을 빈 배열로 시키고, 받은 데이터를 다시 넣음.
+* 검색 동안 로딩UI가 뜨게 변경
+* 해당 이름검색을 LIKE를 이용해 keyword가 포함된 아이들 다 검색.
+* 참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
@@ -420,6 +426,37 @@ https://velog.io/@yejinh/Intersection-Observer%EB%A1%9C-Lazy-Image-%EA%B5%AC%ED%
 
 
 ---
+
+<strong>v1.3 검색</strong>
+
+```
+org.apache.ibatis.executor.ExecutorException: A query was run and no Result Maps were found for the Mapped Statement 'com.ssafy.cats.model.dao.CatsDAO.searchCats'.  It's likely that neither a Result Type nor a Result Map was specified.
+
+[해결] mybatis에서 resultType을 명시하지않아 발생.
+```
+
+
+
+sql문 xml을 사용할 때
+
+```
+select * from cat where cat_name LIKE ...
+```
+
+LIKE뒤에 #{cat_name}을 어떻게 써야할지 몰랐었음.
+
+'%#{cat_name}%'을 하면 #{cat_name}자체 글자가 있는지 없는지 검색하게 됨.
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat를 참고.
+
+```
+[해결]
+concat을 이용.
+concat은 메서드를 호출한 배열 뒤에 각 인수를 순서대로 붙여 새로운 배열을 만듭니다
+인수가 배열이면 그 구성요소가 순서대로 붙고, 배열이 아니면 인수 자체가 붙습니다.
+
+select * from cat where cat_name LIKE CONCAT("%", #{cat_name}, "%");
+```
 
 
 
