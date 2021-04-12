@@ -205,6 +205,7 @@ export default {
                         });
                     }
                     this.keyword = '';
+                    this.isLoading = false;
                     this.loadingFlag = false;
                 })
                 .catch(() => {
