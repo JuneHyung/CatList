@@ -71,3 +71,42 @@
     padding: 10px;
     font-weight: 900;
 }
+
+.loadingBox {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.loading {
+    width: 500px;
+    height: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -250px;
+}
+.keywordBox {
+    width: 100px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+}
+.deleteBox {
+    width: 10px;
+    height: 10px;
+    font-size: 6px;
+    line-height: 6px;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    cursor: pointer;
+}
