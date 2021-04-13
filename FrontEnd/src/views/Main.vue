@@ -19,6 +19,17 @@
                             <v-spacer></v-spacer>
                             <v-icon @click="searchByKeyword()" class="col-1">mdi-magnify</v-icon>
                         </v-row>
+                        <v-row>
+                            <div
+                                v-for="(keyword, index) in writing"
+                                :key="index"
+                                class="keywordBox"
+                                @click="chooseKeyword(keyword)"
+                            >
+                                {{ keyword }}
+                                <div class="deleteBox" @click="deleteKeyword(index)">X</div>
+                            </div>
+                        </v-row>
                     </div>
 
                     <v-row>
@@ -79,6 +90,26 @@ export default {
             darkDialog: false,
             loadingFlag: false,
             keyword: '',
+            writing: [],
+            bgName: [
+                'warmFlame',
+                'nightFade',
+                'springWarmth',
+                'sunnyMoring',
+                'rainyAshville',
+                'frozenDreams',
+                'dustyGrass',
+                'temptingAzure',
+                'heavyRain',
+                'meanFruit',
+                'deepBlue',
+                'malibuBeach',
+                'newLife',
+                'morpheusDen',
+                'rareWind',
+                'nearMoon',
+            ],
+            idx: 0,
         };
     },
     created() {
@@ -189,6 +220,7 @@ export default {
             } else {
                 this.loadingFlag = true;
                 setTimeout(this.searching, 3000);
+                setTimeout(this.randomBackground, 3100);
             }
         },
         searching() {
@@ -204,6 +236,9 @@ export default {
                             profile: response.data[i].profile,
                         });
                     }
+                    if (response.data.length != 0) {
+                        this.checkDuplicate();
+                    }
                     this.keyword = '';
                     this.isLoading = false;
                     this.loadingFlag = false;
@@ -212,28 +247,53 @@ export default {
                     console.log('실패');
                 });
         },
+        chooseKeyword(keyword) {
+            this.keyword = keyword;
+        },
+        checkDuplicate() {
+            if (this.writing.length < 5) {
+                for (var i = 0; i < this.writing.length; i++) {
+                    if (this.keyword == this.writing[i]) {
+                        this.writing.splice(i, 1);
+                        this.idx--;
+                    }
+                }
+                this.writing.push(this.keyword);
+                this.idx++;
+            } else if (this.writing.length == 5) {
+                let same = false;
+                for (i = 0; i < this.writing.length; i++) {
+                    if (this.keyword == this.writing[i]) {
+                        this.writing.splice(i, 1);
+                        this.writing.push(this.keyword);
+                        same = true;
+                        break;
+                    } // if
+                } // for
+                if (same == false) {
+                    this.writing.splice(0, 1);
+                    this.writing.push(this.keyword);
+                } // if
+            } //else if
+        },
+        deleteKeyword(index) {
+            this.writing.splice(index, 1);
+        },
+        randomBackground() {
+            let randomIdx = Math.floor(Math.random() * this.bgName.length);
+            console.log('randomIdx : ' + randomIdx);
+            let color = this.bgName[randomIdx];
+            console.log('randomIdx : ' + color);
+            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
+
+            console.log(keywordBox);
+            keywordBox.classList.add(color);
+        },
     },
 };
 </script>
 
 <style>
 @import '../assets/css/cat.css';
-.loadingBox {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-.loading {
-    width: 500px;
-    height: 500px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -250px;
-    margin-left: -250px;
-}
+@import '../assets/css/bg.css';
 </style>
