@@ -26,7 +26,7 @@ Run application
 * 다크 모드 ( 완료)
 * 데이터 로딩 UI (완료)
 * 검색 기능. (완료)
-* 검색 후 최근 검색어 태그 추가.
+* 검색 후 최근 검색어 태그 추가. (진행중)
 
 
 
@@ -280,6 +280,66 @@ append_list() {
 
 
 
+## 태그 추가
+
+```vue
+<v-row>
+    <div
+         v-for="(keyword, index) in writing"
+         :key="index"
+         class="keywordBox"
+         @click="chooseKeyword(keyword)"
+         >
+        {{ keyword }}
+        <div class="deleteBox" @click="deleteKeyword(index)">X</div>
+    </div>
+</v-row>
+```
+
+검색 버튼 클릭 시 this.keyword를 writing 배열에 넣고, 검색창 아래에 v-for로 writing 배열을 반복해 div를 추가한다.
+
+
+
+```vue
+deleteKeyword(index) {
+            this.writing.splice(index, 1);
+        },
+```
+
+삭제(x버튼)를 클릭 시 해당 idx를 가지고, splice를 통해 배열에서 값을 삭제함.
+
+
+
+```vue
+ bgName: [
+          'warmFlame','nightFade', 'springWarmth', 'sunnyMoring', 'rainyAshville', 'frozenDreams', 'dustyGrass',~~
+		]
+
+randomBackground() {
+            let randomIdx = Math.floor(Math.random() * this.bgName.length);
+            console.log('randomIdx : ' + randomIdx);
+            let color = this.bgName[randomIdx];
+            console.log('randomIdx : ' + color);
+            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
+
+            console.log(keywordBox);
+            keywordBox.classList.add(color);
+        },
+```
+
+색상 클래스명을 작성한 배열을 만들고 randomIdx로 랜덤변수를 만들어 keywordBox에 랜덤으로 클래스명을 추가한다.
+
+
+
+참고:
+
+* https://developer.mozilla.org/ko/docs/Web/API/Document/querySelector
+* https://developer.mozilla.org/ko/docs/Web/API/Element/classList
+
+
+
+---
+
 ## 진행상황
 
 <strong>v1.0</strong> : 고양이 목록을 스크롤 시 1초 후 계속 추가해나가 무한 스크롤 동작.
@@ -311,6 +371,14 @@ append_list() {
 * 해당 이름검색을 LIKE를 이용해 keyword가 포함된 아이들 다 검색.
 * 검색 후 키워드를 초기화시켜 placeholder가 보이게 하고, 스크롤이 내려가면 다음 목록이 출력되는 현상 막음.
 * 참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+
+<strong>v1.5 : </strong>
+
+* 검색한 키워드를 검색창 아래에 태그를 추가함.
+* 5개까지 추가가 되며 5개가 넘어가면 처음 게 지워지고, 가장 맨뒤에 추가됨.
+* 태그 클릭 시 검색창에 값이 입력되고, x클릭 시 사라짐.
+* 이미 있는 태그를 검색 시 이미 존재하는 태그를 지우고, 가장 맨 뒤에 추가가됨.
+* 추가 시 태그의 배경색을 랜덤으로 적용.(진행중)
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
@@ -428,7 +496,7 @@ https://velog.io/@yejinh/Intersection-Observer%EB%A1%9C-Lazy-Image-%EA%B5%AC%ED%
 
 ---
 
-<strong>v1.3 검색</strong>
+<strong>v1.4 검색</strong>
 
 ```
 org.apache.ibatis.executor.ExecutorException: A query was run and no Result Maps were found for the Mapped Statement 'com.ssafy.cats.model.dao.CatsDAO.searchCats'.  It's likely that neither a Result Type nor a Result Map was specified.
@@ -467,5 +535,51 @@ select * from cat where cat_name LIKE CONCAT("%", #{cat_name}, "%");
 [해결]
 검색이 끝나는 지점에서 isLoading의 상태를 false로 두어 더 검색되지 않게 함.
 추가로 검색창에 값이 남아있어 초기화도 시켜둠.
+```
+
+
+
+---
+
+<strong>v1.5 검색어 태그</strong>
+
+태그가 5개일 때 값 중복체크 시 제대로 삭제되지않고 추가되지않음.
+
+```vue
+[해결]
+same flag를 두어 만약 중복값을 찾으면 same을 true로 변경.
+same이 true면 중복값을 이미 찾아서 지우고 추가하는 작업을 했다는 뜻.
+false면 겹치는게 없어 처음 값을 지우고 새로운 값을 추가하는 작업을 동작함.
+
+else if (this.writing.length == 5) {
+                let same = false;
+                for (i = 0; i < this.writing.length; i++) {
+                    if (this.keyword == this.writing[i]) {
+                        this.writing.splice(i, 1);
+                        this.writing.push(this.keyword);
+                        same = true;
+                        break;
+                    } // if
+                } // for
+                if (same == false) {
+                    this.writing.splice(0, 1);
+                    this.writing.push(this.keyword);
+                } // if
+            } //else if
+```
+
+
+
+로딩화면을 보기위해 searching에 setTimeout을 걸어놔서 랜덤으로 배경을 추가할 때 class를 못찾는 에러가 발생.
+
+아마도 searching이 발생하고, 배열에 값이 들어간 후 tag가 만들어지는데 이거를 로딩화면 보겠다고 3초뒤에 실행하게 해서
+
+randomBackground가 먼저 실행되어 그런 거 같다.
+
+randomBackground에도 setTimeout을 주어 정상작동. 하지만 수정이 필요할 거 같다.
+
+```
+ setTimeout(this.searching, 3000);
+ setTimeout(this.randomBackground, 3100);
 ```
 
