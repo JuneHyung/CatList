@@ -378,7 +378,7 @@ randomBackground() {
 * 5개까지 추가가 되며 5개가 넘어가면 처음 게 지워지고, 가장 맨뒤에 추가됨.
 * 태그 클릭 시 검색창에 값이 입력되고, x클릭 시 사라짐.
 * 이미 있는 태그를 검색 시 이미 존재하는 태그를 지우고, 가장 맨 뒤에 추가가됨.
-* 추가 시 태그의 배경색을 랜덤으로 적용.(진행중)
+* 추가 시 태그의 배경색을 랜덤으로 적용.
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
@@ -581,5 +581,31 @@ randomBackground에도 setTimeout을 주어 정상작동. 하지만 수정이 �
 ```
  setTimeout(this.searching, 3000);
  setTimeout(this.randomBackground, 3100);
+```
+
+
+
+클래스명이 keywordBox인 친구를 찾아서 random으로 배경을 적용.
+
+배경은 css에 미리 만들어 vue파일에서는 클래스명이 적힌 배열을 만들어, 배열명을 랜덤으로 뽑아서 클래스명으로 추가하는 방식.
+
+끊임없이 클래스명이 추가가되버림.
+
+```vue
+randomBackground() {
+            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
+            keywordBox.className = 'keywordBox';
+
+            let randomIdx = Math.floor(Math.random() * this.bgName.length);
+            console.log('randomIdx : ' + randomIdx);
+            let color = this.bgName[randomIdx];
+            console.log('randomIdx : ' + color);
+
+            console.log(keywordBox);
+            keywordBox.classList.add(color);
+        },
+        
+[해결중]
+클래스명을 추가하기전 className = 'keywordBox'로 하나로 초기화한다음 추가시킴. (원하는대로 동작이 안되 수정 필요해보임)
 ```
 
