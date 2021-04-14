@@ -110,6 +110,7 @@ export default {
                 'nearMoon',
             ],
             idx: 0,
+            sameIdx: 0,
         };
     },
     created() {
@@ -256,6 +257,7 @@ export default {
                     if (this.keyword == this.writing[i]) {
                         this.writing.splice(i, 1);
                         this.idx--;
+                        this.sameIdx = i;
                     }
                 }
                 this.writing.push(this.keyword);
@@ -266,6 +268,7 @@ export default {
                     if (this.keyword == this.writing[i]) {
                         this.writing.splice(i, 1);
                         this.writing.push(this.keyword);
+                        this.sameIdx = i;
                         same = true;
                         break;
                     } // if
@@ -273,18 +276,23 @@ export default {
                 if (same == false) {
                     this.writing.splice(0, 1);
                     this.writing.push(this.keyword);
+                    this.sameIdx = 0;
                 } // if
             } //else if
         },
         deleteKeyword(index) {
             this.writing.splice(index, 1);
+            this.idx--;
+            this.sameIdx = index;
         },
         randomBackground() {
+            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
+            keywordBox.className = 'keywordBox';
+
             let randomIdx = Math.floor(Math.random() * this.bgName.length);
             console.log('randomIdx : ' + randomIdx);
             let color = this.bgName[randomIdx];
             console.log('randomIdx : ' + color);
-            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
 
             console.log(keywordBox);
             keywordBox.classList.add(color);
