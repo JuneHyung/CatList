@@ -26,7 +26,8 @@ Run application
 * 다크 모드 ( 완료)
 * 데이터 로딩 UI (완료)
 * 검색 기능. (완료)
-* 검색 후 최근 검색어 태그 추가. (진행중)
+* 검색 후 최근 검색어 태그 추가. (완료)
+* 차트 추가(완료, 추후 data를 받아서 그리는걸로 변경할 예정.)
 
 
 
@@ -336,6 +337,89 @@ randomBackground() {
 * https://developer.mozilla.org/ko/docs/Web/API/Document/querySelector
 * https://developer.mozilla.org/ko/docs/Web/API/Element/classList
 
+---
+
+## 차트
+
+Chart.js를 이용하여 고양이의 성격을 그려주는 차트.
+
+추후에는 db에서 받아서 그래프를 그려줄 예정.
+
+```vue
+<div style="background-color: #fbceb1; height: 500px">
+    <canvas :id="id" height="250px" width="250px"></canvas>
+</div>
+```
+
+먼저 그래프가 그려줄 영역지정.
+
+```vue
+import Chart from 'chart.js';
+
+data(){
+    return{
+    	catData: {
+                labels: [
+                    'Eating',
+                    'Drinking', ......
+                ],
+                datasets: [
+                    {
+                        label: 'My First Dataset',
+                        data: [65, 59, 90, 81, 56, 55, 40],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        pointBackgroundColor: 'rgb(255, 99, 132)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(255, 99, 132)',
+                    },
+                ],
+		},
+	}
+}
+```
+
+dataset의 label에 항목들을 적어주고, dataset의 data에 값을 넣어준다.
+
+
+
+```vue
+mounted() {
+        this.createChart();
+    },
+
+-----------------------------------------------------------------------------
+
+createChart() {
+            const ctx = document.getElementById(this.id);
+            console.log(ctx);
+            // 그려질 그래프 설정.
+            this.chartObject = new Chart(ctx, {
+                type: 'radar',
+                data: this.catData,
+                options: this.options,
+            });
+        },
+```
+
+createChart메소드에서 그려질 그래프를 그린다.
+
+* type은 그려질 그래프 종류
+* data는 들어갈 data.
+* option은 설정한 option 이 적용된다.
+
+
+
+참고 : 
+
+* https://www.chartjs.org/docs/latest/
+* https://www.chartjs.org/docs/2.9.4/
+* https://github.com/chartjs/Chart.js/issues/3715
+* https://hyeooona825.tistory.com/40
+* https://m.blog.naver.com/PostView.nhn?blogId=jjoommnn&logNo=221082930638&proxyReferer=http:%2F%2F211.63.177.133%2F
+
 
 
 ---
@@ -377,8 +461,16 @@ randomBackground() {
 * 검색한 키워드를 검색창 아래에 태그를 추가함.
 * 5개까지 추가가 되며 5개가 넘어가면 처음 게 지워지고, 가장 맨뒤에 추가됨.
 * 태그 클릭 시 검색창에 값이 입력되고, x클릭 시 사라짐.
-* 이미 있는 태그를 검색 시 이미 존재하는 태그를 지우고, 가장 맨 뒤에 추가가됨.
+* 이미 있는 태그를 검색 시 이미 존재하는 태그를 지우고, 가장 맨 뒤에 추가가 됨.
 * 추가 시 태그의 배경색을 랜덤으로 적용.
+
+<strong>v1.6 :</strong>
+
+* 고양이의 성격에 대한 차트를 상세정보창에서 보여준다.
+* 이 때 값은 고정된 데이터로 chart.js를 사용해 그릴 수 있는지만 확인 함.
+* 데이터를 받아오려면 db의 수정이 필요해 보임.
+* 3.1.0 version에서 에러가 발생해 2.9.4로 재설치.
+* created에서 createChart했을때 오류 발생하여 mounted에서 동작. 
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
@@ -609,3 +701,66 @@ randomBackground() {
 클래스명을 추가하기전 className = 'keywordBox'로 하나로 초기화한다음 추가시킴. (원하는대로 동작이 안되 수정 필요해보임)
 ```
 
+
+
+---
+
+<strong>v1.6 성격 그래프</strong>
+
+그냥 install했을 때 version이 3.1.0이였고, export에러가 발생.
+
+```
+"export 'default' (imported as 'Chart') was not found in 'chart.js'
+
+[해결]
+version을 2.9.4로 변경.
+npm install chart.js@2.9.4
+```
+
+
+
+그 후 계속 다음 에러가 console에서 발생
+
+```
+vue.runtime.esm.js?2b0e:619 [Vue warn]: Error in created hook: "TypeError: Cannot read property 'length' of null"
+```
+
+
+
+```
+[해결]
+created(){
+	this.createChart();
+}
+를
+
+mounted(){
+	this.createChart();
+}
+로 변경.
+```
+
+Vue의 생명주기와 관련된 문제 같았다.
+
+https://github.com/chartjs/Chart.js/issues/3715 여기서
+
+```
+"do not put the chart in created .....just put it in mounted .
+it just about the timing."
+```
+
+라는 댓글을 보고, created되있던걸 mounted에서 동작하게 변경하였다.
+
+Mounted는 rendering이 되고나서, trigger되지만, created는 rendering전에 trigger되기 때문이라고 한다.
+
+
+
+**VueLifeCycle**
+
+<img src="./images/vueLifeCycle.jpg" alt="뷰 라이프 사이클">
+
+참고 :
+
+https://hyeooona825.tistory.com/40
+
+https://m.blog.naver.com/PostView.nhn?blogId=jjoommnn&logNo=221082930638&proxyReferer=http:%2F%2F211.63.177.133%2F
