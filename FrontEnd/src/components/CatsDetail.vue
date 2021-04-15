@@ -21,6 +21,9 @@
                 <p>이름 : {{ catsDetail.cat_name }}</p>
                 <p>품종 : {{ catsDetail.kind }}</p>
                 <p>{{ catsDetail.description }}</p>
+                <div>
+                    <character :id="'cat' + catsDetail.cat_num"></character>
+                </div>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -32,11 +35,16 @@
 <script>
 // import http from '@/util/http-common';
 import { mapState } from 'vuex';
+import Character from '@/components/Character';
 export default {
     name: 'CatsDetail',
+    components: {
+        character: Character,
+    },
     data() {
         return {
             dialog: false,
+            hoverFlag: false,
         };
     },
     props: {
