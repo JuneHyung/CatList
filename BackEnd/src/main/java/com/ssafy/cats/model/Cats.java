@@ -1,16 +1,18 @@
 package com.ssafy.cats.model;
 
 public class Cats {
-	String cat_num;
+	int cat_num;
 	String cat_name;
-	String create_date;
+	int cat_age;
 	String kind;
-	String profile;
 	String description;
-	public String getCat_num() {
+	String create_date;
+	String profile;
+	String address;
+	public int getCat_num() {
 		return cat_num;
 	}
-	public void setCat_num(String cat_num) {
+	public void setCat_num(int cat_num) {
 		this.cat_num = cat_num;
 	}
 	public String getCat_name() {
@@ -19,11 +21,11 @@ public class Cats {
 	public void setCat_name(String cat_name) {
 		this.cat_name = cat_name;
 	}
-	public String getCreate_date() {
-		return create_date;
+	public int getCat_age() {
+		return cat_age;
 	}
-	public void setCreate_date(String create_date) {
-		this.create_date = create_date;
+	public void setCat_age(int cat_age) {
+		this.cat_age = cat_age;
 	}
 	public String getKind() {
 		return kind;
@@ -31,17 +33,29 @@ public class Cats {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getCreate_date() {
+		return create_date;
+	}
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
+	}
 	public String getProfile() {
 		return profile;
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	public String getDescription() {
-		return description;
+	public String getAddress() {
+		return address;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	
