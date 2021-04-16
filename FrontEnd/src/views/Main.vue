@@ -147,12 +147,14 @@ export default {
 
                         for (var i = 0; i < 6; i++) {
                             this.cats.push({
-                                cat_name: response.data[i].cat_name,
                                 cat_num: response.data[i].cat_num,
-                                create_date: response.data[i].create_date,
-                                description: response.data[i].description,
+                                cat_name: response.data[i].cat_name,
+                                cat_age: response.data[i].cat_age,
                                 kind: response.data[i].kind,
+                                description: response.data[i].description,
+                                create_date: response.data[i].create_date,
                                 profile: response.data[i].profile,
+                                address: response.data[i].address,
                             });
                         }
 
@@ -161,12 +163,14 @@ export default {
                     } else {
                         for (i = 0; i < response.data.length; i++) {
                             this.cats.push({
-                                cat_name: response.data[i].cat_name,
                                 cat_num: response.data[i].cat_num,
-                                create_date: response.data[i].create_date,
-                                description: response.data[i].description,
+                                cat_name: response.data[i].cat_name,
+                                cat_age: response.data[i].cat_age,
                                 kind: response.data[i].kind,
+                                description: response.data[i].description,
+                                create_date: response.data[i].create_date,
                                 profile: response.data[i].profile,
+                                address: response.data[i].address,
                             });
                         }
                         this.start += this.limit;
@@ -229,12 +233,14 @@ export default {
                 .then((response) => {
                     for (var i = 0; i < response.data.length; i++) {
                         this.cats.push({
-                            cat_name: response.data[i].cat_name,
                             cat_num: response.data[i].cat_num,
-                            create_date: response.data[i].create_date,
-                            description: response.data[i].description,
+                            cat_name: response.data[i].cat_name,
+                            cat_age: response.data[i].cat_age,
                             kind: response.data[i].kind,
+                            description: response.data[i].description,
+                            create_date: response.data[i].create_date,
                             profile: response.data[i].profile,
+                            address: response.data[i].address,
                         });
                     }
                     if (response.data.length != 0) {
