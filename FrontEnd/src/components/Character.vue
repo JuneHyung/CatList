@@ -17,19 +17,11 @@ export default {
     data() {
         return {
             catData: {
-                labels: [
-                    'Eating',
-                    'Drinking',
-                    'Sleeping',
-                    'Designing',
-                    'Coding',
-                    'Cycling',
-                    'Running',
-                ],
+                labels: ['적극성', '겁(내향적)', '외향적', '변덕스러움', '친근함'],
                 datasets: [
                     {
                         label: 'My First Dataset',
-                        data: [65, 59, 90, 81, 56, 55, 40],
+                        data: [3, 4, 4, 3, 5],
                         fill: true,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgb(255, 99, 132)',
@@ -52,8 +44,8 @@ export default {
                     },
                     ticks: {
                         min: 0,
-                        max: 100,
-                        stepSize: 10,
+                        max: 5,
+                        stepSize: 1,
                         fontColor: '#fff',
                         backgroundColor: '#fff',
                         backdropColor: 'rgba(0,0,0,0)',
