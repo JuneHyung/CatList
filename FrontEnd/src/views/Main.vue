@@ -41,7 +41,7 @@
                                         class="profileImg"
                                     />
                                 </div>
-                                <div class="infoBox">
+                                <div class="infoBox" @mouseover="setCenter(idx)">
                                     <p>이름 : {{ cat.cat_name }}</p>
                                     <p>품종 : {{ cat.kind }}</p>
                                     <p>{{ cat.description }}</p>
@@ -74,6 +74,7 @@
         </div>
     </v-container>
 </template>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=your api key"></script>
 <script>
 import http from '@/util/http-common';
