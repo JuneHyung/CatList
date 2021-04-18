@@ -5,7 +5,13 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
-
+import * as VueGoogleMaps from 'vue2-google-maps';
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'Enter Your API KEY',
+        libararies: 'places',
+    },
+});
 new Vue({
   router,
   store,
