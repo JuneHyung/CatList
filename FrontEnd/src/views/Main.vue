@@ -45,6 +45,16 @@
                                     <p>이름 : {{ cat.cat_name }}</p>
                                     <p>품종 : {{ cat.kind }}</p>
                                     <p>{{ cat.description }}</p>
+                                    <div class="mapBox">
+                                        <GmapMap
+                                            class="map"
+                                            ref="mapRef"
+                                            :center="center"
+                                            :zoom="15"
+                                        >
+                                            <GmapMarker :position="position" />
+                                        </GmapMap>
+                                    </div>
                                 </div>
                             </v-card>
                         </div>
@@ -64,12 +74,12 @@
         </div>
     </v-container>
 </template>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=your api key"></script>
 <script>
 import http from '@/util/http-common';
 import CatsDetail from '@/components/CatsDetail';
 import { mapState } from 'vuex';
-// import {scrolling} from '../api/scrolling';
+
 export default {
     name: 'Main',
     components: {
@@ -111,6 +121,12 @@ export default {
             ],
             idx: 0,
             sameIdx: 0,
+            center: {
+                lat: 35.8597,
+                lng: 128.611546,
+            },
+            // 마킹될 마커의 위치
+            position: { lat: 0, lng: 0 },
         };
     },
     created() {
@@ -155,10 +171,13 @@ export default {
                                 create_date: response.data[i].create_date,
                                 profile: response.data[i].profile,
                                 address: response.data[i].address,
+                                lat: response.data[i].lat,
+                                lng: response.data[i].lng,
                             });
                         }
 
                         this.start += this.limit;
+
                         console.log(this.start);
                     } else {
                         for (i = 0; i < response.data.length; i++) {
@@ -171,8 +190,11 @@ export default {
                                 create_date: response.data[i].create_date,
                                 profile: response.data[i].profile,
                                 address: response.data[i].address,
+                                lat: response.data[i].lat,
+                                lng: response.data[i].lng,
                             });
                         }
+
                         this.start += this.limit;
                         console.log(this.start);
                         this.isLoading = false;
@@ -241,6 +263,8 @@ export default {
                             create_date: response.data[i].create_date,
                             profile: response.data[i].profile,
                             address: response.data[i].address,
+                            lat: response.data[i].lat,
+                            lng: response.data[i].lng,
                         });
                     }
                     if (response.data.length != 0) {
@@ -302,6 +326,11 @@ export default {
 
             console.log(keywordBox);
             keywordBox.classList.add(color);
+        },
+        setCenter(idx) {
+            this.position.lat = this.cats[idx].lat;
+            this.position.lng = this.cats[idx].lng;
+            this.center = this.position;
         },
     },
 };
