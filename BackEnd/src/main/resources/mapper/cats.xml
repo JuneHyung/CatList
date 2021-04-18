@@ -6,7 +6,7 @@
 
 <select id="listCats" resultType="cats" parameterType="int">
 	select *
-	from cat
+	from cat join address on cat.cat_num = address.cat_num
 	limit #{start}, 6
 </select>
 
@@ -17,6 +17,10 @@
 </select>
 
 <select id="searchCats" resultType="cats" parameterType="String" >
-	select * from cat where cat_name LIKE CONCAT("%", #{cat_name}, "%");
+	select * from cat join address on cat.cat_num = address.cat_num where cat_name LIKE CONCAT("%", #{cat_name}, "%");
+</select>
+
+<select id="charcCats" resultType="charc" parameterType="int">
+	select * from charc where cat_num = #{cat_num}
 </select>
 </mapper>
