@@ -67,6 +67,7 @@
                     </div>
                     <catsDetail
                         :detailDialog="detailDialog"
+                        :charc="charc"
                         @closeDetail="closeDetail"
                     ></catsDetail>
                 </div>
@@ -128,6 +129,7 @@ export default {
             },
             // 마킹될 마커의 위치
             position: { lat: 0, lng: 0 },
+            charc: [0, 0, 0, 0, 0],
         };
     },
     created() {
@@ -207,12 +209,29 @@ export default {
                 });
         },
         openDetail(cat) {
+            console.log(this.charc);
             this.$store.commit('setCatsDetail', cat);
+            http.get(`/cats/charc/${cat.cat_num}`)
+                .then(({ data }) => {
+                    let charcdata = [
+                        data.aggressive,
+                        data.cowardice,
+                        data.extrovert,
+                        data.whim,
+                        data.friendly,
+                    ];
+                    this.charc = charcdata;
+                })
+                .catch(() => {
+                    alert('실패');
+                });
+            // this.setCharacter(cat.cat_num);
             this.detailDialog = true;
         },
         closeDetail(detailDialog) {
             console.log('이전 : ' + detailDialog);
             this.detailDialog = !detailDialog;
+            this.charc.splice(0);
             console.log('즤금 : ' + this.detailDialog);
         },
         checkDark() {
