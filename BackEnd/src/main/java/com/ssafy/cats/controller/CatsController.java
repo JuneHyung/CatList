@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.cats.model.Cats;
+import com.ssafy.cats.model.Charc;
 import com.ssafy.cats.model.service.CatsService;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
@@ -41,6 +41,8 @@ public class CatsController {
 		return new ResponseEntity<List<Cats>>(service.searchCats(keyword), HttpStatus.OK);
 	}
 	
-	
-	
+	@GetMapping("/charc/{cat_num}")
+	public ResponseEntity<Charc> charcCats(@PathVariable int cat_num){
+		return new ResponseEntity<Charc>(service.charcCats(cat_num), HttpStatus.OK);
+	}
 }
