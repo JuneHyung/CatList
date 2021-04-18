@@ -22,7 +22,7 @@
                 <p>품종 : {{ catsDetail.kind }}</p>
                 <p>{{ catsDetail.description }}</p>
                 <div>
-                    <character :id="'cat' + catsDetail.cat_num"></character>
+                    <character :id="'cat' + catsDetail.cat_num" :data="charc"></character>
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -49,12 +49,12 @@ export default {
     },
     props: {
         detailDialog: Boolean,
+        charc: Array,
     },
 
     computed: {
         ...mapState(['catsDetail']),
     },
-
     methods: {
         closeDetail() {
             this.$emit('closeDetail', this.detailDialog);
