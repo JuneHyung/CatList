@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.cats.model.Cats;
+import com.ssafy.cats.model.Charc;
 import com.ssafy.cats.model.dao.CatsDAO;
 
 @Service
@@ -30,6 +31,12 @@ public class CatsServiceImpl implements CatsService{
 	public List<Cats> searchCats(String keyword) {
 		// TODO Auto-generated method stub
 		return catsDao.searchCats(keyword);
+	}
+
+	@Override
+	public Charc charcCats(int cat_num) {
+		// TODO Auto-generated method stub
+		return catsDao.charcCats(cat_num);
 	}
 
 }
