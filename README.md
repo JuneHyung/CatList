@@ -27,7 +27,8 @@ Run application
 * 데이터 로딩 UI (완료)
 * 검색 기능. (완료)
 * 검색 후 최근 검색어 태그 추가. (완료)
-* 차트 추가(완료, 추후 data를 받아서 그리는걸로 변경할 예정.)
+* 차트 추가(완료)
+* 위치 지도로 출력.
 
 
 
@@ -420,7 +421,88 @@ createChart메소드에서 그려질 그래프를 그린다.
 * https://hyeooona825.tistory.com/40
 * https://m.blog.naver.com/PostView.nhn?blogId=jjoommnn&logNo=221082930638&proxyReferer=http:%2F%2F211.63.177.133%2F
 
+---
 
+## 구글API를 이용해 위치 지도로 출력하기.
+
+구글 api를 설정하고, 위치정보를 저장한 address table을 가져와야함.
+
+기존에 고양이정보를 가져올 때 같이 가져오게 변경.
+
+```sql
+[listCats]
+select * 
+from cat 
+limit #{start},6 을
+
+select * 
+from cat join address on cat.cat_num = address.cat_num 
+limit #{start}, 6
+로 변경
+-----------------------------------------------------------------------------------------------------------------------------
+[searchCats]
+select * 
+from cat 
+where cat_name LIKE CONCAT ("%", #{cat_name}, "%"); 을
+
+select * 
+from cat join address on cat.cat_num = address.cat_num 
+where cat_name LIKE CONCAT("%", #{cat_name}, "%");
+로 변경
+```
+
+
+
+npm에서 vue2-google-map 이용
+
+```
+npm install vue2-google-maps
+```
+
+main.js추가.
+
+```
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'your api key',
+        libararies: 'places',
+    },
+});
+```
+
+
+
+mapBox 추가
+
+```vue
+<div class="mapBox">
+    <GmapMap
+    class="map"
+    ref="mapRef"
+    :center="center"
+    :zoom="15"
+    >
+		<GmapMarker :position="position" />
+	</GmapMap>
+</div>
+```
+
+hover시에만 mapBox가 나타나게 하고,  그 때 position과 center를 정해준다.
+
+```vue
+setCenter(idx) {
+    this.position.lat = this.cats[idx].lat;
+    this.position.lng = this.cats[idx].lng;
+    this.center = this.position;
+},
+```
+
+참고 : 
+
+* https://www.npmjs.com/package/vue2-google-maps
+* http://daddynkidsmakers.blogspot.com/2020/01/google-map-vuejs.html
 
 ---
 
@@ -471,6 +553,13 @@ createChart메소드에서 그려질 그래프를 그린다.
 * 데이터를 받아오려면 db의 수정이 필요해 보임.
 * 3.1.0 version에서 에러가 발생해 2.9.4로 재설치.
 * created에서 createChart했을때 오류 발생하여 mounted에서 동작. 
+
+<strong>v1.7 : </strong>
+
+* 고양이의 위치를 저장한 Address table의 정보를 가져와 google api를 이용해 출력한다.
+* back부분에서 cat정보만 들고 오던거를 JOIN을 이용하여 그 고양이의 address정보까지 가져옴.
+
+
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
@@ -764,3 +853,38 @@ Mounted는 rendering이 되고나서, trigger되지만, created는 rendering전�
 https://hyeooona825.tistory.com/40
 
 https://m.blog.naver.com/PostView.nhn?blogId=jjoommnn&logNo=221082930638&proxyReferer=http:%2F%2F211.63.177.133%2F
+
+
+
+데이터를 받아올 때 props를 사용 했지만, 계속 data가 undefined가 출력됐었다.
+
+```vue
+[해결]
+Main.vue에서 부터
+Main.vue >> CatsDetail.vue >> Character.vue로 데이터를 자식이 받는데, CatsDetail.vue와 Character.vue끼리는 바인딩을 했지만,
+Main.vue와 CatsDetail.vue사이에 바인딩을 해주지 않았다.
+그래서 계속 undefined가 발생.
+
+ <catsDetail
+ 	:detailDialog="detailDialog"
+ 	:charc="charc"
+ 	@closeDetail="closeDetail"
+ ></catsDetail>
+ 
+ <character :id="'cat' + catsDetail.cat_num" :data="charc"></character>
+
+추가적으로 props할때 소문자만 사용할 것을 권장한다고 한다.
+```
+
+
+
+---
+
+**v1.7 구글api로 지도 나타내기**
+
+참고:
+
+* https://www.npmjs.com/package/vue2-google-maps
+
+* http://daddynkidsmakers.blogspot.com/2020/01/google-map-vuejs.html
+
