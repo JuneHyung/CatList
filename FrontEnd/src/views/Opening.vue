@@ -31,20 +31,6 @@ export default {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.loadingBarBox {
-    background: url('../assets/images/loadingBar.png');
-    width: 500px;
-    height: 300px;
-    position: absolute;
-    top: 200px;
-    left: 50%;
-    margin-left: -250px;
-}
-.loadingBarBox img {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-}
 .titleBox {
     width: 500px;
     height: 300px;
