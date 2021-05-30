@@ -1,10 +1,12 @@
 <template>
-    <v-container class="bgBox">
-        <div class="titleBox">
-            <h1 class="openingTitle">Let's Go</h1>
-            <p @click="goMain()">Search Cats</p>
+    <div class="bgBox blinking">
+        <div class="coverBox">
+            <div class="titleBox">
+                <h1 class="openingTitle">Let's Go</h1>
+                <p @click="goMain()">Search Cats</p>
+            </div>
         </div>
-    </v-container>
+    </div>
 </template>
 <script>
 export default {
@@ -24,14 +26,34 @@ export default {
     background-size: 100% 100%;
     background-position: center;
 }
+.coverBox {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.loadingBarBox {
+    background: url('../assets/images/loadingBar.png');
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -250px;
+}
+.loadingBarBox img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
 .titleBox {
     width: 500px;
     height: 300px;
     position: absolute;
-    top: 50%;
+    bottom: 20%;
     left: 50%;
     margin-top: -150px;
     margin-left: -250px;
+    color: #fff;
 }
 .openingTitle {
     width: 100%;
@@ -42,5 +64,41 @@ export default {
     font-size: 60px;
     text-align: center;
     cursor: pointer;
+}
+
+.titleBox:hover h1,
+.titleBox:hover p {
+    transition: all 0.7s;
+    color: #88bcbc;
+    background-color: rgba(0, 0, 0, 0);
+}
+.blinking {
+    -webkit-animation: blink 1.5s ease-in-out 1 alternate;
+    -moz-animation: blink 1.5s ease-in-out 1 alternate;
+    animation: blink 1.5s ease-in-out 1 alternate;
+}
+@-webkit-keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 </style>
