@@ -885,6 +885,29 @@ Main.vue와 CatsDetail.vue사이에 바인딩을 해주지 않았다.
 참고:
 
 * https://www.npmjs.com/package/vue2-google-maps
-
 * http://daddynkidsmakers.blogspot.com/2020/01/google-map-vuejs.html
 
+
+
+---
+
+<strong>v2.0 오프닝 페이지 추가</strong>
+
+```css
+.blinking {
+    -webkit-animation: blink 1.5s ease-in-out 1 alternate;
+    -moz-animation: blink 1.5s ease-in-out 1 alternate;
+    animation: blink 1.5s ease-in-out 1 alternate;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+```
+
+animation효과로 처음 페이지가 켜질때 등장하는 효과 넣음.
