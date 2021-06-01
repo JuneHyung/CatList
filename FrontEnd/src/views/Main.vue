@@ -73,6 +73,7 @@
                 </div>
             </div>
         </div>
+        <navmenu></navmenu>
     </v-container>
 </template>
 
@@ -80,12 +81,13 @@
 <script>
 import http from '@/util/http-common';
 import CatsDetail from '@/components/CatsDetail';
+import Menu from '@/components/Menu';
 import { mapState } from 'vuex';
-
 export default {
     name: 'Main',
     components: {
         catsDetail: CatsDetail,
+        navmenu: Menu,
     },
     computed: {
         ...mapState(['catsDetail']),
@@ -149,12 +151,12 @@ export default {
             let scrolledToBottom =
                 document.documentElement.scrollTop + window.innerHeight ==
                 document.documentElement.offsetHeight;
-            console.log(this.isLoading);
+            // console.log(this.isLoading);
 
             if (this.isLoading && scrolledToBottom) {
                 this.isLoading = true;
                 this.loadingFlag = true;
-                console.log('loading : ' + this.loadingFlag);
+                // console.log('loading : ' + this.loadingFlag);
                 setTimeout(this.append_list, 3000);
             }
         },
@@ -181,7 +183,7 @@ export default {
 
                         this.start += this.limit;
 
-                        console.log(this.start);
+                        // console.log(this.start);
                     } else {
                         for (i = 0; i < response.data.length; i++) {
                             this.cats.push({
@@ -199,7 +201,7 @@ export default {
                         }
 
                         this.start += this.limit;
-                        console.log(this.start);
+                        // console.log(this.start);
                         this.isLoading = false;
                     }
                     this.loadingFlag = false;
@@ -209,7 +211,7 @@ export default {
                 });
         },
         openDetail(cat) {
-            console.log(this.charc);
+            // console.log(this.charc);
             this.$store.commit('setCatsDetail', cat);
             http.get(`/cats/charc/${cat.cat_num}`)
                 .then(({ data }) => {
@@ -229,10 +231,10 @@ export default {
             this.detailDialog = true;
         },
         closeDetail(detailDialog) {
-            console.log('이전 : ' + detailDialog);
+            // console.log('이전 : ' + detailDialog);
             this.detailDialog = !detailDialog;
             this.charc.splice(0);
-            console.log('즤금 : ' + this.detailDialog);
+            // console.log('즤금 : ' + this.detailDialog);
         },
         checkDark() {
             // 로컬 스토리지에 변수 값 확인.
@@ -253,7 +255,6 @@ export default {
         },
         changeDark() {
             // console.log('dark : ' + this.$vuetify.theme.dark.toString());
-
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
             localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
         },
@@ -340,11 +341,11 @@ export default {
             keywordBox.className = 'keywordBox';
 
             let randomIdx = Math.floor(Math.random() * this.bgName.length);
-            console.log('randomIdx : ' + randomIdx);
+            // console.log('randomIdx : ' + randomIdx);
             let color = this.bgName[randomIdx];
-            console.log('randomIdx : ' + color);
+            // console.log('randomIdx : ' + color);
 
-            console.log(keywordBox);
+            // console.log(keywordBox);
             keywordBox.classList.add(color);
         },
         setCenter(idx) {
