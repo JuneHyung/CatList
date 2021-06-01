@@ -559,6 +559,16 @@ setCenter(idx) {
 * 고양이의 위치를 저장한 Address table의 정보를 가져와 google api를 이용해 출력한다.
 * back부분에서 cat정보만 들고 오던거를 JOIN을 이용하여 그 고양이의 address정보까지 가져옴.
 
+<strong>v2.0 :</strong>
+
+* 오프닝 페이지 추가.
+* opacity를 0 -> 1 로바꾸면서 등장하는 효과를 냄.
+* search부분 호버시 색 변화.
+
+<strong>v2.1 : </strong>
+
+* 원형 스타일의 메뉴 추가
+
 
 
 ## Issue 및 Error
@@ -911,3 +921,35 @@ Main.vue와 CatsDetail.vue사이에 바인딩을 해주지 않았다.
 ```
 
 animation효과로 처음 페이지가 켜질때 등장하는 효과 넣음.
+
+
+
+<strong>v2.1 메뉴버튼 추가 </strong>
+
+translate를 이용해 원형 메뉴를 추가함.
+
+```html
+<input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+<label class="menu-open-button" for="menu-open">
+    <span class="lines line-1"></span>
+    <span class="lines line-2"></span>
+    <span class="lines line-3"></span>
+</label>
+<div class="menu-item blue"></div>
+<div class="menu-item orange"></div>
+<div class="menu-item lightblue"></div>
+```
+
+```css
+.menu-open:checked ~ .menu-item:nth-child(3) {
+    transition-duration: 180ms;
+    -webkit-transition-duration: 180ms;
+    -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
+    transform: translate3d(-90.86291px, 0.62064px, 0);
+}
+```
+
+menu-open이 체크되있을 때 3번째 menu-item의 위치를 변경시킴.
+
+~연산자는 A ~ B 일 때 A가 앞에 존재하면 B를 선택합니다.
+A가 B보다 먼저 등장하지않으면 선택X
