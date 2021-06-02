@@ -6,8 +6,6 @@
                     <div class="topBox">
                         <p class="title">이미지영역</p>
 
-                        <button class="darkBtn" @click="changeDark">다크모드</button>
-
                         <v-row style="margin: 0; padding: 0">
                             <input
                                 type="text"
@@ -73,7 +71,6 @@
                 </div>
             </div>
         </div>
-        <navmenu></navmenu>
     </v-container>
 </template>
 
@@ -81,13 +78,11 @@
 <script>
 import http from '@/util/http-common';
 import CatsDetail from '@/components/CatsDetail';
-import Menu from '@/components/Menu';
 import { mapState } from 'vuex';
 export default {
     name: 'Main',
     components: {
         catsDetail: CatsDetail,
-        navmenu: Menu,
     },
     computed: {
         ...mapState(['catsDetail']),
@@ -252,11 +247,6 @@ export default {
                 this.$vuetify.theme.dark = true;
                 localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
             }
-        },
-        changeDark() {
-            // console.log('dark : ' + this.$vuetify.theme.dark.toString());
-            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-            localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
         },
         searchByKeyword() {
             this.cats.splice(0);

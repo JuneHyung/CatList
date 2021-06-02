@@ -7,18 +7,66 @@
             <span class="lines line-3"></span>
         </label>
 
-        <div class="menu-item blue"></div>
-        <div class="menu-item orange"></div>
-        <div class="menu-item lightblue"></div>
+        <div class="menu-item toggleDarkBtn" @click="changeDark">
+            <v-icon>{{ curMode }}</v-icon>
+        </div>
+        <div class="menu-item orange" @click="goVisit">
+            <v-icon>mdi-chart-line</v-icon>
+        </div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>mdi-github</v-icon>
+        </div>
     </nav>
 </template>
 <script>
 export default {
     data() {
-        return {};
+        return {
+            curMode: '',
+        };
     },
     created() {},
-    methods: {},
+    mounted() {
+        this.checkDark();
+    },
+    methods: {
+        checkDark() {
+            // 로컬 스토리지에 변수 값 확인.
+            const theme = localStorage.getItem('dark_theme');
+            if (theme) {
+                // 존재하는 경우.
+                if (theme === 'true') {
+                    this.$vuetify.theme.dark = true;
+                    this.curMode = 'mdi-weather-sunny';
+                } else {
+                    this.$vuetify.theme.dark = false;
+                    this.curMode = 'mdi-weather-night';
+                }
+            }
+            // 존재하지 않는 경우 시스템에서 다크모드를 활성화 했는지 확인 후 설정.
+            else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                this.$vuetify.theme.dark = true;
+                localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+            }
+        },
+        changeDark() {
+            // console.log('dark : ' + this.$vuetify.theme.dark.toString());
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+            localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+
+            if (this.$vuetify.theme.dark) {
+                this.curMode = 'mdi-weather-sunny';
+            } else {
+                this.curMode = 'mdi-weather-night';
+            }
+        },
+        goVisit() {
+            this.$router.push({ name: 'Visit' });
+        },
+        goMain() {
+            this.$router.push({ name: 'Main' });
+        },
+    },
 };
 </script>
 <style scoped>
@@ -129,11 +177,7 @@ a {
     box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
     display: inline-block;
-}
-
-.menu-item:hover {
-    background-color: #eeeeee;
-    color: #3290b1;
+    cursor: pointer;
 }
 
 .menu-open-button {
@@ -190,51 +234,20 @@ a {
     transform: translate3d(0.08361px, -104.99997px, 0);
 }
 
-.blue {
-    background-color: #669ae1;
-}
-.blue:hover {
-    color: #669ae1;
-    text-shadow: none;
-}
-
-.green {
-    background-color: #70cc72;
-}
-.green:hover {
-    color: #70cc72;
-    text-shadow: none;
-}
-
-.red {
-    background-color: #fe4365;
-}
-.red:hover {
-    color: #fe4365;
-    text-shadow: none;
+.toggleDarkBtn {
+    background-color: #696969;
 }
 
 .purple {
     background-color: #c49cde;
 }
-.purple:hover {
-    color: #c49cde;
-    text-shadow: none;
-}
 
 .orange {
     background-color: #fc913a;
 }
-.orange:hover {
-    color: #fc913a;
-    text-shadow: none;
-}
 
-.lightblue {
-    background-color: #62c2e4;
-}
-.lightblue:hover {
-    color: #62c2e4;
-    text-shadow: none;
+.menu-item .v-icon {
+    font-size: 36px;
+    color: #fff;
 }
 </style>
