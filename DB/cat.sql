@@ -1,3 +1,4 @@
+create database cats;
 use cats;
 --  create table `member`(
 -- 	`member_num` int NOT NULL AUTO_INCREMENT,
@@ -12,6 +13,7 @@ use cats;
  drop table cat;
  drop table address;
  drop table charc;
+ drop table visits;
  create table `cat`(
 	`cat_num` int NOT NULL AUTO_INCREMENT,
 	`cat_name` varchar(30) NOT NULL,
@@ -45,8 +47,14 @@ create table `charc`(
     FOREIGN KEY (`cat_num`) REFERENCES `cat` (`cat_num`)
 );
 
-
-insert into cat (cat_name, cat_age, kind, description, profile, address)
+create table `visits`(
+	`view_id` int NOT NULL AUTO_INCREMENT,
+	`today` varchar(30) NOT NULL,
+	`views` int NOT NULL,
+	PRIMARY KEY (`view_id`) 
+ );
+select * from visits;
+insert into cat (cat_name, cat_age, kind, profile, description, address)
  values('페르시',2, '페르시안', 'cat00.png', '페르시안 고양이에요!', '서울특별시 동작구 사당로 18-1' );
  
  insert into cat (cat_name, cat_age,  kind, profile, description, address)
@@ -164,3 +172,4 @@ insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) val
 insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) values(21, 5,3,1,4,5);
 
 select * from charc;
+
