@@ -6,4 +6,6 @@ import com.ssafy.cats.model.Visits;
 
 public interface VisitsService {
 	public List<Visits> listVisits();
+	public boolean createVisits(Visits visits);
+	public boolean updateVisits(Visits visits);
 }

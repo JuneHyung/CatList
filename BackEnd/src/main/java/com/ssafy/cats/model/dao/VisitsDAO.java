@@ -10,4 +10,6 @@ import com.ssafy.cats.model.Visits;
 @Mapper
 public interface VisitsDAO {
 	public List<Visits> listVisits();
+	public boolean createVisits(Visits visits);
+	public boolean updateVisits(Visits visits);
 }

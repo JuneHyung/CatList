@@ -21,7 +21,17 @@ public class VisitsServiceImpl implements VisitsService{
 		return visitsDao.listVisits();
 	}
 
-	
+	@Override
+	public boolean createVisits(Visits visits) {
+		// TODO Auto-generated method stub
+		return visitsDao.createVisits(visits);
+	}
+
+	@Override
+	public boolean updateVisits(Visits visits) {
+		// TODO Auto-generated method stub
+		return visitsDao.updateVisits(visits);
+	}
 
 	
 }

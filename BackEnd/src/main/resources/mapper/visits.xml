@@ -7,4 +7,17 @@
 	select *
 	from visits
 </select>
+<insert id="createVisits" parameterType="visits">
+		insert into member(
+		today, views
+		)
+		values(
+		#{memberPw}, 1);
+</insert>
+<update id="updateVisits" parameterType="visits">
+		update visits
+		set view_id = #{view_id},
+		views = #{views+1}
+		
+	</update>
 </mapper>
