@@ -1,9 +1,9 @@
 <template>
     <div class="bgBox blinking">
         <div class="coverBox">
-            <div class="titleBox">
+            <div class="titleBox" @click="goMain()">
                 <h1 class="openingTitle">Let's Go</h1>
-                <p @click="goMain()">Search Cats</p>
+                <p>Search Cats</p>
             </div>
         </div>
     </div>
@@ -40,6 +40,7 @@ export default {
     margin-top: -150px;
     margin-left: -250px;
     color: #fff;
+    cursor: pointer;
 }
 .openingTitle {
     width: 100%;

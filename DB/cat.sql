@@ -173,3 +173,8 @@ insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) val
 
 select * from charc;
 
+insert into visits(today, views) values('2021-6-4', 10);
+insert into visits(today, views) values('2021-6-5', 14);
+insert into visits(today, views) values('2021-6-6', 10);
+select * from visits;
+truncate visits;

@@ -8,16 +8,16 @@
 	from visits
 </select>
 <insert id="createVisits" parameterType="visits">
-		insert into member(
+		insert into visits(
 		today, views
 		)
 		values(
-		#{memberPw}, 1);
+		#{today}, #{views});
 </insert>
 <update id="updateVisits" parameterType="visits">
 		update visits
-		set view_id = #{view_id},
-		views = #{views+1}
+		set views = #{views} + 1
+		where view_id = #{view_id}
 		
 	</update>
 </mapper>

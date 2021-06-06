@@ -1,14 +1,15 @@
 package com.ssafy.cats.model;
 
 public class Visits {
-	int visit_id;
+	int view_id;
 	String today;
 	int views;
-	public int getVisit_id() {
-		return visit_id;
+	
+	public int getView_id() {
+		return view_id;
 	}
-	public void setVisit_id(int visit_id) {
-		this.visit_id = visit_id;
+	public void setView_id(int view_id) {
+		this.view_id = view_id;
 	}
 	public String getToday() {
 		return today;

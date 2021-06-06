@@ -40,7 +40,7 @@ public class VisitController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@PutMapping("/updateVisits/{view_id}")
+	@PutMapping("/updateVisits")
 	public ResponseEntity<String> updateVisits(@RequestBody Visits visits) {
 		if (visitService.updateVisits(visits)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
