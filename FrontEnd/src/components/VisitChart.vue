@@ -1,20 +1,26 @@
 <template>
-    <div style="background-color: #fbceb1; height: 500px">
-        <canvas :id="id" height="250px" width="250px"></canvas>
+    <div style="background-color: #fff; width: 100vw; height: 100vh; font-size: 14px">
+        <canvas id="visitsChart"></canvas>
     </div>
 </template>
 <script>
 import Chart from 'chart.js';
+import { mapState } from 'vuex';
 export default {
-    name: 'Character',
-    props: {
-        id: String,
-        visits: Array,
-    },
+    name: 'visitChart',
     watch: {
         data() {
-            this.createChart();
+            this.visitData;
         },
+    },
+    computed: {
+        ...mapState(['visits']),
+    },
+    created() {
+        for (let i = 0; i < this.visits.length; i++) {
+            this.visitData.labels.push(this.visits[i].today);
+            this.visitData.datasets[0].data.push(this.visits[i].views);
+        }
     },
     mounted() {
         this.createChart();
@@ -26,23 +32,18 @@ export default {
                 labels: [],
                 datasets: [
                     {
+                        label: 'visits count',
                         data: [],
-                        fill: true,
+                        tension: 0.5,
                     },
                 ],
             },
-
             chartObject: Object,
         };
     },
     methods: {
         createChart() {
-            console.log(this.visits);
-            for (let i = 0; i < this.visits.length; i++) {
-                this.visitData.labels.push(this.visits[i].today);
-                this.visitData.datasets[0].data.push(this.visits[i].views);
-            }
-            const ctx = document.getElementById(this.id);
+            const ctx = document.getElementById('visitsChart');
             // 그려질 그래프 설정.
             this.chartObject = new Chart(ctx, {
                 type: 'line',
