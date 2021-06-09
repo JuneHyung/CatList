@@ -1,31 +1,32 @@
 <template>
-    <div style="background-color: #fff; width: 100vw; height: 100vh; font-size: 14px">
-        <canvas id="visitsChart"></canvas>
+    <div
+        style="
+            background-color: rgba(123, 227, 225, 0.2);
+            width: 80vw;
+            height: 85vh;
+            margin: 0 auto;
+        "
+    >
+        <canvas id="visitsChart" style="width: 100%; height: 100%; margin: 0 auto"></canvas>
     </div>
 </template>
 <script>
 import Chart from 'chart.js';
-import { mapState } from 'vuex';
+
 export default {
     name: 'visitChart',
-    watch: {
-        data() {
-            this.visitData;
-        },
+    props: {
+        data: Array,
     },
-    computed: {
-        ...mapState(['visits']),
-    },
-    created() {
-        for (let i = 0; i < this.visits.length; i++) {
-            this.visitData.labels.push(this.visits[i].today);
-            this.visitData.datasets[0].data.push(this.visits[i].views);
-        }
-    },
+
     mounted() {
         this.createChart();
     },
-
+    watch: {
+        data() {
+            this.createChart();
+        },
+    },
     data() {
         return {
             visitData: {
@@ -35,6 +36,12 @@ export default {
                         label: 'visits count',
                         data: [],
                         tension: 0.5,
+                        backgroundColor: 'rgba(123, 227, 225, 0.2)',
+                        borderColor: '#7ce3e1',
+                        pointBackgroundColor: '#7ce3e1',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#7ce3e1',
                     },
                 ],
             },
@@ -43,7 +50,11 @@ export default {
     },
     methods: {
         createChart() {
-            const ctx = document.getElementById('visitsChart');
+            for (let i = 0; i < this.data.length; i++) {
+                this.visitData.labels.push(this.data[i].today);
+                this.visitData.datasets[0].data.push(this.data[i].views);
+            }
+            const ctx = document.querySelector('#visitsChart');
             // 그려질 그래프 설정.
             this.chartObject = new Chart(ctx, {
                 type: 'line',

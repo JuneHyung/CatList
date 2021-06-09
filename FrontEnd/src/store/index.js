@@ -6,7 +6,6 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     catsDetail: {},
-    visits:[],
   },
   getters: {
     getCatsDetail(state) {
@@ -23,9 +22,6 @@ export default new Vuex.Store({
     deleteCatsDetail(state) {
       state.catsDetail = {};
     },
-    setVisits(state, visits) {
-      state.visits = visits;
-    }
   },
   actions: {},
   modules: {},
