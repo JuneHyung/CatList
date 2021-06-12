@@ -11,11 +11,14 @@
                                 type="text"
                                 placeholder="검색하고 싶은 품종을 검색해주세요."
                                 v-model="keyword"
-                                class="col-11"
+                                class="col-10"
                                 style="color: #a0a0a0"
                             />
                             <v-spacer></v-spacer>
                             <v-icon @click="searchByKeyword()" class="col-1">mdi-magnify</v-icon>
+                            <v-icon @click="openSpeechDialog()" class="col-1"
+                                >mdi-microphone</v-icon
+                            >
                         </v-row>
                         <v-row>
                             <div
@@ -68,6 +71,10 @@
                         :charc="charc"
                         @closeDetail="closeDetail"
                     ></catsDetail>
+                    <speechDialog
+                        :speechDialog="speechDialog"
+                        @closeSpeechDialog="closeSpeechDialog"
+                    ></speechDialog>
                 </div>
             </div>
         </div>
@@ -78,11 +85,13 @@
 <script>
 import http from '@/util/http-common';
 import CatsDetail from '@/components/CatsDetail';
+import SpeechDialog from '@/components/SpeechDialog';
 import { mapState } from 'vuex';
 export default {
     name: 'Main',
     components: {
         catsDetail: CatsDetail,
+        speechDialog: SpeechDialog,
     },
     computed: {
         ...mapState(['catsDetail']),
@@ -95,6 +104,7 @@ export default {
             start: 0,
             limit: 6,
             detailDialog: false,
+            speechDialog: false,
             isLoading: true,
             darkDialog: false,
             loadingFlag: false,
@@ -225,11 +235,17 @@ export default {
             // this.setCharacter(cat.cat_num);
             this.detailDialog = true;
         },
+        openSpeechDialog() {
+            this.speechDialog = true;
+        },
         closeDetail(detailDialog) {
             // console.log('이전 : ' + detailDialog);
             this.detailDialog = !detailDialog;
             this.charc.splice(0);
             // console.log('즤금 : ' + this.detailDialog);
+        },
+        closeSpeechDialog(speechDialog) {
+            this.speechDialog = !speechDialog;
         },
         checkDark() {
             // 로컬 스토리지에 변수 값 확인.
