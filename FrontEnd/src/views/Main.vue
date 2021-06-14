@@ -244,8 +244,9 @@ export default {
             this.charc.splice(0);
             // console.log('즤금 : ' + this.detailDialog);
         },
-        closeSpeechDialog(speechDialog) {
+        closeSpeechDialog(speechDialog, message) {
             this.speechDialog = !speechDialog;
+            this.keyword = message;
         },
         checkDark() {
             // 로컬 스토리지에 변수 값 확인.

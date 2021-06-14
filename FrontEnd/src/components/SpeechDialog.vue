@@ -3,10 +3,8 @@
         <v-card>
             <v-card-title> 음성 입력 </v-card-title>
             <v-card-text>
-                <v-row>
-                    <div class="words"></div>
-                    <div @click="startSpeech()">버튼</div>
-                </v-row>
+                <div @click="startSpeech()">버튼</div>
+                <div class="words"></div>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
@@ -30,13 +28,15 @@ export default {
     },
     methods: {
         closeSpeechDialog() {
-            this.$emit('closeSpeechDialog', this.speechDialog);
+            this.startDialog = false;
+            this.$emit('closeSpeechDialog', this.speechDialog, this.message);
         },
         startSpeech() {
-            this.startDialog = true;
             window.SpeechRecognition = window.Recognition || window.webkitSpeechRecognition;
             const recognition = new window.SpeechRecognition();
             recognition.interimResults = true;
+
+            this.startDialog = true;
 
             let p = document.createElement('p');
             const words = document.querySelector('.words');
@@ -52,7 +52,6 @@ export default {
                 p.textContent = transcript;
                 this.message = transcript;
                 if (e.results[0].isFinal) {
-                    p = document.createElement('p');
                     this.message = transcript;
                     words.appendChild(p);
                 }
