@@ -16,6 +16,21 @@
         <div class="menu-item purple" @click="goMain">
             <v-icon>mdi-github</v-icon>
         </div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>E1</v-icon>
+        </div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>E2</v-icon>
+        </div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>E3</v-icon>
+        </div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>E4</v-icon>
+        </div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>E5</v-icon>
+        </div>
     </nav>
 </template>
 <script>
@@ -162,8 +177,8 @@ a {
 .menu {
     margin: auto;
     position: fixed;
-    bottom: 30px;
-    right: 25px;
+    bottom: 110px;
+    right: 115px;
     width: 80px;
     height: 80px;
     text-align: center;
@@ -216,24 +231,54 @@ a {
 .menu-open:checked ~ .menu-item:nth-child(3) {
     transition-duration: 180ms;
     -webkit-transition-duration: 180ms;
-    -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
-    transform: translate3d(-90.86291px, 0.62064px, 0);
+    -webkit-transform: translate3d(-120px, 0px, 0);
+    transform: translate3d(-120px, 0px, 0);
 }
 
 .menu-open:checked ~ .menu-item:nth-child(4) {
     transition-duration: 280ms;
     -webkit-transition-duration: 280ms;
-    -webkit-transform: translate3d(-91.03006px, -52.33095px, 0);
-    transform: translate3d(-81.03006px, -82.33095px, 0);
+    -webkit-transform: translate3d(-75px, -75px, 0);
+    transform: translate3d(-75px, -75px, 0);
 }
 
 .menu-open:checked ~ .menu-item:nth-child(5) {
     transition-duration: 380ms;
     -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(0.08361px, -104.99997px, 0);
-    transform: translate3d(0.08361px, -104.99997px, 0);
+    -webkit-transform: translate3d(0px, -120px, 0);
+    transform: translate3d(0px, -120px, 0);
 }
 
+.menu-open:checked ~ .menu-item:nth-child(6) {
+    transition-duration: 380ms;
+    -webkit-transition-duration: 380ms;
+    -webkit-transform: translate3d(75px, -75px, 0);
+    transform: translate3d(75px, -75px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(7) {
+    transition-duration: 380ms;
+    -webkit-transition-duration: 380ms;
+    -webkit-transform: translate3d(120px, 0px, 0);
+    transform: translate3d(120px, 0px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(8) {
+    transition-duration: 380ms;
+    -webkit-transition-duration: 380ms;
+    -webkit-transform: translate3d(75px, 75px, 0);
+    transform: translate3d(75px, 75px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(9) {
+    transition-duration: 380ms;
+    -webkit-transition-duration: 380ms;
+    -webkit-transform: translate3d(0px, 120px, 0);
+    transform: translate3d(0px, 120px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(10) {
+    transition-duration: 380ms;
+    -webkit-transition-duration: 380ms;
+    -webkit-transform: translate3d(-75px, 75px, 0);
+    transform: translate3d(-75px, 75px, 0);
+}
 .toggleDarkBtn {
     background-color: #696969;
 }
