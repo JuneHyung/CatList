@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>방문차트 페이지</p>
+        <h1 class="visitTitle">방문차트 페이지</h1>
         <visit :data="item"></visit>
     </div>
 </template>
@@ -85,4 +85,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.visitTitle {
+    text-align: center;
+    margin: 20px auto;
+}
+</style>
