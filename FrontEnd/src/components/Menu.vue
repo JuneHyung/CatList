@@ -8,28 +8,17 @@
         </label>
 
         <div class="menu-item toggleDarkBtn" @click="changeDark">
-            <v-icon>{{ curMode }}</v-icon>
+            <v-icon>{{ curMode }}</v-icon> Dark Mode
         </div>
         <div class="menu-item orange" @click="goVisit">
-            <v-icon>mdi-chart-line</v-icon>
+            <v-icon>mdi-chart-line</v-icon> Visit Chart
         </div>
-        <div class="menu-item purple" @click="goMain">
-            <v-icon>mdi-github</v-icon>
-        </div>
-        <div class="menu-item purple" @click="goMain">
+        <div class="menu-item purple" @click="goMain"><v-icon>mdi-github</v-icon> Main Page</div>
+        <div class="menu-item blue" @click="goMain">
             <v-icon>E1</v-icon>
         </div>
-        <div class="menu-item purple" @click="goMain">
+        <div class="menu-item yellow" @click="goMain">
             <v-icon>E2</v-icon>
-        </div>
-        <div class="menu-item purple" @click="goMain">
-            <v-icon>E3</v-icon>
-        </div>
-        <div class="menu-item purple" @click="goMain">
-            <v-icon>E4</v-icon>
-        </div>
-        <div class="menu-item purple" @click="goMain">
-            <v-icon>E5</v-icon>
         </div>
     </nav>
 </template>
@@ -108,14 +97,13 @@ a {
 .menu-item,
 .menu-open-button {
     background: #eeeeee;
-    border-radius: 100%;
-    width: 80px;
+    border-radius: 30px;
+    width: 180px;
     height: 80px;
-    margin-left: -40px;
+    line-height: 80px;
     position: absolute;
     color: #ffffff;
     text-align: center;
-    line-height: 80px;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-transition: -webkit-transform ease-out 200ms;
@@ -177,8 +165,8 @@ a {
 .menu {
     margin: auto;
     position: fixed;
-    bottom: 110px;
-    right: 115px;
+    bottom: 10px;
+    right: 155px;
     width: 80px;
     height: 80px;
     text-align: center;
@@ -231,53 +219,35 @@ a {
 .menu-open:checked ~ .menu-item:nth-child(3) {
     transition-duration: 180ms;
     -webkit-transition-duration: 180ms;
-    -webkit-transform: translate3d(-120px, 0px, 0);
-    transform: translate3d(-120px, 0px, 0);
+    -webkit-transform: translate3d(0px, -80px, 0);
+    transform: translate3d(0px, -80px, 0);
 }
 
 .menu-open:checked ~ .menu-item:nth-child(4) {
     transition-duration: 280ms;
     -webkit-transition-duration: 280ms;
-    -webkit-transform: translate3d(-75px, -75px, 0);
-    transform: translate3d(-75px, -75px, 0);
+    -webkit-transform: translate3d(0px, -170px, 0);
+    transform: translate3d(0px, -170px, 0);
 }
 
 .menu-open:checked ~ .menu-item:nth-child(5) {
     transition-duration: 380ms;
     -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(0px, -120px, 0);
-    transform: translate3d(0px, -120px, 0);
+    -webkit-transform: translate3d(0px, -260px, 0);
+    transform: translate3d(0px, -260px, 0);
 }
 
 .menu-open:checked ~ .menu-item:nth-child(6) {
     transition-duration: 380ms;
     -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(75px, -75px, 0);
-    transform: translate3d(75px, -75px, 0);
+    -webkit-transform: translate3d(0px, -350px, 0);
+    transform: translate3d(0px, -350px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(7) {
     transition-duration: 380ms;
     -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(120px, 0px, 0);
-    transform: translate3d(120px, 0px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(8) {
-    transition-duration: 380ms;
-    -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(75px, 75px, 0);
-    transform: translate3d(75px, 75px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(9) {
-    transition-duration: 380ms;
-    -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(0px, 120px, 0);
-    transform: translate3d(0px, 120px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(10) {
-    transition-duration: 380ms;
-    -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(-75px, 75px, 0);
-    transform: translate3d(-75px, 75px, 0);
+    -webkit-transform: translate3d(0px, -440px, 0);
+    transform: translate3d(0px, -440px, 0);
 }
 .toggleDarkBtn {
     background-color: #696969;
@@ -294,5 +264,8 @@ a {
 .menu-item .v-icon {
     font-size: 36px;
     color: #fff;
+}
+.menu-item {
+    font-size: 24px;
 }
 </style>
