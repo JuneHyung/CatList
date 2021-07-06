@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Opening from '../views/Opening.vue';
 import Main from '../views/Main.vue';
 import Visit from '../views/Visit.vue';
+import Todo from '../views/TodoList.vue';
 
 /** 같은 페이지에서 같은 페이지로 $router.push 한 오률를 처리함 (ex : 홈페이지에서 홈 로고를 클릭한 경우) */
 const originalPush = VueRouter.prototype.push;
@@ -31,6 +32,11 @@ export default new VueRouter({
       path: '/visit',
       name: 'Visit', 
       component: Visit,
+    },
+    {
+      path: '/todo',
+      name: 'Todo', 
+      component: Todo,
     }
   ]
 });

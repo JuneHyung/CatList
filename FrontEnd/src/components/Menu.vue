@@ -14,8 +14,8 @@
             <v-icon>mdi-chart-line</v-icon> Visit Chart
         </div>
         <div class="menu-item purple" @click="goMain"><v-icon>mdi-github</v-icon> Main Page</div>
-        <div class="menu-item blue" @click="goMain">
-            <v-icon>E1</v-icon>
+        <div class="menu-item blue" @click="goTodoList">
+            <v-icon>mdi-calendar-month</v-icon> Todo List
         </div>
         <div class="menu-item yellow" @click="goMain">
             <v-icon>E2</v-icon>
@@ -69,6 +69,9 @@ export default {
         },
         goMain() {
             this.$router.push({ name: 'Main' });
+        },
+        goTodoList() {
+            this.$router.push({ name: 'Todo' });
         },
     },
 };
