@@ -32,6 +32,7 @@ Run application
 * 원형 스타일의 메뉴(완료)
 * 사이트 방문 수 차트페이지 (완료)
 * 음성인식으로 검색창 입력.(진행중)
+* TodoList (진행중)
 
 
 
@@ -641,7 +642,11 @@ id가 양수면(있으면) -  update
 * 말할 때마다 추가되지 않고, 한 p태그안에서 내용만 바뀌게 변경
 * dialog를 닫을 때 keyword에 바로 입력되게 하기.
 
+<strong>v2.4 TodoList :</strong>
 
+* v-calendar, v-tab을 이용한 todolist.
+* vue파일에서 axios통신이 완료되면 vuex로 옮길 예정.
+* TodoList가 완료되면, 리팩토링과 README를 노션으로 옮기거나 기능별로 나눠서 정리할 예정.
 
 ## Issue 및 Error
 <strong>v1.0 무한스크롤 </strong>
