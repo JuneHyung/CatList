@@ -53,6 +53,16 @@ create table `visits`(
 	`views` int NOT NULL,
 	PRIMARY KEY (`view_id`) 
  );
+ 
+ create table todo(
+	todoid int NOT NULL auto_increment,
+    todoTitle varchar(255),
+    todoContent varchar(255),
+    startDate varchar(20),
+    endDate varchar(20),
+    todoStatus varchar(20)
+);
+
 select * from visits;
 insert into cat (cat_name, cat_age, kind, profile, description, address)
  values('페르시',2, '페르시안', 'cat00.png', '페르시안 고양이에요!', '서울특별시 동작구 사당로 18-1' );
