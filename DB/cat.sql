@@ -54,13 +54,14 @@ create table `visits`(
 	PRIMARY KEY (`view_id`) 
  );
  
- create table todo(
-	todoid int NOT NULL auto_increment,
-    todoTitle varchar(255),
-    todoContent varchar(255),
-    startDate varchar(20),
-    endDate varchar(20),
-    todoStatus varchar(20)
+ create table `todo`(
+	`todoId` int NOT NULL auto_increment,
+    `todoTitle` varchar(255),
+    `todoContent` varchar(255),
+    `startDate` varchar(20),
+    `endDate` varchar(20),
+    `todoStatus` varchar(20),
+    PRIMARY KEY (`todoId`)
 );
 
 select * from visits;
@@ -190,3 +191,13 @@ insert into visits(today, views) values('2021-6-7', 23);
 insert into visits(today, views) values('2021-6-8', 20);
 select * from visits;
 truncate visits;
+
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('할 일 01', 'Test용 할 일 01번 입니다', '2021-07-21', '2021-07-28', 'todo' );
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('할 일 02', 'Test용 할 일 02번 입니다', '2021-07-24', '2021-07-29', 'todo' );
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('진행중인 일 01', 'Test용 진행중인 일 01번 입니다', '2021-06-30', '2021-07-15', 'doing' );
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('진행중인 일 02', 'Test용 진행중인 일 02번 입니다', '2021-07-02', '2021-07-18', 'doing' );
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('진행중인 일 03', 'Test용 진행중인 일 03번 입니다', '2021-07-05', '2021-07-19', 'doing' );
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('한 일 01', 'Test용 한 일 01번 입니다', '2021-07-21', '2021-07-28', 'done' );
+insert into todo(todoTitle, todoContent, startDate, endDate, todoStatus) values('한 일 02', 'Test용 한 일 02번 입니다', '2021-07-21', '2021-07-28', 'done' );
+
+select * from todo;
