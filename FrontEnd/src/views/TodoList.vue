@@ -27,9 +27,10 @@
                         v-model="focus"
                         color="primary"
                         :events="events"
-                        :event-color="getEventColor"
                         type="month"
                         @click:event="showEvent"
+                        @click:more="viewDay"
+                        @click:date="viewDay"
                         @change="updateRange"
                     ></v-calendar>
                     <v-menu
@@ -38,8 +39,8 @@
                         :activator="selectedElement"
                         offset-x
                     >
-                        <v-card color="grey lighten-4" min-width="350px" flat>
-                            <v-toolbar :color="selectedEvent.color" dark>
+                        <v-card color="grey lighten-4" max-width="450px" flat>
+                            <v-toolbar dark>
                                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                                 <v-spacer></v-spacer>
 
@@ -51,7 +52,10 @@
                                 </v-btn>
                             </v-toolbar>
                             <v-card-text>
-                                <span v-html="selectedEvent.details"></span>
+                                <span
+                                    v-html="selectedEvent.description"
+                                    style="color: black"
+                                ></span>
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn text color="secondary" @click="selectedOpen = false">
@@ -73,31 +77,93 @@
                 </v-tabs>
                 <v-tabs-items v-model="tab" style="height: 600px">
                     <v-tab-item v-for="item in items" :key="item" style="margin: 20px">
-                        <v-row
-                            v-for="(list, idx) in todo"
-                            :key="idx"
-                            style="
-                                height: 50px;
-                                line-height: 50px;
-                                border: 1px solid grey;
-                                box-sizing: border-box;
-                                margin: 0;
-                                text-align: center;
-                            "
-                        >
-                            <p style="width: 20%">
-                                {{ list }}
-                            </p>
-                            <v-spacer></v-spacer>
-                            <p style="width: 70%">TEXT</p>
+                        <div v-if="item == 'TODO'">
+                            <v-row
+                                v-for="(list, idx) in todoL"
+                                :key="idx"
+                                style="
+                                    height: 50px;
+                                    line-height: 50px;
+                                    border: 1px solid grey;
+                                    box-sizing: border-box;
+                                    margin: 0;
+                                    text-align: center;
+                                "
+                            >
+                                <p style="width: 30%" v-if="item == list.todoStatus.toUpperCase()">
+                                    {{ list.todoTitle }}
+                                </p>
+                                <v-spacer></v-spacer>
+                                <p style="width: 60%" v-if="item == list.todoStatus.toUpperCase()">
+                                    {{ list.todoContent }}
+                                </p>
 
-                            <v-spacer></v-spacer>
-                            <p style="width: 10%">
-                                <v-icon style="font-size: 12px; cursor: pointer">
-                                    mdi-close
-                                </v-icon>
-                            </p>
-                        </v-row>
+                                <v-spacer></v-spacer>
+                                <p style="width: 10%" v-if="item == list.todoStatus.toUpperCase()">
+                                    <v-icon style="font-size: 12px; cursor: pointer">
+                                        mdi-close
+                                    </v-icon>
+                                </p>
+                            </v-row>
+                        </div>
+                        <div v-if="item == 'DOING'">
+                            <v-row
+                                v-for="(list, idx) in doingL"
+                                :key="idx"
+                                style="
+                                    height: 50px;
+                                    line-height: 50px;
+                                    border: 1px solid grey;
+                                    box-sizing: border-box;
+                                    margin: 0;
+                                    text-align: center;
+                                "
+                            >
+                                <p style="width: 30%" v-if="item == list.todoStatus.toUpperCase()">
+                                    {{ list.todoTitle }}
+                                </p>
+                                <v-spacer></v-spacer>
+                                <p style="width: 60%" v-if="item == list.todoStatus.toUpperCase()">
+                                    {{ list.todoContent }}
+                                </p>
+
+                                <v-spacer></v-spacer>
+                                <p style="width: 10%" v-if="item == list.todoStatus.toUpperCase()">
+                                    <v-icon style="font-size: 12px; cursor: pointer">
+                                        mdi-close
+                                    </v-icon>
+                                </p>
+                            </v-row>
+                        </div>
+                        <div v-if="item == 'DONE'">
+                            <v-row
+                                v-for="(list, idx) in doneL"
+                                :key="idx"
+                                style="
+                                    height: 50px;
+                                    line-height: 50px;
+                                    border: 1px solid grey;
+                                    box-sizing: border-box;
+                                    margin: 0;
+                                    text-align: center;
+                                "
+                            >
+                                <p style="width: 30%" v-if="item == list.todoStatus.toUpperCase()">
+                                    {{ list.todoTitle }}
+                                </p>
+                                <v-spacer></v-spacer>
+                                <p style="width: 60%" v-if="item == list.todoStatus.toUpperCase()">
+                                    {{ list.todoContent }}
+                                </p>
+
+                                <v-spacer></v-spacer>
+                                <p style="width: 10%" v-if="item == list.todoStatus.toUpperCase()">
+                                    <v-icon style="font-size: 12px; cursor: pointer">
+                                        mdi-close
+                                    </v-icon>
+                                </p>
+                            </v-row>
+                        </div>
                         <v-dialog v-model="dialog" persistent max-width="290">
                             <template v-slot:activator="{ on, attrs }">
                                 <p
@@ -145,29 +211,62 @@
 </template>
 
 <script>
+// import { getAllTodoList } from '@/api/todo.js';
+import http from '@/api/http.js';
 export default {
-    data: () => ({
-        focus: '',
-        selectedEvent: {},
-        selectedElement: null,
-        selectedOpen: false,
-        events: [],
-        colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-        names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
-        tab: null,
-        items: ['TODO', 'DOING', 'DONE'],
-        todo: ['todo01', 'todo02', 'todo03'],
-        dialog: false,
-    }),
+    data() {
+        return {
+            focus: '',
+            selectedEvent: {
+                name: '',
+                description: '',
+            },
+            selectedElement: null,
+            selectedOpen: false,
+            todo: [],
+            events: [],
+            colors: ['#b2b1f0', '#b2d5', '#c945bc'],
+            tab: null,
+            items: ['TODO', 'DOING', 'DONE'],
+            dialog: false,
+            todoL: [],
+            doingL: [],
+            doneL: [],
+        };
+    },
+
     mounted() {
-        this.$refs.calendar.checkChange();
+        // this.$refs.calendar.checkChange();
+        this.getTodoList();
     },
     methods: {
-        getEventColor(event) {
-            return event.color;
+        getTodoList() {
+            http.get('todo/all')
+                .then(({ data }) => {
+                    this.todo = data;
+                    data.forEach((el) => {
+                        switch (el.todoStatus) {
+                            case 'todo':
+                                this.todoL.push(el);
+                                break;
+                            case 'doing':
+                                this.doingL.push(el);
+                                break;
+                            case 'done':
+                                this.doneL.push(el);
+                                break;
+                        }
+                    });
+
+                    this.updateRange();
+                })
+                .catch((err) => console.log(err));
         },
         setToday() {
             this.focus = '';
+        },
+        viewDay({ date }) {
+            this.focus = date;
         },
         prev() {
             this.$refs.calendar.prev();
@@ -179,45 +278,36 @@ export default {
             const open = () => {
                 this.selectedEvent = event;
                 this.selectedElement = nativeEvent.target;
-                requestAnimationFrame(() =>
-                    requestAnimationFrame(() => (this.selectedOpen = true))
-                );
+                setTimeout(() => {
+                    this.selectedOpen = true;
+                }, 10);
             };
 
             if (this.selectedOpen) {
                 this.selectedOpen = false;
-                requestAnimationFrame(() => requestAnimationFrame(() => open()));
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(() => open());
+                });
             } else {
                 open();
             }
 
             nativeEvent.stopPropagation();
         },
-        updateRange({ start, end }) {
-            const events = [];
-
-            const min = new Date(`${start.date}T00:00:00`);
-            const max = new Date(`${end.date}T23:59:59`);
-            const days = (max.getTime() - min.getTime()) / 86400000;
-            const eventCount = this.rnd(days, days + 20);
-
-            for (let i = 0; i < eventCount; i++) {
-                const allDay = this.rnd(0, 3) === 0;
-                const firstTimestamp = this.rnd(min.getTime(), max.getTime());
-                const first = new Date(firstTimestamp - (firstTimestamp % 900000));
-                const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000;
-                const second = new Date(first.getTime() + secondTimestamp);
-
-                events.push({
-                    name: this.names[this.rnd(0, this.names.length - 1)],
-                    start: first,
-                    end: second,
-                    color: this.colors[this.rnd(0, this.colors.length - 1)],
-                    timed: !allDay,
+        updateRange() {
+            const todoEvents = [];
+            for (let i = 0; i < this.todo.length; i++) {
+                let colorIdx = this.items.indexOf(this.todo[i].todoStatus.toUpperCase());
+                todoEvents.push({
+                    name: this.todo[i].todoTitle,
+                    start: this.todo[i].startDate,
+                    end: this.todo[i].endDate,
+                    color: this.colors[colorIdx],
+                    description: this.todo[i].todoContent,
                 });
             }
 
-            this.events = events;
+            this.events = todoEvents;
         },
         rnd(a, b) {
             return Math.floor((b - a + 1) * Math.random()) + a;
