@@ -7,4 +7,30 @@
 		select *
 		from todo
 	</select>
+	
+	<insert id="createTodo" parameterType="todo">
+		insert into todo(
+		todoTitle, todoContent, startDate, endDate, todoStatus
+		)
+		values(
+		#{todoTitle},#{todoContent},#{startDate},#{endDate},#{todoStatus}
+		)
+	</insert>
+	
+	<update id="updateTodo" parameterType="todo">
+	update todo
+	set
+	todoTitle=#{todoTitle},
+	todoContnet=#{todoContent},
+	startDate=#{startDate},
+	endDate=#{endDate},
+	todoStatus=#{todoStatus}
+	</update>
+	
+	<delete id="deleteTodo" parameterType="int">
+		delete
+		from todo
+		where
+		todoId=#{todoId}
+	</delete>
 </mapper>

@@ -9,4 +9,7 @@ import com.ssafy.cats.model.Todo;
 @Mapper
 public interface TodoDAO {
 	public List<Todo> listTodo();
+	public boolean createTodo(Todo todo);
+	public boolean updateTodo(Todo todo);
+	public boolean deleteTodo(int todoId);
 }

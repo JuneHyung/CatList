@@ -18,6 +18,24 @@ public class TodoServiceImpl implements TodoService{
 		// TODO Auto-generated method stub
 		return todoDao.listTodo();
 	}
+
+	@Override
+	public boolean createTodo(Todo todo) {
+		// TODO Auto-generated method stub
+		return todoDao.createTodo(todo);
+	}
+
+	@Override
+	public boolean updateTodo(Todo todo) {
+		// TODO Auto-generated method stub
+		return todoDao.updateTodo(todo);
+	}
+
+	@Override
+	public boolean deleteTodo(int todoId) {
+		// TODO Auto-generated method stub
+		return todoDao.deleteTodo(todoId);
+	}
 	
 	
 	
