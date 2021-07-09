@@ -67,7 +67,7 @@
                 </v-sheet>
             </div>
             <v-card class="col-12 col-lg-4" style="margin: 0">
-                <v-card-title style="padding: 0">2021년 7월 6일</v-card-title>
+                <v-card-title style="padding: 0"> {{ focus }}</v-card-title>
                 <v-tabs v-model="tab" align-with-title>
                     <v-tabs-slider color="yellow"></v-tabs-slider>
 
@@ -99,7 +99,11 @@
                                 </p>
 
                                 <v-spacer></v-spacer>
-                                <p style="width: 10%" v-if="item == list.todoStatus.toUpperCase()">
+                                <p
+                                    style="width: 10%"
+                                    v-if="item == list.todoStatus.toUpperCase()"
+                                    @click="deleteTodo(list.todoId)"
+                                >
                                     <v-icon style="font-size: 12px; cursor: pointer">
                                         mdi-close
                                     </v-icon>
@@ -128,7 +132,11 @@
                                 </p>
 
                                 <v-spacer></v-spacer>
-                                <p style="width: 10%" v-if="item == list.todoStatus.toUpperCase()">
+                                <p
+                                    style="width: 10%"
+                                    v-if="item == list.todoStatus.toUpperCase()"
+                                    @click="deleteTodo(list.todoId)"
+                                >
                                     <v-icon style="font-size: 12px; cursor: pointer">
                                         mdi-close
                                     </v-icon>
@@ -157,7 +165,11 @@
                                 </p>
 
                                 <v-spacer></v-spacer>
-                                <p style="width: 10%" v-if="item == list.todoStatus.toUpperCase()">
+                                <p
+                                    style="width: 10%"
+                                    v-if="item == list.todoStatus.toUpperCase()"
+                                    @click="deleteTodo(list.todoId)"
+                                >
                                     <v-icon style="font-size: 12px; cursor: pointer">
                                         mdi-close
                                     </v-icon>
@@ -184,21 +196,55 @@
                                 </p>
                             </template>
                             <v-card>
-                                <v-card-title class="text-h5">
-                                    Use Google's location service?
-                                </v-card-title>
-                                <v-card-text
-                                    >Let Google help apps determine location. This means sending
-                                    anonymous location data to Google, even when no apps are
-                                    running.</v-card-text
-                                >
+                                <v-card-title class="text-h5"> Add Work </v-card-title>
+                                <v-card-text style="margin-top: 20px">
+                                    <v-row>
+                                        <p styl>제목</p>
+                                        <v-spacer></v-spacer>
+                                        <input
+                                            type="text"
+                                            placeholder="제목을 입력하세요."
+                                            v-model="temp.todoTitle"
+                                        />
+                                    </v-row>
+                                    <v-row>
+                                        <p>시작 날짜 :</p>
+                                        <v-spacer></v-spacer>
+                                        <input type="date" v-model="temp.startDate" />
+                                    </v-row>
+                                    <v-row>
+                                        <p>끝 날짜 :</p>
+                                        <v-spacer></v-spacer>
+                                        <input type="date" v-model="temp.endDate" />
+                                    </v-row>
+                                    <v-row>
+                                        <p style="line-height: 56px">상태 :</p>
+                                        <v-spacer></v-spacer>
+                                        <v-col cols="8" style="padding: 0">
+                                            <v-select
+                                                :items="status"
+                                                outlined
+                                                v-model="temp.todoStatus"
+                                            ></v-select>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <p>내용 :</p>
+                                        <v-spacer></v-spacer>
+                                        <v-textarea
+                                            name="input-5-1"
+                                            outlined
+                                            v-model="temp.todoContent"
+                                        ></v-textarea>
+                                    </v-row>
+                                </v-card-text>
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="green darken-1" text @click="dialog = false">
-                                        Disagree
+                                    <v-btn color="green darken-1" text @click="cancelDialog()">
+                                        닫기
                                     </v-btn>
-                                    <v-btn color="green darken-1" text @click="dialog = false">
-                                        Agree
+                                    <v-btn color="green darken-1" text @click="addTodo">
+                                        추가
                                     </v-btn>
                                 </v-card-actions>
                             </v-card>
@@ -216,6 +262,7 @@ import http from '@/api/http.js';
 export default {
     data() {
         return {
+            status: ['todo', 'doing', 'done'],
             focus: '',
             selectedEvent: {
                 name: '',
@@ -232,12 +279,20 @@ export default {
             todoL: [],
             doingL: [],
             doneL: [],
+            temp: {
+                todoTitle: '',
+                startDate: '',
+                endDate: '',
+                todoStatus: '',
+                todoContent: '',
+            },
         };
     },
 
     mounted() {
         // this.$refs.calendar.checkChange();
         this.getTodoList();
+        this.setToday();
     },
     methods: {
         getTodoList() {
@@ -263,7 +318,14 @@ export default {
                 .catch((err) => console.log(err));
         },
         setToday() {
-            this.focus = '';
+            let cur = new Date();
+            let year = cur.getFullYear();
+            let month = cur.getMonth() + 1;
+            month < 10 ? (month = '0' + month) : month;
+            let date = cur.getDate();
+            date < 10 ? (date = '0' + date) : date;
+
+            this.focus = year + '-' + month + '-' + date;
         },
         viewDay({ date }) {
             this.focus = date;
@@ -309,8 +371,35 @@ export default {
 
             this.events = todoEvents;
         },
-        rnd(a, b) {
-            return Math.floor((b - a + 1) * Math.random()) + a;
+        addTodo() {
+            http.post('todo', this.temp)
+                .then((response) => {
+                    if (response.data == 'success') {
+                        this.dialog = false;
+                        this.temp = {
+                            todoTitle: '',
+                            startDate: '',
+                            endDate: '',
+                            todoStatus: '',
+                            todoContent: '',
+                        };
+                        alert('추가 성공');
+                    }
+                })
+                .catch((err) => console.log(err));
+        },
+        cancelDialog() {
+            this.dialog = false;
+        },
+        deleteTodo(id) {
+            let did = parseInt(id);
+            http.delete(`/todo/${did}`)
+                .then((response) => {
+                    if (response.data == 'success') {
+                        alert('삭제 성공');
+                    }
+                })
+                .catch((err) => console.log(err));
         },
     },
 };
