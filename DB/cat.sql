@@ -57,10 +57,10 @@ create table `visits`(
  create table `todo`(
 	`todoId` int NOT NULL auto_increment,
     `todoTitle` varchar(255),
-    `todoContent` varchar(255),
     `startDate` varchar(20),
     `endDate` varchar(20),
     `todoStatus` varchar(20),
+    `todoContent` varchar(255),
     PRIMARY KEY (`todoId`)
 );
 
