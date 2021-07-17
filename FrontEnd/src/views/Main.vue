@@ -83,7 +83,7 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=your api key"></script>
 <script>
-import http from '@/util/http-common';
+import { getAppendList, getCatsCharc, getSearching } from '@/api/main.js';
 import CatsDetail from '@/components/CatsDetail';
 import SpeechDialog from '@/components/SpeechDialog';
 import { mapState } from 'vuex';
@@ -156,17 +156,15 @@ export default {
             let scrolledToBottom =
                 document.documentElement.scrollTop + window.innerHeight ==
                 document.documentElement.offsetHeight;
-            // console.log(this.isLoading);
 
             if (this.isLoading && scrolledToBottom) {
                 this.isLoading = true;
                 this.loadingFlag = true;
-                // console.log('loading : ' + this.loadingFlag);
                 setTimeout(this.append_list, 3000);
             }
         },
         append_list() {
-            http.get(`/cats/${this.start}`)
+            getAppendList(this.start)
                 .then((response) => {
                     if (response.data.length >= 6) {
                         this.isLoading = true;
@@ -187,8 +185,6 @@ export default {
                         }
 
                         this.start += this.limit;
-
-                        // console.log(this.start);
                     } else {
                         for (i = 0; i < response.data.length; i++) {
                             this.cats.push({
@@ -206,7 +202,6 @@ export default {
                         }
 
                         this.start += this.limit;
-                        // console.log(this.start);
                         this.isLoading = false;
                     }
                     this.loadingFlag = false;
@@ -216,9 +211,8 @@ export default {
                 });
         },
         openDetail(cat) {
-            // console.log(this.charc);
             this.$store.commit('setCatsDetail', cat);
-            http.get(`/cats/charc/${cat.cat_num}`)
+            getCatsCharc(cat.cat_num)
                 .then(({ data }) => {
                     let charcdata = [
                         data.aggressive,
@@ -232,17 +226,14 @@ export default {
                 .catch(() => {
                     alert('실패');
                 });
-            // this.setCharacter(cat.cat_num);
             this.detailDialog = true;
         },
         openSpeechDialog() {
             this.speechDialog = true;
         },
         closeDetail(detailDialog) {
-            // console.log('이전 : ' + detailDialog);
             this.detailDialog = !detailDialog;
             this.charc.splice(0);
-            // console.log('즤금 : ' + this.detailDialog);
         },
         closeSpeechDialog(speechDialog, message) {
             this.speechDialog = !speechDialog;
@@ -279,7 +270,7 @@ export default {
             }
         },
         searching() {
-            http.get(`/cats/search/${this.keyword}`)
+            getSearching(this.keyword)
                 .then((response) => {
                     for (var i = 0; i < response.data.length; i++) {
                         this.cats.push({
@@ -348,11 +339,7 @@ export default {
             keywordBox.className = 'keywordBox';
 
             let randomIdx = Math.floor(Math.random() * this.bgName.length);
-            // console.log('randomIdx : ' + randomIdx);
             let color = this.bgName[randomIdx];
-            // console.log('randomIdx : ' + color);
-
-            // console.log(keywordBox);
             keywordBox.classList.add(color);
         },
         setCenter(idx) {

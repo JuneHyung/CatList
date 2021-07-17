@@ -71,7 +71,6 @@ export default {
     },
     methods: {
         createChart() {
-            // this.catData.label = this.labels;
             this.catData.datasets[0].data = this.data;
             console.log('id : ' + this.id);
             const ctx = document.getElementById(this.id);

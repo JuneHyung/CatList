@@ -6,9 +6,8 @@
 </template>
 
 <script>
-// import http from '@/util/http-common';
 import visitChart from '@/components/VisitChart.vue';
-import http from '@/api/http.js';
+import { getAllVisitList, postVisits, updateVisits } from '@/api/visit.js';
 export default {
     name: 'Visit',
     data() {
@@ -34,7 +33,7 @@ export default {
             this.today = cur;
         },
         getVisitsList() {
-            http.get(`visits/all`)
+            getAllVisitList()
                 .then(({ data }) => {
                     this.item = data;
                     this.checkToday();
@@ -49,7 +48,6 @@ export default {
                     break;
                 }
                 count++;
-                // console.log('i' + this.item.length);
                 if (count == this.item.length) {
                     this.createVisits();
                 }
@@ -61,22 +59,15 @@ export default {
                 views: 1,
             };
 
-            http.post(`visits/create`, createTemp)
-                .then(() => {
-                    // console.log(response.data);
-                })
+            postVisits(createTemp)
+                .then(() => {})
                 .catch((err) => {
                     console.log(err);
                 });
         },
         updateVisits(view_id, views) {
-            http.put(`visits/updateVisits`, {
-                view_id: view_id,
-                views: views,
-            })
-                .then(() => {
-                    // console.log(response.data);
-                })
+            updateVisits(view_id, views)
+                .then(() => {})
                 .catch((err) => {
                     console.log(err);
                 });

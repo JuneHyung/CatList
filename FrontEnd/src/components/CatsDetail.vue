@@ -33,7 +33,6 @@
     </v-dialog>
 </template>
 <script>
-// import http from '@/util/http-common';
 import { mapState } from 'vuex';
 import Character from '@/components/Character';
 export default {

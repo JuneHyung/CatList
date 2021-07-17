@@ -9,10 +9,11 @@
     </div>
 </template>
 <script>
+import { moveMain } from '@/api/move.js';
 export default {
     methods: {
         goMain() {
-            this.$router.push({ name: 'Main' });
+            moveMain();
         },
     },
 };

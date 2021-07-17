@@ -43,13 +43,6 @@
                             <v-toolbar dark>
                                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                                 <v-spacer></v-spacer>
-
-                                <v-btn icon>
-                                    <v-icon>mdi-pencil</v-icon>
-                                </v-btn>
-                                <v-btn icon>
-                                    <v-icon>mdi-trash-can-outline</v-icon>
-                                </v-btn>
                             </v-toolbar>
                             <v-card-text>
                                 <span
@@ -58,6 +51,7 @@
                                 ></span>
                             </v-card-text>
                             <v-card-actions>
+                                <v-spacer></v-spacer>
                                 <v-btn text color="secondary" @click="selectedOpen = false">
                                     Cancel
                                 </v-btn>
@@ -132,6 +126,11 @@
                                 </p>
 
                                 <v-spacer></v-spacer>
+                                <v-select
+                                    :items="status"
+                                    outlined
+                                    v-model="temp.todoStatus"
+                                ></v-select>
                                 <p
                                     style="width: 10%"
                                     v-if="item == list.todoStatus.toUpperCase()"
@@ -165,6 +164,11 @@
                                 </p>
 
                                 <v-spacer></v-spacer>
+                                <v-select
+                                    :items="status"
+                                    outlined
+                                    v-model="temp.todoStatus"
+                                ></v-select>
                                 <p
                                     style="width: 10%"
                                     v-if="item == list.todoStatus.toUpperCase()"
@@ -257,8 +261,8 @@
 </template>
 
 <script>
-// import { getAllTodoList } from '@/api/todo.js';
-import http from '@/api/http.js';
+import { getAllTodoList, postTodoList, deleteTodoList } from '@/api/todo.js';
+
 export default {
     data() {
         return {
@@ -296,7 +300,7 @@ export default {
     },
     methods: {
         getTodoList() {
-            http.get('todo/all')
+            getAllTodoList()
                 .then(({ data }) => {
                     this.todo = data;
                     data.forEach((el) => {
@@ -372,7 +376,7 @@ export default {
             this.events = todoEvents;
         },
         addTodo() {
-            http.post('todo', this.temp)
+            postTodoList(this.temp)
                 .then((response) => {
                     if (response.data == 'success') {
                         this.dialog = false;
@@ -393,7 +397,7 @@ export default {
         },
         deleteTodo(id) {
             let did = parseInt(id);
-            http.delete(`/todo/${did}`)
+            deleteTodoList(did)
                 .then((response) => {
                     if (response.data == 'success') {
                         alert('삭제 성공');

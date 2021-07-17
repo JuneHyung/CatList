@@ -23,6 +23,7 @@
     </nav>
 </template>
 <script>
+import { moveMain, moveVisit, moveTodoList } from '@/api/move.js';
 export default {
     data() {
         return {
@@ -54,7 +55,6 @@ export default {
             }
         },
         changeDark() {
-            // console.log('dark : ' + this.$vuetify.theme.dark.toString());
             this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
             localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
 
@@ -65,13 +65,13 @@ export default {
             }
         },
         goVisit() {
-            this.$router.push({ name: 'Visit' });
+            moveVisit();
         },
         goMain() {
-            this.$router.push({ name: 'Main' });
+            moveMain();
         },
         goTodoList() {
-            this.$router.push({ name: 'Todo' });
+            moveTodoList();
         },
     },
 };
