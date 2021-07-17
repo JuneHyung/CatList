@@ -16,7 +16,7 @@
                             <v-icon small> mdi-chevron-right </v-icon>
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn outlined class="mr-4" color="grey darken-2" @click="setToday">
+                        <v-btn outlined class="mr-4" color="grey darken-2" @click="setCurToday">
                             Today
                         </v-btn>
                     </v-toolbar>
@@ -262,7 +262,7 @@
 
 <script>
 import { getAllTodoList, postTodoList, deleteTodoList } from '@/api/todo.js';
-
+import { setToday } from '@/api/util.js';
 export default {
     data() {
         return {
@@ -296,7 +296,7 @@ export default {
     mounted() {
         // this.$refs.calendar.checkChange();
         this.getTodoList();
-        this.setToday();
+        this.setCurToday();
     },
     methods: {
         getTodoList() {
@@ -321,15 +321,15 @@ export default {
                 })
                 .catch((err) => console.log(err));
         },
-        setToday() {
-            let cur = new Date();
-            let year = cur.getFullYear();
-            let month = cur.getMonth() + 1;
-            month < 10 ? (month = '0' + month) : month;
-            let date = cur.getDate();
-            date < 10 ? (date = '0' + date) : date;
+        setCurToday() {
+            // let cur = new Date();
+            // let year = cur.getFullYear();
+            // let month = cur.getMonth() + 1;
+            // month < 10 ? (month = '0' + month) : month;
+            // let date = cur.getDate();
+            // date < 10 ? (date = '0' + date) : date;
 
-            this.focus = year + '-' + month + '-' + date;
+            this.focus = setToday();
         },
         viewDay({ date }) {
             this.focus = date;

@@ -8,6 +8,7 @@
 <script>
 import visitChart from '@/components/VisitChart.vue';
 import { getAllVisitList, postVisits, updateVisits } from '@/api/visit.js';
+import { setToday } from '@/api/util.js';
 export default {
     name: 'Visit',
     data() {
@@ -25,12 +26,7 @@ export default {
     },
     methods: {
         getToday() {
-            const temp = new Date();
-            const year = temp.getFullYear();
-            const month = temp.getMonth() + 1;
-            const date = temp.getDate();
-            const cur = `${year}-${month}-${date}`;
-            this.today = cur;
+            this.today = setToday();
         },
         getVisitsList() {
             getAllVisitList()
