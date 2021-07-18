@@ -129,7 +129,7 @@ insert into cat (cat_name, cat_age, kind, profile, description, address)
  values('니안',3, '아비시니안', 'cat20.jpg', '아비시니안 고양이에요!', '경기도 평택시 신촌2로 21 (칠원동) 맘스스퀘어 C동 109호' );
  
  insert into cat (cat_name, cat_age, kind, profile, description, address)
- values('페르시',3, '페르시안', 'cat00.png', '페르시안 고양이에요!!!', '경기도 부천시 석천로 38번길 5, 1층' );
+ values('페르시나',3, '페르시안', 'cat00.png', '페르시안 고양이에요!!!', '경기도 부천시 석천로 38번길 5, 1층' );
  
  select * from cat;
  
