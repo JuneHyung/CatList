@@ -8,7 +8,7 @@ function getCatsCharc(catnum) {
 }
 
 function getSearching(keyword) {
-    return http.get(`/cats/search.${keyword}`)
+    return http.get(`/cats/search/${keyword}`)
 }
 
 export { getAppendList, getCatsCharc, getSearching };

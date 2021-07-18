@@ -83,7 +83,7 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=your api key"></script>
 <script>
-import { getAppendList, getCatsCharc, getSearching } from '@/api/main.js';
+import { getCatsCharc, getSearching } from '@/api/main.js';
 import CatsDetail from '@/components/CatsDetail';
 import SpeechDialog from '@/components/SpeechDialog';
 import { mapState } from 'vuex';
@@ -94,18 +94,16 @@ export default {
         speechDialog: SpeechDialog,
     },
     computed: {
-        ...mapState(['catsDetail']),
+        ...mapState(['catsDetail', 'cats', 'isLoading', 'catsLength']),
     },
 
     data() {
         return {
-            cats: [],
             searchCats: {},
             start: 0,
             limit: 6,
             detailDialog: false,
             speechDialog: false,
-            isLoading: true,
             darkDialog: false,
             loadingFlag: false,
             keyword: '',
@@ -140,14 +138,14 @@ export default {
         };
     },
     created() {
-        this.append_list();
+        this.$store.commit('setIsLoading', true);
         window.addEventListener('scroll', this.scroll);
     },
     destroyed() {
         window.removeEventListener('scroll', this.scroll);
     },
     mounted() {
-        this.isLoading = false;
+        this.append_list();
         this.loadingFlag = false;
         this.checkDark();
     },
@@ -158,57 +156,23 @@ export default {
                 document.documentElement.offsetHeight;
 
             if (this.isLoading && scrolledToBottom) {
-                this.isLoading = true;
+                console.log('동작');
+                this.$store.commit('setIsLoading', true);
+                // this.isLoading = true;
                 this.loadingFlag = true;
                 setTimeout(this.append_list, 3000);
             }
         },
         append_list() {
-            getAppendList(this.start)
-                .then((response) => {
-                    if (response.data.length >= 6) {
-                        this.isLoading = true;
+            this.$store.dispatch('GET_APPEND_LIST', this.start);
 
-                        for (var i = 0; i < 6; i++) {
-                            this.cats.push({
-                                cat_num: response.data[i].cat_num,
-                                cat_name: response.data[i].cat_name,
-                                cat_age: response.data[i].cat_age,
-                                kind: response.data[i].kind,
-                                description: response.data[i].description,
-                                create_date: response.data[i].create_date,
-                                profile: response.data[i].profile,
-                                address: response.data[i].address,
-                                lat: response.data[i].lat,
-                                lng: response.data[i].lng,
-                            });
-                        }
-
-                        this.start += this.limit;
-                    } else {
-                        for (i = 0; i < response.data.length; i++) {
-                            this.cats.push({
-                                cat_num: response.data[i].cat_num,
-                                cat_name: response.data[i].cat_name,
-                                cat_age: response.data[i].cat_age,
-                                kind: response.data[i].kind,
-                                description: response.data[i].description,
-                                create_date: response.data[i].create_date,
-                                profile: response.data[i].profile,
-                                address: response.data[i].address,
-                                lat: response.data[i].lat,
-                                lng: response.data[i].lng,
-                            });
-                        }
-
-                        this.start += this.limit;
-                        this.isLoading = false;
-                    }
-                    this.loadingFlag = false;
-                })
-                .catch(() => {
-                    alert('정보를 받아오는데 실패!');
-                });
+            if (this.start == 0 || this.catsLength >= 6) {
+                this.start += this.limit;
+                this.$store.commit('setIsLoading', true);
+            } else if (this.start != 0 && this.catsLength < 6) {
+                this.$store.commit('setIsLoading', false);
+            }
+            this.loadingFlag = false;
         },
         openDetail(cat) {
             this.$store.commit('setCatsDetail', cat);
@@ -290,7 +254,7 @@ export default {
                         this.checkDuplicate();
                     }
                     this.keyword = '';
-                    this.isLoading = false;
+                    this.$store.commit('setIsLoading', true);
                     this.loadingFlag = false;
                 })
                 .catch(() => {
@@ -336,6 +300,7 @@ export default {
         },
         randomBackground() {
             let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
+            console.log(keywordBox);
             keywordBox.className = 'keywordBox';
 
             let randomIdx = Math.floor(Math.random() * this.bgName.length);
