@@ -180,7 +180,7 @@ insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) val
 insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) values(19, 3,2,1,4,4);
 insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) values(20, 4,3,1,4,5);
 insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) values(21, 3,4,1,4,5);
-insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) values(21, 5,3,1,4,5);
+insert into charc(cat_num, cowardice, extrovert, aggressive, whim, friendly) values(22, 5,3,1,4,5);
 
 select * from charc;
 
