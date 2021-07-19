@@ -70,22 +70,15 @@ export default {
         };
     },
     methods: {
-        append_list() {
-            this.$store.dispatch('GET_APPEND_LIST', this.start);
-
-            if (this.start == 0 || this.catsLength >= 6) {
-                this.start += this.limit;
-                this.$store.commit('setIsLoading', true);
-            } else if (this.start != 0 && this.catsLength < 6) {
-                this.$store.commit('setIsLoading', false);
-            }
-        },
         searchByKeyword() {
-            this.$store.commit('setIsLoading', true);
+            this.$store.commit('setIsLoading', false);
             this.cats.splice(0);
+            if (this.keyword == '' || this.keyword == 'ALL') {
+                this.keyword = 'ALL';
+                this.$store.commit('setIsLoading', true);
+            }
             this.$store.dispatch(`GET_SEARCHING_CAT`, this.keyword);
 
-            if (this.keyword == '') this.keyword = 'ALL';
             this.checkDuplicate();
 
             this.randomBackground();
@@ -100,8 +93,6 @@ export default {
             }
             this.writing.push(this.keyword);
             this.keyword = '';
-
-            this.$store.commit('setIsLoading', false);
         },
 
         chooseKeyword(keyword) {

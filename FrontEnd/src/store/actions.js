@@ -6,7 +6,7 @@ export default {
             .catch(err => console.log(err));
     },
     GET_SEARCHING_CAT({ commit }, keyword){
-        if (keyword == '') {
+        if (keyword == 'ALL') {
             return getAppendList(0)
                 .then(({ data }) => commit('setCats', data))
                 .catch(err => console.log(err));
