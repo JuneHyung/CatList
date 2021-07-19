@@ -10,10 +10,10 @@
 	
 	<insert id="createTodo" parameterType="todo">
 		insert into todo(
-		todoTitle, todoContent, startDate, endDate, todoStatus
+		todoTitle, startDate, endDate, todoStatus, todoContent
 		)
 		values(
-		#{todoTitle},#{todoContent},#{startDate},#{endDate},#{todoStatus}
+		#{todoTitle},#{startDate},#{endDate},#{todoStatus},#{todoContent}
 		)
 	</insert>
 	
@@ -21,10 +21,10 @@
 	update todo
 	set
 	todoTitle=#{todoTitle},
-	todoContnet=#{todoContent},
 	startDate=#{startDate},
 	endDate=#{endDate},
 	todoStatus=#{todoStatus}
+	todoContnet=#{todoContent},
 	</update>
 	
 	<delete id="deleteTodo" parameterType="int">
