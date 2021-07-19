@@ -56,6 +56,7 @@ export default {
     },
     methods: {
         closeDetail() {
+            this.$store.commit('deleteCatsDetail');
             this.$emit('closeDetail', this.detailDialog);
         },
     },

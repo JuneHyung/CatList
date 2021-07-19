@@ -25,27 +25,29 @@
                 <div class="deleteBox" @click="deleteKeyword(index)">X</div>
             </div>
         </v-row>
+        <speechDialog
+            :speechDialog="speechDialog"
+            @closeSpeechDialog="closeSpeechDialog"
+        ></speechDialog>
     </div>
 </template>
 
 <script>
-import { getAppendList, getSearching } from '@/api/main.js';
 import { mapState } from 'vuex';
+import SpeechDialog from '@/components/SpeechDialog';
 export default {
     name: 'SearchBar',
-
+    components: { SpeechDialog },
     computed: {
-        ...mapState(['catsDetail']),
+        ...mapState(['cats', 'isLoading', 'catsLength']),
+    },
+    props: {
+        loadingFlag: Boolean,
     },
     data() {
         return {
-            cats: [],
             writing: [],
             keyword: '',
-            isLoading: true,
-            loadingFlag: false,
-            idx: 0,
-            sameIdx: 0,
             bgName: [
                 'warmFlame',
                 'nightFade',
@@ -64,147 +66,68 @@ export default {
                 'rareWind',
                 'nearMoon',
             ],
+            speechDialog: false,
         };
     },
     methods: {
-        searching() {
-            getSearching(this.keyword)
-                .then((response) => {
-                    for (var i = 0; i < response.data.length; i++) {
-                        this.cats.push({
-                            cat_num: response.data[i].cat_num,
-                            cat_name: response.data[i].cat_name,
-                            cat_age: response.data[i].cat_age,
-                            kind: response.data[i].kind,
-                            description: response.data[i].description,
-                            create_date: response.data[i].create_date,
-                            profile: response.data[i].profile,
-                            address: response.data[i].address,
-                            lat: response.data[i].lat,
-                            lng: response.data[i].lng,
-                        });
-                    }
-                    if (response.data.length != 0) {
-                        this.checkDuplicate();
-                    }
-                    this.keyword = '';
-                    this.isLoading = false;
-                    this.loadingFlag = false;
-                })
-                .catch(() => {
-                    console.log('실패');
-                });
-        },
-        checkDuplicate() {
-            if (this.writing.length < 5) {
-                for (var i = 0; i < this.writing.length; i++) {
-                    if (this.keyword == this.writing[i]) {
-                        this.writing.splice(i, 1);
-                        this.idx--;
-                        this.sameIdx = i;
-                    }
-                }
-                this.writing.push(this.keyword);
-                this.idx++;
-            } else if (this.writing.length == 5) {
-                let same = false;
-                for (i = 0; i < this.writing.length; i++) {
-                    if (this.keyword == this.writing[i]) {
-                        this.writing.splice(i, 1);
-                        this.writing.push(this.keyword);
-                        this.sameIdx = i;
-                        same = true;
-                        break;
-                    } // if
-                } // for
-                if (same == false) {
-                    this.writing.splice(0, 1);
-                    this.writing.push(this.keyword);
-                    this.sameIdx = 0;
-                } // if
-            } //else if
-        },
         append_list() {
-            getAppendList(this.start)
-                .then((response) => {
-                    if (response.data.length >= 6) {
-                        this.isLoading = true;
+            this.$store.dispatch('GET_APPEND_LIST', this.start);
 
-                        for (var i = 0; i < 6; i++) {
-                            this.cats.push({
-                                cat_num: response.data[i].cat_num,
-                                cat_name: response.data[i].cat_name,
-                                cat_age: response.data[i].cat_age,
-                                kind: response.data[i].kind,
-                                description: response.data[i].description,
-                                create_date: response.data[i].create_date,
-                                profile: response.data[i].profile,
-                                address: response.data[i].address,
-                                lat: response.data[i].lat,
-                                lng: response.data[i].lng,
-                            });
-                        }
-
-                        this.start += this.limit;
-                    } else {
-                        for (i = 0; i < response.data.length; i++) {
-                            this.cats.push({
-                                cat_num: response.data[i].cat_num,
-                                cat_name: response.data[i].cat_name,
-                                cat_age: response.data[i].cat_age,
-                                kind: response.data[i].kind,
-                                description: response.data[i].description,
-                                create_date: response.data[i].create_date,
-                                profile: response.data[i].profile,
-                                address: response.data[i].address,
-                                lat: response.data[i].lat,
-                                lng: response.data[i].lng,
-                            });
-                        }
-
-                        this.start += this.limit;
-                        this.isLoading = false;
-                    }
-                    this.loadingFlag = false;
-                })
-                .catch(() => {
-                    alert('정보를 받아오는데 실패!');
-                });
-        },
-        searchByKeyword() {
-            this.cats.splice(0);
-            // this.cats = [];
-            if (this.keyword == '') {
-                this.start = 0;
-                this.loadingFlag = true;
-                setTimeout(this.append_list, 3000);
-            } else {
-                this.loadingFlag = true;
-                setTimeout(this.searching, 3000);
-                setTimeout(this.randomBackground, 3100);
+            if (this.start == 0 || this.catsLength >= 6) {
+                this.start += this.limit;
+                this.$store.commit('setIsLoading', true);
+            } else if (this.start != 0 && this.catsLength < 6) {
+                this.$store.commit('setIsLoading', false);
             }
         },
+        searchByKeyword() {
+            this.$store.commit('setIsLoading', true);
+            this.cats.splice(0);
+            this.$store.dispatch(`GET_SEARCHING_CAT`, this.keyword);
+
+            if (this.keyword == '') this.keyword = 'ALL';
+            this.checkDuplicate();
+
+            this.randomBackground();
+        },
+
+        checkDuplicate() {
+            let idx = this.writing.indexOf(this.keyword);
+            if (this.writing.length < 5) {
+                idx != -1 ? this.writing.splice(idx, 1) : this.writing.splice(idx, 0);
+            } else if (this.writing.length == 5) {
+                idx != -1 ? this.writing.splice(idx, 1) : this.writing.splice(0, 1);
+            }
+            this.writing.push(this.keyword);
+            this.keyword = '';
+
+            this.$store.commit('setIsLoading', false);
+        },
+
         chooseKeyword(keyword) {
             this.keyword = keyword;
         },
         openSpeechDialog() {
             this.speechDialog = true;
         },
+        closeSpeechDialog(speechDialog, message) {
+            this.speechDialog = !speechDialog;
+            this.keyword = message;
+        },
         deleteKeyword(index) {
             this.writing.splice(index, 1);
-            this.idx--;
-            this.sameIdx = index;
         },
         randomBackground() {
-            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
-            keywordBox.className = 'keywordBox';
-
-            let randomIdx = Math.floor(Math.random() * this.bgName.length);
-            let color = this.bgName[randomIdx];
-            keywordBox.classList.add(color);
+            let keywordBox = document.querySelectorAll('.keywordBox');
+            keywordBox.forEach((el) => {
+                el.className = 'keywordBox';
+                let randomIdx = Math.floor(Math.random() * this.bgName.length);
+                let color = this.bgName[randomIdx];
+                el.classList.add(color);
+            });
         },
     },
 };
 </script>
 
-<style></style>
+<style scoped></style>

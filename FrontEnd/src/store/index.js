@@ -28,9 +28,9 @@ export default new Vuex.Store({
     setCatsDetail(state, catsDetail) {
       state.catsDetail = catsDetail;
     },
-    updateCustomerInfo(state, catsDetail) {
-      state.catsDetail = catsDetail
-    },
+    // updateCustomerInfo(state, catsDetail) {
+    //   state.catsDetail = catsDetail
+    // },
     deleteCatsDetail(state) {
       state.catsDetail = {};
     },

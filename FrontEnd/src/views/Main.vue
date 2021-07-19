@@ -3,36 +3,7 @@
         <div id="infinite">
             <div>
                 <div class="wrapBox">
-                    <div class="topBox">
-                        <p class="title">이미지영역</p>
-
-                        <v-row style="margin: 0; padding: 0">
-                            <input
-                                type="text"
-                                placeholder="검색하고 싶은 품종을 검색해주세요."
-                                v-model="keyword"
-                                class="col-10"
-                                style="color: #a0a0a0"
-                            />
-                            <v-spacer></v-spacer>
-                            <v-icon @click="searchByKeyword()" class="col-1">mdi-magnify</v-icon>
-                            <v-icon @click="openSpeechDialog()" class="col-1"
-                                >mdi-microphone</v-icon
-                            >
-                        </v-row>
-                        <v-row>
-                            <div
-                                v-for="(keyword, index) in writing"
-                                :key="index"
-                                class="keywordBox"
-                                @click="chooseKeyword(keyword)"
-                            >
-                                {{ keyword }}
-                                <div class="deleteBox" @click="deleteKeyword(index)">X</div>
-                            </div>
-                        </v-row>
-                    </div>
-
+                    <search-bar></search-bar>
                     <v-row>
                         <div class="col-4" v-for="(cat, idx) in cats" :key="idx">
                             <v-card class="cardBox" @click="openDetail(cat)">
@@ -71,10 +42,6 @@
                         :charc="charc"
                         @closeDetail="closeDetail"
                     ></catsDetail>
-                    <speechDialog
-                        :speechDialog="speechDialog"
-                        @closeSpeechDialog="closeSpeechDialog"
-                    ></speechDialog>
                 </div>
             </div>
         </div>
@@ -83,15 +50,15 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=your api key"></script>
 <script>
-import { getCatsCharc, getSearching } from '@/api/main.js';
+import { getCatsCharc } from '@/api/main.js';
+import SearchBar from '@/components/SearchBar.vue';
 import CatsDetail from '@/components/CatsDetail';
-import SpeechDialog from '@/components/SpeechDialog';
 import { mapState } from 'vuex';
 export default {
     name: 'Main',
     components: {
         catsDetail: CatsDetail,
-        speechDialog: SpeechDialog,
+        searchBar: SearchBar,
     },
     computed: {
         ...mapState(['catsDetail', 'cats', 'isLoading', 'catsLength']),
@@ -103,31 +70,8 @@ export default {
             start: 0,
             limit: 6,
             detailDialog: false,
-            speechDialog: false,
             darkDialog: false,
             loadingFlag: false,
-            keyword: '',
-            writing: [],
-            bgName: [
-                'warmFlame',
-                'nightFade',
-                'springWarmth',
-                'sunnyMoring',
-                'rainyAshville',
-                'frozenDreams',
-                'dustyGrass',
-                'temptingAzure',
-                'heavyRain',
-                'meanFruit',
-                'deepBlue',
-                'malibuBeach',
-                'newLife',
-                'morpheusDen',
-                'rareWind',
-                'nearMoon',
-            ],
-            idx: 0,
-            sameIdx: 0,
             center: {
                 lat: 35.8597,
                 lng: 128.611546,
@@ -147,7 +91,6 @@ export default {
     mounted() {
         this.append_list();
         this.loadingFlag = false;
-        this.checkDark();
     },
     methods: {
         scroll() {
@@ -156,7 +99,6 @@ export default {
                 document.documentElement.offsetHeight;
 
             if (this.isLoading && scrolledToBottom) {
-                console.log('동작');
                 this.$store.commit('setIsLoading', true);
                 // this.isLoading = true;
                 this.loadingFlag = true;
@@ -176,6 +118,7 @@ export default {
         },
         openDetail(cat) {
             this.$store.commit('setCatsDetail', cat);
+            // props연습.
             getCatsCharc(cat.cat_num)
                 .then(({ data }) => {
                     let charcdata = [
@@ -192,121 +135,12 @@ export default {
                 });
             this.detailDialog = true;
         },
-        openSpeechDialog() {
-            this.speechDialog = true;
-        },
+
         closeDetail(detailDialog) {
             this.detailDialog = !detailDialog;
             this.charc.splice(0);
         },
-        closeSpeechDialog(speechDialog, message) {
-            this.speechDialog = !speechDialog;
-            this.keyword = message;
-        },
-        checkDark() {
-            // 로컬 스토리지에 변수 값 확인.
-            const theme = localStorage.getItem('dark_theme');
-            if (theme) {
-                // 존재하는 경우.
-                if (theme === 'true') {
-                    this.$vuetify.theme.dark = true;
-                } else {
-                    this.$vuetify.theme.dark = false;
-                }
-            }
-            // 존재하지 않는 경우 시스템에서 다크모드를 활성화 했는지 확인 후 설정.
-            else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                this.$vuetify.theme.dark = true;
-                localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
-            }
-        },
-        searchByKeyword() {
-            this.cats.splice(0);
-            // this.cats = [];
-            if (this.keyword == '') {
-                this.start = 0;
-                this.loadingFlag = true;
-                setTimeout(this.append_list, 3000);
-            } else {
-                this.loadingFlag = true;
-                setTimeout(this.searching, 3000);
-                setTimeout(this.randomBackground, 3100);
-            }
-        },
-        searching() {
-            getSearching(this.keyword)
-                .then((response) => {
-                    for (var i = 0; i < response.data.length; i++) {
-                        this.cats.push({
-                            cat_num: response.data[i].cat_num,
-                            cat_name: response.data[i].cat_name,
-                            cat_age: response.data[i].cat_age,
-                            kind: response.data[i].kind,
-                            description: response.data[i].description,
-                            create_date: response.data[i].create_date,
-                            profile: response.data[i].profile,
-                            address: response.data[i].address,
-                            lat: response.data[i].lat,
-                            lng: response.data[i].lng,
-                        });
-                    }
-                    if (response.data.length != 0) {
-                        this.checkDuplicate();
-                    }
-                    this.keyword = '';
-                    this.$store.commit('setIsLoading', true);
-                    this.loadingFlag = false;
-                })
-                .catch(() => {
-                    console.log('실패');
-                });
-        },
-        chooseKeyword(keyword) {
-            this.keyword = keyword;
-        },
-        checkDuplicate() {
-            if (this.writing.length < 5) {
-                for (var i = 0; i < this.writing.length; i++) {
-                    if (this.keyword == this.writing[i]) {
-                        this.writing.splice(i, 1);
-                        this.idx--;
-                        this.sameIdx = i;
-                    }
-                }
-                this.writing.push(this.keyword);
-                this.idx++;
-            } else if (this.writing.length == 5) {
-                let same = false;
-                for (i = 0; i < this.writing.length; i++) {
-                    if (this.keyword == this.writing[i]) {
-                        this.writing.splice(i, 1);
-                        this.writing.push(this.keyword);
-                        this.sameIdx = i;
-                        same = true;
-                        break;
-                    } // if
-                } // for
-                if (same == false) {
-                    this.writing.splice(0, 1);
-                    this.writing.push(this.keyword);
-                    this.sameIdx = 0;
-                } // if
-            } //else if
-        },
-        deleteKeyword(index) {
-            this.writing.splice(index, 1);
-            this.idx--;
-            this.sameIdx = index;
-        },
-        randomBackground() {
-            let keywordBox = document.querySelector('.keywordBox:nth-child(' + this.idx + ')');
-            console.log(keywordBox);
-            keywordBox.className = 'keywordBox';
 
-            let randomIdx = Math.floor(Math.random() * this.bgName.length);
-            let color = this.bgName[randomIdx];
-            keywordBox.classList.add(color);
-        },
         setCenter(idx) {
             this.position.lat = this.cats[idx].lat;
             this.position.lng = this.cats[idx].lng;
@@ -316,7 +150,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import '../assets/css/cat.css';
 @import '../assets/css/bg.css';
 </style>
