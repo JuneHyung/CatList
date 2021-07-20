@@ -1,4 +1,6 @@
 import { getAppendList, getSearching } from '@/api/main.js';
+import { getAllVisitList } from '@/api/visit.js';
+
 export default {
     GET_APPEND_LIST({ commit }, start) {
         return getAppendList(start)
@@ -15,5 +17,12 @@ export default {
                 .then(({ data }) => commit('setCats', data))
             .catch(err => console.log(err));
         }
-    }
+    },
+    GET_ALL_VISITS({ commit }) {
+        return getAllVisitList().then(({ data }) => {
+            commit('setVisits', data);
+        }).catch(err => console.log(err));
+    },
+   
+    
 }

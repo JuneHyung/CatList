@@ -24,13 +24,14 @@
 </template>
 <script>
 import { moveMain, moveVisit, moveTodoList } from '@/api/move.js';
+
 export default {
     data() {
         return {
             curMode: '',
         };
     },
-    created() {},
+
     mounted() {
         this.checkDark();
     },

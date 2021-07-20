@@ -9,6 +9,7 @@ export default new Vuex.Store({
     catsLength: 0,
     cats: [],
     catsDetail: {},
+    visits:[],
   },
   getters: {
     getCatsDetail(state) {
@@ -28,9 +29,11 @@ export default new Vuex.Store({
     setCatsDetail(state, catsDetail) {
       state.catsDetail = catsDetail;
     },
-    // updateCustomerInfo(state, catsDetail) {
-    //   state.catsDetail = catsDetail
-    // },
+    setVisits(state, visits) {
+      visits.forEach(el => {
+        state.visits.push(el);
+      })
+    },
     deleteCatsDetail(state) {
       state.catsDetail = {};
     },
