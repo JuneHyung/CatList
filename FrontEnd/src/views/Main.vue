@@ -1,47 +1,14 @@
 <template>
     <v-container class="outerBox">
         <div id="infinite">
-            <div>
-                <div class="wrapBox">
-                    <search-bar></search-bar>
-                    <v-row>
-                        <div class="col-4" v-for="(cat, idx) in cats" :key="idx">
-                            <v-card class="cardBox" @click="openDetail(cat)">
-                                <div class="imgBox">
-                                    <img
-                                        :src="require(`@/assets/images/cats/${cat.profile}`)"
-                                        class="profileImg"
-                                    />
-                                </div>
-                                <div class="infoBox" @mouseover="setCenter(idx)">
-                                    <p>이름 : {{ cat.cat_name }}</p>
-                                    <p>품종 : {{ cat.kind }}</p>
-                                    <p>{{ cat.description }}</p>
-                                    <div class="mapBox">
-                                        <GmapMap
-                                            class="map"
-                                            ref="mapRef"
-                                            :center="center"
-                                            :zoom="15"
-                                        >
-                                            <GmapMarker :position="position" />
-                                        </GmapMap>
-                                    </div>
-                                </div>
-                            </v-card>
-                        </div>
-                    </v-row>
-                    <div class="loadingBox" v-if="loadingFlag">
-                        <v-img
-                            :src="require(`@/assets/images/Loading_cat.gif`)"
-                            class="loading"
-                        ></v-img>
-                    </div>
-                    <catsDetail
-                        :detailDialog="detailDialog"
-                        :charc="charc"
-                        @closeDetail="closeDetail"
-                    ></catsDetail>
+            <div class="wrapBox">
+                <search-bar></search-bar>
+                <cats-card></cats-card>
+                <div class="loadingBox" v-if="loadingFlag">
+                    <v-img
+                        :src="require(`@/assets/images/Loading_cat.gif`)"
+                        class="loading"
+                    ></v-img>
                 </div>
             </div>
         </div>
@@ -50,35 +17,25 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=your api key"></script>
 <script>
-import { getCatsCharc } from '@/api/main.js';
 import SearchBar from '@/components/SearchBar.vue';
-import CatsDetail from '@/components/CatsDetail';
+import CatsCard from '@/components/CatsCard.vue';
 import { mapState } from 'vuex';
 export default {
     name: 'Main',
     components: {
-        catsDetail: CatsDetail,
         searchBar: SearchBar,
+        catsCard: CatsCard,
     },
     computed: {
-        ...mapState(['catsDetail', 'cats', 'isLoading', 'catsLength']),
+        ...mapState(['cats', 'isLoading', 'catsLength']),
     },
 
     data() {
         return {
-            searchCats: {},
             start: 0,
             limit: 6,
-            detailDialog: false,
             darkDialog: false,
             loadingFlag: false,
-            center: {
-                lat: 35.8597,
-                lng: 128.611546,
-            },
-            // 마킹될 마커의 위치
-            position: { lat: 0, lng: 0 },
-            charc: [0, 0, 0, 0, 0],
         };
     },
     created() {
@@ -100,7 +57,6 @@ export default {
 
             if (this.isLoading && scrolledToBottom) {
                 this.$store.commit('setIsLoading', true);
-                // this.isLoading = true;
                 this.loadingFlag = true;
                 setTimeout(this.append_list, 3000);
             }
@@ -115,36 +71,6 @@ export default {
                 this.$store.commit('setIsLoading', false);
             }
             this.loadingFlag = false;
-        },
-        openDetail(cat) {
-            this.$store.commit('setCatsDetail', cat);
-            // props연습.
-            getCatsCharc(cat.cat_num)
-                .then(({ data }) => {
-                    let charcdata = [
-                        data.aggressive,
-                        data.cowardice,
-                        data.extrovert,
-                        data.whim,
-                        data.friendly,
-                    ];
-                    this.charc = charcdata;
-                })
-                .catch(() => {
-                    alert('실패');
-                });
-            this.detailDialog = true;
-        },
-
-        closeDetail(detailDialog) {
-            this.detailDialog = !detailDialog;
-            this.charc.splice(0);
-        },
-
-        setCenter(idx) {
-            this.position.lat = this.cats[idx].lat;
-            this.position.lng = this.cats[idx].lng;
-            this.center = this.position;
         },
     },
 };

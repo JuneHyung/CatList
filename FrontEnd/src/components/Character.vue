@@ -26,7 +26,6 @@ export default {
                 labels: ['적극성', '겁(내향적)', '외향적', '변덕스러움', '친근함'],
                 datasets: [
                     {
-                        label: 'My First Dataset',
                         data: [3, 4, 4, 3, 5],
                         fill: true,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -72,9 +71,8 @@ export default {
     methods: {
         createChart() {
             this.catData.datasets[0].data = this.data;
-            console.log('id : ' + this.id);
             const ctx = document.getElementById(this.id);
-            console.log(ctx);
+
             // 그려질 그래프 설정.
             this.chartObject = new Chart(ctx, {
                 type: 'radar',

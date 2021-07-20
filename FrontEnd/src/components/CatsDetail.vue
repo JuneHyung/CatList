@@ -41,10 +41,7 @@ export default {
         character: Character,
     },
     data() {
-        return {
-            dialog: false,
-            hoverFlag: false,
-        };
+        return {};
     },
     props: {
         detailDialog: Boolean,
