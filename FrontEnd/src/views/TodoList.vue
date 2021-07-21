@@ -71,115 +71,6 @@
                 </v-tabs>
                 <v-tabs-items v-model="tab" style="height: 600px">
                     <v-tab-item v-for="item in items" :key="item" style="margin: 20px">
-                        <div v-if="item == 'TODO'">
-                            <v-row
-                                v-for="(list, idx) in todoL"
-                                :key="idx"
-                                style="
-                                    height: 50px;
-                                    line-height: 50px;
-                                    border: 1px solid grey;
-                                    box-sizing: border-box;
-                                    margin: 0;
-                                    text-align: center;
-                                "
-                            >
-                                <p style="width: 30%" v-if="item == list.todoStatus.toUpperCase()">
-                                    {{ list.todoTitle }}
-                                </p>
-                                <v-spacer></v-spacer>
-                                <p style="width: 60%" v-if="item == list.todoStatus.toUpperCase()">
-                                    {{ list.todoContent }}
-                                </p>
-
-                                <v-spacer></v-spacer>
-                                <p
-                                    style="width: 10%"
-                                    v-if="item == list.todoStatus.toUpperCase()"
-                                    @click="deleteTodo(list.todoId)"
-                                >
-                                    <v-icon style="font-size: 12px; cursor: pointer">
-                                        mdi-close
-                                    </v-icon>
-                                </p>
-                            </v-row>
-                        </div>
-                        <div v-if="item == 'DOING'">
-                            <v-row
-                                v-for="(list, idx) in doingL"
-                                :key="idx"
-                                style="
-                                    height: 50px;
-                                    line-height: 50px;
-                                    border: 1px solid grey;
-                                    box-sizing: border-box;
-                                    margin: 0;
-                                    text-align: center;
-                                "
-                            >
-                                <p style="width: 30%" v-if="item == list.todoStatus.toUpperCase()">
-                                    {{ list.todoTitle }}
-                                </p>
-                                <v-spacer></v-spacer>
-                                <p style="width: 60%" v-if="item == list.todoStatus.toUpperCase()">
-                                    {{ list.todoContent }}
-                                </p>
-
-                                <v-spacer></v-spacer>
-                                <v-select
-                                    :items="status"
-                                    outlined
-                                    v-model="temp.todoStatus"
-                                ></v-select>
-                                <p
-                                    style="width: 10%"
-                                    v-if="item == list.todoStatus.toUpperCase()"
-                                    @click="deleteTodo(list.todoId)"
-                                >
-                                    <v-icon style="font-size: 12px; cursor: pointer">
-                                        mdi-close
-                                    </v-icon>
-                                </p>
-                            </v-row>
-                        </div>
-                        <div v-if="item == 'DONE'">
-                            <v-row
-                                v-for="(list, idx) in doneL"
-                                :key="idx"
-                                style="
-                                    height: 50px;
-                                    line-height: 50px;
-                                    border: 1px solid grey;
-                                    box-sizing: border-box;
-                                    margin: 0;
-                                    text-align: center;
-                                "
-                            >
-                                <p style="width: 30%" v-if="item == list.todoStatus.toUpperCase()">
-                                    {{ list.todoTitle }}
-                                </p>
-                                <v-spacer></v-spacer>
-                                <p style="width: 60%" v-if="item == list.todoStatus.toUpperCase()">
-                                    {{ list.todoContent }}
-                                </p>
-
-                                <v-spacer></v-spacer>
-                                <v-select
-                                    :items="status"
-                                    outlined
-                                    v-model="temp.todoStatus"
-                                ></v-select>
-                                <p
-                                    style="width: 10%"
-                                    v-if="item == list.todoStatus.toUpperCase()"
-                                    @click="deleteTodo(list.todoId)"
-                                >
-                                    <v-icon style="font-size: 12px; cursor: pointer">
-                                        mdi-close
-                                    </v-icon>
-                                </p>
-                            </v-row>
-                        </div>
                         <v-dialog v-model="dialog" persistent max-width="290">
                             <template v-slot:activator="{ on, attrs }">
                                 <p
@@ -195,6 +86,7 @@
                                     "
                                     v-bind="attrs"
                                     v-on="on"
+                                    @click="resetTemp()"
                                 >
                                     +
                                 </p>
@@ -253,6 +145,101 @@
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>
+                        <div v-for="(list, idx) in todo" :key="idx">
+                            <v-row
+                                v-if="list.todoStatus.toUpperCase() == item"
+                                style="height: 50px; line-height: 50px; margin: 0"
+                            >
+                                <p style="width: 20%">
+                                    {{ list.todoTitle }}
+                                </p>
+                                <v-spacer></v-spacer>
+                                <p style="width: 60%">
+                                    {{ list.todoContent }}
+                                </p>
+
+                                <v-spacer></v-spacer>
+                                <v-dialog v-model="updateDialog" persistent max-width="290">
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <p
+                                            style="width: 5%; text-align: center"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            @click="updateTemp(list)"
+                                        >
+                                            <v-icon style="font-size: 12px; cursor: pointer">
+                                                mdi-pencil
+                                            </v-icon>
+                                        </p>
+                                    </template>
+                                    <v-card>
+                                        <v-card-title class="text-h5"> Update Work </v-card-title>
+                                        <v-card-text style="margin-top: 20px">
+                                            <v-row>
+                                                <p styl>제목</p>
+                                                <v-spacer></v-spacer>
+                                                <input type="text" v-model="temp.todoTitle" />
+                                            </v-row>
+                                            <v-row>
+                                                <p>시작 날짜 :</p>
+                                                <v-spacer></v-spacer>
+                                                <input type="date" v-model="temp.startDate" />
+                                            </v-row>
+                                            <v-row>
+                                                <p>끝 날짜 :</p>
+                                                <v-spacer></v-spacer>
+                                                <input type="date" v-model="temp.endDate" />
+                                            </v-row>
+                                            <v-row>
+                                                <p style="line-height: 56px">상태 :</p>
+                                                <v-spacer></v-spacer>
+                                                <v-col cols="8" style="padding: 0">
+                                                    <v-select
+                                                        :items="status"
+                                                        outlined
+                                                        v-model="temp.todoStatus"
+                                                    ></v-select>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <p>내용 :</p>
+                                                <v-spacer></v-spacer>
+                                                <v-textarea
+                                                    name="input-5-1"
+                                                    outlined
+                                                    v-model="temp.todoContent"
+                                                ></v-textarea>
+                                            </v-row>
+                                        </v-card-text>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn
+                                                color="green darken-1"
+                                                text
+                                                @click="cancelDialog()"
+                                            >
+                                                닫기
+                                            </v-btn>
+                                            <v-btn
+                                                color="green darken-1"
+                                                text
+                                                @click="updateTodo(list.todoId)"
+                                            >
+                                                수정
+                                            </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
+                                <p
+                                    style="width: 5%; text-align: center"
+                                    @click="deleteTodo(list.todoId)"
+                                >
+                                    <v-icon style="font-size: 12px; cursor: pointer">
+                                        mdi-close
+                                    </v-icon>
+                                </p>
+                            </v-row>
+                        </div>
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
@@ -261,7 +248,8 @@
 </template>
 
 <script>
-import { getAllTodoList, postTodoList, deleteTodoList } from '@/api/todo.js';
+import { getAllTodoList, postTodoList, putTodoList, deleteTodoList } from '@/api/todo.js';
+import { moveTodoList } from '@/api/move.js';
 import { setToday } from '@/api/util.js';
 export default {
     data() {
@@ -290,6 +278,7 @@ export default {
                 todoStatus: '',
                 todoContent: '',
             },
+            updateDialog: false,
         };
     },
 
@@ -322,13 +311,6 @@ export default {
                 .catch((err) => console.log(err));
         },
         setCurToday() {
-            // let cur = new Date();
-            // let year = cur.getFullYear();
-            // let month = cur.getMonth() + 1;
-            // month < 10 ? (month = '0' + month) : month;
-            // let date = cur.getDate();
-            // date < 10 ? (date = '0' + date) : date;
-
             this.focus = setToday();
         },
         viewDay({ date }) {
@@ -392,8 +374,28 @@ export default {
                 })
                 .catch((err) => console.log(err));
         },
+        updateTodo(id) {
+            let lid = parseInt(id);
+            const temp = this.temp;
+            putTodoList(lid, temp)
+                .then(moveTodoList())
+                .catch((err) => console.log(err));
+        },
         cancelDialog() {
             this.dialog = false;
+            this.updateDialog = false;
+        },
+        updateTemp(list) {
+            this.temp = list;
+        },
+        resetTemp() {
+            this.temp = {
+                todoTitle: '',
+                startDate: '',
+                endDate: '',
+                todoStatus: '',
+                todoContent: '',
+            };
         },
         deleteTodo(id) {
             let did = parseInt(id);

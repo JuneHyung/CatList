@@ -23,6 +23,4 @@ export default {
             commit('setVisits', data);
         }).catch(err => console.log(err));
     },
-   
-    
 }
