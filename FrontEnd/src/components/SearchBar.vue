@@ -71,13 +71,13 @@ export default {
     },
     methods: {
         async searchByKeyword() {
-            this.$store.commit('setIsLoading', false);
+            await this.$store.commit('setIsLoading', false);
             this.cats.splice(0);
             if (this.keyword == '' || this.keyword == 'ALL') {
                 this.keyword = 'ALL';
                 this.$store.commit('setIsLoading', true);
             }
-            this.$store.dispatch(`GET_SEARCHING_CAT`, this.keyword);
+            await this.$store.dispatch(`GET_SEARCHING_CAT`, this.keyword);
 
             await this.checkDuplicate();
             await this.randomBackground();
