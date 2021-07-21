@@ -18,13 +18,14 @@
 	</insert>
 	
 	<update id="updateTodo" parameterType="todo">
-	update todo
-	set
-	todoTitle=#{todoTitle},
-	startDate=#{startDate},
-	endDate=#{endDate},
-	todoStatus=#{todoStatus}
-	todoContnet=#{todoContent},
+		update todo
+		set
+		todoTitle=#{todoTitle},
+		startDate=#{startDate},
+		endDate=#{endDate},
+		todoStatus=#{todoStatus},
+		todoContent=#{todoContent}
+		where todoId=#{todoId}
 	</update>
 	
 	<delete id="deleteTodo" parameterType="int">

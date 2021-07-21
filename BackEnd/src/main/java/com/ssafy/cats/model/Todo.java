@@ -1,16 +1,17 @@
 package com.ssafy.cats.model;
 
 public class Todo {
-	String todoId;
+	int todoId;
 	String todoTitle;
 	String todoContent;
 	String startDate;
 	String endDate;
 	String todoStatus;
-	public String getTodoId() {
+	
+	public int getTodoId() {
 		return todoId;
 	}
-	public void setTodoId(String todoId) {
+	public void setTodoId(int todoId) {
 		this.todoId = todoId;
 	}
 	public String getTodoTitle() {
