@@ -70,7 +70,7 @@ export default {
         };
     },
     methods: {
-        searchByKeyword() {
+        async searchByKeyword() {
             this.$store.commit('setIsLoading', false);
             this.cats.splice(0);
             if (this.keyword == '' || this.keyword == 'ALL') {
@@ -79,9 +79,8 @@ export default {
             }
             this.$store.dispatch(`GET_SEARCHING_CAT`, this.keyword);
 
-            this.checkDuplicate();
-
-            this.randomBackground();
+            await this.checkDuplicate();
+            await this.randomBackground();
         },
 
         checkDuplicate() {
