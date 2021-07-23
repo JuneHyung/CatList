@@ -248,10 +248,13 @@
 </template>
 
 <script>
-import { getAllTodoList, postTodoList, putTodoList, deleteTodoList } from '@/api/todo.js';
+import { mapState } from 'vuex';
 import { moveTodoList } from '@/api/move.js';
 import { setToday } from '@/api/util.js';
 export default {
+    computed: {
+        ...mapState(['todo']),
+    },
     data() {
         return {
             status: ['todo', 'doing', 'done'],
@@ -262,15 +265,11 @@ export default {
             },
             selectedElement: null,
             selectedOpen: false,
-            todo: [],
             events: [],
             colors: ['#b2b1f0', '#b2d5', '#c945bc'],
             tab: null,
             items: ['TODO', 'DOING', 'DONE'],
             dialog: false,
-            todoL: [],
-            doingL: [],
-            doneL: [],
             temp: {
                 todoTitle: '',
                 startDate: '',
@@ -288,27 +287,9 @@ export default {
         this.setCurToday();
     },
     methods: {
-        getTodoList() {
-            getAllTodoList()
-                .then(({ data }) => {
-                    this.todo = data;
-                    data.forEach((el) => {
-                        switch (el.todoStatus) {
-                            case 'todo':
-                                this.todoL.push(el);
-                                break;
-                            case 'doing':
-                                this.doingL.push(el);
-                                break;
-                            case 'done':
-                                this.doneL.push(el);
-                                break;
-                        }
-                    });
-
-                    this.updateRange();
-                })
-                .catch((err) => console.log(err));
+        async getTodoList() {
+            await this.$store.dispatch('GET_ALL_TODOLIST');
+            await this.updateRange();
         },
         setCurToday() {
             this.focus = setToday();
@@ -357,29 +338,18 @@ export default {
 
             this.events = todoEvents;
         },
-        addTodo() {
-            postTodoList(this.temp)
-                .then((response) => {
-                    if (response.data == 'success') {
-                        this.dialog = false;
-                        this.temp = {
-                            todoTitle: '',
-                            startDate: '',
-                            endDate: '',
-                            todoStatus: '',
-                            todoContent: '',
-                        };
-                        alert('추가 성공');
-                    }
-                })
-                .catch((err) => console.log(err));
+        async addTodo() {
+            await this.$store.dispatch('POST_TODOLIST', this.temp);
+            await this.$store.commit('toggleFlag', false);
+            await this.resetTemp();
+            await moveTodoList();
         },
-        updateTodo(id) {
+        async updateTodo(id) {
             let lid = parseInt(id);
             const temp = this.temp;
-            putTodoList(lid, temp)
-                .then(moveTodoList())
-                .catch((err) => console.log(err));
+            await this.$store.dispatch('PUT_TODOLIST', { lid, temp });
+            await this.$store.commit('toggleFlag', false);
+            await moveTodoList();
         },
         cancelDialog() {
             this.dialog = false;
@@ -397,15 +367,11 @@ export default {
                 todoContent: '',
             };
         },
-        deleteTodo(id) {
+        async deleteTodo(id) {
             let did = parseInt(id);
-            deleteTodoList(did)
-                .then((response) => {
-                    if (response.data == 'success') {
-                        alert('삭제 성공');
-                    }
-                })
-                .catch((err) => console.log(err));
+            await this.$store.dispatch('DELETE_TODOLIST', did);
+            await this.$store.commit('toggleFlag', false);
+            await moveTodoList();
         },
     },
 };

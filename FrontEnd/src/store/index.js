@@ -9,7 +9,9 @@ export default new Vuex.Store({
     catsLength: 0,
     cats: [],
     catsDetail: {},
-    visits:[],
+    visits: [],
+    todo: [],
+    flag: false,
   },
   getters: {
     getCatsDetail(state) {
@@ -37,6 +39,14 @@ export default new Vuex.Store({
     deleteCatsDetail(state) {
       state.catsDetail = {};
     },
+    setTodoList(state, todo) {
+      todo.forEach(el => {
+        state.todo.push(el);
+      })
+    },
+    toggleFlag(state, flag) {
+      state.flag = flag;
+    }
   },
   actions,
   
