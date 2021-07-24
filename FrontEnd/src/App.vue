@@ -7,7 +7,7 @@
 
 <script>
 import Menu from '@/components/Menu';
-import { postVisits, updateVisits } from '@/api/visit.js';
+// import { postVisits, updateVisits } from '@/api/visit.js';
 import { setToday } from '@/api/util.js';
 import { mapState } from 'vuex';
 export default {
@@ -16,15 +16,14 @@ export default {
         navmenu: Menu,
     },
     data() {
-        return { today: '' };
+        return {};
     },
     computed: {
-        ...mapState(['visits']),
+        ...mapState(['visits', 'today']),
     },
-    created() {
-        this.today = setToday();
-        this.$store.commit('setToday', setToday());
-        this.getVisitsList();
+    async created() {
+        await this.$store.commit('setToday', setToday());
+        await this.getVisitsList();
     },
 
     methods: {
@@ -36,20 +35,20 @@ export default {
             let count = 0;
             for (let i = 0; i < this.visits.length; i++) {
                 if (this.visits[i].today == this.today) {
-                    updateVisits(this.visits[i].view_id, this.visits[i].views)
-                        .then()
-                        .catch((err) => console.log(err));
+                    let visits = {
+                        id: this.visits[i].view_id,
+                        views: this.visits[i].views,
+                    };
+                    this.$store.dispatch('PUT_VISITS', visits);
                     break;
                 }
                 count++;
                 if (count == this.visits.length) {
-                    let temp = {
+                    let visits = {
                         today: this.today,
                         views: 1,
                     };
-                    postVisits(temp)
-                        .then()
-                        .catch((err) => console.log(err));
+                    this.$store.dispatch('POST_NEW_VISITS', visits);
                 }
             }
         },

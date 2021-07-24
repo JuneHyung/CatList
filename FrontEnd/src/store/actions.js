@@ -1,6 +1,6 @@
 import { getAppendList, getSearching } from '@/api/main.js';
 import { getAllTodoList, deleteTodoList, putTodoList, postTodoList } from '@/api/todo.js';
-import { getAllVisitList } from '@/api/visit.js';
+import { getAllVisitList, postVisits, updateVisits} from '@/api/visit.js';
 
 export default {
     GET_APPEND_LIST({ commit }, start) {
@@ -23,6 +23,12 @@ export default {
         return getAllVisitList().then(({ data }) => {
             commit('setVisits', data);
         }).catch(err => console.log(err));
+    },
+    POST_NEW_VISITS({ commit }, visits) {
+        return postVisits(visits).then(commit('toggleFlag', true)).catch(err => console.log(err));
+    },
+    PUT_VISITS({ commit }, visits) {
+        return updateVisits(visits.id, visits.views).then(commit('toggleFlag', true)).catch(err => console.log(err));
     },
     GET_ALL_TODOLIST({ commit }) {
         return getAllTodoList().then(({ data }) => {
