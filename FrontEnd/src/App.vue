@@ -23,6 +23,7 @@ export default {
     },
     created() {
         this.today = setToday();
+        this.$store.commit('setToday', setToday());
         this.getVisitsList();
     },
 

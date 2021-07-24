@@ -12,6 +12,7 @@ export default new Vuex.Store({
     visits: [],
     todo: [],
     flag: false,
+    today:'',
   },
   getters: {
     getCatsDetail(state) {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
     toggleFlag(state, flag) {
       state.flag = flag;
+    },
+    setToday(state, today) {
+      state.today = today;
     }
   },
   actions,
