@@ -17,13 +17,11 @@
         <div class="menu-item blue" @click="goTodoList">
             <v-icon>mdi-calendar-month</v-icon> Todo List
         </div>
-        <div class="menu-item yellow" @click="goMain">
-            <v-icon>E2</v-icon>
-        </div>
+        <div class="menu-item yellow" @click="goTipTap"><v-icon></v-icon> TipTap</div>
     </nav>
 </template>
 <script>
-import { moveMain, moveVisit, moveTodoList } from '@/api/move.js';
+import { moveMain, moveVisit, moveTodoList, moveTipTap } from '@/api/move.js';
 
 export default {
     data() {
@@ -73,6 +71,9 @@ export default {
         },
         goTodoList() {
             moveTodoList();
+        },
+        goTipTap() {
+            moveTipTap();
         },
     },
 };

@@ -12,6 +12,10 @@ function moveTodoList() {
     return ROUTER.push({ name: 'Todo' });
 }
 
+function moveTipTap() {
+    return ROUTER.push({ name: 'TipTap' });
+}
+
 export {
-    moveMain,moveVisit,moveTodoList
+    moveMain,moveVisit,moveTodoList,moveTipTap
 }
