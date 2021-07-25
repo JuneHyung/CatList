@@ -1,5 +1,8 @@
 # Infinite-Scrolling
 
+notion에서 계속 update될 예정 
+notion : [Infinite-Scrolling](https://www.notion.so/Infinite-Scrolling-92cba91224944a7784153fc4139e0c59)
+
 Vue로 작성한 무한스크롤 예제
 
 <strong>Front : Vue </strong>
