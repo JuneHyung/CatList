@@ -17,7 +17,9 @@
         <div class="menu-item blue" @click="goTodoList">
             <v-icon>mdi-calendar-month</v-icon> Todo List
         </div>
-        <div class="menu-item yellow" @click="goTipTap"><v-icon></v-icon> TipTap</div>
+        <div class="menu-item yellow" @click="goTipTap">
+            <v-icon>mdi-post-outline</v-icon> TipTap
+        </div>
     </nav>
 </template>
 <script>

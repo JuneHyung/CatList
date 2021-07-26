@@ -8,7 +8,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="green darken-1" text @click="closeSpeechDialog">확인</v-btn>
+                <v-btn color="green darken-1" text @click="closeSpeechDialog()">확인</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -36,29 +36,37 @@ export default {
             const recognition = new window.SpeechRecognition();
             recognition.interimResults = true;
 
-            this.startDialog = true;
+            this.startDialog = !this.startDialog;
+            if (this.startDialog) {
+                let p = document.createElement('p');
+                const words = document.querySelector('.words');
+                words.appendChild(p);
 
-            let p = document.createElement('p');
-            const words = document.querySelector('.words');
-            words.appendChild(p);
+                recognition.addEventListener('result', (e) => {
+                    console.log(e.results);
+                    const transcript = Array.from(e.results)
+                        .map((result) => result[0])
+                        .map((result) => result.transcript)
+                        .join('');
 
-            recognition.addEventListener('result', (e) => {
-                console.log(e.results);
-                const transcript = Array.from(e.results)
-                    .map((result) => result[0])
-                    .map((result) => result.transcript)
-                    .join('');
-
-                p.textContent = transcript;
-                this.message = transcript;
-                if (e.results[0].isFinal) {
+                    p.textContent = transcript;
                     this.message = transcript;
-                    words.appendChild(p);
-                }
-            });
+                    if (e.results[0].isFinal) {
+                        this.message = transcript;
+                        words.appendChild(p);
+                    }
+                });
 
-            recognition.addEventListener('end', recognition.start);
-            recognition.start();
+                recognition.addEventListener('end', recognition.start);
+                recognition.start();
+                console.log('시작');
+            } else {
+                // this.startDialog = false;
+                recognition.interimResults = false;
+                recognition.removeEventListener('end', recognition.start);
+                recognition.stop();
+                console.log('끝');
+            }
         },
     },
 };
