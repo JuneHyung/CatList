@@ -7,7 +7,6 @@
 
 <script>
 import Menu from '@/components/Menu';
-// import { postVisits, updateVisits } from '@/api/visit.js';
 import { setToday } from '@/api/util.js';
 import { mapState } from 'vuex';
 export default {

@@ -2,8 +2,8 @@
     <v-container class="outerBox">
         <div id="infinite">
             <div class="wrapBox">
-                <search-bar></search-bar>
-                <cats-card></cats-card>
+                <search-bar :data-intro="introM[0]"></search-bar>
+                <cats-card :data-intro="introM[1]"></cats-card>
                 <div class="loadingBox" v-if="loadingFlag">
                     <v-img
                         :src="require(`@/assets/images/Loading_cat.gif`)"
@@ -19,6 +19,8 @@
 <script>
 import SearchBar from '@/components/SearchBar.vue';
 import CatsCard from '@/components/CatsCard.vue';
+import { message } from '@/api/main.js';
+import { startIntro } from '@/api/util.js';
 import { mapState } from 'vuex';
 export default {
     name: 'Main',
@@ -36,9 +38,11 @@ export default {
             limit: 6,
             darkDialog: false,
             loadingFlag: false,
+            introM: {},
         };
     },
     created() {
+        this.introM = message;
         this.$store.commit('setIsLoading', true);
         window.addEventListener('scroll', this.scroll);
     },
@@ -48,6 +52,7 @@ export default {
     mounted() {
         this.append_list();
         this.loadingFlag = false;
+        startIntro();
     },
     methods: {
         scroll() {

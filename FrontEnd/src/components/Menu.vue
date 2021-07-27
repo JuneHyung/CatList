@@ -13,7 +13,9 @@
         <div class="menu-item orange" @click="goVisit">
             <v-icon>mdi-chart-line</v-icon> Visit Chart
         </div>
-        <div class="menu-item purple" @click="goMain"><v-icon>mdi-github</v-icon> Main Page</div>
+        <div class="menu-item purple" @click="goMain">
+            <v-icon>mdi-github</v-icon> Main Page
+        </div>
         <div class="menu-item blue" @click="goTodoList">
             <v-icon>mdi-calendar-month</v-icon> Todo List
         </div>
@@ -24,7 +26,6 @@
 </template>
 <script>
 import { moveMain, moveVisit, moveTodoList, moveTipTap } from '@/api/move.js';
-
 export default {
     data() {
         return {

@@ -1,16 +1,28 @@
 <template>
     <div class="bgBox blinking">
-        <div class="coverBox">
-            <div class="titleBox" @click="goMain()">
-                <h1 class="openingTitle">Let's Go</h1>
-                <p>Search Cats</p>
+        <div class="coverBox card-demo">
+            <div class="titleBox" @click="goMain()" :data-intro="introM[0]">
+                <h1 class="openingTitle card-demo-link">Let's Go</h1>
+                <p :data-intro="introM[1]">Search Cats</p>
             </div>
         </div>
     </div>
 </template>
 <script>
 import { moveMain } from '@/api/move.js';
+import { startIntro, message } from '@/api/util.js';
 export default {
+    data() {
+        return {
+            introM: {},
+        };
+    },
+    created() {
+        this.introM = message;
+    },
+    mounted() {
+        startIntro();
+    },
     methods: {
         goMain() {
             moveMain();

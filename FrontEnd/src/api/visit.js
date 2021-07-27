@@ -9,4 +9,8 @@ function postVisits(createTemp) {
 function updateVisits(view_id, views) {
     return http.put(`visits/updateVisits`, {view_id, views})
 }
-export { getAllVisitList,postVisits,updateVisits}
+
+const message = {
+    0: '우리 사이트를 방문한 횟수가 차트로 그려집니다.',
+}
+export { getAllVisitList,postVisits,updateVisits, message}
