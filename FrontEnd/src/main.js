@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import * as VueGoogleMaps from 'vue2-google-maps';
+import IntroJS from 'intro.js';
 
 Vue.config.productionTip = false;
 Vue.use(VueGoogleMaps, {
@@ -12,6 +13,9 @@ Vue.use(VueGoogleMaps, {
         libararies: 'places',
     },
 });
+
+Vue.use(IntroJS);
+import 'intro.js/introjs.css';
 new Vue({
   router,
   store,
