@@ -1,31 +1,46 @@
 <template>
     <div class="bgBox blinking">
         <div class="coverBox card-demo">
-            <div class="titleBox" @click="goMain()" :data-intro="introM[0]">
+            <div id="step1" class="titleBox" @click="goMain()">
                 <h1 class="openingTitle card-demo-link">Let's Go</h1>
-                <p :data-intro="introM[1]">Search Cats</p>
+                <p id="step2">Search Cats</p>
             </div>
         </div>
     </div>
 </template>
 <script>
 import { moveMain } from '@/api/move.js';
-import { startIntro, message } from '@/api/util.js';
+import { startIntro } from '@/api/util.js';
 export default {
     data() {
         return {
-            introM: {},
+            step: [],
         };
     },
-    created() {
-        this.introM = message;
-    },
+
     mounted() {
-        startIntro();
+        this.setOptions();
+        startIntro(this.step);
     },
     methods: {
         goMain() {
             moveMain();
+        },
+        setOptions() {
+            this.step = [
+                {
+                    title: 'Welcome',
+                    intro: 'Hello Everyone',
+                },
+                {
+                    element: document.querySelector('#step1'),
+                    intro: '안녕하세요! <br/>글자를 클릭하면 고양이 페이지로 이동합니다.',
+                },
+                {
+                    element: document.querySelector('#step2'),
+                    intro: '클릭해보세요!',
+                },
+            ];
         },
     },
 };

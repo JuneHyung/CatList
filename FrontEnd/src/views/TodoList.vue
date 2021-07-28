@@ -2,8 +2,8 @@
     <v-container>
         <p>todolist가 들어갈 곳</p>
         <v-row class="fill-height" style="margin-top: 10px">
-            <calendar :items="items" :data-intro="introM[0]"></calendar>
-            <td-list :items="items" :data-intro="introM[1]"></td-list>
+            <calendar :items="items" id="step1"></calendar>
+            <td-list :items="items" id="step2"></td-list>
         </v-row>
     </v-container>
 </template>
@@ -12,7 +12,6 @@
 import { mapState } from 'vuex';
 import Calendar from '@/components/Calendar.vue';
 import TdList from '@/components/TdList.vue';
-import { message } from '@/api/todo.js';
 import { startIntro } from '@/api/util.js';
 export default {
     components: {
@@ -22,17 +21,33 @@ export default {
     computed: {
         ...mapState(['today']),
     },
-    created() {
-        this.introM = message;
-    },
     mounted() {
-        startIntro();
+        this.setOptions();
+        startIntro(this.step);
     },
     data() {
         return {
             items: ['TODO', 'DOING', 'DONE'],
-            introM: {},
+            step: [],
         };
+    },
+    methods: {
+        setOptions() {
+            this.step = [
+                {
+                    title: 'TodoList 페이지',
+                    intro: '나의 TodoList를 확인할 수 있는 페이지 입니다.',
+                },
+                {
+                    element: document.querySelector('#step1'),
+                    intro: '나의 TodoList가 달력으로 표시됩니다.',
+                },
+                {
+                    element: document.querySelector('#step2'),
+                    intro: '나의 TodoList를 확인할 수 있는 목록입니다.',
+                },
+            ];
+        },
     },
 };
 </script>
