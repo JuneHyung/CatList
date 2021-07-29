@@ -31,13 +31,16 @@ export default {
                 {
                     title: 'Welcome',
                     intro: 'Hello Everyone',
+                    step: 0,
                 },
                 {
                     element: document.querySelector('#step1'),
+                    title: 'Opening',
                     intro: '안녕하세요! <br/>글자를 클릭하면 고양이 페이지로 이동합니다.',
                 },
                 {
                     element: document.querySelector('#step2'),
+                    title: 'Opening',
                     intro: '클릭해보세요!',
                 },
             ];

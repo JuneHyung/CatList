@@ -36,6 +36,7 @@ export default {
                 },
                 {
                     element: document.querySelector('#step1'),
+                    title: '페이지 방문 차트',
                     intro: '우리 사이트를 방문한 횟수가 차트로 그려집니다.',
                 },
             ];

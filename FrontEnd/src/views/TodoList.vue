@@ -35,15 +35,17 @@ export default {
         setOptions() {
             this.step = [
                 {
-                    title: 'TodoList 페이지',
+                    title: 'TodoList',
                     intro: '나의 TodoList를 확인할 수 있는 페이지 입니다.',
                 },
                 {
                     element: document.querySelector('#step1'),
+                    title: 'TodoList',
                     intro: '나의 TodoList가 달력으로 표시됩니다.',
                 },
                 {
                     element: document.querySelector('#step2'),
+                    title: 'TodoList',
                     intro: '나의 TodoList를 확인할 수 있는 목록입니다.',
                 },
             ];

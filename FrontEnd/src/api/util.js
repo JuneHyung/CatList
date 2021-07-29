@@ -10,7 +10,15 @@ function setToday() {
 function startIntro(step) {
     const introJS = require('intro.js');
     let steps = step
-    return introJS().setOptions({steps}).start();
+    let exitOnOverlayClick = { exitOnOverlayClick: false }
+    let keyboardNavigation = { keyboardNavigation: true }
+    let options = {
+        exitOnOverlayClick,
+        keyboardNavigation,
+        steps
+    }
+    
+    return introJS().setOptions(options).start();
 }
 
 
