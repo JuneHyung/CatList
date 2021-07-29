@@ -11,20 +11,29 @@
 <script>
 import { moveMain } from '@/api/move.js';
 import { startIntro } from '@/api/util.js';
+import { mapState } from 'vuex';
 export default {
     data() {
         return {
             step: [],
         };
     },
-
+    computed: {
+        ...mapState(['openingIntro']),
+    },
     mounted() {
-        this.setOptions();
-        startIntro(this.step);
+        this.checkIntro();
     },
     methods: {
         goMain() {
             moveMain();
+        },
+        async checkIntro() {
+            if (!this.openingIntro) {
+                await this.setOptions();
+                await startIntro(this.step);
+                await this.$store.commit('toggleState', 'Opening');
+            }
         },
         setOptions() {
             this.step = [

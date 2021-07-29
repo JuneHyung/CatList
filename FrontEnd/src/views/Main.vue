@@ -28,7 +28,7 @@ export default {
         catsCard: CatsCard,
     },
     computed: {
-        ...mapState(['cats', 'isLoading', 'catsLength']),
+        ...mapState(['cats', 'isLoading', 'catsLength', 'mainIntro']),
     },
 
     data() {
@@ -48,10 +48,9 @@ export default {
         window.removeEventListener('scroll', this.scroll);
     },
     mounted() {
-        this.setOptions();
+        this.checkIntro();
         this.append_list();
         this.loadingFlag = false;
-        startIntro(this.step);
     },
     methods: {
         scroll() {
@@ -75,6 +74,13 @@ export default {
                 this.$store.commit('setIsLoading', false);
             }
             this.loadingFlag = false;
+        },
+        async checkIntro() {
+            if (!this.mainIntro) {
+                await this.setOptions();
+                await startIntro(this.step);
+                await this.$store.commit('toggleState', 'Main');
+            }
         },
         setOptions() {
             this.step = [

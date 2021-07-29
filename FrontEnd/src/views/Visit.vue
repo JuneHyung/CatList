@@ -15,7 +15,7 @@ export default {
         visit: visitChart,
     },
     computed: {
-        ...mapState(['visits']),
+        ...mapState(['visits', 'visitIntro']),
     },
     data() {
         return {
@@ -23,11 +23,16 @@ export default {
         };
     },
     mounted() {
-        // startIntro('Visit');
-        this.setOptions();
-        startIntro(this.step);
+        this.checkIntro();
     },
     methods: {
+        async checkIntro() {
+            if (!this.visitIntro) {
+                await this.setOptions();
+                await startIntro(this.step);
+                await this.$store.commit('toggleState', 'Visit');
+            }
+        },
         setOptions() {
             this.step = [
                 {

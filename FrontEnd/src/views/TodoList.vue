@@ -19,11 +19,10 @@ export default {
         TdList,
     },
     computed: {
-        ...mapState(['today']),
+        ...mapState(['today', 'todoIntro']),
     },
     mounted() {
-        this.setOptions();
-        startIntro(this.step);
+        this.checkIntro();
     },
     data() {
         return {
@@ -32,6 +31,13 @@ export default {
         };
     },
     methods: {
+        async checkIntro() {
+            if (!this.todoIntro) {
+                await this.setOptions();
+                await startIntro(this.step);
+                await this.$store.commit('toggleState', 'TodoList');
+            }
+        },
         setOptions() {
             this.step = [
                 {

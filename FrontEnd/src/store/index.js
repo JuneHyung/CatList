@@ -12,7 +12,11 @@ export default new Vuex.Store({
     visits: [],
     todo: [],
     flag: false,
-    today:'',
+    today: '',
+    openingIntro: false,
+    mainIntro: false,
+    todoIntro: false,
+    visitIntro: false
   },
   getters: {
     getCatsDetail(state) {
@@ -50,6 +54,23 @@ export default new Vuex.Store({
     },
     setToday(state, today) {
       state.today = today;
+    },
+    toggleState(state, name) {
+      switch (name) {
+        case 'Opening':
+          state.openingIntro = true;
+          break;
+        case 'Main':
+          state.mainIntro = true;
+          break;
+        case 'TodoList':
+          state.todoIntro = true;
+          break;
+        case 'Visit':
+          state.visitIntro = true;
+          break;
+      }
+      
     }
   },
   actions,
