@@ -53,7 +53,7 @@ Run application
 
 ### Opening Page
 
-![opening](D:\VideoTemp\바꾼거\opening.gif)
+![opening](./images/Result_Images/opening.gif)
 
 
 
@@ -61,19 +61,19 @@ Run application
 
 ### 무한 스크롤 및 로딩 UI
 
-![scrolling](D:\VideoTemp\바꾼거\scrolling.gif)
+![scrolling](./images/Result_Images/scrolling.gif)
 
 
 
 ### 구글 지도 확인 및 Detail Card
 
-![detail](D:\VideoTemp\바꾼거\detail.gif)
+![detail](./images/Result_Images/detail.gif)
 
 
 
 ### 검색 및 검색어 태그상자 추가
 
-![search](D:\VideoTemp\바꾼거\search.gif)
+![search](./images/Result_Images/search.gif)
 
 
 
@@ -81,37 +81,37 @@ Run application
 
 ### 현재 메뉴 (리스트)
 
-![aftermenu](D:\VideoTemp\바꾼거\aftermenu.gif)
+![aftermenu](./images/Result_Images/aftermenu.gif)
 
 
 
 ### 이전 메뉴 (원형)
 
-![beforeMenu](D:\VideoTemp\바꾼거\beforeMenu.gif)
+![beforeMenu](./images/Result_Images/beforeMenu.gif)
 
 
 
 ## 다크모드
 
-![darkmode](D:\VideoTemp\바꾼거\darkmode.gif)
+![darkmode](./images/Result_Images/darkmode.gif)
 
 
 
 ## 방문차트
 
-![visitChart](D:\VideoTemp\바꾼거\visitChart.jpg)
+![visitChart](./images/Result_Images/visitChart.jpg)
 
 
 
 ## TodoList
 
-![TodoList](D:\VideoTemp\바꾼거\TodoList.jpg)
+![TodoList](./images/Result_Images/TodoList.jpg)
 
 
 
 ## TipTap
 
-![TipTap](D:\VideoTemp\바꾼거\TipTap.jpg)
+![TipTap](./images/Result_Images/TipTap.jpg)
 
 
 
@@ -119,22 +119,23 @@ Run application
 
 ### Opening 페이지 Intro
 
-![intro01](D:\VideoTemp\바꾼거\intro01.gif)
+![intro01](./images/Result_Images/opening_Intro.gif)
 
 
 
 ### 목록 페이지 Intro
 
-![intro04](D:\VideoTemp\바꾼거\intro04.gif)
+![intro04](./images/Result_Images/main_Intro.gif)
 
 
 
 ### 방문 차트 페이지 Intro
 
-![intro02](D:\VideoTemp\바꾼거\intro02.gif)
+![intro02](./images/Result_Images/visitChart_Intro.gif)
 
 
 
 ### TodoList 페이지 Intro
 
-![intro03](D:\VideoTemp\바꾼거\intro03.gif)
+![intro03](./images/Result_Images/todo_Intro.gif)
+
