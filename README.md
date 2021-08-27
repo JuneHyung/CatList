@@ -2,7 +2,7 @@
 
 **Notion** : [Infinite-Scrolling](https://www.notion.so/Infinite-Scrolling-92cba91224944a7784153fc4139e0c59)
 
-Vue로 작성한 무한스크롤 예제
+Vue 공부용 예제
 
 <strong>Front : Vue </strong>
 
