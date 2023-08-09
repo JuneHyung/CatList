@@ -2,8 +2,8 @@ import MenuItem from "./MenuItem"
 
 const Menu = () => {
   const menuList = [
-    {path: '/', label: 'Intro'},
-    {path: '/catList', label: 'CatList'},
+    {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},
+    {path: '/catList', label: 'CatList', icon: 'mdiCat'},
   ]
   return (
     <nav className="menu-list">
