@@ -1,0 +1,9 @@
+@import './menu/menu.css';
+@import './intro/introPage.css';
+.App {
+  text-align: center;
+}
+
+.content-box{
+  height:100vh;
+}
