@@ -1,7 +1,9 @@
+import Tiptap from "../componenets/tiptap/TipTap";
+
 const TipTapPage = () =>{
   return (
     <div>
-      TIPTAP
+      <Tiptap />
     </div>
   )
 }
