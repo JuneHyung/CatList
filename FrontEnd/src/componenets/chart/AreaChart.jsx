@@ -11,8 +11,8 @@ const AreaChart = () =>{
     name: 'series2',
     data: [11, 32, 45, 32, 34, 52, 41]
   }]);
-  const [xAxis, setXAxis] = useState(['01','02','03','04','05','06','07']);
-  const options = {
+
+  const [options, setOptions] = useState({
     chart: {
       height: 350,
       type: 'area'
@@ -23,11 +23,23 @@ const AreaChart = () =>{
     stroke: {
       curve: 'smooth'
     },
-  };
+    xaxis: { categories: ['x01','x02','x03','x04','x05','x06','x07']}
+  })
+  
+  const changeXAxis = () =>{
+    setOptions((prev)=>({
+      ...prev,
+      xaxis: {
+        ...prev.xaxis,
+        categories: [...prev.xaxis.categories].reverse()
+      }
+    }))
+  }
 
   return (
     <div>
-        <ReactApexChart options={options} series={series} xAxis={xAxis} type={'area'} height={350}/>
+      <button onClick={changeXAxis}>Reverse Categories</button>
+        <ReactApexChart options={options} series={series} type={'area'} height={350}/>
     </div>
   )
 }
