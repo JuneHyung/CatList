@@ -1,6 +1,8 @@
+import AreaChart from "../componenets/chart/AreaChart"
+
 const VisitChartPage = () =>{
   return (
-    <div>visit chart</div>
+    <AreaChart />
   )
 }
 
