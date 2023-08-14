@@ -1,0 +1,24 @@
+$bg-list: (
+  warmFlame: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%),
+  nightFade: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%),
+  springWarmth: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%),
+  sunnyMoring: linear-gradient(120deg, #f6d365 0%, #fda085 100%),
+  rainyAshville: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%),
+  frozenDreams: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%),
+  dustyGrass: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%),
+  temptingAzure: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%),
+  heavyRain: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%),
+  meanFruit: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%),
+  deepBlue: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%),
+  malibuBeach: linear-gradient(to right, #4facfe 0%, #00f2fe 100%),
+  newLife: linear-gradient(to right, #43e97b 0%, #38f9d7 100%),
+  morpheusDen: linear-gradient(to top, #30cfd0 0%, #330867 100%),
+  rareWind: linear-gradient(to top, #a8edea 0%, #fed6e3 100%),
+  nearMoon: linear-gradient(to top, #5ee7df 0%, #b490ca 100%),
+);
+
+@each $bg-name in map-keys($bg-list){
+  .bg-#{$bg-name}{
+    background: map-get($bg-list, $bg-name);
+  }
+};

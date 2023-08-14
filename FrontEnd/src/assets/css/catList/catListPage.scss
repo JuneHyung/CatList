@@ -17,6 +17,23 @@
     }
   }
 
+  .badge-bar{
+    display:flex;
+    align-items:center;
+    
+    .badge-item{
+      display:flex;
+      height: 2rem;
+      border-radius:5px;
+      justify-content: center;
+      align-items: center;
+      flex:0 1 80px;
+      font-weight: 600;
+    }
+  }
+
+
+
   .cat-list{
     display:flex;
     flex-wrap: wrap;
