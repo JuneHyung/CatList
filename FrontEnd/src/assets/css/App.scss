@@ -2,6 +2,8 @@
 @import './common/common.scss';
 @import './common/pallete.scss';
 @import './common/badgeBg.scss';
+@import './common/animation.scss';
+@import './common/variable.scss';
 
 @import './menu/menu.scss';
 @import './intro/introPage.scss';
@@ -9,6 +11,7 @@
 
 .App {
   text-align: center;
+  background-color: $bgColor;
 }
 
 .content-box{
