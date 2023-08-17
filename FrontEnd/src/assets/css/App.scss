@@ -8,6 +8,7 @@
 @import './menu/menu.scss';
 @import './intro/introPage.scss';
 @import './catList/catListPage.scss';
+@import './catList/avatar.scss';
 
 .App {
   text-align: center;
@@ -73,7 +74,20 @@
     margin: 2rem 0;
   }
 }
-
+// scroll
+*{
+  &::-webkit-scrollbar {
+    border-radius: 1.25rem;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 1.25rem;
+    background-color: $lowColor;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1.25rem;
+    background-color: $pointColor;
+  }
+}
 .full{
   width:100%;
   height:100%;

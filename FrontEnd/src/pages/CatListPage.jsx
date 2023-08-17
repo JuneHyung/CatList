@@ -1,4 +1,4 @@
-import CatList from "../componenets/catList/CatList"
+import CatList from "../componenets/catList/CatListArea"
 import SearchBar from "../componenets/catList/SearchBar"
 
 const CatListPage =() =>{
