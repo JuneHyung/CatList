@@ -1,6 +1,6 @@
 const CatDetailPage = () => {
   return (
-    <p>detailPage</p>
+    <div className="cat-list">detailPage</div>
   )
 } 
 export default CatDetailPage;

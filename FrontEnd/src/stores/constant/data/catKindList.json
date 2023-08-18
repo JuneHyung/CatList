@@ -1,0 +1,117 @@
+[
+  {
+    "catNo": 1,
+    "kind": "버만",
+    "profile": "cat14.jpg"
+  },
+  {
+    "catNo": 2,
+    "kind": "페르시안",
+    "profile": "cat00.png"
+  },
+  {
+    "catNo": 3,
+    "kind": "메인쿤",
+    "profile": "cat01.jpg"
+  },
+  {
+    "catNo": 4,
+    "kind": "뱅골",
+    "profile": "cat02.jpg"
+  },
+  {
+    "catNo": 5,
+    "kind": "브리트니 숏헤어",
+    "profile": "cat03.jpg"
+  },
+  {
+    "catNo": 6,
+    "kind": "시암",
+    "profile": "cat04.jpg"
+  },
+  {
+    "catNo": 7,
+    "kind": "스핑크스",
+    "profile": "cat05.jpg"
+  },
+  {
+    "catNo": 8,
+    "kind": "렉돌",
+    "profile": "cat06.jpg"
+  },
+  {
+    "catNo": 9,
+    "kind": "먼치킨",
+    "profile": "cat07.jpg"
+  },
+  {
+    "catNo": 10,
+    "kind": "스코티시 폴드",
+    "profile": "cat08.jpg"
+  },
+  {
+    "catNo": 11,
+    "kind": "사바나",
+    "profile": "cat09.jpg"
+  },
+  {
+    "catNo": 12,
+    "kind": "시베리안",
+    "profile": "cat10.jpg"
+  },
+  {
+    "catNo": 13,
+    "kind": "노르웨이숲",
+    "profile": "cat11.jpg"
+  },
+  {
+    "catNo": 14,
+    "kind": "러시안 블루",
+    "profile": "cat12.png"
+  },
+  {
+    "catNo": 15,
+    "kind": "숏",
+    "profile": "cat13.jpg"
+  },
+  {
+    "catNo": 16,
+    "kind": "버만",
+    "profile": "cat14.jpg"
+  },
+  {
+    "catNo": 17,
+    "kind": "터키시 앙고라",
+    "profile": "cat15.jpg"
+  },
+  {
+    "catNo": 18,
+    "kind": "싱가푸라",
+    "profile": "cat16.jpg"
+  },
+  {
+    "catNo": 19,
+    "kind": "엑조틱 숏헤어",
+    "profile": "cat17.jpg"
+  },
+  {
+    "catNo": 20,
+    "kind": "히말라얀",
+    "profile": "cat18.jpg"
+  },
+  {
+    "catNo": 21,
+    "kind": "사르트뢰",
+    "profile": "cat19.jpg"
+  },
+  {
+    "catNo": 22,
+    "kind": "아비시니안",
+    "profile": "cat20.jpg"
+  },
+  {
+    "catNo": 23,
+    "kind": "페르시안",
+    "profile": "cat00.png"
+  }
+]

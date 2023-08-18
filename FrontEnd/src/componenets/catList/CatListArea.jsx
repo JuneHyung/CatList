@@ -1,21 +1,16 @@
-// import catList from "../../stores/constant/data/catList.json";
-import { useEffect } from "react";
 import CatKindList from "./CatKindList";
 import CatList from "./CatList";
-import { useDispatch, useSelector } from "react-redux";
-import { getCatList } from "../../stores/actions/cat";
-
+import CatDetail from "./CatDetail"
+import { useSelector } from "react-redux";
 const CatListArea = () => {
-  const { catList } = useSelector((state)=> state.cat)
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(getCatList());
-  }, [])
-
+  const {selectedCat} = useSelector((state)=> state.cat);
+  
   return (
     <div className="cat-list-wrap">
-      <CatKindList list={catList}/>
-      <CatList />
+      <CatKindList />
+      {
+        selectedCat.catNo===undefined ? <CatList /> : <CatDetail />      
+      }
     </div>
   );
 };

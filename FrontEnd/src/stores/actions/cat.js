@@ -1,8 +1,35 @@
-import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND } from "../constant/variable";
+// import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND } from "../constant/variable";
+import { CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND } from "../constant/variable";
 import catList from "../constant/data/catList.json";
+import catKindList from "../constant/data/catKindList.json";
 
 export const setSelectedKind = (kind) =>{
-  return (dispatch, getState) => dispatch(fetchSelectedKind(kind))
+  return async (dispatch, getState) => {
+    try{
+      const list = catList.filter(el=>el.kind===kind);
+      dispatch(fetchSelectedKind(kind))
+      dispatch(fetchCatList(list))
+    }catch(e){
+      console.log(e);
+      dispatch(clearCatList());
+    }finally {
+      dispatch(clearSelectedCat())
+    }
+  }
+}
+
+export const getCatKindList = () => {
+  return async (dispatch, getState) => {
+    try{
+      const list = catKindList;
+      dispatch(fetchCatKindList(list))
+    }catch(e){
+      console.log(e);
+      dispatch(clearCatList());
+    }finally {
+      
+    }
+  }
 }
 
 export const getCatList = () => {
@@ -34,21 +61,21 @@ export const setSelectedCat = (catNo) => {
   }
 }
 
-const clearAllCatData = () =>{
-  return {
-    type: CLEAR_ALL_CAT_DATA
-  }
-}
+// const clearAllCatData = () =>{
+//   return {
+//     type: CLEAR_ALL_CAT_DATA
+//   }
+// }
 const clearCatList = () =>{
   return {
     type: CLEAR_CAT_LIST
   }
 }
-const claerSelectedKind = () =>{
-  return {
-    type: CLEAR_SELECTED_KIND
-  }
-}
+// const claerSelectedKind = () =>{
+//   return {
+//     type: CLEAR_SELECTED_KIND
+//   }
+// }
 const clearSelectedCat = () =>{
   return {
     type: CLEAR_SELECTED_CAT
@@ -57,6 +84,12 @@ const clearSelectedCat = () =>{
 const fetchCatList = (data) =>{
   return {
     type: FETCH_CAT_LIST,
+    data,
+  }
+}
+const fetchCatKindList = (data) =>{
+  return {
+    type: FETCH_CAT_TYPE_LIST,
     data,
   }
 }

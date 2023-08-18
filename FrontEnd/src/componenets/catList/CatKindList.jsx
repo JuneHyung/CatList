@@ -1,19 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import CatKindItem from "./CatKindItem";
-import { setSelectedKind } from "../../stores/actions/cat";
+import { getCatKindList } from "../../stores/actions/cat";
 import NoData from "../common/NoData";
+import { useEffect } from "react";
 
-const CatKindList = ({list}) =>{
-  const {catList, selectedKind} = useSelector((state)=> state.cat)
+const CatKindList = () =>{
+  const {catKindList} = useSelector((state)=> state.cat)
   const dispatch = useDispatch();
-  console.log(list)
-  const handleOnClick = (kind) => {
-    dispatch(setSelectedKind(kind))
-  }
+  useEffect(()=>{
+    dispatch(getCatKindList())
+  }, [dispatch])
+
   return (
     <ul className="cat-kind-list">
-      {catList.length===0 ? <NoData /> : catList.map((item) =>(
-        <CatKindItem item={item} key={item.catNo} selectedKind={selectedKind} onClick={handleOnClick} />
+      {catKindList.length===0 ? <NoData /> : catKindList.map((item) =>(
+        <CatKindItem item={item} key={item.catNo} />
       ))}
     </ul>
   )

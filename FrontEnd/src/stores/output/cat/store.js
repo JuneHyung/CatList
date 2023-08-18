@@ -4,8 +4,9 @@ const { composeWithDevTools } = require('redux-devtools-extension');
 const initialstate = {
   cat: {
     catList: [],
-    selectedKind: '',
-    selectedCat: {},
+  catKindList: [],
+  selectedKind: '',
+  selectedCat: {},
   }
 }
 
@@ -14,7 +15,6 @@ const firstMiddleware = (store) => (dispatch) => (action) => {
 }
 const thunkMiddleware = (store) => (dispatch) => (action) => {
   if (typeof action === 'function') {
-    console.log(action)
     return action(store.dispatch, store.getState);
   }
   return dispatch(action)
