@@ -4,16 +4,28 @@
     display:flex;
     align-items: center;
     justify-content: space-around;
-
     .search-input{
       display:flex;
       flex:10;
       height:40px;
       margin-right:8px;
+      border:1px solid $pointColor;
+      border-radius: 5px;
+      padding: 0 0.5rem;
+      color:$pointColor;
+      background:$lowColor;
+      transition: all 0.2s;
+      &:focus{
+        outline: 1.5px solid $pointColor;  
+        background: $middleColor;
+        color:#fff;
+      }
     }
-    .search-icon,.voice-icon{
-      display:flex;
-      flex:1;
+    .custom-icon{
+      cursor: pointer;
+      path{
+        fill: $pointColor;
+      }
     }
   }
 
@@ -35,7 +47,7 @@
 
   .cat-list-wrap{
     display:flex;
-    height: 90vh;
+    height: 85vh;
     .cat-kind-list{
       display:flex;
       flex-direction: column;

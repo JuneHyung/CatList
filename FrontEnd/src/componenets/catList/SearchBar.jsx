@@ -2,6 +2,8 @@ import { useCallback } from "react";
 import MdiIcon from "../common/MdiIcon";
 import { useState } from "react";
 import BadgeItem from "./BadgeItem";
+import { useDispatch } from "react-redux";
+import { getCatList } from "../../stores/actions/cat";
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState([]);
   const [searchItem, setSearchItem] = useState([]);
@@ -13,7 +15,6 @@ const SearchBar = () => {
 
   // enter시 Badge추가
   const addBadgeItem = useCallback(() => {
-    console.log('adf')
     setSearchItem((prev) => {
       const filtered = prev.filter((item)=> item!==inputValue);
       return filtered.length===7 ? [...filtered.slice(1), inputValue] : [...filtered, inputValue]
@@ -22,11 +23,14 @@ const SearchBar = () => {
   }, [inputValue])
 
   const handleEnterKey = useCallback((event) => {
-    console.log('asdfasfas')
     if (event.key === "Enter") {
       addBadgeItem();
     }
   }, [addBadgeItem]);
+  const dispatch = useDispatch();
+  const searchCatList = useCallback(()=>{
+    dispatch(getCatList())
+  }, [])
 
   return (
     <div>
@@ -37,7 +41,7 @@ const SearchBar = () => {
       </div>
       <ul className="badge-bar jh-my-sm">
         {searchItem.map((item, idx) => (
-          <BadgeItem key={`${item}${idx}`} item={item}>{item}</BadgeItem>
+          <BadgeItem key={`${item}${idx}`} item={item} onClick={searchCatList}>{item}</BadgeItem>
         ))}
       </ul>
     </div>

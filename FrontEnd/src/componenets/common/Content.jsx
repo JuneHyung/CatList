@@ -5,7 +5,8 @@ import TipTapPage from "../../pages/TipTapPage";
 import VisitChartPage from "../../pages/VisitChartPage";
 import TodoListPage from "../../pages/TodoListPage";
 import Menu from "../menu/Menu";
-
+import { Provider } from "react-redux";
+import catStore from "../../stores/output/cat/store";
 const Content = () =>{
   return (
     <div className="content-box">
@@ -13,7 +14,11 @@ const Content = () =>{
         <Menu />
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="/catList" element={<CatListPage />} />
+          <Route path="/catList" element={
+          <Provider store={catStore}>
+          <CatListPage />
+          </Provider>
+          } />
           <Route path="/tiptap" element={<TipTapPage />} />
           <Route path="/visitChart" element={<VisitChartPage />} />
           <Route path="/todoList" element={<TodoListPage />} />

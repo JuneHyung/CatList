@@ -228,5 +228,51 @@
     "createDate": "2023-08-10",
     "profile": "cat00.png",
     "address": "경기도 부천시 석천로 38번길 5, 1층"
+  },
+  {
+    "catNo": 24,
+    "catName": "테옹02",
+    "catAge": 2,
+    "kind": "버만",
+    "description": "아이보!",
+    "createDate": "2023-08-10",
+    "profile": "cat14.jpg",
+    "address": "서울특별시 동작구 사당로 18-1"
+  },{
+    "catNo": 25,
+    "catName": "테옹03",
+    "catAge": 1,
+    "kind": "버만",
+    "description": "아이보!",
+    "createDate": "2023-08-10",
+    "profile": "cat14.jpg",
+    "address": "서울특별시 동작구 사당로 18-1"
+  },{
+    "catNo": 26,
+    "catName": "테옹04",
+    "catAge": 4,
+    "kind": "버만",
+    "description": "아이보!",
+    "createDate": "2023-08-10",
+    "profile": "cat14.jpg",
+    "address": "서울특별시 동작구 사당로 18-1"
+  },{
+    "catNo": 27,
+    "catName": "테옹05",
+    "catAge": 5,
+    "kind": "버만",
+    "description": "아이보!",
+    "createDate": "2023-08-10",
+    "profile": "cat14.jpg",
+    "address": "서울특별시 동작구 사당로 18-1"
+  },{
+    "catNo": 28,
+    "catName": "테옹06",
+    "catAge": 5,
+    "kind": "버만",
+    "description": "아이보!",
+    "createDate": "2023-08-10",
+    "profile": "cat14.jpg",
+    "address": "서울특별시 동작구 사당로 18-1"
   }
 ]
