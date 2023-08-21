@@ -11,7 +11,7 @@ const CatListItem = ({ item }) => {
     <li className="cat-list-item" onClick={onHandleClick}>
       <div className="cat-profile-box">
         <Avatar url={item.profile} />
-        <p> [{item.kind}] {item.catName}</p>
+        <p> [{item._code}] {item.catName}</p>
       </div>
       <div className="cat-photo">
         <img src={`/images/cats/${item.profile}`} alt={item.catName} className="cat-profile" />

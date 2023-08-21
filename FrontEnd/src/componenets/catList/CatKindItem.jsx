@@ -6,15 +6,17 @@ import { useCallback } from "react";
 const CatKindItem = ({item}) =>{
   const {selectedKind} = useSelector((state)=> state.cat)
   const dispatch = useDispatch();
+  // const handleOnClick = useCallback(() =>{
+  //   dispatch(setSelectedKind(item.kind_name));
+  // }, [item.kind, dispatch])
   const handleOnClick = useCallback(() =>{
-    console.log(item.kind)
-    dispatch(setSelectedKind(item.kind));
-  }, [item.kind, dispatch])
+    // dispatch(setSelectedKind(item.kind_name));
+  }, [])
 
   return (
-    <li className={`cat-kind-item ${selectedKind === item.kind ? 'active-kind' : ''}`} onClick={handleOnClick}>
+    <li className={`cat-kind-item ${selectedKind === item.kind_name ? 'active-kind' : ''}`} onClick={handleOnClick}>
       <Avatar url={item.profile} />
-      {item.kind}
+      {item.kind_name}
     </li>
   )
 }

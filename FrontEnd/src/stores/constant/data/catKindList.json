@@ -2,7 +2,7 @@
   {
     "kind_code": "catKind01",
     "kind_name": "아비시니안",
-    "kind_profile": "",
+    "kind_profile": "cat01.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "단모",
     "kind_fur_pattern": "범무늬"
@@ -10,7 +10,7 @@
   {
     "kind_code": "catKind02",
     "kind_name": "아메리칸 밥테일",
-    "kind_profile": "",
+    "kind_profile": "cat02.jpg",
     "kind_form": "코비",
     "kind_fur": "단모/중장모",
     "kind_fur_pattern": "모두"
@@ -18,7 +18,7 @@
   {
     "kind_code": "catKind03",
     "kind_name": "아메리칸 컬",
-    "kind_profile": "",
+    "kind_profile": "cat03.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "단모/중장모",
     "kind_fur_pattern": "모두"
@@ -26,7 +26,7 @@
   {
     "kind_code": "catKind04",
     "kind_name": "아메리칸 쇼트헤어",
-    "kind_profile": "",
+    "kind_profile": "cat04.jpg",
     "kind_form": "코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "모두"
@@ -34,7 +34,7 @@
   {
     "kind_code": "catKind05",
     "kind_name": "아메리칸 와이어헤어",
-    "kind_profile": "",
+    "kind_profile": "cat05.jpg",
     "kind_form": "중간",
     "kind_fur": "렉스",
     "kind_fur_pattern": "모두"
@@ -42,7 +42,7 @@
   {
     "kind_code": "catKind06",
     "kind_name": "발리니즈",
-    "kind_profile": "",
+    "kind_profile": "cat06.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "장모",
     "kind_fur_pattern": "컬러포인트"
@@ -50,7 +50,7 @@
   {
     "kind_code": "catKind07",
     "kind_name": "뱅갈",
-    "kind_profile": "",
+    "kind_profile": "cat07.jpg",
     "kind_form": "큼",
     "kind_fur": "단모",
     "kind_fur_pattern": "점, 대리석무늬"
@@ -58,7 +58,7 @@
   {
     "kind_code": "catKind08",
     "kind_name": "버만",
-    "kind_profile": "",
+    "kind_profile": "cat08.jpg",
     "kind_form": "코비",
     "kind_fur": "중장모",
     "kind_fur_pattern": "컬러포인트"
@@ -66,7 +66,7 @@
   {
     "kind_code": "catKind09",
     "kind_name": "봄베이",
-    "kind_profile": "",
+    "kind_profile": "cat09.jpg",
     "kind_form": "코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "검은색"
@@ -74,7 +74,7 @@
   {
     "kind_code": "catKind10",
     "kind_name": "브리티시 롱헤어",
-    "kind_profile": "",
+    "kind_profile": "cat10.jpg",
     "kind_form": "코비",
     "kind_fur": "중장모",
     "kind_fur_pattern": "모두"
@@ -82,7 +82,7 @@
   {
     "kind_code": "catKind11",
     "kind_name": "브리티시 숏헤어",
-    "kind_profile": "",
+    "kind_profile": "cat11.jpg",
     "kind_form": "코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "모두"
@@ -90,7 +90,7 @@
   {
     "kind_code": "catKind12",
     "kind_name": "버미즈",
-    "kind_profile": "",
+    "kind_profile": "cat12.jpg",
     "kind_form": "세미 포린 또는 세미 코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "단색 또는 거북껍질모양"
@@ -98,7 +98,7 @@
   {
     "kind_code": "catKind13",
     "kind_name": "버밀라",
-    "kind_profile": "",
+    "kind_profile": "cat13.jpg",
     "kind_form": "세미 코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "은색"
@@ -106,7 +106,7 @@
   {
     "kind_code": "catKind14",
     "kind_name": "샤르트뢰",
-    "kind_profile": "",
+    "kind_profile": "cat14.jpg",
     "kind_form": "근육질, 코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "푸른색"
@@ -114,7 +114,7 @@
   {
     "kind_code": "catKind15",
     "kind_name": "코니시 렉스",
-    "kind_profile": "",
+    "kind_profile": "cat15.jpg",
     "kind_form": "포린",
     "kind_fur": "렉스",
     "kind_fur_pattern": "모두"
@@ -122,7 +122,7 @@
   {
     "kind_code": "catKind16",
     "kind_name": "킴릭",
-    "kind_profile": "",
+    "kind_profile": "cat16.jpg",
     "kind_form": "세미 코비",
     "kind_fur": "장모",
     "kind_fur_pattern": "모두"
@@ -130,7 +130,7 @@
   {
     "kind_code": "catKind17",
     "kind_name": "데본 렉스",
-    "kind_profile": "",
+    "kind_profile": "cat17.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "렉스",
     "kind_fur_pattern": "모두"
@@ -138,7 +138,7 @@
   {
     "kind_code": "catKind18",
     "kind_name": "돈스코이",
-    "kind_profile": "",
+    "kind_profile": "cat18.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "털 없음",
     "kind_fur_pattern": "단색"
@@ -146,7 +146,7 @@
   {
     "kind_code": "catKind19",
     "kind_name": "이집션 마우",
-    "kind_profile": "",
+    "kind_profile": "cat19.jpg",
     "kind_form": "중간, 근육질",
     "kind_fur": "단모",
     "kind_fur_pattern": "점있는 범무늬"
@@ -154,7 +154,7 @@
   {
     "kind_code": "catKind20",
     "kind_name": "이그저틱 쇼트헤어",
-    "kind_profile": "",
+    "kind_profile": "cat20.jpg",
     "kind_form": "코비",
     "kind_fur": "단모",
     "kind_fur_pattern": "모두"
@@ -162,7 +162,7 @@
   {
     "kind_code": "catKind21",
     "kind_name": "저먼 렉스",
-    "kind_profile": "",
+    "kind_profile": "cat21.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "렉스",
     "kind_fur_pattern": "모두"
@@ -170,7 +170,7 @@
   {
     "kind_code": "catKind22",
     "kind_name": "하바나 브라운",
-    "kind_profile": "",
+    "kind_profile": "cat22.jpg",
     "kind_form": "세미 포린",
     "kind_fur": "단모",
     "kind_fur_pattern": "갈색"
@@ -178,7 +178,7 @@
   {
     "kind_code": "catKind23",
     "kind_name": "재패니즈 밥테일",
-    "kind_profile": "",
+    "kind_profile": "cat23.jpg",
     "kind_form": "중간",
     "kind_fur": "단모/장모",
     "kind_fur_pattern": "모두"
@@ -186,7 +186,7 @@
   {
     "kind_code": "catKind24",
     "kind_name": "카오 마니",
-    "kind_profile": "",
+    "kind_profile": "cat24.jpg",
     "kind_form": "중간",
     "kind_fur": "단모",
     "kind_fur_pattern": "하얀색"
@@ -194,7 +194,7 @@
   {
     "kind_code": "catKind25",
     "kind_name": "코랏",
-    "kind_profile": "",
+    "kind_profile": "cat25.jpg",
     "kind_form": "세미 포린, 세미 코비, 근육질",
     "kind_fur": "단모",
     "kind_fur_pattern": "푸른색"
@@ -202,7 +202,7 @@
   {
     "kind_code": "catKind26",
     "kind_name": "쿠릴리안 밥테일",
-    "kind_profile": "",
+    "kind_profile": "cat26.jpg",
     "kind_form": "세미 코비",
     "kind_fur": "단모/장모",
     "kind_fur_pattern": "모두"
@@ -210,7 +210,7 @@
   {
     "kind_code": "catKind27",
     "kind_name": "라펌",
-    "kind_profile": "",
+    "kind_profile": "cat27.jpg",
     "kind_form": "중간",
     "kind_fur": "렉스",
     "kind_fur_pattern": "모두"
@@ -218,7 +218,7 @@
   {
     "kind_code": "catKind28",
     "kind_name": "라이코이",
-    "kind_profile": "",
+    "kind_profile": "cat28.jpg",
     "kind_form": "중간",
     "kind_fur": "털 없음",
     "kind_fur_pattern": "2색이상 또는 검은색"
@@ -226,7 +226,7 @@
   {
     "kind_code": "catKind29",
     "kind_name": "메인쿤",
-    "kind_profile": "",
+    "kind_profile": "cat29.jpg",
     "kind_form": "큼",
     "kind_fur": "중~장모",
     "kind_fur_pattern": "모두"
@@ -234,7 +234,7 @@
   {
     "kind_code": "catKind30",
     "kind_name": "맹크스",
-    "kind_profile": "",
+    "kind_profile": "cat30.jpg",
     "kind_form": "중간",
     "kind_fur": "단모/장모",
     "kind_fur_pattern": "모두"
@@ -242,7 +242,7 @@
   {
     "kind_code": "catKind31",
     "kind_name": "노르웨이 숲",
-    "kind_profile": "",
+    "kind_profile": "cat31.jpg",
     "kind_form": "코비",
     "kind_fur": "장모",
     "kind_fur_pattern": "초콜릿 또는 오랜지, 흰색 패턴"
@@ -250,7 +250,7 @@
   {
     "kind_code": "catKind32",
     "kind_name": "오시캣",
-    "kind_profile": "",
+    "kind_profile": "cat32.jpg",
     "kind_form": "큼",
     "kind_fur": "단모",
     "kind_fur_pattern": "점있는 범무늬"
@@ -258,7 +258,7 @@
   {
     "kind_code": "catKind33",
     "kind_name": "오리엔탈 롱헤어",
-    "kind_profile": "",
+    "kind_profile": "cat33.jpg",
     "kind_form": "오리엔탈",
     "kind_fur": "중장모",
     "kind_fur_pattern": "모두"
@@ -266,7 +266,7 @@
   {
     "kind_code": "catKind34",
     "kind_name": "오리엔탈 쇼트헤어",
-    "kind_profile": "",
+    "kind_profile": "cat34.jpg",
     "kind_form": "오리엔탈",
     "kind_fur": "단모",
     "kind_fur_pattern": "모두"
@@ -274,7 +274,7 @@
   {
     "kind_code": "catKind35",
     "kind_name": "페르시안",
-    "kind_profile": "",
+    "kind_profile": "cat35.jpg",
     "kind_form": "코비",
     "kind_fur": "장모",
     "kind_fur_pattern": "컬러포인트 제외 모두"
@@ -282,7 +282,7 @@
   {
     "kind_code": "catKind36",
     "kind_name": "피터볼드",
-    "kind_profile": "",
+    "kind_profile": "cat36.jpg",
     "kind_form": "오리엔탈",
     "kind_fur": "털없음/ 짧은 직모",
     "kind_fur_pattern": "모두"
@@ -290,7 +290,7 @@
   {
     "kind_code": "catKind37",
     "kind_name": "렉돌",
-    "kind_profile": "",
+    "kind_profile": "cat37.jpg",
     "kind_form": "코비",
     "kind_fur": "장모",
     "kind_fur_pattern": "컬러포인트, 두색"
@@ -298,7 +298,7 @@
   {
     "kind_code": "catKind38",
     "kind_name": "러시안 블루",
-    "kind_profile": "",
+    "kind_profile": "cat38.jpg",
     "kind_form": "중간, 오리엔탈",
     "kind_fur": "단모",
     "kind_fur_pattern": "푸른색"
@@ -306,7 +306,7 @@
   {
     "kind_code": "catKind39",
     "kind_name": "스코티시 폴드",
-    "kind_profile": "",
+    "kind_profile": "cat39.jpg",
     "kind_form": "코비",
     "kind_fur": "단모/장모",
     "kind_fur_pattern": "모두"
@@ -314,7 +314,7 @@
   {
     "kind_code": "catKind40",
     "kind_name": "셀커크 렉스",
-    "kind_profile": "",
+    "kind_profile": "cat40.jpg",
     "kind_form": "큼, 코비",
     "kind_fur": "단모/장모",
     "kind_fur_pattern": "모두"
@@ -322,7 +322,7 @@
   {
     "kind_code": "catKind41",
     "kind_name": "샴",
-    "kind_profile": "",
+    "kind_profile": "cat41.jpg",
     "kind_form": "오리엔탈",
     "kind_fur": "단모",
     "kind_fur_pattern": "컬러포인트"
@@ -330,7 +330,7 @@
   {
     "kind_code": "catKind42",
     "kind_name": "시베리안",
-    "kind_profile": "",
+    "kind_profile": "cat42.jpg",
     "kind_form": "세미 코비",
     "kind_fur": "중장모",
     "kind_fur_pattern": "모두"
@@ -338,7 +338,7 @@
   {
     "kind_code": "catKind43",
     "kind_name": "싱가푸라",
-    "kind_profile": "",
+    "kind_profile": "cat43.jpg",
     "kind_form": "작음",
     "kind_fur": "단모",
     "kind_fur_pattern": "범무늬"
@@ -346,7 +346,7 @@
   {
     "kind_code": "catKind44",
     "kind_name": "스노우슈",
-    "kind_profile": "",
+    "kind_profile": "cat44.jpg",
     "kind_form": "중간",
     "kind_fur": "단모",
     "kind_fur_pattern": "컬러포인트"
@@ -354,7 +354,7 @@
   {
     "kind_code": "catKind45",
     "kind_name": "소말리",
-    "kind_profile": "",
+    "kind_profile": "cat45.jpg",
     "kind_form": "코비",
     "kind_fur": "장모",
     "kind_fur_pattern": "범무늬"
@@ -362,7 +362,7 @@
   {
     "kind_code": "catKind46",
     "kind_name": "스핑크스",
-    "kind_profile": "",
+    "kind_profile": "cat46.jpg",
     "kind_form": "오리엔탈",
     "kind_fur": "털 없음",
     "kind_fur_pattern": "모두"
@@ -370,7 +370,7 @@
   {
     "kind_code": "catKind47",
     "kind_name": "타이",
-    "kind_profile": "",
+    "kind_profile": "cat47.jpg",
     "kind_form": "중간",
     "kind_fur": "단모",
     "kind_fur_pattern": "컬러포인트"
@@ -378,7 +378,7 @@
   {
     "kind_code": "catKind48",
     "kind_name": "통키니즈",
-    "kind_profile": "",
+    "kind_profile": "cat48.jpg",
     "kind_form": "오리엔탈",
     "kind_fur": "단모",
     "kind_fur_pattern": "컬러포인트, 밍크, 단색"
@@ -386,7 +386,7 @@
   {
     "kind_code": "catKind49",
     "kind_name": "터키시 앙고라",
-    "kind_profile": "",
+    "kind_profile": "cat49.jpg",
     "kind_form": "세미 코비",
     "kind_fur": "중장모",
     "kind_fur_pattern": "모두"
@@ -394,7 +394,7 @@
   {
     "kind_code": "catKind50",
     "kind_name": "터키시  반",
-    "kind_profile": "",
+    "kind_profile": "cat50.jpg",
     "kind_form": "세미 코비",
     "kind_fur": "중장모",
     "kind_fur_pattern": "반 패턴"
