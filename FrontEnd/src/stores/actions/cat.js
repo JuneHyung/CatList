@@ -1,7 +1,7 @@
 // import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND } from "../constant/variable";
-import { CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND } from "../constant/variable";
+import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND } from "../constant/variable";
 import catList from "../constant/data/catList.json";
-import { getAllKind } from "../../api/cats";
+import { getAllCatByKind, getAllKind, getAllCatByKeyword } from "../../api/cats";
 // import catKindList from "../constant/data/catKindList.json";
 
 export const setSelectedKind = (kind) =>{
@@ -63,12 +63,46 @@ export const setSelectedCat = (catNo) => {
   }
 }
 
+export const getCatListByKind = (kindCode) =>{
+  return async (dispatch, getState) => {
+    try{
+      const list = await getAllCatByKind(kindCode);
+      dispatch(fetchCatList(list));
+    }
+    catch(e){
+      console.log(e);
+      dispatch(clearSelectedCat());
+      dispatch(clearAllCatData());
+    }
+    finally{
 
-// const clearAllCatData = () =>{
-//   return {
-//     type: CLEAR_ALL_CAT_DATA
-//   }
-// }
+    }
+  }
+}
+
+export const getCatListByKeyword = (keyword) =>{
+  return async (dispatch, getState) =>{
+    try{
+      const list = await getAllCatByKeyword(keyword);
+      console.log(list)
+      dispatch(fetchCatList(list));
+    }
+    catch(e){
+      console.log(e);
+      dispatch(clearSelectedCat());
+      dispatch(clearAllCatData());
+    }
+    finally{
+
+    }
+  }
+}
+
+const clearAllCatData = () =>{
+  return {
+    type: CLEAR_ALL_CAT_DATA
+  }
+}
 const clearCatList = () =>{
   return {
     type: CLEAR_CAT_LIST

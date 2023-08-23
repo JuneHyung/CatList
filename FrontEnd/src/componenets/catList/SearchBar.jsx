@@ -3,17 +3,18 @@ import MdiIcon from "../common/MdiIcon";
 import { useState } from "react";
 import BadgeItem from "./BadgeItem";
 import { useDispatch } from "react-redux";
-import { getCatList } from "../../stores/actions/cat";
+import { getCatList, getCatListByKeyword } from "../../stores/actions/cat";
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState([]);
   const [searchItem, setSearchItem] = useState([]);
-
+  const dispatch = useDispatch();
   // 
   const handleInputChange = useCallback((event) => {
     setInputValue(event.target.value);
   }, []);
 
   // enter시 Badge추가
+
   const addBadgeItem = useCallback(() => {
     setSearchItem((prev) => {
       const filtered = prev.filter((item)=> item!==inputValue);
@@ -24,10 +25,12 @@ const SearchBar = () => {
 
   const handleEnterKey = useCallback((event) => {
     if (event.key === "Enter") {
+      setInputValue(event.target.value);
+      dispatch(getCatListByKeyword(inputValue))
       addBadgeItem();
     }
-  }, [addBadgeItem]);
-  const dispatch = useDispatch();
+  }, [addBadgeItem, dispatch, inputValue]);
+  
   const searchCatList = useCallback(()=>{
     dispatch(getCatList())
   }, [])

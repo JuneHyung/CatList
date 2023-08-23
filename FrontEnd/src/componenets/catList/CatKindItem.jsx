@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedKind } from "../../stores/actions/cat";
+import { getCatListByKind, setSelectedKind } from "../../stores/actions/cat";
 import Avatar from "../common/Avatar";
 import { useCallback } from "react";
 
@@ -9,7 +9,8 @@ const CatKindItem = ({item}) =>{
   
   const handleOnClick = useCallback(() =>{
     dispatch(setSelectedKind(item.kind_name));
-  }, [item.kind_name, dispatch])
+    dispatch(getCatListByKind(item.kind_code));
+  }, [item.kind_name, item.kind_code, dispatch])
 
   return (
     <li className={`cat-kind-item ${selectedKind === item.kind_name ? 'active-kind' : ''}`} onClick={handleOnClick}>

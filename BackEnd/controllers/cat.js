@@ -1,7 +1,8 @@
+const { Op } = require('sequelize');
 const Cat = require('../models/cat');
 
 exports.getAllCatsByKeyword = async (req, res, next) => {
-  const {keyword} = req.query;
+  const {keyword} = req.params;
   try{
     const allCats = await Cat.findAll({
       where:{
@@ -10,23 +11,22 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
         }
       }
     });
-    console.log(allCats)
     res.status(200).json(allCats);
   }catch(err){
+    console.log(err)
     next(err)
   }
 }
 
 
 exports.getAllCatsByKind = async (req, res, next) => {
-  const {kindCode} = req.query;
+  const {kindCode} = req.params;
   try{
     const allKind = await Cat.findAll({
       where:{
         kind_code: kindCode,
       }
     });
-    console.log(allKind)
     res.status(200).json(allKind);
   }catch(err){
     next(err)

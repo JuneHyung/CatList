@@ -44,7 +44,7 @@ class Cat extends Sequelize.Model {
       timestamps: false,
       underscored:false,
       modelName: 'Cat',
-      tableName: 'cat',
+      tableName: 'cats',
       paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',

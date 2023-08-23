@@ -10,3 +10,26 @@ export const getAllKind = async () =>{
     throw err;
   }
 }
+
+export const getAllCatByKind = async (params) => {
+  try{
+    const res = await getFetch(`${url}/cat/kind`, params);
+    const data = await res.json();
+    return data;
+  }catch(err){
+    console.log(`Error: ${err}`);
+    throw err;
+  }
+}
+
+export const getAllCatByKeyword = async (params) => {
+  try{
+    const encoded = encodeURIComponent(params);
+    const res = await getFetch(`${url}/cat/search`, encoded);
+    const data = await res.json();
+    return data;
+  }catch(err){
+    console.log(`Error: ${err}`);
+    throw err;
+  }
+}
