@@ -1,278 +1,124 @@
 [
   {
-    "catNo": 1,
-    "catName": "테옹",
-    "catAge": 1,
-    "kind": "버만",
-    "description": "아이보!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "서울특별시 동작구 사당로 18-1"
-  },
-  {
-    "catNo": 2,
-    "catName": "페르시",
-    "catAge": 2,
-    "kind": "페르시안",
-    "description": "페르시안 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat00.png",
-    "address": "서울특별시 서대문구 이화여대길 7, 1층(대현동)"
-  },
-  {
-    "catNo": 3,
-    "catName": "메인쿠운",
-    "catAge": 4,
-    "kind": "메인쿤",
-    "description": "메인쿤 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat01.jpg",
-    "address": "서울특별시 노원구 한글비석로 396, 108동 1층 18호(상계동)"
-  },
-  {
-    "catNo": 4,
-    "catName": "뱅골라데시",
-    "catAge": 6,
-    "kind": "뱅골",
-    "description": "뱅골 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat02.jpg",
-    "address": "대전 유성구 테크노3로 77, A동 1층 105호(관평동)"
-  },
-  {
-    "catNo": 5,
-    "catName": "브리트니",
-    "catAge": 6,
-    "kind": "브리트니 숏헤어",
-    "description": "브리트니 숏헤어 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat03.jpg",
-    "address": "대전광역시 유성구 관평2로 22, 1층 102호(관평동)"
-  },
-  {
-    "catNo": 6,
-    "catName": "Sian",
-    "catAge": 3,
-    "kind": "시암",
-    "description": "시암 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat04.jpg",
-    "address": "대전광역시 유성구 궁동 409-8"
-  },
-  {
-    "catNo": 7,
-    "catName": "파라오",
-    "catAge": 2,
-    "kind": "스핑크스",
-    "description": "스핑크스 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat05.jpg",
-    "address": "대전광역시 서구 둔산로 8(둔산동)"
-  },
-  {
-    "catNo": 8,
-    "catName": "짱돌",
-    "catAge": 5,
-    "kind": "렉돌",
-    "description": "렉돌 뚱냥이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat06.jpg",
-    "address": "대구광역시 중구 동성로 2(동성로 3가)"
-  },
-  {
-    "catNo": 9,
-    "catName": "사이타마",
-    "catAge": 7,
-    "kind": "먼치킨",
-    "description": "세계 최강 먼치킨 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat07.jpg",
-    "address": "대구광역시 달서구 계대동문로 5(신당동)"
-  },
-  {
-    "catNo": 10,
-    "catName": "갤럭시",
-    "catAge": 1,
-    "kind": "스코티시 폴드",
-    "description": "스코티시 폴드 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat08.jpg",
-    "address": "대구광역시 달서구 상인서로 85(상인동)"
-  },
-  {
-    "catNo": 11,
-    "catName": "Havana",
-    "catAge": 1,
-    "kind": "사바나",
-    "description": "사바나 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat09.jpg",
-    "address": "대구광역시 북구 대학로 23길 19(산격동)"
-  },
-  {
-    "catNo": 12,
-    "catName": "허스키",
-    "catAge": 1,
-    "kind": "시베리안",
-    "description": "시베리안 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat10.jpg",
-    "address": "강원도 원주시 장미공원길 75-10, 1층 (단계동)"
-  },
-  {
-    "catNo": 13,
-    "catName": "나무",
-    "catAge": 3,
-    "kind": "노르웨이숲",
-    "description": "노르웨이 숲 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat11.jpg",
-    "address": "제주특별자치도 제주시 제주대학로 105-1(아라이동)"
-  },
-  {
-    "catNo": 14,
-    "catName": "블루",
-    "catAge": 3,
-    "kind": "러시안 블루",
-    "description": "러시안 블루 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat12.png",
-    "address": "제주특별자치도 서귀포시 동홍서로 47"
-  },
-  {
-    "catNo": 15,
-    "catName": "아메리칸 숏헤어",
-    "catAge": 2,
-    "kind": "숏",
-    "description": "단타 칠 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat13.jpg",
-    "address": "울산광역시 남구 수암로 198, 1층(야음동)"
-  },
-  {
-    "catNo": 16,
-    "catName": "아이루",
-    "catAge": 2,
-    "kind": "버만",
-    "description": "파트너 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "울산광역시 북구 박상진2로 100 (화봉동) 1층 104호 (오신타워)"
-  },
-  {
-    "catNo": 17,
-    "catName": "모아",
-    "catAge": 10,
-    "kind": "터키시 앙고라",
-    "description": "터키시 앙고라 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat15.jpg",
-    "address": "울산광역시 울주군 범서읍 천상중앙길 100-1"
-  },
-  {
-    "catNo": 18,
-    "catName": "두번푸라",
-    "catAge": 5,
-    "kind": "싱가푸라",
-    "description": "싱가푸라 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat16.jpg",
-    "address": "부산광역시 해운대구 중동1로 33-1 (중동)"
-  },
-  {
-    "catNo": 19,
-    "catName": "조이스틱",
-    "catAge": 3,
-    "kind": "엑조틱 숏헤어",
-    "description": "엑조틱 숏헤어 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat17.jpg",
-    "address": "부산광역시 해운대구 센텀동로 25 (우동, 대우월드마크센텀아파트)"
-  },
-  {
-    "catNo": 20,
-    "catName": "히말라야",
-    "catAge": 4,
-    "kind": "히말라얀",
-    "description": "히말라얀 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat18.jpg",
-    "address": "충청북도 옥천군 옥천읍 금장로 42-1"
-  },
-  {
-    "catNo": 21,
-    "catName": "사르트뢰",
-    "catAge": 8,
-    "kind": "사르트뢰",
-    "description": "사르트뢰 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat19.jpg",
-    "address": "경기도 평택시 신촌2로 21 (칠원동) 맘스스퀘어 C동 109호"
-  },
-  {
-    "catNo": 22,
-    "catName": "니안",
-    "catAge": 1,
-    "kind": "아비시니안",
-    "description": "아비시니안 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat20.jpg",
-    "address": "경기도 부천시 석천로 38번길 5, 1층"
-  },
-  {
-    "catNo": 23,
-    "catName": "페르시나",
-    "catAge": 3,
-    "kind": "페르시안",
-    "description": "페르시안 고양이에요!",
-    "createDate": "2023-08-10",
-    "profile": "cat00.png",
-    "address": "경기도 부천시 석천로 38번길 5, 1층"
-  },
-  {
-    "catNo": 24,
-    "catName": "테옹02",
-    "catAge": 2,
-    "kind": "버만",
-    "description": "아이보!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "서울특별시 동작구 사당로 18-1"
+      "cat_code": 1,
+      "cat_name": "아비니01",
+      "cat_age": 2,
+      "kind_code": "catKind01",
+      "description": "아비니시안 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc1",
+      "see": 23
   },{
-    "catNo": 25,
-    "catName": "테옹03",
-    "catAge": 1,
-    "kind": "버만",
-    "description": "아이보!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "서울특별시 동작구 사당로 18-1"
-  },{
-    "catNo": 26,
-    "catName": "테옹04",
-    "catAge": 4,
-    "kind": "버만",
-    "description": "아이보!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "서울특별시 동작구 사당로 18-1"
-  },{
-    "catNo": 27,
-    "catName": "테옹05",
-    "catAge": 5,
-    "kind": "버만",
-    "description": "아이보!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "서울특별시 동작구 사당로 18-1"
-  },{
-    "catNo": 28,
-    "catName": "테옹06",
-    "catAge": 5,
-    "kind": "버만",
-    "description": "아이보!",
-    "createDate": "2023-08-10",
-    "profile": "cat14.jpg",
-    "address": "서울특별시 동작구 사당로 18-1"
+      "cat_code": 2,
+      "cat_name": "아비니02",
+      "cat_age": 2,
+      "kind_code": "catKind01",
+      "description": "아비니시안 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc2",
+      "see": 23
+  },  {
+      "cat_code": 3,
+      "cat_name": "아비니03",
+      "cat_age": 2,
+      "kind_code": "catKind01",
+      "description": "아비니시안 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc3",
+      "see": 23
+  },  {
+      "cat_code": 4,
+      "cat_name": "아비니04",
+      "cat_age": 2,
+      "kind_code": "catKind01",
+      "description": "아비니시안 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc4",
+      "see": 23
+  },  {
+      "cat_code": 5,
+      "cat_name": "아비니05",
+      "cat_age": 2,
+      "kind_code": "catKind01",
+      "description": "아비니시안 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc1",
+      "see": 23
+  },  {
+      "cat_code": 6,
+      "cat_name": "밥테일01",
+      "cat_age": 2,
+      "kind_code": "catKind02",
+      "description": "아메리칸 밥테일 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc6",
+      "see": 23
+  }, {
+      "cat_code": 7,
+      "cat_name": "밥테일02",
+      "cat_age": 2,
+      "kind_code": "catKind02",
+      "description": "아메리칸 밥테일 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc7",
+      "see": 23
+  }, {
+      "cat_code": 8,
+      "cat_name": "밥테일03",
+      "cat_age": 2,
+      "kind_code": "catKind02",
+      "description": "아메리칸 밥테일 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc8",
+      "see": 23
+  }, {
+      "cat_code": 9,
+      "cat_name": "컬01",
+      "cat_age": 2,
+      "kind_code": "catKind03",
+      "description": "아메리칸 컬 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc9",
+      "see": 23
+  }, {
+      "cat_code": 10,
+      "cat_name": "컬02",
+      "cat_age": 2,
+      "kind_code": "catKind03",
+      "description": "아메리칸 컬 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc10",
+      "see": 23
+  }, {
+      "cat_code": 11,
+      "cat_name": "컬03",
+      "cat_age": 2,
+      "kind_code": "catKind03",
+      "description": "아메리칸 컬 고양이",
+      "create_date": "2023-07-05",
+      "profile": "",
+      "address": "",
+      "charc_id": "catCharc11",
+      "see": 42
   }
 ]

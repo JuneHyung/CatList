@@ -32,11 +32,13 @@ class Kind extends Sequelize.Model {
       tableName: 'kind',
       paranoid: false,
       charset: 'utf8',
-      collate: 'utf8_general_cli',
+      collate: 'utf8_general_ci',
     });
   }
 
-  static associate(db) {}
+  static associate(db) {
+    db.Kind.belongsTo(db.Cat, {foreignKey: 'kind_code', sourceKey: 'kind_code' })
+  }
 }
 
 module.exports = Kind;
