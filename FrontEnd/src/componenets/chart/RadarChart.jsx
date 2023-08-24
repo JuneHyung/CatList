@@ -5,25 +5,21 @@ import ReactApexChart from 'react-apexcharts';
 const AreaChart = () =>{
 
   const [series, setSeries] = useState([{
-    name: 'series1',
-    data: [31, 40, 28, 51, 42, 109, 100]
-  }, {
-    name: 'series2',
-    data: [11, 32, 45, 32, 34, 52, 41]
+    name: 'Series 1',
+    data: [80, 50, 30, 40, 100, 20],
   }]);
 
   const [options, setOptions] = useState({
     chart: {
       height: 350,
-      type: 'area'
+      type: 'radar',
     },
-    dataLabels: {
-      enabled: false
+    title: {
+      text: 'Basic Radar Chart'
     },
-    stroke: {
-      curve: 'smooth'
-    },
-    xaxis: { categories: ['x01','x02','x03','x04','x05','x06','x07']}
+    xaxis: {
+      categories: ['January', 'February', 'March', 'April', 'May', 'June']
+    }
   })
   
   const changeXAxis = () =>{
@@ -39,7 +35,7 @@ const AreaChart = () =>{
   return (
     <div>
       <button onClick={changeXAxis}>Reverse Categories</button>
-        <ReactApexChart options={options} series={series} type={'area'} height={350}/>
+        <ReactApexChart options={options} series={series} type='radar' height={350}/>
     </div>
   )
 }

@@ -9,6 +9,7 @@
 @import './menu/menu.scss';
 @import './intro/introPage.scss';
 @import './catList/catListPage.scss';
+@import './catList/catDetail.scss';
 @import './catList/avatar.scss';
 
 .App {
@@ -17,7 +18,9 @@
 }
 
 .content-box{
-  height:100vh;
+  max-width:1440px;
+  margin: 0 auto;
+  height:100%;
 }
 
 .ProseMirror {

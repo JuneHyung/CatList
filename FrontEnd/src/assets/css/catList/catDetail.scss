@@ -1,0 +1,23 @@
+.cat-detail-wrap{
+  display:flex;
+  flex:9;
+  padding: 0 1rem;
+  flex-direction: column;
+  .top-info-wrap, .bottom-info-wrap{
+    display:flex;
+    flex-direction: row;
+  }
+  .bottom-info-wrap{
+    .chart-box{
+      display:flex;
+      flex:6;
+    border:1px solid red;
+    }
+    .map-box{
+      display:flex;
+      flex:6;
+    border:1px solid red;
+
+    }
+  }
+}
