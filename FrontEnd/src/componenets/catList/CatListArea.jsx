@@ -3,7 +3,6 @@ import CatList from "./CatList";
 import CatDetail from "./CatDetail"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllKind } from "../../api/cats";
 import { setCatKindList } from "../../stores/actions/cat";
 
 const CatListArea = () => {
@@ -16,7 +15,7 @@ const CatListArea = () => {
     <div className="cat-list-wrap">
       <CatKindList />
       {
-        selectedCat.catNo===undefined ? <CatList /> : <CatDetail />      
+        selectedCat.cat_code===undefined ? <CatList /> : <CatDetail />      
       }
     </div>
   );

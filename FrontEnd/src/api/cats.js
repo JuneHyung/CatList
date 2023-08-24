@@ -24,8 +24,7 @@ export const getAllCatByKind = async (params) => {
 
 export const getAllCatByKeyword = async (params) => {
   try{
-    const encoded = encodeURIComponent(params);
-    const res = await getFetch(`${url}/cat/search`, encoded);
+    const res = await getFetch(`${url}/cat/search`, params);
     const data = await res.json();
     return data;
   }catch(err){

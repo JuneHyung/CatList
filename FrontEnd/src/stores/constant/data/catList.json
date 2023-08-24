@@ -130,5 +130,17 @@
     "address": "",
     "charc_id": "catCharc11",
     "see": 42
+  },
+  {
+    "cat_code": 12,
+    "cat_name": "컬03",
+    "cat_age": 2,
+    "kind_code": "catKind01",
+    "description": "아비시니안 고양이",
+    "create_date": "2023-07-05",
+    "profile": "",
+    "address": "",
+    "charc_id": "catCharc12",
+    "see": 42
   }
 ]

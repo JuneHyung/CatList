@@ -21,11 +21,11 @@ const catReducer = (prevState = initialstate, action) =>{
     case CLEAR_CAT_TYPE_LIST:
       return {...prevState, catKindList: []};
     case FETCH_CAT_LIST:
-      return {...prevState, catList: action.data};
+      return {...prevState, catList: action.data, selectedCat: {}};
     case FETCH_CAT_TYPE_LIST:
       return {...prevState, catKindList: action.data};
     case FETCH_SELECTED_CAT:
-      return {...prevState, selectedCat: action.data}
+      return {...prevState, catList: [], selectedCat: action.data, selectedKind: action.data.kind_name}
     case FETCH_SELECTED_KIND:
       return {...prevState, selectedKind: action.data};
     default:
