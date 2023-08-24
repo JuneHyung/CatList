@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import Avatar from "../common/Avatar";
+import NoImage from "../common/NoImage";
 import { useDispatch } from "react-redux";
 import { setSelectedCat } from "../../stores/actions/cat";
 const CatListItem = ({ item }) => {
@@ -17,7 +18,7 @@ const CatListItem = ({ item }) => {
         </div>
       </div>
       <div className="cat-photo">
-        <img src={`/images/cats/${item.profile}`} alt={item.catName} className="cat-profile" />
+        {item.profile.length===0 ? <NoImage /> : <img src={`/images/cats/${item.profile}`} alt={item.catName} className="cat-profile" />}
       </div>
       <p className="cat-description">{item.description}</p>
     </li>
