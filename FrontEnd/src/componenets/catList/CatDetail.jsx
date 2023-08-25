@@ -1,10 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MdiIcon from "../common/MdiIcon";
 import RadarChart from "../chart/RadarChart";
+import { useMemo } from "react";
 
 const CatDetailPage = () => {
   const {selectedCat} = useSelector((state)=>state.cat)
-  
+  const {selectedCharc} = useSelector((state)=>state.cat)
+
+  const calculatedSeries = useMemo(()=>{
+    if(selectedCharc !== undefined){
+      const {charc_id, curious, extrovert, friendly, independence, introvert, tranquil} = selectedCharc
+      return [extrovert, introvert, tranquil, curious, independence, friendly ]
+    }else return [];
+  }, [selectedCharc])
+  const charcCategories = ['외향적', '내향젹', '차분함', '호기심', '독립성', '친근함'];
+
   return (
     <div className="cat-detail-wrap">
       <div className="top-info-wrap">
@@ -21,7 +31,7 @@ const CatDetailPage = () => {
       </div>
       <div className="bottom-info-wrap">
         <div className="chart-box">
-          <RadarChart />
+          <RadarChart customCategories={charcCategories} customSeries={calculatedSeries} />
         </div>
         <div className="map-box"></div>
       </div>

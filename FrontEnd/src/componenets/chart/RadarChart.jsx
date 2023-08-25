@@ -1,12 +1,11 @@
 // import {ApexChart} from 'apexcharts'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts';
 
-const AreaChart = () =>{
-
+const RadarChart = ({customCategories , customSeries}) =>{
   const [series, setSeries] = useState([{
     name: 'Series 1',
-    data: [80, 50, 30, 40, 100, 20],
+    data: [],
   }]);
 
   const [options, setOptions] = useState({
@@ -18,26 +17,24 @@ const AreaChart = () =>{
       text: 'Basic Radar Chart'
     },
     xaxis: {
-      categories: ['January', 'February', 'March', 'April', 'May', 'June']
+      categories: [],
     }
   })
   
-  const changeXAxis = () =>{
-    setOptions((prev)=>({
-      ...prev,
-      xaxis: {
-        ...prev.xaxis,
-        categories: [...prev.xaxis.categories].reverse()
-      }
-    }))
-  }
+  useEffect(()=>{
+    if(customCategories!==undefined) setOptions((prev)=>({...prev, xaxis: {
+      ...prev.xaxis,
+      categories: customCategories
+    } }))
+    if(customSeries!==undefined) setSeries((prev)=>([{...prev, data: customSeries}]))
+  },[customCategories, customSeries])
+
 
   return (
     <div>
-      <button onClick={changeXAxis}>Reverse Categories</button>
-        <ReactApexChart options={options} series={series} type='radar' height={350}/>
+      <ReactApexChart options={options} series={series} type='radar' height={350}/>
     </div>
   )
 }
 
-export default AreaChart;
+export default RadarChart;

@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const Kind = require('./kind');
 
 class Cat extends Sequelize.Model {
   static initiate(sequelize){
@@ -53,6 +52,7 @@ class Cat extends Sequelize.Model {
 
   static associate(db) {
     db.Cat.hasOne(db.Kind, {foreignKey: 'kind_code', sourceKey: 'kind_code' })
+    db.Cat.hasOne(db.Charc, {foreignKey: 'charc_id', sourceKey: 'charc_id' })
   }
 }
 

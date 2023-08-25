@@ -2,12 +2,14 @@ import { useCallback } from "react";
 import Avatar from "../common/Avatar";
 import NoImage from "../common/NoImage";
 import { useDispatch } from "react-redux";
-import { setSelectedCat } from "../../stores/actions/cat";
+import { setSelectedCat, setSelectedCharc } from "../../stores/actions/cat";
 const CatListItem = ({ item }) => {
   const dispatch = useDispatch();
   const onHandleClick = useCallback(() => {
     dispatch(setSelectedCat(item));
+    dispatch(setSelectedCharc(item.charc_id))
   }, [dispatch, item]);
+
   return (
     <li className="cat-list-item" onClick={onHandleClick}>
       <div className="cat-profile-box">

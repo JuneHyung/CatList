@@ -1,38 +1,110 @@
 [
   {
-    "charc_id": "catCharc1"
+    "charc_id": "catCharc1",
+    "extrovert": 3,
+    "introvert": 1,
+    "curious": 4,
+    "tranquil": 2,
+    "independence": 5,
+    "friendly": 2
   },
   {
-    "charc_id": "catCharc2"
+    "charc_id": "catCharc2",
+    "extrovert": 5,
+    "introvert": 2,
+    "curious": 1,
+    "tranquil": 0,
+    "independence": 4,
+    "friendly": 3
   },
   {
-    "charc_id": "catCharc3"
+    "charc_id": "catCharc3",
+    "extrovert": 2,
+    "introvert": 0,
+    "curious": 4,
+    "tranquil": 4,
+    "independence": 0,
+    "friendly": 4
   },
   {
-    "charc_id": "catCharc4"
+    "charc_id": "catCharc4",
+    "extrovert": 1,
+    "introvert": 2,
+    "curious": 3,
+    "tranquil": 4,
+    "independence": 5,
+    "friendly": 6
   },
   {
-    "charc_id": "catCharc5"
+    "charc_id": "catCharc5",
+    "extrovert": 0,
+    "introvert": 6,
+    "curious": 5,
+    "tranquil": 2,
+    "independence": 4,
+    "friendly": 1
   },
   {
-    "charc_id": "catCharc6"
+    "charc_id": "catCharc6",
+    "extrovert": 3,
+    "introvert": 1,
+    "curious": 2,
+    "tranquil": 3,
+    "independence": 4,
+    "friendly": 1
   },
   {
-    "charc_id": "catCharc7"
+    "charc_id": "catCharc7",
+    "extrovert": 3,
+    "introvert": 1,
+    "curious": 1,
+    "tranquil": 1,
+    "independence": 2,
+    "friendly": 2
   },
   {
-    "charc_id": "catCharc8"
+    "charc_id": "catCharc8",
+    "extrovert": 3,
+    "introvert": 3,
+    "curious": 4,
+    "tranquil": 5,
+    "independence": 5,
+    "friendly": 2
   },
   {
-    "charc_id": "catCharc9"
+    "charc_id": "catCharc9",
+    "extrovert": 2,
+    "introvert": 4,
+    "curious": 1,
+    "tranquil": 3,
+    "independence": 5,
+    "friendly": 2
   },
   {
-    "charc_id": "catCharc10"
+    "charc_id": "catCharc10",
+    "extrovert": 2,
+    "introvert": 4,
+    "curious": 1,
+    "tranquil": 3,
+    "independence": 5,
+    "friendly": 2
   },
   {
-    "charc_id": "catCharc11"
+    "charc_id": "catCharc11",
+    "extrovert": 2,
+    "introvert": 4,
+    "curious": 1,
+    "tranquil": 3,
+    "independence": 5,
+    "friendly": 2
   },
   {
-    "charc_id": "catCharc12"
+    "charc_id": "catCharc12",
+    "extrovert": 2,
+    "introvert": 4,
+    "curious": 1,
+    "tranquil": 3,
+    "independence": 5,
+    "friendly": 2
   }
 ]

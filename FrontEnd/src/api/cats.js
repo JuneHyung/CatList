@@ -32,3 +32,15 @@ export const getAllCatByKeyword = async (params) => {
     throw err;
   }
 }
+
+
+export const getCharcByCharcId = async (params) => {
+  try{
+    const res = await getFetch(`${url}/charc/search`, params);
+    const data = await res.json();
+    return data;
+  }catch(err){
+    console.log(`Error: ${err}`);
+    throw err;
+  }
+}
