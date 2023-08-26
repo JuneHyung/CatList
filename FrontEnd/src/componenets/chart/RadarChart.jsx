@@ -4,20 +4,50 @@ import ReactApexChart from 'react-apexcharts';
 
 const RadarChart = ({customCategories , customSeries}) =>{
   const [series, setSeries] = useState([{
-    name: 'Series 1',
+    name: '',
     data: [],
   }]);
 
   const [options, setOptions] = useState({
     chart: {
-      height: 350,
       type: 'radar',
     },
     title: {
-      text: 'Basic Radar Chart'
+      text: "Cat's Charctor Info"
     },
     xaxis: {
       categories: [],
+      labels:{
+        style:{
+          colors: ['#000000', '#000000', '#000000', '#000000', '#000000', '#000000']
+        }
+      }
+    },
+    stroke: {
+      show: true,
+      width: 2,
+      colors: Array.from({length:6},()=> '#6F4E37'),
+      dashArray: 0
+    },
+    fill: {
+      opacity: 0.5,
+      colors: Array.from({length:6},()=> '#6F4E37')
+    },
+    markers: {
+      size: 3,
+      colors: Array.from({length:6},()=> '#6F4E37'),
+      hover: {
+        size: 5
+      }
+    },
+    plotOptions: {
+      radar: {
+        polygons: {
+          fill: {
+              colors: ['#B7A684']
+          }
+        }
+      }
     }
   })
   
@@ -31,8 +61,8 @@ const RadarChart = ({customCategories , customSeries}) =>{
 
 
   return (
-    <div>
-      <ReactApexChart options={options} series={series} type='radar' height={350}/>
+    <div className="chart-wrap-box">
+      <ReactApexChart options={options} series={series} type='radar' className="chart-info-box"/>
     </div>
   )
 }
