@@ -14,7 +14,7 @@ const CatKindItem = ({item}) =>{
 
   return (
     <li className={`cat-kind-item ${selectedKind === item.kind_name ? 'active-kind' : ''}`} onClick={handleOnClick}>
-      <Avatar url={item.kind_profile} />
+      <Avatar url={`cat${item.kind_code.replace(/catKind/g, "")}.jpg`} />
       {item.kind_name}
     </li>
   )

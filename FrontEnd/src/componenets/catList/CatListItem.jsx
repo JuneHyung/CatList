@@ -20,7 +20,8 @@ const CatListItem = ({ item }) => {
         </div>
       </div>
       <div className="cat-photo">
-        {item.profile.length===0 ? <NoImage /> : <img src={`/images/cats/${item.profile}`} alt={item.catName} className="cat-profile" />}
+        {/* {item.profile.length===0 ? <NoImage /> : <img src={`/images/cats/${item.profile}`} alt={item.catName} className="cat-profile" />} */}
+        <NoImage />
       </div>
       <p className="cat-description">{item.description}</p>
     </li>
