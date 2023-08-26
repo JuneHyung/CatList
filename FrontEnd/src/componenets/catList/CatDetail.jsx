@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MdiIcon from "../common/MdiIcon";
 import RadarChart from "../chart/RadarChart";
 import { useMemo } from "react";
+import NoImage from "../common/NoImage";
 
 const CatDetailPage = () => {
   const {selectedCat} = useSelector((state)=>state.cat)
@@ -19,7 +20,9 @@ const CatDetailPage = () => {
     <div className="cat-detail-wrap">
       <div className="top-info-wrap">
         <div className="profile-box">
-          <img src={`images/cats/cat${selectedCat.kind_code.replace(/catKind/g, "")}.jpg`} alt="catProfile" />
+          {
+            selectedCat.profile.length===0 ? <NoImage/> : <img src={`data:image/jpeg;base64,${selectedCat.profile}`} alt="Kind Profile"  />
+          }
         </div>
         <div className="info-box">
           <p>품종 : {selectedCat.kind_name}</p>

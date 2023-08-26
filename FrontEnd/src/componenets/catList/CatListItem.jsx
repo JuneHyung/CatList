@@ -13,15 +13,14 @@ const CatListItem = ({ item }) => {
   return (
     <li className="cat-list-item" onClick={onHandleClick}>
       <div className="cat-profile-box">
-        <Avatar url={`cat${item.kind_code.replace(/catKind/g, "")}.jpg`} />
+        <Avatar url={item.kind_profile} />
         <div>
           <p>{item.cat_name}</p> 
           <p className="cat-kind-name">{item.kind_name}</p>
         </div>
       </div>
       <div className="cat-photo">
-        {/* {item.profile.length===0 ? <NoImage /> : <img src={`/images/cats/${item.profile}`} alt={item.catName} className="cat-profile" />} */}
-        <NoImage />
+        {item.profile.length===0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${item.profile}`} alt={item.catName} className="cat-profile" />}
       </div>
       <p className="cat-description">{item.description}</p>
     </li>

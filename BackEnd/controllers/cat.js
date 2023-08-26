@@ -16,13 +16,14 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
       },
       offset: (curPage-1)* perPage,
       limit: perPage,
-      include:[{model: Kind, attributes: ['kind_name']}]
+      include:[{model: Kind, attributes: ['kind_name', 'kind_profile']}]
     });
     
-    const result = allCats.map(cat=>{
-      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, see} = cat;
+    const result = allCats.map((item)=>{
+      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, see} = item.dataValues;
       return {
         kind_name: Kind.kind_name,
+        kind_profile: Kind.kind_profile.toString('base64'),
         cat_age,
         cat_code,
         cat_name,
@@ -30,7 +31,7 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
         create_date,
         description,
         kind_code,
-        profile,
+        profile: profile.toString('base64'),
         see,
       };
     })
@@ -51,12 +52,13 @@ exports.getAllCatsByKind = async (req, res, next) => {
       },
       offset: (curPage-1)* perPage,
       limit: perPage,
-      include:[{model: Kind, attributes: ['kind_name']}]
+      include:[{model: Kind, attributes: ['kind_name', 'kind_profile']}]
     });
-    const result = allCats.map(cat=>{
-      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, see} = cat;
+    const result = allCats.map((item)=>{
+      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, see} = item.dataValues;
       return {
         kind_name: Kind.kind_name,
+        kind_profile: Kind.kind_profile.toString('base64'),
         cat_age,
         cat_code,
         cat_name,
@@ -64,7 +66,7 @@ exports.getAllCatsByKind = async (req, res, next) => {
         create_date,
         description,
         kind_code,
-        profile,
+        profile: profile.toString('base64'),
         see,
       };
     })
