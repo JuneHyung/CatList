@@ -12,8 +12,9 @@ export const getAllKind = async () =>{
 }
 
 export const getAllCatByKind = async (params) => {
+  const queryParams = new URLSearchParams(params)
   try{
-    const res = await getFetch(`${url}/cat/kind`, params);
+    const res = await getFetch(`${url}/cat/kind?${queryParams}`);
     const data = await res.json();
     return data;
   }catch(err){
@@ -23,8 +24,9 @@ export const getAllCatByKind = async (params) => {
 }
 
 export const getAllCatByKeyword = async (params) => {
+  const queryParams = new URLSearchParams(params)
   try{
-    const res = await getFetch(`${url}/cat/search`, params);
+    const res = await getFetch(`${url}/cat/search?${queryParams}`);
     const data = await res.json();
     return data;
   }catch(err){

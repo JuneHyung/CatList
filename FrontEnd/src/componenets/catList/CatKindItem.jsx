@@ -9,7 +9,7 @@ const CatKindItem = ({item}) =>{
   
   const handleOnClick = useCallback(() =>{
     dispatch(setSelectedKind(item.kind_name));
-    dispatch(getCatListByKind(item.kind_code));
+    dispatch(getCatListByKind({kind_code: item.kind_code ,curPage: 1}));
   }, [item.kind_name, item.kind_code, dispatch])
 
   return (

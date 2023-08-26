@@ -2,8 +2,10 @@ const { Op } = require('sequelize');
 const Cat = require('../models/cat');
 const Kind = require('../models/kind');
 
+const perPage = 5;
+
 exports.getAllCatsByKeyword = async (req, res, next) => {
-  const {keyword} = req.params;
+  const {keyword, curPage} = req.query;
   try{
     const allCats = await Cat.findAll({
       where:{
@@ -12,6 +14,8 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
           { '$Kind.kind_name$': { [Op.like]: `%${keyword}%` } }
         ]
       },
+      offset: (curPage-1)* perPage,
+      limit: perPage,
       include:[{model: Kind, attributes: ['kind_name']}]
     });
     
@@ -39,12 +43,14 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
 
 
 exports.getAllCatsByKind = async (req, res, next) => {
-  const {kindCode} = req.params;
+  const {kind_code, curPage} = req.query;
   try{
     const allCats = await Cat.findAll({
       where:{
-        kind_code: kindCode,
+        kind_code: kind_code,
       },
+      offset: (curPage-1)* perPage,
+      limit: perPage,
       include:[{model: Kind, attributes: ['kind_name']}]
     });
     const result = allCats.map(cat=>{

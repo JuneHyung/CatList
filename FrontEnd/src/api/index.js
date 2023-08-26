@@ -9,7 +9,7 @@ const headers = {
 const defaultOptions = (method) =>{
   return {
     method,
-    headers 
+    headers,
   }
 }
 

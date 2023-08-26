@@ -26,14 +26,14 @@ const SearchBar = () => {
   // Enter Key Search
   const handleEnterKey = useCallback((event) => {
     if (event.key === "Enter") {
-      dispatch(getCatListByKeyword(inputValue))
+      dispatch(getCatListByKeyword({keyword:inputValue, curPage: 1}))
       addBadgeItem();
     }
   }, [addBadgeItem, dispatch, inputValue]);
 
   // Icon Click Search
   const handleClickSearch = useCallback(()=>{
-    dispatch(getCatListByKeyword(inputValue));
+    dispatch(getCatListByKeyword({keyword:inputValue, curPage: 1}));
     addBadgeItem();
   }, [addBadgeItem, dispatch, inputValue])
 

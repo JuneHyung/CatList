@@ -26,10 +26,10 @@ export const setSelectedKind = (kind) =>{
 }
 
 
-export const getCatListByKind = (kindCode) =>{
+export const getCatListByKind = (params) =>{
   return async (dispatch, getState) => {
     try{
-      const list = await getAllCatByKind(kindCode);
+      const list = await getAllCatByKind(params);
       dispatch(fetchCatList(list));
     }
     catch(e){
@@ -51,10 +51,10 @@ export const setSelectedCat = (cat) => {
 }
 
 // searchbar
-export const getCatListByKeyword = (keyword) =>{
+export const getCatListByKeyword = (params) =>{
   return async (dispatch, getState) =>{
     try{
-      const list = await getAllCatByKeyword(keyword);
+      const list = await getAllCatByKeyword(params);
       dispatch(fetchCatList(list));
       dispatch(clearSelectedKind());
     }
