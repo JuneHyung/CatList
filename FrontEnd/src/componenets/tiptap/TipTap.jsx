@@ -24,8 +24,10 @@ const Tiptap = () => {
 
   return (
     <div>
+      <div style={{backgroundColor: '#fff'}}>
       <EditorMenuBar editor={editor} />
       <EditorContent editor={editor} />
+      </div>
       <h2>Previewer</h2>
       <ReactMarkdown children={content}></ReactMarkdown>
     </div>
