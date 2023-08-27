@@ -15,14 +15,18 @@
 
 .App {
   text-align: center;
-  background-color: $bgColor;
   position:relative;
+  background-color: $bgColor;
+  padding: 2rem;
+  height:100vh;
 }
 
 .content-box{
-  max-width:1440px;
-  margin: 0 auto;
-  height:100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  width:100%;
 }
 
 .ProseMirror {
