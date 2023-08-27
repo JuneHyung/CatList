@@ -38,7 +38,7 @@ const SearchBar = () => {
   }, [addBadgeItem, dispatch, inputValue])
 
   return (
-    <div>
+    <div className="search-badge-wrap-box">
       <div className="search-bar">
         <input type="text" className="search-input" value={inputValue} onChange={handleInputChange} onKeyDown={handleEnterKey} />
         <MdiIcon name="mdiMagnify" onClick={handleClickSearch}></MdiIcon>

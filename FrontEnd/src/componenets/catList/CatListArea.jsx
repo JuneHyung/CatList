@@ -11,6 +11,7 @@ const CatListArea = () => {
   useEffect(()=>{
     dispatch(setCatKindList());
   }, [dispatch])
+
   return (
     <div className="cat-list-wrap">
       <CatKindList />
