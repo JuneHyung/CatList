@@ -35,9 +35,13 @@ export const getCatListByKind = (params) =>{
         const list = await getAllCatByKind(params);
         if(list.length!==0){
           const result = params.curPage===1 ? list : [...prevList, ...list]
+
           list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
+
           dispatch(fetchCurPage(params.curPage))
           dispatch(fetchCatList(result));
+        }else{
+          dispatch(fetchCatList([]))
         }
       }
     }
