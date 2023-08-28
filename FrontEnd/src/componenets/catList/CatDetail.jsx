@@ -29,7 +29,8 @@ const CatDetailPage = () => {
           <p>이름 : {selectedCat.cat_name}</p>
           <p>나이 : {selectedCat.cat_age} 살</p>
           <p>등록일 : {selectedCat.create_date}</p>
-          <p><MdiIcon name="mdiEye"></MdiIcon>{selectedCat.see}</p>
+          <p><MdiIcon name="mdiEye" /> : {selectedCat.see}</p>
+          <p className="jh-mt-sm">{selectedCat.description}</p>
         </div>
       </div>
       <div className="bottom-info-wrap">

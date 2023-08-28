@@ -2,7 +2,7 @@ const { Op } = require('sequelize');
 const Cat = require('../models/cat');
 const Kind = require('../models/kind');
 
-const perPage = 5;
+const perPage = 10;
 
 exports.getAllCatsByKeyword = async (req, res, next) => {
   const {keyword, curPage} = req.query;

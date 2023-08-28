@@ -92,15 +92,17 @@
 
     .cat-list {
       display: flex;
-      flex-direction: column;
       flex: 9;
       flex-wrap: wrap;
       overflow-y: auto;
+      align-items: flex-start;
+      padding: 0.5rem;
       .cat-list-item {
         display: flex;
-        height:100%;
+        width:32%;
+        max-width:32%;
+        min-height:360px;
         flex-direction: column;
-        flex: 1;
         background-color: $middleColor;
         justify-content: space-between;
         align-items: center;
@@ -133,8 +135,6 @@
           max-height:200px;
           margin: 8px 0;
           img {
-            width: 100%;
-            height: 100%;
             border-radius: 20px;
           }
         }

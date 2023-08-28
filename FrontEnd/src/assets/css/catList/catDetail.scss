@@ -3,9 +3,33 @@
   flex:9;
   padding: 0 1rem;
   flex-direction: column;
+  overflow-y:scroll;
   .top-info-wrap, .bottom-info-wrap{
     display:flex;
-    flex-direction: row;
+  }
+  .top-info-wrap{
+    .profile-box{
+      display:flex;
+      flex:4;
+      overflow: hidden;
+      height:300px;
+      border-radius:4px;
+      img{
+        width:100%;
+        height:auto;
+      }
+    }
+    .info-box{
+      display:flex;
+      flex-direction: column;
+      text-align:left;
+      padding: 0 0.5rem;
+      flex:8;
+      p{
+        display:flex;
+        align-items: center;
+      }
+    }
   }
   .bottom-info-wrap{
     .chart-box{
