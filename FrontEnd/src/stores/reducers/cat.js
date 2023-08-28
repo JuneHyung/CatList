@@ -1,24 +1,28 @@
-const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC } = require("../constant/variable");
+const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA } = require("../constant/variable");
 
 const initialstate = {
   catList: [],
   catKindList: [],
-  selectedKind: '',
+  lastKeyword: '',
+  selectedKindName: '',
+  selectedKindCode: '',
+  curPage: 1,
   selectedCat: {},
   selectedCharc: {},
+  isEndData: false,
 }
 
 const catReducer = (prevState = initialstate, action) =>{
   // console.log(action.type, action.data)
   switch(action.type){
     case CLEAR_ALL_CAT_DATA:
-      return {catList: [], selectedKind: '', selectedCat: {}};
+      return {catList: [], selectedKindName: '', selectedCat: {}};
     case CLEAR_CAT_LIST:
       return {...prevState, catList: []};
     case CLEAR_SELECTED_CAT:
       return {...prevState, selectedCat: {}}
     case CLEAR_SELECTED_KIND:
-      return {...prevState, selectedKind: ''};
+      return {...prevState, selectedKindName: '', selectedKindCode: '',};
     case CLEAR_SELECTED_CHARC:
       return {...prevState, selectedCharc: {}};
     case CLEAR_CAT_TYPE_LIST:
@@ -28,11 +32,17 @@ const catReducer = (prevState = initialstate, action) =>{
     case FETCH_CAT_TYPE_LIST:
       return {...prevState, catKindList: action.data};
     case FETCH_SELECTED_CAT:
-      return {...prevState, catList: [], selectedCat: action.data, selectedKind: action.data.kind_name}
+      return {...prevState, catList: [], selectedCat: action.data,}
     case FETCH_SELECTED_KIND:
-      return {...prevState, selectedKind: action.data};
+      return {...prevState, selectedKindName: action.data.kind_name, selectedKindCode: action.data.kind_code};
     case FETCH_SELECTED_CHARC:
       return {...prevState, selectedCharc: action.data};
+    case FETCH_LAST_KEYWORD:
+      return {...prevState, lastKeyword: action.data};
+    case FETCH_CUR_PAGE:
+      return {...prevState, curPage: action.data};
+    case FETCH_IS_END_DATA:
+      return {...prevState, isEndData: action.data};
     default:
       return prevState
   }

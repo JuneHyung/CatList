@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getCatListByKeyword } from "../../stores/actions/cat";
+import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 
 const BadgeItem = ({item}) =>{
   const bgNameList =  [
@@ -26,6 +26,7 @@ const BadgeItem = ({item}) =>{
   const dispatch = useDispatch();
   
   const handleOnClick = useCallback(() =>{
+    dispatch(resetIsEndData());
     dispatch(getCatListByKeyword({keyword:item, curPage: 1}));
   }, [dispatch, item])
 

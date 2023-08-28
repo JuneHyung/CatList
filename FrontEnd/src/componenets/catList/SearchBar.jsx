@@ -3,7 +3,7 @@ import MdiIcon from "../common/MdiIcon";
 import { useState } from "react";
 import BadgeItem from "./BadgeItem";
 import { useDispatch } from "react-redux";
-import { getCatListByKeyword } from "../../stores/actions/cat";
+import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState([]);
   const [searchItem, setSearchItem] = useState([]);
@@ -26,6 +26,7 @@ const SearchBar = () => {
   // Enter Key Search
   const handleEnterKey = useCallback((event) => {
     if (event.key === "Enter") {
+      dispatch(resetIsEndData());
       dispatch(getCatListByKeyword({keyword:inputValue, curPage: 1}))
       addBadgeItem();
     }
@@ -33,6 +34,7 @@ const SearchBar = () => {
 
   // Icon Click Search
   const handleClickSearch = useCallback(()=>{
+    dispatch(resetIsEndData());
     dispatch(getCatListByKeyword({keyword:inputValue, curPage: 1}));
     addBadgeItem();
   }, [addBadgeItem, dispatch, inputValue])

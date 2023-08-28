@@ -4,9 +4,14 @@ const { composeWithDevTools } = require('redux-devtools-extension');
 const initialstate = {
   cat: {
     catList: [],
-  catKindList: [],
-  selectedKind: '',
-  selectedCat: {},
+    catKindList: [],
+    lastKeyword: '',
+    selectedKindName: '',
+    selectedKindCode: '',
+    curPage: 1,
+    selectedCat: {},
+    selectedCharc: {},
+    isEndData: false,
   }
 }
 
