@@ -14,6 +14,7 @@ const CatDetailPage = () => {
       return [extrovert, introvert, tranquil, curious, independence, friendly ]
     }else return [];
   }, [selectedCharc])
+
   const charcCategories = ['외향적', '내향젹', '차분함', '호기심', '독립성', '친근함'];
 
   return (
@@ -33,7 +34,7 @@ const CatDetailPage = () => {
           <p className="jh-mt-sm">{selectedCat.description}</p>
         </div>
       </div>
-      <div className="bottom-info-wrap">
+      <div className="bottom-info-wrap jh-mt-sm">
         <div className="chart-box">
           <RadarChart customCategories={charcCategories} customSeries={calculatedSeries} />
         </div>

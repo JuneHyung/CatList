@@ -2,7 +2,7 @@ import Tiptap from "../componenets/tiptap/TipTap";
 
 const TipTapPage = () =>{
   return (
-    <div>
+    <div className="tiptap-page">
       <Tiptap />
     </div>
   )
