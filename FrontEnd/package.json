@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
     "@mdi/js": "^7.2.96",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -13,6 +16,7 @@
     "@tiptap/starter-kit": "^2.0.4",
     "@types/lodash": "^4.14.197",
     "apexcharts": "^3.41.1",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "lodash": "^4.17.21",
     "node-sass": "^7.0.3",
