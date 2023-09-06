@@ -3,6 +3,7 @@ import MdiIcon from "../common/MdiIcon";
 import RadarChart from "../chart/RadarChart";
 import { useMemo } from "react";
 import NoImage from "../common/NoImage";
+import KakaoMap from "../kakao/KakaoMap";
 
 const CatDetailPage = () => {
   const {selectedCat} = useSelector((state)=>state.cat)
@@ -15,7 +16,7 @@ const CatDetailPage = () => {
     }else return [];
   }, [selectedCharc])
 
-  const charcCategories = ['외향적', '내향젹', '차분함', '호기심', '독립성', '친근함'];
+  const charcCategories = ['외향적', '내향적', '차분함', '호기심', '독립성', '친근함'];
 
   return (
     <div className="cat-detail-wrap">
@@ -38,7 +39,9 @@ const CatDetailPage = () => {
         <div className="chart-box">
           <RadarChart customCategories={charcCategories} customSeries={calculatedSeries} />
         </div>
-        <div className="map-box"></div>
+        <div className="map-box">
+          <KakaoMap address={selectedCat.address}/>
+        </div>
       </div>
     </div>
   )

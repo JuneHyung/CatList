@@ -20,7 +20,7 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
     });
     
     const result = allCats.map((item)=>{
-      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, see} = item.dataValues;
+      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, address, see} = item.dataValues;
       return {
         kind_name: Kind.kind_name,
         kind_profile: Kind.kind_profile.toString('base64'),
@@ -32,6 +32,7 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
         description,
         kind_code,
         profile: profile.toString('base64'),
+        address,
         see,
       };
     })
@@ -55,7 +56,7 @@ exports.getAllCatsByKind = async (req, res, next) => {
       include:[{model: Kind, attributes: ['kind_name', 'kind_profile']}]
     });
     const result = allCats.map((item)=>{
-      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, see} = item.dataValues;
+      const {Kind, cat_age, cat_code, cat_name, charc_id, create_date, description, kind_code, profile, address, see} = item.dataValues;
       return {
         kind_name: Kind.kind_name,
         kind_profile: Kind.kind_profile.toString('base64'),
@@ -67,6 +68,7 @@ exports.getAllCatsByKind = async (req, res, next) => {
         description,
         kind_code,
         profile: profile.toString('base64'),
+        address,
         see,
       };
     })

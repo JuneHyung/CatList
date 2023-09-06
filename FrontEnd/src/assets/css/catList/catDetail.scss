@@ -32,16 +32,17 @@
     }
   }
   .bottom-info-wrap{
+    flex-direction: column;
     .chart-box{
       display:flex;
-      flex:6;
-    border:1px solid red;
+      flex:1;
     }
     .map-box{
       display:flex;
-      flex:6;
-    border:1px solid red;
-
+      flex:1;
+      min-height:300px;
+      border:3px solid $pointColor;
+      border-radius:0.25rem;
     }
   }
 }
