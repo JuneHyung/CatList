@@ -7,25 +7,38 @@ import TodoListPage from "../../pages/TodoListPage";
 import Menu from "../menu/Menu";
 import { Provider } from "react-redux";
 import catStore from "../../stores/output/cat/store";
-const Content = () =>{
+import todoStore from "../../stores/output/todo/store";
+const Content = () => {
   return (
     <div className="content-box">
       <BrowserRouter>
         <Menu />
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="/catList" element={
-          <Provider store={catStore}>
-          <CatListPage />
-          </Provider>
-          } />
+          <Route
+            path="/catList"
+            element={
+              <Provider store={catStore}>
+                <CatListPage />
+              </Provider>
+            }
+          />
+          
           <Route path="/tiptap" element={<TipTapPage />} />
           <Route path="/visitChart" element={<VisitChartPage />} />
-          <Route path="/todoList" element={<TodoListPage />} />
+
+          <Route
+            path="/todoList"
+            element={
+              <Provider store={todoStore}>
+                <TodoListPage />
+              </Provider>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default Content;
