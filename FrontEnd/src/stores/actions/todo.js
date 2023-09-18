@@ -1,8 +1,10 @@
+import { getAllTodoList } from "../../api/todo";
 import { FETCH_FOCUS_DATE, FETCH_TODO_LIST } from "../constant/variable"
 
-export const setTodoList = (list) => {
+export const setTodoList = (status) => {
   return async (dispatch, getState) =>{
-    dispatch(fetchTodoList(list))
+    const data = await getAllTodoList(status);
+    dispatch(fetchTodoList(data))
   }
 }
 

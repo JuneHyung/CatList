@@ -12,15 +12,8 @@ const CustomCalendar = () => {
 
   const handleFocusDate = useCallback((v)=>{
     const focusDate = dayjs(v.date).format('YYYY-MM-DD');
-    const testList = [
-      {id: '0', title:'test00', start:'2023-09-15', end: '2023-09-18', type: 'todo'},
-      {id: '1', title:'test01', start:'2023-09-17', end: '2023-09-18', type: 'todo'},
-      {id: '2', title:'test02', start:'2023-09-17', end: '2023-09-18', type: 'doing'},
-      {id: '3', title:'test03', start:'2023-09-17', end: '2023-09-18', type: 'done'},
-      {id: '4', title:'test04', start:'2023-09-17', end: '2023-09-27',type: 'todo'}
-    ];
     dispatch(setFocusDate(focusDate))
-    dispatch(setTodoList(testList))
+    dispatch(setTodoList('todo'))
   }, [dispatch])
   return (
     <FullCalendar 

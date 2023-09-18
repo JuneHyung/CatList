@@ -9,6 +9,7 @@ const app = express();
 const kindRoutes = require('./routes/kind');
 const catRoutes = require('./routes/cat');
 const charcRoutes = require('./routes/charc');
+const todoRoutes = require('./routes/todo');
 
 
 app.set('port', process.env.PORT || 3001);
@@ -26,6 +27,7 @@ app.use(cors({origin: '*'}))
 app.use("/api/kind", kindRoutes);
 app.use("/api/cat", catRoutes);
 app.use("/api/charc", charcRoutes);
+app.use("/api/todo", todoRoutes);
 
 app.use((req, res, next)=>{
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`)

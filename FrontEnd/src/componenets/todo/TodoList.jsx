@@ -16,7 +16,7 @@ const TodoList = ({today}) => {
       <ul className="todo-list">
         { 
           todoList.map((v)=>{
-            return <li key={v.id}>{v.title} {v.date}</li>
+            return <li key={v.todo_id}>{v.todo_id}{v.title} {v.start} {v.end}</li>
           })
         }
       </ul>
