@@ -7,13 +7,13 @@ import dayjs from 'dayjs';
 import { setFocusDate, setTodoList } from '../../stores/actions/todo';
 
 const CustomCalendar = () => {
-  const {todoList} = useSelector((state)=>state.todo);
+  const {todoList, focusDate} = useSelector((state)=>state.todo);
   const dispatch = useDispatch()
 
   const handleFocusDate = useCallback((v)=>{
     const focusDate = dayjs(v.date).format('YYYY-MM-DD');
     dispatch(setFocusDate(focusDate))
-    dispatch(setTodoList('todo'))
+    dispatch(setTodoList('todo', focusDate))
   }, [dispatch])
   return (
     <FullCalendar 

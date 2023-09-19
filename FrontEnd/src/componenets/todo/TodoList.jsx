@@ -1,13 +1,14 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTodoList } from "../../stores/actions/todo";
+import StatusList from "./statusList";
 
 const TodoList = ({today}) => {
-  const {todoList} = useSelector((state)=>state.todo);
+  const {todoList, focusDate} = useSelector((state)=>state.todo);
   const dispatch = useDispatch();
   const handleGetTodo = useCallback((status)=>{
-    dispatch(setTodoList(status))
-  },[dispatch])
+    dispatch(setTodoList(status, focusDate))
+  },[dispatch, focusDate])
   return (
     <div>
       <ul className="todo-tab-bar">
@@ -22,7 +23,10 @@ const TodoList = ({today}) => {
       <ul className="todo-list">
         { 
           todoList.map((v)=>{
-            return <li key={v.todo_id}>{v.todo_id}{v.title} {v.start} {v.end}</li>
+            return <li key={v.todo_id}>
+              {v.todo_id}{v.title} {v.start} {v.end}
+              <StatusList status={v.status}/>
+              </li>
           })
         }
       </ul>

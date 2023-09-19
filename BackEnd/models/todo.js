@@ -17,10 +17,10 @@ class Todo extends Sequelize.Model {
         type: Sequelize.STRING(255),
       },
       start:{
-        type: Sequelize.STRING(20),
+        type: Sequelize.DATE,
       },
       end:{
-        type: Sequelize.STRING(20),
+        type: Sequelize.DATE,
       },
       status:{
         type: Sequelize.STRING(20),
