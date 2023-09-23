@@ -15,14 +15,22 @@ exports.getAllTodoList = async (req, res, next) => {
       where: {
         [Op.and]: [
           {
-            [Op.or]: [{ start: { [Op.gte]: startDate } }, { end: { [Op.lte]: endDate } }],
+            [Op.and]: [{ start: { [Op.gte]: startDate } }, { end: { [Op.lte]: endDate } }],
           },
           { status: todoStatus },
         ],
       },
       order: [["start", "ASC"]],
     });
-    res.status(200).json(allTodo);
+    const setColorAllTodo = allTodo.map(el=>{
+      return {
+        ...el.dataValues,
+        borderColor: todoStatus==='todo' ? '#FFFDDD' : todoStatus==='doing' ? '#B7A684' : '#6F4E37',
+        textColor: todoStatus==='todo' ? '#6F4E37' : '#FFFDDD',
+        backgroundColor: todoStatus==='todo' ? '#FFFDDD' : todoStatus==='doing' ? '#B7A684' : '#6F4E37'
+      }
+    })
+    res.status(200).json(setColorAllTodo);
   } catch (err) {
     next(err);
   }

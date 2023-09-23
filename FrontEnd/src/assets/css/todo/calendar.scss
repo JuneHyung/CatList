@@ -1,0 +1,17 @@
+.fc {
+  .fc-toolbar-title{
+    color: $pointColor;
+    font-weight:900;
+    font-size: 1.8rem;
+  }
+  .fc-prevYear-button, .fc-prev-button, .fc-nextYear-button, .fc-next-button {
+    background-color: $pointColor;
+    color: $lowColor;
+    border:none;
+    transition: all 0.4s;
+    &:hover{
+      background-color: $middleColor;
+      color: $pointColor;
+    }
+  }
+}
