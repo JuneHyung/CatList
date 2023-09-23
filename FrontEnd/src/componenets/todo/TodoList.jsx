@@ -40,7 +40,7 @@ const TodoList = ({ today }) => {
           <div className="plus-item-button jh-my-xs" onClick={()=>dispatch(toggleEditFlag(true))}>PLUS ITEM</div>
           <ul className="todo-list">
             {todoList.map((v, idx) => {
-              return <TodoItem info={v} idx={idx} />;
+              return <TodoItem key={v.todo_id} info={v} idx={idx} />;
             })}
           </ul>
         </>

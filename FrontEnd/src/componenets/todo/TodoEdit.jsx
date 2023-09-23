@@ -1,11 +1,13 @@
-import { useCallback, useState } from "react";
-import StatusList from "./statusList";
-import { useDispatch } from "react-redux";
-import { postNewTodoItem, toggleEditFlag } from "../../stores/actions/todo";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postNewTodoItem, putCurTodoItem, toggleEditFlag } from "../../stores/actions/todo";
 
 const TodoEdit = () =>{
   const dispatch = useDispatch();
+  const {selectedItem} = useSelector((state)=>state.todo);
+  const [updateFlag, setUpdateFlag] = useState(false);
   const [formData, setFormData] = useState({
+    todo_id: '',
     title: '',
     content: '',
     start: '',
@@ -13,22 +15,37 @@ const TodoEdit = () =>{
     status: 'todo',
   })
 
+  // edit인지 update인지 체크
+  useEffect(()=>{
+    if(selectedItem.todo_id.length!==0){
+      setUpdateFlag(true);
+      setFormData(selectedItem)
+    }
+  },[])
+
+  // input 변경 시 form데이터 변경
   const handleInputChange = useCallback((e)=>{
     const {name, value} = e.target;
     setFormData({
       ...formData,
       [name]: value
     })
-    console.log(formData)
   }, [formData])
 
+  // 저장
   const handleSaveFormData = () =>{
-    // console.log(formData)
-    dispatch(postNewTodoItem(formData))
+    if(updateFlag){
+      dispatch(putCurTodoItem(formData))
+    }
+    else{
+      dispatch(postNewTodoItem(formData))
+    }
   }
 
+  // 취소
   const handleResetFormData = () =>{
     setFormData({
+      todo_id: '',
       title: '',
       content: '',
       start: '',

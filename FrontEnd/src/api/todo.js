@@ -32,6 +32,18 @@ export const postTodoItem = async (body) =>{
     throw err;
   }
 }
+export const putTodoItem = async (body) =>{
+  try{
+    console.log('body')
+    console.log(body)
+    const res = await putFetch(`${url}/todo/item`, body);
+    const data = await res.json();
+    return data;
+  }catch(err){
+    console.log(`Error : ${err}`)
+    throw err;
+  }
+}
 
 export const deleteTodoItem = async (id) =>{
   try{

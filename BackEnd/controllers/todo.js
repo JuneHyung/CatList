@@ -62,6 +62,23 @@ exports.postTodoItem = async (req, res, next) => {
   }
 };
 
+exports.putTodoItem = async (req, res, next) => {
+  const { todo_id, title,content,start,end,status } = req.body;
+  try {
+    await Todo.update({
+      todo_id,
+      title,
+      content,
+      start,
+      end,
+      status
+    },{where: {todo_id: todo_id}});
+    res.status(200).json({ code: 200, message: "추가 성공!" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 
 exports.deleteTodoItem = async (req, res, next) =>{
   const {id} = req.params;

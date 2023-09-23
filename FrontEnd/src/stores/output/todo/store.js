@@ -7,6 +7,8 @@ const initialstate = {
     curStatus: 'todo',
     todoList: [],
     editFlag: false,
+    updateFlag: false,
+    selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo'}
   }
 }
 
