@@ -1,23 +1,34 @@
-import { getAllTodoList } from "../../api/todo";
-import { FETCH_FOCUS_DATE, FETCH_TODO_LIST } from "../constant/variable"
+import { getAllTodoList, putTodoItem } from "../../api/todo";
+import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS } from "../constant/variable"
 
 export const setTodoList = (status, focusDate) => {
   return async (dispatch, getState) =>{
-    const data = await getAllTodoList(status, focusDate);
-    dispatch(fetchTodoList(data))
+    try{
+      const data = await getAllTodoList(status, focusDate);
+      dispatch(fetchTodoList(data))
+    }catch(e){
+      console.log(e);
+    }
   }
 }
 
 export const setFocusDate = (date) => {
   return async (dispatch, getState) => {
     dispatch(fetchFocusDate(date));
-    // try{
-    //   const result = await getCharcByCharcId(charcId);
-    //   dispatch(fetchSelectedCharc(result));
-    // }catch(e){
-    //   console.log(e);
-    //   dispatch(clearSelectedCharc());
-    // }
+  }
+}
+
+export const setCurStatus = (status) => {
+  return async (dispatch, getState) => {dispatch(fetchCurStatus(status))}
+}
+
+export const putCurItemStatus = (body) => {
+  return async (dispatch, getState) => {
+    const {code, message} = await putTodoItem(body);
+    if(code===200){
+      const {curStatus, focusDate} = getState().todo
+      await dispatch(setTodoList(curStatus, focusDate))
+    }
   }
 }
 
@@ -31,6 +42,13 @@ const fetchFocusDate = (data) => {
 const fetchTodoList = (data) =>{
   return {
     type: FETCH_TODO_LIST,
+    data,
+  }
+}
+
+const fetchCurStatus = (data) =>{
+  return {
+    type: FETCH_CUR_STATUS,
     data,
   }
 }

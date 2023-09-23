@@ -1,13 +1,15 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTodoList } from "../../stores/actions/todo";
+import { setCurStatus, setTodoList } from "../../stores/actions/todo";
 import StatusList from "./statusList";
+import MdiIcon from "../common/MdiIcon";
 
 const TodoList = ({today}) => {
   const {todoList, focusDate} = useSelector((state)=>state.todo);
   const dispatch = useDispatch();
   const handleGetTodo = useCallback((status)=>{
     dispatch(setTodoList(status, focusDate))
+    dispatch(setCurStatus(status))
   },[dispatch, focusDate])
   return (
     <div>
@@ -22,10 +24,12 @@ const TodoList = ({today}) => {
       <div className="plus-item-button pointer-cursor">PLUS ITEM</div>
       <ul className="todo-list">
         { 
-          todoList.map((v)=>{
+          todoList.map((v, idx)=>{
             return <li key={v.todo_id}>
-              {v.todo_id}{v.title} {v.start} {v.end}
-              <StatusList status={v.status}/>
+              {idx+1}{v.title} {v.start} {v.end}
+              <StatusList id={v.todo_id} status={v.status}/>
+              <MdiIcon name="mdiPencil"/>
+              <MdiIcon name="mdiDelete"/>
               </li>
           })
         }

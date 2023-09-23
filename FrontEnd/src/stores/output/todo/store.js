@@ -4,6 +4,7 @@ const { composeWithDevTools } = require('redux-devtools-extension');
 const initialstate = {
   todo: {
     focusDate: '',
+    curStatus: 'todo',
     todoList: [],
   }
 }
