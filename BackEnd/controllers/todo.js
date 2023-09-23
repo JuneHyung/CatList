@@ -28,6 +28,7 @@ exports.getAllTodoList = async (req, res, next) => {
   }
 };
 
+
 exports.updateCurStatus = async (req, res, next) => {
   const { id, status } = req.body;
   try {
@@ -44,6 +45,23 @@ exports.updateCurStatus = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.postTodoItem = async (req, res, next) => {
+  const { title,content,start,end,status } = req.body;
+  try {
+    await Todo.create({
+      title,
+      content,
+      start,
+      end,
+      status
+    });
+    res.status(200).json({ code: 200, message: "추가 성공!" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 
 exports.deleteTodoItem = async (req, res, next) =>{
   const {id} = req.params;

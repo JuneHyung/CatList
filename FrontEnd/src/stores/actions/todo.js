@@ -1,5 +1,5 @@
-import { deleteTodoItem, getAllTodoList, putTodoItemStatus } from "../../api/todo";
-import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS } from "../constant/variable"
+import { deleteTodoItem, getAllTodoList, postTodoItem, putTodoItemStatus } from "../../api/todo";
+import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_EDIT_FLAG } from "../constant/variable"
 
 export const setTodoList = (status, focusDate) => {
   return async (dispatch, getState) =>{
@@ -21,6 +21,10 @@ export const setFocusDate = (date) => {
 export const setCurStatus = (status) => {
   return async (dispatch, getState) => {dispatch(fetchCurStatus(status))}
 }
+export const toggleEditFlag = (status) => {
+  console.log(status)
+  return async (dispatch, getState) => {dispatch(fetchEditFlag(status))}
+}
 
 export const putCurItemStatus = (body) => {
   return async (dispatch, getState) => {
@@ -29,6 +33,15 @@ export const putCurItemStatus = (body) => {
       const {curStatus, focusDate} = getState().todo
       console.log(message);
       await dispatch(setTodoList(curStatus, focusDate))
+    }
+  }
+}
+
+export const postNewTodoItem = (body) =>{
+  return async (dispatch, getState) =>{
+    const {code, message} = await postTodoItem(body);
+    if(code===200){
+      console.log(message);
     }
   }
 }
@@ -60,6 +73,12 @@ const fetchTodoList = (data) =>{
 const fetchCurStatus = (data) =>{
   return {
     type: FETCH_CUR_STATUS,
+    data,
+  }
+}
+const fetchEditFlag = (data) =>{
+  return {
+    type: FETCH_EDIT_FLAG,
     data,
   }
 }

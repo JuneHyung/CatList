@@ -6,6 +6,7 @@ const initialstate = {
     focusDate: '',
     curStatus: 'todo',
     todoList: [],
+    editFlag: false,
   }
 }
 
