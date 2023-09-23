@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurStatus, setTodoList } from "../../stores/actions/todo";
+import { deleteSelectedItem, setCurStatus, setTodoList } from "../../stores/actions/todo";
 import StatusList from "./statusList";
 import MdiIcon from "../common/MdiIcon";
 
@@ -11,6 +11,11 @@ const TodoList = ({today}) => {
     dispatch(setTodoList(status, focusDate))
     dispatch(setCurStatus(status))
   },[dispatch, focusDate])
+
+  const handleDeleteItem = useCallback((id)=>{
+    dispatch(deleteSelectedItem(id));
+  },[dispatch])
+
   return (
     <div>
       <ul className="todo-tab-bar">
@@ -29,7 +34,7 @@ const TodoList = ({today}) => {
               {idx+1}{v.title} {v.start} {v.end}
               <StatusList id={v.todo_id} status={v.status}/>
               <MdiIcon name="mdiPencil"/>
-              <MdiIcon name="mdiDelete"/>
+              <MdiIcon name="mdiDelete" onClick={()=>handleDeleteItem(v.todo_id)}/>
               </li>
           })
         }

@@ -1,4 +1,4 @@
-import { getAllTodoList, putTodoItem } from "../../api/todo";
+import { deleteTodoItem, getAllTodoList, putTodoItemStatus } from "../../api/todo";
 import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS } from "../constant/variable"
 
 export const setTodoList = (status, focusDate) => {
@@ -24,7 +24,18 @@ export const setCurStatus = (status) => {
 
 export const putCurItemStatus = (body) => {
   return async (dispatch, getState) => {
-    const {code, message} = await putTodoItem(body);
+    const {code, message} = await putTodoItemStatus(body);
+    if(code===200){
+      const {curStatus, focusDate} = getState().todo
+      console.log(message);
+      await dispatch(setTodoList(curStatus, focusDate))
+    }
+  }
+}
+
+export const deleteSelectedItem = (id) => {
+  return async (dispatch, getState) => {
+    const {code, message} = await deleteTodoItem(id);
     if(code===200){
       const {curStatus, focusDate} = getState().todo
       await dispatch(setTodoList(curStatus, focusDate))

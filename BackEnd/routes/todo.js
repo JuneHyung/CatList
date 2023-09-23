@@ -4,5 +4,6 @@ const todoController = require('../controllers/todo');
 
 router.get('/search/:todoStatus/:focusDate', todoController.getAllTodoList);
 router.put('/status', todoController.updateCurStatus);
+router.delete('/item/:id', todoController.deleteTodoItem);
 
 module.exports = router;

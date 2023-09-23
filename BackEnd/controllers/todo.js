@@ -44,3 +44,11 @@ exports.updateCurStatus = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.deleteTodoItem = async (req, res, next) =>{
+  const {id} = req.params;
+  try{
+    await Todo.destroy({where: {todo_id: id}})
+    res.status(200).json({ code: 200, message: "삭제 성공!" });
+  }catch(err){next(err)}
+}
