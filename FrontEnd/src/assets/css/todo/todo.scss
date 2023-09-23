@@ -18,12 +18,22 @@
       align-items: center;
       .todo-active-tab-bar{
         display:flex;
-        li{
+        .todo-active-item{
           display:flex; 
           width: 100px;
           justify-content: center;
-          border:1px solid black;
+          // border:1px solid $pointColor;
+          background: $middleColor;
+          color: $pointColor;
+          border-radius: 0.2rem 0.2rem 0 0; 
           box-sizing: border-box;
+          cursor:pointer;
+          transition: all 0.4s;
+          font-weight:900;
+          &:hover{
+            background-color: $pointColor;
+            color: $lowColor;
+          }
         }
       }
     }
@@ -33,7 +43,23 @@
       flex:1 ;
       justify-content: center;
       align-items: center;
-      border:1px solid black;
+      color:$pointColor;
+      font-weight:900;
+      border:3px dashed $pointColor;
+      border-radius: 0.25rem;
+      transition: all 0.4s;
+      cursor:pointer;
+      &:hover{
+        background-color: $pointColor;
+        color: $lowColor;
+      }
     }
   }
+}
+
+.todo-list-tiem{
+  display:flex;
+  flex:1;
+  justify-content: space-between;
+  align-items: center;
 }

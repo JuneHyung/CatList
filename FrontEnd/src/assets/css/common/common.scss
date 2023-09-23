@@ -84,3 +84,10 @@ align-self: center
 .full-width{ width: 100%; }
 .full-height{ height: 100%; }
 .pointer-cursor{ cursor:pointer; }
+
+.ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
