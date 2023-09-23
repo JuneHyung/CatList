@@ -4,7 +4,6 @@ const { CLEAR_FOCUS_DATE, CLEAR_TODO_LIST, FETCH_FOCUS_DATE, FETCH_TODO_LIST, FE
 const initialstate = {
   focusDate: '',
   editFlag: false,
-  updateFlag: false,
   curStatus: 'todo',
   todoList: [],
   selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo'}
