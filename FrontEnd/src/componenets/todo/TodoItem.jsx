@@ -17,12 +17,12 @@ const TodoItem = ({info, idx}) =>{
   },[dispatch, info])
 
   return (
-    <li key={info.todo_id} className="todo-list-tiem">
-      <span>{idx+1}</span>
-      <span className="ellipsis">{info.title}</span>
-      <span className="jh-ma-sm">{info.start} ~ {info.end}</span>
-      <StatusList id={info.todo_id} status={info.status}/>
-      <div>
+    <li key={info.todo_id} className="todo-list-item">
+      <span className="todo-info-idx">{idx+1}</span>
+      <span className="ellipsis todo-info-title">{info.title}</span>
+      <span className="todo-info-range-date">{info.start} ~ {info.end}</span>
+        <StatusList id={info.todo_id} status={info.status}/>
+      <div className="todo-info-button-wrap">
         <MdiIcon name="mdiPencil" onClick={handleUpdateItem}/>
         <MdiIcon name="mdiDelete" onClick={()=>handleDeleteItem(info.todo_id)}/>
       </div>

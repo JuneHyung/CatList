@@ -1,65 +1,179 @@
-.todo-list-page{
-  display:flex;
-  flex:1;
-  width:100%;
-  height:100%;
-  .todo-calendar-wrap-box, .todo-list-wrap-box{
-    width:100%;
+.todo-list-page {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  .todo-calendar-wrap-box,
+  .todo-list-wrap-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
   }
-  .todo-list{
-    width:100%;
-    height:100%;
+  .todo-calendar-wrap-box {
+    padding: 0 8px 0 0;
   }
-  .todo-list-wrap-box{
-    .todo-tab-bar{
-      display:flex;
-      flex:6;
+
+  .todo-list-wrap-box {
+    .todo-tab-bar {
+      display: flex;
+      flex: 6;
       justify-content: space-between;
       align-items: center;
-      .todo-active-tab-bar{
-        display:flex;
-        .todo-active-item{
-          display:flex; 
+      .todo-focus-date {
+        font-size: 1.2em;
+        font-weight: 900;
+        color: $pointColor;
+      }
+      .todo-active-tab-bar {
+        display: flex;
+        .todo-active-item {
+          display: flex;
           width: 100px;
           justify-content: center;
           // border:1px solid $pointColor;
           background: $middleColor;
           color: $pointColor;
-          border-radius: 0.2rem 0.2rem 0 0; 
+          border-radius: 0.2rem 0.2rem 0 0;
           box-sizing: border-box;
-          cursor:pointer;
+          cursor: pointer;
           transition: all 0.4s;
-          font-weight:900;
-          &:hover{
+          font-weight: 900;
+          &:hover {
             background-color: $pointColor;
             color: $lowColor;
           }
         }
       }
     }
-    .plus-item-button{
-      height:60px;
-      display:flex;
-      flex:1 ;
+    .plus-item-button {
+      height: 60px;
+      display: flex;
+      flex: 1;
       justify-content: center;
       align-items: center;
-      color:$pointColor;
-      font-weight:900;
-      border:3px dashed $pointColor;
+      color: $pointColor;
+      font-weight: 900;
+      border: 3px dashed $pointColor;
       border-radius: 0.25rem;
       transition: all 0.4s;
-      cursor:pointer;
-      &:hover{
+      cursor: pointer;
+      &:hover {
         background-color: $pointColor;
         color: $lowColor;
+      }
+    }
+    .todo-list {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      .todo-list-item {
+        display: flex;
+        flex: 1;
+        // justify-content: center;
+        // align-items: center;
+        .todo-info-idx,
+        .todo-info-title,
+        .todo-info-range-date,
+        .todo-info-status,
+        .todo-info-button-wrap {
+          display: flex;
+          flex: 1;
+          justify-content: center;
+          align-items: center;
+          color: $pointColor;
+        }
+        .todo-info-title {
+          flex: 2;
+        }
+        .todo-info-range-date {
+          flex: 4;
+        }
+        .todo-info-status {
+          border: 1px solid $pointColor;
+          background-color: $lowColor;
+        }
+
+        svg {
+          path {
+            fill: #6f4e37;
+          }
+        }
+      }
+    }
+  }
+
+  .todo-edit-form {
+    .todo-edit-button-wrap {
+      display: flex;
+      justify-content: right;
+      margin: 4px 0;
+      .todo-edit-button {
+        display: flex;
+        flex: 0 1 100px;
+        background-color: $pointColor;
+        border-radius: 0.25rem;
+        justify-content: center;
+        align-items: center;
+        color: $lowColor;
+        border: none;
+        height: 2rem;
+        font-weight: 900;
+        transition: all 0.4s;
+        cursor: pointer;
+        &:hover {
+          background-color: $lowColor;
+          color: $pointColor;
+        }
+      }
+    }
+    .todo-edit-label {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      margin: 8px 0;
+      .todo-edit-text {
+        display: flex;
+        flex: 1 1 80px;
+        color: $pointColor;
+        align-items: center;
+        font-weight: 900;
+      }
+      .todo-edit-input {
+        display: flex;
+        flex: 11;
+        height: 2rem;
+        align-items: center;
+        color: $pointColor;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: $middleColor;
+        padding: 4px;
+        &:focus {
+          outline: 2px solid $pointColor;
+        }
+      }
+      .todo-edit-input-area {
+        display: flex;
+        flex: 11;
+        align-items: center;
+        color: $pointColor;
+        border: none;
+        border-radius: 0.25rem;
+        background-color: $middleColor;
+        padding: 4px;
+        resize: none;
+        &:focus {
+          outline: 2px solid $pointColor;
+        }
       }
     }
   }
 }
 
-.todo-list-tiem{
-  display:flex;
-  flex:1;
+.todo-list-tiem {
+  display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
 }

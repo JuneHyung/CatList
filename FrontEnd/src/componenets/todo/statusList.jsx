@@ -8,7 +8,7 @@ const StatusList = ({id, status}) =>{
     dispatch(putCurItemStatus({id, status: selectedStatus}))
   },[dispatch, id])
   return (
-    <select value={status} onChange={(e)=>handleOnChange(e.target.value)}>
+    <select value={status} onChange={(e)=>handleOnChange(e.target.value)} className="todo-info-status">
       <option value="todo">Todo</option>
       <option value="doing">Doing</option>
       <option value="done">Done</option>

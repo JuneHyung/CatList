@@ -58,27 +58,43 @@ const TodoEdit = () =>{
     dispatch(toggleEditFlag(false))
   }
   return(
-    <form>
-      <ul>
-        <button type="button" onClick={handleSaveFormData}>Save</button>
-        <button type="button" onClick={handleResetFormData}>Reset</button>
-        <button type="button" onClick={handleCancel}>Cancel</button>
+    <form className="todo-edit-form">
+      <ul className="todo-edit-button-wrap">
+        <button type="button" className="todo-edit-button" onClick={handleSaveFormData}>Save</button>
+        <button type="button" className="todo-edit-button jh-mx-xs" onClick={handleResetFormData}>Reset</button>
+        <button type="button" className="todo-edit-button" onClick={handleCancel}>Cancel</button>
       </ul>
-      <label htmlFor="title">제목 : </label>
-      <input type="text" name="title" value={formData.title} onChange={handleInputChange}/>
+      <label htmlFor="title" className="todo-edit-label">
+        <span className="todo-edit-text">제목</span>
+        <input type="text" name="title" className="todo-edit-input jh-ml-sm" value={formData.title} onChange={handleInputChange}/>
+      </label>
       
-      <label htmlFor="content">내용 : </label>
-      <input type="textarea" name="content" value={formData.content} onChange={handleInputChange} />
-      <label htmlFor="start">시작 날짜 : </label>
-      <input type="date" name="start" value={formData.start} onChange={handleInputChange}/>
-      <label htmlFor="end">종료 날짜 : </label>
-      <input type="date" name="end" value={formData.end} onChange={handleInputChange} />
-      <label htmlFor="status">상태 : </label>
-      <select value={formData.status} name="status" onChange={handleInputChange}>
-        <option value="todo">Todo</option>
-        <option value="doing">Doing</option>
-        <option value="done">Done</option>
-      </select>
+      <label htmlFor="start" className="todo-edit-label">
+        <span className="todo-edit-text">시작 날짜</span>
+      <input type="date" name="start" className="todo-edit-input jh-ml-sm" value={formData.start} onChange={handleInputChange}/>
+      </label>
+      <label htmlFor="end" className="todo-edit-label">
+        <span className="todo-edit-text">종료 날짜</span>
+      <input type="date" name="end" className="todo-edit-input jh-ml-sm" value={formData.end} onChange={handleInputChange} />
+      </label>
+      <label htmlFor="status" className="todo-edit-label">
+        <span className="todo-edit-text">상태</span>
+        <select value={formData.status} name="status" className="todo-edit-input jh-ml-sm" onChange={handleInputChange}>
+          <option value="todo">Todo</option>
+          <option value="doing">Doing</option>
+          <option value="done">Done</option>
+        </select>
+      </label>
+      <label htmlFor="content" className="todo-edit-label">
+        <span className="todo-edit-text">내용</span>
+        <textarea
+        name="content" 
+        className="todo-edit-input-area jh-ml-sm" 
+        rows="5"
+        maxlength="200"
+        value={formData.content} 
+        onChange={handleInputChange} />
+      </label>
     </form>
   )
 }

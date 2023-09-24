@@ -20,7 +20,7 @@ const TodoList = ({ today }) => {
   return (
     <div>
       <ul className="todo-tab-bar">
-        <li> {today}</li>
+        <li className="todo-focus-date"> {today}</li>
         <ul className="todo-active-tab-bar">
           <li className="todo-active-item" onClick={() => handleGetTodo("todo")}>
             TODO
