@@ -1,0 +1,65 @@
+.virtual-keyboard-wrap{
+  width:500px;
+  padding: 1.2rem;
+  border:1px solid $pointColor;
+  background-color: $middleColor;
+  border-radius:0.1rem;
+  position:absolute;
+  top:0; right:0;
+  .keyboard-header{
+    display:flex;
+    flex:1;
+    align-items: center;
+    justify-content: space-between;
+    .keyboard-lang-status, .keyboard-close-button{
+      color:$pointColor;
+      font-size:1.1rem;
+      font-weight:900;
+      border:none;
+      background:none;
+    }
+    .keyboard-close-button{
+      &:hover{
+        color:$lowColor;
+        cursor:pointer;
+      }
+    }
+  }
+
+  .keyboard-body{
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    .keyboard-row{
+      display:flex;
+      justify-content: center;
+      margin: 4px 0;
+      &:nth-child(1), &:nth-child(4), &:nth-child(5){justify-content: space-between;}
+      &:nth-child(2){ justify-content: space-between; }
+      &:nth-child(3){ justify-content: space-between; }
+      .keyboard-key{
+        box-sizing: border-box;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width:30px; height:30px;
+        background-color: $lowColor;
+        color: $pointColor;
+        border:1px solid $pointColor;
+        cursor:pointer;
+        transition:all 0.2s;
+        border-radius:0.1rem;
+        &:hover{
+          background-color: $pointColor;
+          color:$lowColor;
+          font-weight:900;
+        }
+      }
+      .keyboard-backspace { width:40px; }
+      .keyboard-lang { width: 50px; }
+      .keyboard-shift{ width: 60px; }
+      .keyboard-reset, .keyboard-search{ width:70px; }
+      .keyboard-space{ display:flex; flex:1;}
+    }
+  }
+}

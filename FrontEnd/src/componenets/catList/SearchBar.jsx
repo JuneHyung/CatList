@@ -4,9 +4,11 @@ import { useState } from "react";
 import BadgeItem from "./BadgeItem";
 import { useDispatch } from "react-redux";
 import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
+import CustomKeyboard from "./CustomKeyboard";
 const SearchBar = () => {
   const [inputValue, setInputValue] = useState([]);
   const [searchItem, setSearchItem] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   
   // InputValue 갱신
@@ -39,18 +41,23 @@ const SearchBar = () => {
     addBadgeItem();
   }, [addBadgeItem, dispatch, inputValue])
 
+  const handleOpenVirtualKeyboard = useCallback(()=>{
+    setIsOpen(!isOpen)
+  }, [isOpen])
+
   return (
     <div className="search-badge-wrap-box">
       <div className="search-bar">
         <input type="text" className="search-input" value={inputValue} onChange={handleInputChange} onKeyDown={handleEnterKey} />
         <MdiIcon name="mdiMagnify" onClick={handleClickSearch}></MdiIcon>
-        <MdiIcon name="mdiMicrophone"></MdiIcon>
+        <MdiIcon name="mdiMicrophone" onClick={handleOpenVirtualKeyboard}></MdiIcon>
       </div>
       <ul className="badge-bar jh-my-sm">
         {searchItem.map((item, idx) => (
           <BadgeItem key={`${item}${idx}`} item={item} >{item}</BadgeItem>
         ))}
       </ul>
+      {isOpen && <CustomKeyboard inputValue={inputValue} setInputValue={setInputValue} setIsOpen={setIsOpen}/>}
     </div>
   );
 };
