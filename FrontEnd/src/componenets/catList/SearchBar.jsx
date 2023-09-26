@@ -49,8 +49,8 @@ const SearchBar = () => {
     <div className="search-badge-wrap-box">
       <div className="search-bar">
         <input type="text" className="search-input" value={inputValue} onChange={handleInputChange} onKeyDown={handleEnterKey} />
+        <MdiIcon name="mdiKeyboard" onClick={handleOpenVirtualKeyboard}></MdiIcon>
         <MdiIcon name="mdiMagnify" onClick={handleClickSearch}></MdiIcon>
-        <MdiIcon name="mdiMicrophone" onClick={handleOpenVirtualKeyboard}></MdiIcon>
       </div>
       <ul className="badge-bar jh-my-sm">
         {searchItem.map((item, idx) => (

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-
-const CustomKeyboard = ({ inputValue, setInputValue, setIsOpen }) => {
+import hangul from 'hangul-js';
+const CustomKeyboard = ({ inputValue, setInputValue, setIsOpen, handleClickSearch }) => {
   const [isShift, setIsShift] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
 
@@ -202,70 +202,70 @@ const CustomKeyboard = ({ inputValue, setInputValue, setIsOpen }) => {
       </div>
       <div className="keyboard-body">
         <ul className="keyboard-row">
-          <li className="keyboard-key">{isShift ? "~" : "`"}</li>
-          <li className="keyboard-key">{isShift ? "!" : "1"}</li>
-          <li className="keyboard-key">{isShift ? "@" : "2"}</li>
-          <li className="keyboard-key">{isShift ? "#" : "3"}</li>
-          <li className="keyboard-key">{isShift ? "$" : "4"}</li>
-          <li className="keyboard-key">{isShift ? "%" : "5"}</li>
-          <li className="keyboard-key">{isShift ? "^" : "6"}</li>
-          <li className="keyboard-key">{isShift ? "^" : "7"}</li>
-          <li className="keyboard-key">{isShift ? "&" : "8"}</li>
-          <li className="keyboard-key">{isShift ? "*" : "9"}</li>
-          <li className="keyboard-key">{isShift ? "(" : "0"}</li>
-          <li className="keyboard-key">{isShift ? "_" : "-"}</li>
-          <li className="keyboard-key">{isShift ? "+" : "="}</li>
-          <li className="keyboard-key keyboard-backspace">back</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "~" : "`")))}>{isShift ? "~" : "`"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "!" : "1")))}>{isShift ? "!" : "1"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "@" : "2")))}>{isShift ? "@" : "2"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "#" : "3")))}>{isShift ? "#" : "3"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "$" : "4")))}>{isShift ? "$" : "4"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "%" : "5")))}>{isShift ? "%" : "5"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "^" : "6")))}>{isShift ? "^" : "6"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "^" : "7")))}>{isShift ? "^" : "7"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "&" : "8")))}>{isShift ? "&" : "8"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "*" : "9")))}>{isShift ? "*" : "9"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "(" : "0")))}>{isShift ? "(" : "0"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "_" : "-")))}>{isShift ? "_" : "-"}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(isShift ? "+" : "=")))}>{isShift ? "+" : "="}</li>
+          <li className="keyboard-key keyboard-backspace" onClick={()=>setInputValue(inputValue.slice(0, inputValue.length-1))}>back</li>
         </ul>
         <ul className="keyboard-row">
-          <li className="keyboard-key">{switchKey("q")}</li>
-          <li className="keyboard-key">{switchKey("w")}</li>
-          <li className="keyboard-key">{switchKey("e")}</li>
-          <li className="keyboard-key">{switchKey("r")}</li>
-          <li className="keyboard-key">{switchKey("t")}</li>
-          <li className="keyboard-key">{switchKey("y")}</li>
-          <li className="keyboard-key">{switchKey("u")}</li>
-          <li className="keyboard-key">{switchKey("i")}</li>
-          <li className="keyboard-key">{switchKey("o")}</li>
-          <li className="keyboard-key">{switchKey("p")}</li>
-          <li className="keyboard-key">{switchKey("[")}</li>
-          <li className="keyboard-key">{switchKey("]")}</li>
-          <li className="keyboard-key">{switchKey("\\")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("q")))}>{switchKey("q")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("w")))}>{switchKey("w")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("e")))}>{switchKey("e")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("r")))}>{switchKey("r")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("t")))}>{switchKey("t")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("y")))}>{switchKey("y")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("u")))}>{switchKey("u")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("i")))}>{switchKey("i")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("o")))}>{switchKey("o")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("p")))}>{switchKey("p")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("[")))}>{switchKey("[")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("]")))}>{switchKey("]")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("\\")))}>{switchKey("\\")}</li>
         </ul>
         <ul className="keyboard-row">
           <li className="keyboard-key keyboard-lang" onClick={toggleIsEnglish}>
             한/영
           </li>
-          <li className="keyboard-key">{switchKey('a')}</li>
-          <li className="keyboard-key">{switchKey('s')}</li>
-          <li className="keyboard-key">{switchKey('d')}</li>
-          <li className="keyboard-key">{switchKey('f')}</li>
-          <li className="keyboard-key">{switchKey('g')}</li>
-          <li className="keyboard-key">{switchKey('h')}</li>
-          <li className="keyboard-key">{switchKey('j')}</li>
-          <li className="keyboard-key">{switchKey('k')}</li>
-          <li className="keyboard-key">{switchKey('l')}</li>
-          <li className="keyboard-key">{switchKey(';')}</li>
-          <li className="keyboard-key">{switchKey("'")}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("a")))}>{switchKey('a')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("s")))}>{switchKey('s')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("d")))}>{switchKey('d')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("f")))}>{switchKey('f')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("g")))}>{switchKey('g')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("h")))}>{switchKey('h')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("j")))}>{switchKey('j')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("k")))}>{switchKey('k')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("l")))}>{switchKey('l')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(";")))}>{switchKey(';')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("'")))}>{switchKey("'")}</li>
         </ul>
         <ul className="keyboard-row">
           <li className="keyboard-key keyboard-shift" onClick={toggleIsShift}>shift</li>
-          <li className="keyboard-key">{switchKey('z')}</li>
-          <li className="keyboard-key">{switchKey('x')}</li>
-          <li className="keyboard-key">{switchKey('c')}</li>
-          <li className="keyboard-key">{switchKey('v')}</li>
-          <li className="keyboard-key">{switchKey('b')}</li>
-          <li className="keyboard-key">{switchKey('n')}</li>
-          <li className="keyboard-key">{switchKey('m')}</li>
-          <li className="keyboard-key">{switchKey(',')}</li>
-          <li className="keyboard-key">{switchKey('.')}</li>
-          <li className="keyboard-key">{switchKey('/')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("z")))}>{switchKey('z')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("x")))}>{switchKey('x')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("c")))}>{switchKey('c')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("v")))}>{switchKey('v')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("b")))}>{switchKey('b')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("n")))}>{switchKey('n')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("m")))}>{switchKey('m')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(",")))}>{switchKey(',')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey(".")))}>{switchKey('.')}</li>
+          <li className="keyboard-key" onClick={()=>setInputValue(hangul.assemble(inputValue + switchKey("/")))}>{switchKey('/')}</li>
           <li className="keyboard-key keyboard-shift" onClick={toggleIsShift}>shift</li>
         </ul>
         <ul className="keyboard-row">
-          <li className="keyboard-key keyboard-reset">초기화</li>
-          <li className="keyboard-key keyboard-space jh-mx-xs">space</li>
-          <li className="keyboard-key keyboard-search">검색</li>
+          <li className="keyboard-key keyboard-reset" onClick={()=>setInputValue('')}>초기화</li>
+          <li className="keyboard-key keyboard-space jh-mx-xs" onClick={()=>setInputValue(hangul.assemble(inputValue + ' '))}>space</li>
+          <li className="keyboard-key keyboard-search" onClick={handleClickSearch}>검색</li>
         </ul>
       </div>
     </div>
