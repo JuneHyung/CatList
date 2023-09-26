@@ -57,7 +57,7 @@ const SearchBar = () => {
           <BadgeItem key={`${item}${idx}`} item={item} >{item}</BadgeItem>
         ))}
       </ul>
-      {isOpen && <CustomKeyboard inputValue={inputValue} setInputValue={setInputValue} setIsOpen={setIsOpen}/>}
+      {isOpen && <CustomKeyboard inputValue={inputValue} setInputValue={setInputValue} setIsOpen={setIsOpen} handleClickSearch={handleClickSearch}/>}
     </div>
   );
 };
