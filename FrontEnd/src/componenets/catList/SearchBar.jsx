@@ -16,7 +16,7 @@ const SearchBar = () => {
     setInputValue(event.target.value);
   }, []);
 
-  // Badge추가
+  // Badge 추가
   const addBadgeItem = useCallback(() => {
     setSearchItem((prev) => {
       const filtered = prev.filter((item)=> item!==inputValue);

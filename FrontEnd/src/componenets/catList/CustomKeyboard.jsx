@@ -6,10 +6,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
   const [isShift, setIsShift] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
 
-  const closeVirtualKeyboard = () => {
-    setIsOpen(false);
-  };
-
+  // 한영 전환 키
   const switchKey = useCallback(
     (key) => {
       if (!isShift && !isEnglish) return koSmall[key];
@@ -20,6 +17,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
     [isShift, isEnglish]
   );
 
+  // key에 따른 클래스 적용
   const handleKeyClassName = useCallback(
     (key) => {
       switch (key) {
@@ -41,6 +39,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
     },[]
   );
 
+  // key에 따른 동작
   const handleKeyClick = useCallback(
     (key) => {
       switch (key) {
@@ -52,6 +51,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
           break;
         case 'search':
           handleClickSearch();
+          setIsOpen(false);
           break;
         case 'shift':
           setIsShift(!isShift);
@@ -67,7 +67,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
           break;
       }
     },
-    [inputValue, setInputValue, isEnglish, isShift, handleClickSearch, switchKey]
+    [inputValue, setInputValue, isEnglish, isShift, handleClickSearch, switchKey, setIsOpen]
   );
 
   return (
@@ -78,7 +78,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
         </span>
         <button
           className="keyboard-close-button"
-          onClick={closeVirtualKeyboard}
+          onClick={()=>setIsOpen(false)}
         >
           X
         </button>
@@ -92,9 +92,9 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
                   <li
                     className={handleKeyClassName(k)}
                     onClick={() => handleKeyClick(k)}
-                    key={kIdx}
+                    key={`${k}+${kIdx}`}
                   >
-                    {switchKey(k)}
+                    { switchKey(k) }
                   </li>
                 );
               })}

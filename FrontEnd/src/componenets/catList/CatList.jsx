@@ -15,7 +15,11 @@ const CatList = () => {
       else if(lastKeyword.length!==0) dispatch(getCatListByKeyword({keyword: lastKeyword, curPage: curPage+1}));
     }
   },[curPage, dispatch, lastKeyword, selectedKindCode])
-  return <ul className="cat-list" onScroll={handleOnScroll}>{catList.length === 0 ? <NoData /> : catList.map((item) => <CatListItem item={item} key={item.cat_code} />)}</ul>;
+  return (
+    <ul className="cat-list" onScroll={handleOnScroll}>
+      {catList.length === 0 ? <NoData /> : catList.map((item) => <CatListItem item={item} key={item.cat_code} />)}
+    </ul>
+  );
 };
 
 export default CatList;
