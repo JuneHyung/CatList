@@ -5,7 +5,6 @@ const Menu = () => {
     {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},
     {path: '/catList', label: 'CatList', icon: 'mdiCat'},
     {path: '/tiptap', label: 'TipTap', icon: 'mdiNoteEdit'},
-    {path: '/visitChart', label: 'Visit Chart', icon: 'mdiChartLine'},
     {path: '/todoList', label: 'Todo List', icon: 'mdiCalendarMonth'},
   ]
   return (

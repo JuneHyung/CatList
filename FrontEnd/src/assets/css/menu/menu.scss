@@ -1,169 +1,124 @@
-
 .menu-list {
-  margin: auto;
+  width: 80px;
+  height: 80px;
   position: fixed;
   bottom: 10px;
   right: 155px;
-  width: 80px;
-  height: 80px;
+  margin: auto;
   text-align: center;
   box-sizing: border-box;
-  font-size: 26px;
-}
+  font-size: 2rem;
 
-.menu-item {
-  -webkit-transition-duration: 180ms;
-  transition-duration: 180ms;
-  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
-  display: inline-block;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-.menu-item,
-.menu-open-button {
-    background: #eeeeee;
+  .menu-item,
+  .menu-open-button {
+    width: 160px;
+    height: 70px;
+    background: $lowColor;
     border-radius: 30px;
-    width: 180px;
-    height: 80px;
-    line-height: 80px;
+    line-height: 70px;
     position: absolute;
-    color: #ffffff;
     text-align: center;
-    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform ease-out 200ms;
-    transition: -webkit-transform ease-out 200ms;
     transition: transform ease-out 200ms;
-    transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
-}
+  }
 
-.menu-open {
-    display: none;
-}
-.menu-open-button{z-index:9999;}
-.lines {
-    width: 25px;
-    height: 3px;
-    background: #596778;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -12.5px;
-    margin-top: -1.5px;
-    -webkit-transition: -webkit-transform 200ms;
-    transition: -webkit-transform 200ms;
-    transition: transform 200ms;
-    transition: transform 200ms, -webkit-transform 200ms;
-}
+  .menu-item {
+    display: inline-block;
+    
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    a {
+      color: $pointColor;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      path{
+        fill: $pointColor;
+      }
+    }
+    
+    &:hover{
+      background-color:$pointColor;
+      a{
+        color:$lowColor;
+        path{
+          fill: $lowColor;
+        }
+      }
+    }
+  }
 
-.line-1 {
-    -webkit-transform: translate3d(0, -8px, 0);
-    transform: translate3d(0, -8px, 0);
-}
-
-.line-2 {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
-.line-3 {
-    -webkit-transform: translate3d(0, 8px, 0);
-    transform: translate3d(0, 8px, 0);
-}
-
-.menu-open:checked + .menu-open-button .line-1 {
-    -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
-    transform: translate3d(0, 0, 0) rotate(45deg);
-}
-
-.menu-open:checked + .menu-open-button .line-2 {
-    -webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
-    transform: translate3d(0, 0, 0) scale(0.1, 1);
-}
-
-.menu-open:checked + .menu-open-button .line-3 {
-    -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
-    transform: translate3d(0, 0, 0) rotate(-45deg);
-}
-
-.menu-open-button {
+  .menu-open-button {
     z-index: 2;
-    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -webkit-transition-duration: 400ms;
-    transition-duration: 400ms;
-    -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-    transform: scale(1.1, 1.1) translate3d(0, 0, 0);
     cursor: pointer;
     box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
-}
+    transform: scale(1.1, 1.1) translate3d(0, 0, 0);
 
-/*버튼커짐 */
-.menu-open-button:hover {
-    -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-    transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-}
+    &:hover {
+      transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+    }
+    
+    .lines {
+      width: 25px;
+      height: 3px;
+      background: $pointColor;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -12.5px;
+      margin-top: -1.5px;
+      transition: transform 200ms;
+    }
+    // line 위치 조정
+    .line-1 { transform: translate3d(0, -8px, 0); }
+    .line-2 { transform: translate3d(0, 0, 0); }
+    .line-3 { transform: translate3d(0, 8px, 0); }
+  }
 
-/*메뉴버튼이 클릭상태인 메뉴버튼인경우 */
-.menu-open:checked + .menu-open-button {
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
-    -webkit-transition-duration: 200ms;
-    transition-duration: 200ms;
-    -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-    transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-}
 
-.menu-open:checked ~ .menu-item {
-    -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-    transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-}
+  // open checkbox
+  .menu-open {
+    display: none;
+    &:checked {
+      // X표시 변경
+      + .menu-open-button .line-1 { transform: translate3d(0, 0, 0) rotate(45deg); }
+      + .menu-open-button .line-2 { transform: translate3d(0, 0, 0) scale(0, 1); }
+      + .menu-open-button .line-3 { transform: translate3d(0, 0, 0) rotate(-45deg); }
 
-.menu-open:checked ~ .menu-item:nth-child(3) {
-    transition-duration: 180ms;
-    -webkit-transition-duration: 180ms;
-    -webkit-transform: translate3d(0px, -80px, 0);
-    transform: translate3d(0px, -80px, 0);
-}
+      // 메뉴 오픈 시 open 버튼 사이즈 조절
+      + .menu-open-button {
+        transition-timing-function: linear;
+        transition-duration: 200ms;
+        transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+      }
 
-.menu-open:checked ~ .menu-item:nth-child(4) {
-    transition-duration: 280ms;
-    -webkit-transition-duration: 280ms;
-    -webkit-transform: translate3d(0px, -170px, 0);
-    transform: translate3d(0px, -170px, 0);
-}
-
-.menu-open:checked ~ .menu-item:nth-child(5) {
-    transition-duration: 380ms;
-    -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(0px, -260px, 0);
-    transform: translate3d(0px, -260px, 0);
-}
-
-.menu-open:checked ~ .menu-item:nth-child(6) {
-    transition-duration: 380ms;
-    -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(0px, -350px, 0);
-    transform: translate3d(0px, -350px, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(7) {
-    transition-duration: 380ms;
-    -webkit-transition-duration: 380ms;
-    -webkit-transform: translate3d(0px, -440px, 0);
-    transform: translate3d(0px, -440px, 0);
-}
-
-.toggleDarkBtn {
-    background-color: #696969;
-}
-
-.purple {
-    background-color: #c49cde;
-}
-
-.orange {
-    background-color: #fc913a;
+      ~ .menu-item {
+        // Intro button 위치 조정
+        &:nth-child(3) {
+          transition-duration: 180ms;
+          transform: translate3d(0px, -80px, 0);
+        }
+        // CatList button 위치 조정
+        &:nth-child(4) {
+          transition-duration: 280ms;
+          transform: translate3d(0px, -170px, 0);
+        }
+        // TipTap button 위치 조정
+        &:nth-child(5) {
+          transition-duration: 380ms;
+          transform: translate3d(0px, -260px, 0);
+        }
+        // TodoList button 위치 조정
+        &:nth-child(6) {
+          transition-duration: 380ms;
+          transform: translate3d(0px, -350px, 0);
+        }
+      }
+    }
+  }
 }
