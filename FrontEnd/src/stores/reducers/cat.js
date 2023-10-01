@@ -8,7 +8,15 @@ const initialstate = {
   selectedKindCode: '',
   curPage: 1,
   selectedCat: {},
-  selectedCharc: {},
+  selectedCharc: {
+    charc_id: "",
+    curious: 0,
+    extrovert: 0,
+    friendly: 0,
+    independence: 0,
+    introvert: 0,
+    tranquil: 0
+  },
   isEndData: false,
 }
 
