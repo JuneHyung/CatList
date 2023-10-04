@@ -1,4 +1,4 @@
-import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND, FETCH_SELECTED_KIND_CODE } from "../constant/variable";
+import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND, FETCH_SELECTED_KIND_CODE } from "../constant/variable";
 import { getAllCatByKind, getAllKind, getAllCatByKeyword, getCharcByCharcId } from "../../api/cats";
 
 
@@ -110,6 +110,12 @@ export const resetIsEndData = () =>{
   }
 }
 
+export const toggleIsLoading = (flag) =>{
+  return async (dispatch, getState) => {
+    dispatch(fetchIsLoading(flag))
+  }
+}
+
 const clearAllCatData = () =>{
   return {
     type: CLEAR_ALL_CAT_DATA
@@ -182,6 +188,12 @@ const fetchCurPage = (data) => {
 const fetchIsEndData = (data) => {
   return {
     type: FETCH_IS_END_DATA,
+    data,
+  }
+}
+const fetchIsLoading = (data) => {
+  return {
+    type: FETCH_IS_LOADING,
     data,
   }
 }

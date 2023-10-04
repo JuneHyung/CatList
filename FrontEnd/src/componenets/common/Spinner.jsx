@@ -1,7 +1,7 @@
 const Spinner = () => {
   return (
-    <div>
-      <img src="images/common/loadingCat.gif" alt="spinner" />
+    <div className="spinner">
+      <div className="spinner-inner"></div>
     </div>
   )
 }

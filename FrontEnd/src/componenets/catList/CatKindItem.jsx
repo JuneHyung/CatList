@@ -4,14 +4,16 @@ import Avatar from "../common/Avatar";
 import { useCallback } from "react";
 
 const CatKindItem = ({item}) =>{
-  const {selectedKindName} = useSelector((state)=> state.cat)
+  const {selectedKindName, isLoading} = useSelector((state)=> state.cat)
   const dispatch = useDispatch();
   
   const handleOnClick = useCallback(() =>{
-    dispatch(resetIsEndData())
-    dispatch(setSelectedKind({kind_code: item.kind_code, kind_name: item.kind_name}));
-    dispatch(getCatListByKind({kind_code: item.kind_code ,curPage: 1}));
-  }, [item.kind_name, item.kind_code, dispatch])
+    if(!isLoading){
+      dispatch(resetIsEndData())
+      dispatch(setSelectedKind({kind_code: item.kind_code, kind_name: item.kind_name}));
+      dispatch(getCatListByKind({kind_code: item.kind_code ,curPage: 1}));
+    }
+  }, [item.kind_name, item.kind_code, dispatch, isLoading])
 
   return (
     <li className={`cat-kind-item ${selectedKindName === item.kind_name ? 'active-kind' : ''}`} onClick={handleOnClick}>

@@ -1,4 +1,4 @@
-const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA } = require("../constant/variable");
+const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } = require("../constant/variable");
 
 const initialstate = {
   catList: [],
@@ -18,6 +18,7 @@ const initialstate = {
     tranquil: 0
   },
   isEndData: false,
+  isLoading: false,
 }
 
 const catReducer = (prevState = initialstate, action) =>{
@@ -51,6 +52,8 @@ const catReducer = (prevState = initialstate, action) =>{
       return {...prevState, curPage: action.data};
     case FETCH_IS_END_DATA:
       return {...prevState, isEndData: action.data};
+    case FETCH_IS_LOADING:
+      return {...prevState, isLoading: action.data};
     default:
       return prevState
   }

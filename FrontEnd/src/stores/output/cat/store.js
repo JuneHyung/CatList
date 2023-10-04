@@ -20,6 +20,7 @@ const initialstate = {
     tranquil: 0
     },
     isEndData: false,
+    isLoading: false,
   }
 }
 

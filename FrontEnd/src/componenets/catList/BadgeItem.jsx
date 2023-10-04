@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 
 const BadgeItem = ({item}) =>{
+  const {isLoading} = useSelector((state)=> state.cat)
   const bgNameList =  [
     'warmFlame',
     'nightFade',
@@ -26,9 +27,11 @@ const BadgeItem = ({item}) =>{
   const dispatch = useDispatch();
   
   const handleOnClick = useCallback(() =>{
-    dispatch(resetIsEndData());
-    dispatch(getCatListByKeyword({keyword:item, curPage: 1}));
-  }, [dispatch, item])
+    if(!isLoading){
+      dispatch(resetIsEndData());
+      dispatch(getCatListByKeyword({keyword:item, curPage: 1}));
+    }
+  }, [dispatch, item, isLoading])
 
 
   return(
