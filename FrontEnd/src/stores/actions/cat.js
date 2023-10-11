@@ -30,24 +30,34 @@ export const getCatListByKind = (params) =>{
   return async (dispatch, getState) => {
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
+
+    dispatch(fetchIsLoading(true))
+
     try{
       if(!isEnd){
-        const list = await getAllCatByKind(params);
-        if(list.length!==0){
-          const result = params.curPage===1 ? list : [...prevList, ...list]
-
-          list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
-
-          dispatch(fetchCurPage(params.curPage))
-          dispatch(fetchCatList(result));
-        }else{
-          dispatch(fetchCatList([]))
-        }
+        setTimeout(async()=>{
+          const list = await getAllCatByKind(params);
+          if(list.length!==0){
+            const result = params.curPage===1 ? list : [...prevList, ...list]
+  
+            list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
+  
+            dispatch(fetchCurPage(params.curPage))
+            dispatch(fetchCatList(result));
+          }else{
+            dispatch(fetchCatList([]))
+            dispatch(fetchIsLoading(false))
+          }
+          dispatch(fetchIsLoading(false))
+        }, 3000);
+      }else{
+        dispatch(fetchIsLoading(false))
       }
     }
     catch(e){
       console.log(e);
       dispatch(clearAllCatData());
+      dispatch(fetchIsLoading(false))
     }
   }
 }
@@ -68,26 +78,35 @@ export const getCatListByKeyword = (params) =>{
   return async (dispatch, getState) =>{
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
+
+    dispatch(fetchIsLoading(true))
+
     try{
       if(!isEnd){
-        const list = await getAllCatByKeyword(params);
-        dispatch(fetchLastKeyword(params.keyword))
-        dispatch(clearSelectedKind());
-        if(list.length!==0){
-          const result = params.curPage===1 ? list : [...prevList, ...list]
-          
-          list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
-          
-          dispatch(fetchCurPage(params.curPage))
-          dispatch(fetchCatList(result));
-        }else{
-          dispatch(fetchCatList([]));
-        }
+        setTimeout(async ()=>{
+          const list = await getAllCatByKeyword(params);
+          dispatch(fetchLastKeyword(params.keyword))
+          dispatch(clearSelectedKind());
+          if(list.length!==0){
+            const result = params.curPage===1 ? list : [...prevList, ...list]
+            
+            list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
+            
+            dispatch(fetchCurPage(params.curPage))
+            dispatch(fetchCatList(result));
+          }else{
+            dispatch(fetchCatList([]));
+            dispatch(fetchIsLoading(false))
+          }
+          dispatch(fetchIsLoading(false))
+        }, 3000)
+      }else{
+        dispatch(fetchIsLoading(false))
       }
-    }
-    catch(e){
+    } catch(e){
       console.log(e);
       dispatch(clearAllCatData());
+      dispatch(fetchIsLoading(false))
     }
   }
 }
