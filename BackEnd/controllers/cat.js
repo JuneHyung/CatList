@@ -6,6 +6,7 @@ const perPage = 10;
 
 exports.getAllCatsByKeyword = async (req, res, next) => {
   const {keyword, curPage} = req.query;
+  console.log(keyword, curPage)
   try{
     const allCats = await Cat.findAll({
       where:{

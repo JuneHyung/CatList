@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "cat_code":{
+      "type": "integer",
+      "description": "고양이 코드"
+    },
+    "cat_name":{
+      "type": "string",
+      "description": "고양이 이름"
+    },
+    "cat_age":{
+      "type": "integer",
+      "description": "고양이 나이"
+    },
+    "kind_code":{
+      "type": "string",
+      "description": "고양이 종류 코드"
+    },
+    "description":{
+      "type": "string",
+      "description": "고양이 특징 설명"
+    },
+    "create_date":{
+      "type": "string",
+      "description": "고양이 데이터 생성 날짜"
+    },
+    "profile":{
+      "type": "string",
+      "description": "고양이 프로필 사진"
+    },
+    "kind_profile":{
+      "type": "string",
+      "description": "고양이 종류 대표 프로필 사진"
+    },
+    "kind_name":{
+      "type": "string",
+      "description": "고양이 종류 이름"
+    },
+    "address":{
+      "type": "string",
+      "description": "고양이 주소 내용"
+    },
+    "charc_id":{
+      "type": "string",
+      "description": "고양이 성격 코드"
+    },
+    "see":{
+      "type": "integer",
+      "description": "고양이 조회수"
+    }
+  }
+}
