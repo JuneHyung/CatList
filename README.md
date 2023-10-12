@@ -1,20 +1,21 @@
-# Infinite-Scrolling
+# CatList
 
-**Notion** : [Infinite-Scrolling](https://www.notion.so/Infinite-Scrolling-92cba91224944a7784153fc4139e0c59)
+**Notion** : 
 
-Vue 공부용 예제
 
-<strong>Front : Vue </strong>
+
+**Front : Vue -> React** 
 
 ```
 npm install
-npm run serve
+npm run start
 ```
 
-<strong>Back : Spring</strong>
+**Back : Spring -> Node**
 
 ```
-Run application
+npm install
+npm run start
 ```
 
 <Strong>DB : mysql</strong>
@@ -23,29 +24,33 @@ Run application
 
 ## 개발 배경
 
-시작은 무한스크롤을 Vue에서 적용해보기 위한 에제.
+**before**
+
+시작은 무한스크롤을 Vue에서 적용해보기 위한 예제.
 
 이제는 추가해보고 싶은 새로운 기능이나 라이브러리등을 하나씩 Vue에 적용해보기 위해 작성해보는 <br/>
 개인 공부용 프로젝트.
 
 
 
+**after**
+
+React로 마이그레이션 하며, React에서 라이브러리의 적용과 React & Redux의 이해하기위해 연습하는 개인 공부용 프로젝트.
+
+
+
 ## 주요기능
 
 * 무한 스크롤
-* 고양이 detail정보 띄우기
-* dark mode
-* 데이터 로딩 UI
+* 고양이 detail정보
+* 데이터 로딩 UI (Spinner)
 * 검색기능
 * 검색 후 최근 검색어 태그 추가
-* 성격 차트 추가
+* 성격 차트
 * 위치 지도 출력.
-* 원형 스타일의 메뉴 → 리스트형태로 변경
-* 사이트 방문 횟수 차트 페이지
-* 음성인식으로 검색창 입력
+* 음성인식으로 검색창 입력 -> 가상키보드를 이용한 검색창 입력
 * TodoList
 * TipTap
-* Intro Page
 
 
 

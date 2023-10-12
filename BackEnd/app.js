@@ -29,6 +29,10 @@ app.use("/api/cat", catRoutes);
 app.use("/api/charc", charcRoutes);
 app.use("/api/todo", todoRoutes);
 
+// use swagger
+const {swaggerUi, specs} = require('./swagger/swagger');
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use((req, res, next)=>{
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`)
   error.status = 404;
