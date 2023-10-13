@@ -2,12 +2,15 @@ import { useSelector } from "react-redux";
 import MdiIcon from "../common/MdiIcon";
 import RadarChart from "../chart/RadarChart";
 import Spinner from "../common/Spinner";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import NoImage from "../common/NoImage";
 import KakaoMap from "../kakao/KakaoMap";
+import FurInfo from "./FurInfo";
 
 const CatDetailPage = () => {
-  const { selectedCat, selectedCharc, isLoading } = useSelector((state) => state.cat);
+  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state) => state.cat);
+  const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
+  const [kindInfo, setKindInfo] = useState('')
 
   const calculatedSeries = useMemo(() => {
     if (selectedCharc !== undefined && selectedCharc.charc_id.length !== 0) {
@@ -17,7 +20,16 @@ const CatDetailPage = () => {
   }, [selectedCharc]);
 
   const charcCategories = ["외향적", "내향적", "차분함", "호기심", "독립성", "친근함"];
-
+  const toggleFeatureInfo = useCallback(() =>{
+    const nextFlag = !isOpenFurInfo
+    setIsOpenFurInfo(nextFlag) 
+    if(nextFlag){
+      const code = selectedCat.kind_code;
+      setKindInfo(catKindList.find(el=>el.kind_code===code))
+    }else{
+      setKindInfo({})
+    }
+  }, [catKindList, isOpenFurInfo, selectedCat.kind_code])
   return (
     <>
       {isLoading ? (
@@ -27,7 +39,8 @@ const CatDetailPage = () => {
           <div className="top-info-wrap">
             <div className="profile-box">{selectedCat.profile.length === 0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${selectedCat.profile}`} alt="Kind Profile" />}</div>
             <div className="info-box">
-              <p>품종 : {selectedCat.kind_name}</p>
+              <p>품종 : {selectedCat.kind_name} <MdiIcon name="mdiInformationVariantCircle" className="fur-info-icon" onClick={toggleFeatureInfo}/></p>
+              {isOpenFurInfo ? <FurInfo info={kindInfo}/> : <div></div>}
               <p>이름 : {selectedCat.cat_name}</p>
               <p>나이 : {selectedCat.cat_age} 살</p>
               <p>등록일 : {selectedCat.create_date}</p>

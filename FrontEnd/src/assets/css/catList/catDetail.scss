@@ -29,12 +29,28 @@
       text-align:left;
       padding: 0 0.5rem;
       flex:8;
-      // border: 2px solid $pointColor;
       box-sizing: border-box;
       margin-left:8px;
+      position:relative;
+      
       p{
         display:flex;
         align-items: center;
+      }
+      svg{
+        path {
+          fill: $pointColor;
+          cursor:pointer;
+        }
+      }
+      .fur-info{
+        position:absolute;
+        padding:8px;
+        // border:1px solid $pointColor;
+        border-radius:0.25rem;
+        color:$lowColor;
+        background-color: $pointColor;
+        right:0;
       }
     }
   }
