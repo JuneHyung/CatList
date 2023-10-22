@@ -1,6 +1,6 @@
 # CatList
 
-**Notion** : 
+**Notion** : 아직 작성 중 입니다. 조금만 기다려주세요 😀
 
 
 
@@ -18,7 +18,7 @@ npm install
 npm run start
 ```
 
-<Strong>DB : mysql</strong>
+<Strong>DB : Mysql</strong>
 
 
 
@@ -39,18 +39,22 @@ React로 마이그레이션 하며, React에서 라이브러리의 적용과 Rea
 
 
 
-## 주요기능
+## 주요 기능
 
-* 무한 스크롤
-* 고양이 detail정보
-* 데이터 로딩 UI (Spinner)
 * 검색기능
-* 검색 후 최근 검색어 태그 추가
-* 성격 차트
-* 위치 지도 출력.
-* 음성인식으로 검색창 입력 -> 가상키보드를 이용한 검색창 입력
-* TodoList
+  * 무한스크롤로 추가 조회
+  * 조회 시 로딩 UI (Spinner)
+  * 고양이 종류 목록 클릭으로 리스트 조회.
+  * 검색 후 최근 검색어 태그 추가 (태그 클릭으로 조회)
+  * 가상키보드를 이용한 검색창 입력
+
+* 고양이 detail정보
+  * 성격 차트
+  * 위치 지도 출력.
+
+* TodoList (CRUD)
 * TipTap
+* Swagger 작성
 
 
 
@@ -58,89 +62,48 @@ React로 마이그레이션 하며, React에서 라이브러리의 적용과 Rea
 
 ### Opening Page
 
-![opening](./images/Result_Images/opening.gif)
+![opening](./images/after_refact/intro.jpg)
 
 
 
 ### 목록 페이지
 
-### 무한 스크롤 및 로딩 UI
+### 무한 스크롤 및 로딩 UI 
 
-![scrolling](./images/Result_Images/scrolling.gif)
-
-
-
-### 구글 지도 확인 및 Detail Card
-
-![detail](./images/Result_Images/detail.gif)
+![scrolling](./images/after_refact/search_by_scroll.gif)
 
 
 
 ### 검색 및 검색어 태그상자 추가
 
-![search](./images/Result_Images/search.gif)
+![search](./images/after_refact/search_by_keyword.gif)
 
 
 
-## 메뉴
+### 가상 키보드
 
-### 현재 메뉴 (리스트)
-
-![aftermenu](./images/Result_Images/aftermenu.gif)
+![virtual_keyboard](./images/after_refact/search_by_virtual_keyboard.gif)
 
 
 
-### 이전 메뉴 (원형)
+### 메뉴
 
-![beforeMenu](./images/Result_Images/beforeMenu.gif)
-
-
-
-## 다크모드
-
-![darkmode](./images/Result_Images/darkmode.gif)
+![open_menu](./images/after_refact/open_menu.gif)
 
 
 
-## 방문차트
+### TodoList
 
-![visitChart](./images/Result_Images/visitChart.jpg)
-
-
-
-## TodoList
-
-![TodoList](./images/Result_Images/TodoList.jpg)
+![todo_flow](./images/after_refact/todo_flow.gif)
 
 
 
-## TipTap
+### TipTap
 
-![TipTap](./images/Result_Images/TipTap.jpg)
-
-
-
-## Intro Page
-
-### Opening 페이지 Intro
-
-![intro01](./images/Result_Images/opening_Intro.gif)
+![TipTap](./images/after_refact/tiptap.jpg)
 
 
 
-### 목록 페이지 Intro
+### Swagger
 
-![intro04](./images/Result_Images/main_Intro.gif)
-
-
-
-### 방문 차트 페이지 Intro
-
-![intro02](./images/Result_Images/visitChart_Intro.gif)
-
-
-
-### TodoList 페이지 Intro
-
-![intro03](./images/Result_Images/todo_Intro.gif)
-
+![swagger](./images/after_refact/swagger.jpg)
