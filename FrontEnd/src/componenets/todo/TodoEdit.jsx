@@ -21,7 +21,7 @@ const TodoEdit = () =>{
       setUpdateFlag(true);
       setFormData(selectedItem)
     }
-  },[])
+  },[selectedItem])
 
   // input 변경 시 form데이터 변경
   const handleInputChange = useCallback((e)=>{
@@ -91,7 +91,7 @@ const TodoEdit = () =>{
         name="content" 
         className="todo-edit-input-area jh-ml-sm" 
         rows="5"
-        maxlength="200"
+        maxLength="200"
         value={formData.content} 
         onChange={handleInputChange} />
       </label>
