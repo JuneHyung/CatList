@@ -1,6 +1,8 @@
 # CatList
 
-**Notion** : 아직 작성 중 입니다. 조금만 기다려주세요 😀
+**Notion** 
+
+[🐱CatList Notion](https://selective-clave-3fb.notion.site/CatList-cdefbdf9499d471ca809d9527f9766aa)
 
 
 
@@ -47,8 +49,8 @@ React로 마이그레이션 하며, React에서 라이브러리의 적용과 Rea
   * 고양이 종류 목록 클릭으로 리스트 조회.
   * 검색 후 최근 검색어 태그 추가 (태그 클릭으로 조회)
   * 가상키보드를 이용한 검색창 입력
-
 * 고양이 detail정보
+  * 고양이 종에 따른 특징 조회
   * 성격 차트
   * 위치 지도 출력.
 
