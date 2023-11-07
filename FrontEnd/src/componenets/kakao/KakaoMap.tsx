@@ -5,7 +5,7 @@ const centerPos = { lat: 33.450701, lng: 126.570667 };
 const KakaoMap = ({ address }) => {
   // 지도 init
   const initMap = useCallback(() => {
-    const { kakao } = window;
+    const { kakao } = window as any;
     const container = document.getElementById("map");
     // default 지도 옵션 set
     const options = {
@@ -44,8 +44,9 @@ const KakaoMap = ({ address }) => {
   }, [address]);
 
   useEffect(() => {
-    if (window.kakao && window.kakao.maps) {
-      window.kakao.maps.load(() => {
+    const {kakao} = window as any;
+    if (kakao && kakao.maps) {
+      kakao.maps.load(() => {
         initMap();
       });
     }

@@ -9,7 +9,7 @@ const Menu = () => {
   ]
   return (
     <nav className="menu-list">
-      <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open" />
+      <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" />
       <label className="menu-open-button" htmlFor="menu-open">
           <span className="lines line-1"></span>
           <span className="lines line-2"></span>

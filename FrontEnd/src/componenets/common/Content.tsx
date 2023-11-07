@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import IntroPage from "../../pages/IntroPage";
 import CatListPage from "../../pages/CatListPage";
 import TipTapPage from "../../pages/TipTapPage";
-import VisitChartPage from "../../pages/VisitChartPage";
 import TodoListPage from "../../pages/TodoListPage";
 import Menu from "../menu/Menu";
 import { Provider } from "react-redux";
@@ -25,7 +24,6 @@ const Content = () => {
           />
           
           <Route path="/tiptap" element={<TipTapPage />} />
-          <Route path="/visitChart" element={<VisitChartPage />} />
 
           <Route
             path="/todoList"

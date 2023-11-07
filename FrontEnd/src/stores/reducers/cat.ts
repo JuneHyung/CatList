@@ -21,7 +21,7 @@ const initialstate = {
   isLoading: false,
 }
 
-const catReducer = (prevState = initialstate, action) =>{
+const catReducer = (prevState = initialstate, action: any) =>{
   // console.log(action.type, action.data)
   switch(action.type){
     case CLEAR_ALL_CAT_DATA:
@@ -59,4 +59,4 @@ const catReducer = (prevState = initialstate, action) =>{
   }
 }
 
-module.exports = catReducer;
+export default catReducer;

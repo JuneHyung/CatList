@@ -1,9 +1,10 @@
-import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND, FETCH_SELECTED_KIND_CODE } from "../constant/variable";
+import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND } from "../constant/variable";
 import { getAllCatByKind, getAllKind, getAllCatByKeyword, getCharcByCharcId } from "../../api/cats";
+import { ClearAllCatDataAction, ClearCatListAction, ClearSelectedCatAction, ClearSelectedCharcAction, ClearSelectedKindAction, FetchCatKindListAction, FetchCatListAction, FetchCurPageAction, FetchIsEndDataAction, FetchIsLoadingAction, FetchLastKeywordAction, FetchSelectedCatAction, FetchSelectedCharcAction, FetchSelectedKindAction, ThunkAction } from "../../types/action";
 
 
-export const setCatKindList = () => {
-  return async (dispatch, getState) => {
+export const setCatKindList = (): ThunkAction => {
+  return async (dispatch) => {
     try{
       const data = await getAllKind();
       dispatch(fetchCatKindList(data));
@@ -14,8 +15,8 @@ export const setCatKindList = () => {
   }
 }
 
-export const setSelectedKind = (kind) =>{
-  return async (dispatch, getState) => {
+export const setSelectedKind = (kind): ThunkAction =>{
+  return async (dispatch) => {
     try{
       dispatch(fetchSelectedKind(kind))
     }catch(e){
@@ -26,7 +27,7 @@ export const setSelectedKind = (kind) =>{
 }
 
 
-export const getCatListByKind = (params) =>{
+export const getCatListByKind = (params): ThunkAction =>{
   return async (dispatch, getState) => {
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
@@ -62,8 +63,8 @@ export const getCatListByKind = (params) =>{
   }
 }
 
-export const setSelectedCat = (cat) => {
-  return async (dispatch, getState) => {
+export const setSelectedCat = (cat): ThunkAction => {
+  return async (dispatch) => {
     try{
       dispatch(fetchSelectedCat(cat))
     }catch(e){
@@ -74,7 +75,7 @@ export const setSelectedCat = (cat) => {
 }
 
 // searchbar
-export const getCatListByKeyword = (params) =>{
+export const getCatListByKeyword = (params): ThunkAction =>{
   return async (dispatch, getState) =>{
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
@@ -111,8 +112,8 @@ export const getCatListByKeyword = (params) =>{
   }
 }
 
-export const setSelectedCharc = (charcId) => {
-  return async (dispatch, getState) => {
+export const setSelectedCharc = (charcId): ThunkAction => {
+  return async (dispatch) => {
     try{
       const result = await getCharcByCharcId(charcId);
       dispatch(fetchSelectedCharc(result));
@@ -123,94 +124,94 @@ export const setSelectedCharc = (charcId) => {
   }
 }
 
-export const resetIsEndData = () =>{
-  return async (dispatch, getState) => {
+export const resetIsEndData = (): ThunkAction =>{
+  return async (dispatch) => {
     dispatch(fetchIsEndData(false))
   }
 }
 
-export const toggleIsLoading = (flag) =>{
-  return async (dispatch, getState) => {
+export const toggleIsLoading = (flag): ThunkAction =>{
+  return async (dispatch) => {
     dispatch(fetchIsLoading(flag))
   }
 }
 
-const clearAllCatData = () =>{
+const clearAllCatData = (): ClearAllCatDataAction =>{
   return {
     type: CLEAR_ALL_CAT_DATA
   }
 }
-const clearCatList = () =>{
+const clearCatList = (): ClearCatListAction =>{
   return {
     type: CLEAR_CAT_LIST
   }
 }
 
-const clearSelectedKind = () =>{
+const clearSelectedKind = ():ClearSelectedKindAction =>{
   return {
     type: CLEAR_SELECTED_KIND
   }
 }
-const clearSelectedCat = () =>{
+const clearSelectedCat = ():ClearSelectedCatAction =>{
   return {
     type: CLEAR_SELECTED_CAT
   }
 }
-const clearSelectedCharc = () =>{
+const clearSelectedCharc = ():ClearSelectedCharcAction =>{
   return {
     type: CLEAR_SELECTED_CHARC
   }
 }
-const fetchCatList = (data) =>{
+const fetchCatList = (data):FetchCatListAction =>{
   return {
     type: FETCH_CAT_LIST,
     data,
   }
 }
-const fetchCatKindList = (data) =>{
+const fetchCatKindList = (data): FetchCatKindListAction =>{
   return {
     type: FETCH_CAT_TYPE_LIST,
     data,
   }
 }
-const fetchSelectedKind = (data) =>{
+const fetchSelectedKind = (data): FetchSelectedKindAction =>{
   return {
     type: FETCH_SELECTED_KIND,
     data,
   }
 }
-const fetchSelectedCat = (data) =>{
+const fetchSelectedCat = (data): FetchSelectedCatAction =>{
   return {
     type: FETCH_SELECTED_CAT,
     data,
   }
 }
-const fetchSelectedCharc = (data) => {
+const fetchSelectedCharc = (data): FetchSelectedCharcAction => {
   return {
     type: FETCH_SELECTED_CHARC,
     data,
   }
 }
 
-const fetchLastKeyword = (data) => {
+const fetchLastKeyword = (data):FetchLastKeywordAction => {
   return {
     type: FETCH_LAST_KEYWORD,
     data,
   }
 }
-const fetchCurPage = (data) => {
+const fetchCurPage = (data): FetchCurPageAction => {
   return {
     type: FETCH_CUR_PAGE,
     data,
   }
 }
-const fetchIsEndData = (data) => {
+const fetchIsEndData = (data):FetchIsEndDataAction => {
   return {
     type: FETCH_IS_END_DATA,
     data,
   }
 }
-const fetchIsLoading = (data) => {
+const fetchIsLoading = (data):FetchIsLoadingAction => {
   return {
     type: FETCH_IS_LOADING,
     data,

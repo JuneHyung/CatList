@@ -1,6 +1,5 @@
 const { CLEAR_FOCUS_DATE, CLEAR_TODO_LIST, FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_EDIT_FLAG, FETCH_SELECTED_ITEM } = require("../constant/variable");
 
-
 const initialstate = {
   focusDate: '',
   editFlag: false,
@@ -9,7 +8,7 @@ const initialstate = {
   selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo'}
 }
 
-const todoReducer = (prevState = initialstate, action) =>{
+const todoReducer = (prevState = initialstate, action : any) =>{
   // console.log(action.type, action.data)
   switch(action.type){
     case CLEAR_FOCUS_DATE:
@@ -30,5 +29,4 @@ const todoReducer = (prevState = initialstate, action) =>{
       return prevState
   }
 }
-
-module.exports = todoReducer;
+export default todoReducer;

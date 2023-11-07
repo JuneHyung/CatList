@@ -1,4 +1,7 @@
 import { deleteTodoItem, getAllTodoList, postTodoItem, putTodoItem, putTodoItemStatus } from "../../api/todo";
+import { curStatus } from "../../types";
+import { FetchCurStatusAction, FetchEditFlagAction, FetchFocusDateAction, FetchTodoListAction, ThunkAction} from "../../types/action";
+
 import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_EDIT_FLAG, FETCH_SELECTED_ITEM } from "../constant/variable"
 
 export const setTodoList = (status, focusDate) => {
@@ -12,27 +15,27 @@ export const setTodoList = (status, focusDate) => {
   }
 }
 
-export const setFocusDate = (date) => {
-  return async (dispatch, getState) => {
+export const setFocusDate = (date: string): ThunkAction => {
+  return async (dispatch) => {
     dispatch(fetchFocusDate(date));
   }
 }
 
-export const setCurStatus = (status) => {
-  return async (dispatch, getState) => {dispatch(fetchCurStatus(status))}
+export const setCurStatus = (status: curStatus): ThunkAction => {
+  return async (dispatch) => {dispatch(fetchCurStatus(status))}
 }
 
-export const setSelectedItem = (info) => {
-  return async (dispatch, getState) => {
+export const setSelectedItem = (info): ThunkAction => {
+  return async (dispatch) => {
     dispatch(fetchSelectedItem(info));
   }
 }
 
-export const toggleEditFlag = (status) => {
-  return async (dispatch, getState) => {dispatch(fetchEditFlag(status))}
+export const toggleEditFlag = (status: boolean): ThunkAction => {
+  return async (dispatch) => {dispatch(fetchEditFlag(status))}
 }
 
-export const putCurItemStatus = (body) => {
+export const putCurItemStatus = (body): ThunkAction => {
   return async (dispatch, getState) => {
     const {code, message} = await putTodoItemStatus(body);
     if(code===200){
@@ -43,7 +46,7 @@ export const putCurItemStatus = (body) => {
   }
 }
 
-export const postNewTodoItem = (body) =>{
+export const postNewTodoItem = (body): ThunkAction =>{
   return async (dispatch, getState) =>{
     const {code, message} = await postTodoItem(body);
     if(code===200){
@@ -55,7 +58,7 @@ export const postNewTodoItem = (body) =>{
   }
 }
 
-export const putCurTodoItem = (body) =>{
+export const putCurTodoItem = (body): ThunkAction =>{
   return async (dispatch, getState) =>{
     const {code, message} = await putTodoItem(body);
     if(code===200){
@@ -67,7 +70,7 @@ export const putCurTodoItem = (body) =>{
   }
 }
 
-export const deleteSelectedItem = (id) => {
+export const deleteSelectedItem = (id): ThunkAction => {
   return async (dispatch, getState) => {
     const {code, message} = await deleteTodoItem(id);
     if(code===200){
@@ -78,27 +81,27 @@ export const deleteSelectedItem = (id) => {
   }
 }
 
-const fetchFocusDate = (data) => {
+const fetchFocusDate = (data): FetchFocusDateAction => {
   return {
     type: FETCH_FOCUS_DATE,
     data,
   }
 }
 
-const fetchTodoList = (data) =>{
+const fetchTodoList = (data): FetchTodoListAction =>{
   return {
     type: FETCH_TODO_LIST,
     data,
   }
 }
 
-const fetchCurStatus = (data) =>{
+const fetchCurStatus = (data): FetchCurStatusAction =>{
   return {
     type: FETCH_CUR_STATUS,
     data,
   }
 }
-const fetchEditFlag = (data) =>{
+const fetchEditFlag = (data): FetchEditFlagAction =>{
   return {
     type: FETCH_EDIT_FLAG,
     data,
