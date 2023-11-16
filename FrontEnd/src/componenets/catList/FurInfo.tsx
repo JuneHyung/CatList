@@ -1,4 +1,4 @@
-const FurInfo = ({info}) =>{
+const FurInfo = ({info}: {info: KindInfo}) =>{
   return (
     <div className="fur-info">
       <p> {info.kind_name}의 특징 </p>

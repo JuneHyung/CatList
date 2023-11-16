@@ -8,7 +8,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
 
   // 한영 전환 키
   const switchKey = useCallback(
-    (key) => {
+    (key: string | number) => {
       if (!isShift && !isEnglish) return koSmall[key];
       else if (isShift && !isEnglish) return koBig[key];
       else if (isShift && isEnglish) return enBig[key];
@@ -19,7 +19,7 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
 
   // key에 따른 클래스 적용
   const handleKeyClassName = useCallback(
-    (key) => {
+    (key: string | number) => {
       switch (key) {
         case 'reset':
           return 'keyboard-key keyboard-reset'
@@ -41,13 +41,13 @@ const CustomKeyboard = ({inputValue, setInputValue, setIsOpen, handleClickSearch
 
   // key에 따른 동작
   const handleKeyClick = useCallback(
-    (key) => {
+    (key: string | number) => {
       switch (key) {
         case 'reset':
           setInputValue("")
           break;
         case 'space':
-          setInputValue(hangul.assemble(inputValue + " "))
+          setInputValue(hangul.assemble([inputValue + " "]))
           break;
         case 'search':
           handleClickSearch();

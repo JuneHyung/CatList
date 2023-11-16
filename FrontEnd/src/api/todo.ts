@@ -14,7 +14,7 @@ export const getAllTodoList = async (status:string, focusDate:string): Promise<T
 
 export const putTodoItemStatus = async (body: PutTodoItemStatusRequestBody): Promise<PutResponseBody> =>{
   try{
-    const res = await putFetch(`${url}/todo/status`, body);
+    const res = await putFetch<PutTodoItemStatusRequestBody>(`${url}/todo/status`, body);
     const data:PutResponseBody = await res.json();
     return data;
   }catch(err){
@@ -25,7 +25,7 @@ export const putTodoItemStatus = async (body: PutTodoItemStatusRequestBody): Pro
 
 export const postTodoItem = async (body: TodoItemRequestBody): Promise<PostResponseBody> =>{
   try{
-    const res = await postFetch(`${url}/todo/item`, body);
+    const res = await postFetch<TodoItemRequestBody>(`${url}/todo/item`, body);
     const data: PostResponseBody = await res.json();
     return data;
   }catch(err){
@@ -35,7 +35,7 @@ export const postTodoItem = async (body: TodoItemRequestBody): Promise<PostRespo
 }
 export const putTodoItem = async (body: TodoItemRequestBody): Promise<PutResponseBody> =>{
   try{
-    const res = await putFetch(`${url}/todo/item`, body);
+    const res = await putFetch<TodoItemRequestBody>(`${url}/todo/item`, body);
     const data: PutResponseBody = await res.json();
     return data;
   }catch(err){

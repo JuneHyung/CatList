@@ -15,7 +15,7 @@ export const setCatKindList = (): ThunkAction => {
   }
 }
 
-export const setSelectedKind = (kind): ThunkAction =>{
+export const setSelectedKind = (kind: selectedKindInfo): ThunkAction =>{
   return async (dispatch) => {
     try{
       dispatch(fetchSelectedKind(kind))
@@ -27,7 +27,7 @@ export const setSelectedKind = (kind): ThunkAction =>{
 }
 
 
-export const getCatListByKind = (params): ThunkAction =>{
+export const getCatListByKind = (params: GetCatListByKindReqeustParams): ThunkAction =>{
   return async (dispatch, getState) => {
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
@@ -39,7 +39,7 @@ export const getCatListByKind = (params): ThunkAction =>{
         setTimeout(async()=>{
           const list = await getAllCatByKind(params);
           if(list.length!==0){
-            const result = params.curPage===1 ? list : [...prevList, ...list]
+            const result: CatList = params.curPage===1 ? list : [...prevList, ...list]
   
             list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
   
@@ -63,7 +63,7 @@ export const getCatListByKind = (params): ThunkAction =>{
   }
 }
 
-export const setSelectedCat = (cat): ThunkAction => {
+export const setSelectedCat = (cat: CatInfo): ThunkAction => {
   return async (dispatch) => {
     try{
       dispatch(fetchSelectedCat(cat))
@@ -75,7 +75,7 @@ export const setSelectedCat = (cat): ThunkAction => {
 }
 
 // searchbar
-export const getCatListByKeyword = (params): ThunkAction =>{
+export const getCatListByKeyword = (params: GetCatListByKeywordReqeustParams): ThunkAction =>{
   return async (dispatch, getState) =>{
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
@@ -89,7 +89,7 @@ export const getCatListByKeyword = (params): ThunkAction =>{
           dispatch(fetchLastKeyword(params.keyword))
           dispatch(clearSelectedKind());
           if(list.length!==0){
-            const result = params.curPage===1 ? list : [...prevList, ...list]
+            const result: CatList = params.curPage===1 ? list : [...prevList, ...list]
             
             list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
             
@@ -112,7 +112,7 @@ export const getCatListByKeyword = (params): ThunkAction =>{
   }
 }
 
-export const setSelectedCharc = (charcId): ThunkAction => {
+export const setSelectedCharc = (charcId: CatInfo['charc_id']): ThunkAction => {
   return async (dispatch) => {
     try{
       const result = await getCharcByCharcId(charcId);
@@ -130,7 +130,7 @@ export const resetIsEndData = (): ThunkAction =>{
   }
 }
 
-export const toggleIsLoading = (flag): ThunkAction =>{
+export const toggleIsLoading = (flag: boolean): ThunkAction =>{
   return async (dispatch) => {
     dispatch(fetchIsLoading(flag))
   }
@@ -162,56 +162,56 @@ const clearSelectedCharc = ():ClearSelectedCharcAction =>{
     type: CLEAR_SELECTED_CHARC
   }
 }
-const fetchCatList = (data):FetchCatListAction =>{
+const fetchCatList = (data: CatList):FetchCatListAction =>{
   return {
     type: FETCH_CAT_LIST,
     data,
   }
 }
-const fetchCatKindList = (data): FetchCatKindListAction =>{
+const fetchCatKindList = (data: KindList): FetchCatKindListAction =>{
   return {
     type: FETCH_CAT_TYPE_LIST,
     data,
   }
 }
-const fetchSelectedKind = (data): FetchSelectedKindAction =>{
+const fetchSelectedKind = (data: selectedKindInfo): FetchSelectedKindAction =>{
   return {
     type: FETCH_SELECTED_KIND,
     data,
   }
 }
-const fetchSelectedCat = (data): FetchSelectedCatAction =>{
+const fetchSelectedCat = (data: CatInfo): FetchSelectedCatAction =>{
   return {
     type: FETCH_SELECTED_CAT,
     data,
   }
 }
-const fetchSelectedCharc = (data): FetchSelectedCharcAction => {
+const fetchSelectedCharc = (data: CharcInfo): FetchSelectedCharcAction => {
   return {
     type: FETCH_SELECTED_CHARC,
     data,
   }
 }
 
-const fetchLastKeyword = (data):FetchLastKeywordAction => {
+const fetchLastKeyword = (data:string):FetchLastKeywordAction => {
   return {
     type: FETCH_LAST_KEYWORD,
     data,
   }
 }
-const fetchCurPage = (data): FetchCurPageAction => {
+const fetchCurPage = (data: number): FetchCurPageAction => {
   return {
     type: FETCH_CUR_PAGE,
     data,
   }
 }
-const fetchIsEndData = (data):FetchIsEndDataAction => {
+const fetchIsEndData = (data: boolean):FetchIsEndDataAction => {
   return {
     type: FETCH_IS_END_DATA,
     data,
   }
 }
-const fetchIsLoading = (data):FetchIsLoadingAction => {
+const fetchIsLoading = (data:boolean):FetchIsLoadingAction => {
   return {
     type: FETCH_IS_LOADING,
     data,

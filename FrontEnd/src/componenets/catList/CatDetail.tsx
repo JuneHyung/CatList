@@ -8,7 +8,7 @@ import KakaoMap from "../kakao/KakaoMap";
 import FurInfo from "./FurInfo";
 
 const CatDetailPage = () => {
-  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state) => state.cat);
+  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: any) => state.cat);
   const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
   const [kindInfo, setKindInfo] = useState('')
 

@@ -4,10 +4,11 @@ import Spinner from "../common/Spinner";
 import CatListItem from "./CatListItem";
 import { useCallback } from "react";
 import { getCatListByKeyword, getCatListByKind } from "../../stores/actions/cat";
+import { ThunkDispatch } from "../../types/action";
 
 const CatList = () => {
-  const {catList, selectedKindCode, lastKeyword, curPage, isLoading} = useSelector((state)=> state.cat)
-  const dispatch = useDispatch();
+  const {catList, selectedKindCode, lastKeyword, curPage, isLoading} = useSelector((state: any)=> state.cat)
+  const dispatch: ThunkDispatch = useDispatch();
   const handleOnScroll = useCallback((e)=>{
     const bottom = e.target.scrollHeight <= e.target.scrollTop + e.target.clientHeight;
     // console.log(e.target.scrollHeight, e.target.scrollTop, e.target.clientHeight)
@@ -18,7 +19,7 @@ const CatList = () => {
   },[curPage, dispatch, lastKeyword, selectedKindCode])
   return (
     <ul className="cat-list" onScroll={handleOnScroll}>
-      {isLoading ? (<Spinner />) : catList.length === 0 ? <NoData /> : catList.map((item) => <CatListItem item={item} key={item.cat_code} />)}
+      {isLoading ? (<Spinner />) : catList.length === 0 ? <NoData /> : catList.map((item: CatInfo) => <CatListItem item={item} key={item.cat_code} />)}
     </ul>
   );
 };

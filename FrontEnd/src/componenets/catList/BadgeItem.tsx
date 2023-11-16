@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
+import { ThunkDispatch } from "../../types/action";
 
 const BadgeItem = ({item}) =>{
-  const {isLoading} = useSelector((state)=> state.cat)
+  const {isLoading} = useSelector((state: any)=> state.cat)
   const bgNameList =  [
     'warmFlame',
     'nightFade',
@@ -24,7 +25,7 @@ const BadgeItem = ({item}) =>{
   ];
   const [bgName, setBgName] = useState( `bg-${bgNameList[Math.floor(Math.random() * bgNameList.length)]}`);
 
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch = useDispatch();
   
   const handleOnClick = useCallback(() =>{
     if(!isLoading){

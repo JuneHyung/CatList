@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCatListByKind, resetIsEndData, setSelectedKind } from "../../stores/actions/cat";
 import Avatar from "../common/Avatar";
 import { useCallback } from "react";
+import { ThunkDispatch } from "../../types/action";
 
 const CatKindItem = ({item}) =>{
-  const {selectedKindName, isLoading} = useSelector((state)=> state.cat)
-  const dispatch = useDispatch();
+  const {selectedKindName, isLoading} = useSelector((state: any)=> state.cat)
+  const dispatch: ThunkDispatch = useDispatch();
   
   const handleOnClick = useCallback(() =>{
     if(!isLoading){

@@ -1,18 +1,19 @@
-import { useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 import MdiIcon from "../common/MdiIcon";
 import { useState } from "react";
 import BadgeItem from "./BadgeItem";
 import { useDispatch } from "react-redux";
 import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 import CustomKeyboard from "./CustomKeyboard";
+import { ThunkDispatch } from "../../types/action";
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState([]);
-  const [searchItem, setSearchItem] = useState([]);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [searchItem, setSearchItem] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch:ThunkDispatch = useDispatch();
   
   // InputValue 갱신
-  const handleInputChange = useCallback((event) => {
+  const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   }, []);
 
@@ -26,7 +27,7 @@ const SearchBar = () => {
   }, [inputValue])
 
   // Enter Key Search
-  const handleEnterKey = useCallback((event) => {
+  const handleEnterKey = useCallback((event: KeyboardEvent) => {
     if (event.key === "Enter") {
       dispatch(resetIsEndData());
       dispatch(getCatListByKeyword({keyword:inputValue, curPage: 1}))

@@ -3,8 +3,9 @@ import Avatar from "../common/Avatar";
 import NoImage from "../common/NoImage";
 import { useDispatch } from "react-redux";
 import { setSelectedCat, setSelectedCharc } from "../../stores/actions/cat";
+import { ThunkDispatch } from "../../types/action";
 const CatListItem = ({ item }) => {
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch = useDispatch();
   const onHandleClick = useCallback(() => {
     dispatch(setSelectedCat(item));
     dispatch(setSelectedCharc(item.charc_id))

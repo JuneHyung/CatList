@@ -4,10 +4,11 @@ import CatDetail from "./CatDetail"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setCatKindList } from "../../stores/actions/cat";
+import { ThunkDispatch } from "../../types/action";
 
 const CatListArea = () => {
-  const {selectedCat} = useSelector((state)=> state.cat);
-  const dispatch = useDispatch();
+  const {selectedCat} = useSelector((state: any)=> state.cat);
+  const dispatch:ThunkDispatch = useDispatch();
   useEffect(()=>{
     dispatch(setCatKindList());
   }, [dispatch])
