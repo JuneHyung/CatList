@@ -1,10 +1,11 @@
 import { useCallback } from "react"
 import { useDispatch } from "react-redux"
 import { putCurItemStatus } from "../../stores/actions/todo";
+import { todoStatus } from "../../types/todo";
 
 const StatusList = ({id, status}) =>{
   const dispatch = useDispatch();
-  const handleOnChange = useCallback((selectedStatus)=>{
+  const handleOnChange = useCallback((selectedStatus: string)=>{
     dispatch(putCurItemStatus({id, status: selectedStatus}))
   },[dispatch, id])
   return (

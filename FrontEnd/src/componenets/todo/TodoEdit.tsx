@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postNewTodoItem, putCurTodoItem, toggleEditFlag } from "../../stores/actions/todo";
+import { todoInitialState } from "../../types/todo";
 
 const TodoEdit = () =>{
   const dispatch = useDispatch();
-  const {selectedItem} = useSelector((state)=>state.todo);
+  const {selectedItem} = useSelector((state: todoInitialState)=>state.todo);
   const [updateFlag, setUpdateFlag] = useState(false);
   const [formData, setFormData] = useState({
     todo_id: '',
@@ -24,7 +25,7 @@ const TodoEdit = () =>{
   },[selectedItem])
 
   // input 변경 시 form데이터 변경
-  const handleInputChange = useCallback((e)=>{
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>)=>{
     const {name, value} = e.target;
     setFormData({
       ...formData,
@@ -90,8 +91,8 @@ const TodoEdit = () =>{
         <textarea
         name="content" 
         className="todo-edit-input-area jh-ml-sm" 
-        rows="5"
-        maxLength="200"
+        rows={5}
+        maxLength={200}
         value={formData.content} 
         onChange={handleInputChange} />
       </label>

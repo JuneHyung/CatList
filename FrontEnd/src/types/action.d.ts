@@ -1,3 +1,5 @@
+import { TodoList } from "./todo"
+
 export interface ClearAllCatDataAction {
   type: typeof CLEAR_ALL_CAT_DATA,
 }
@@ -54,25 +56,25 @@ export interface FetchIsLoadingAction {
 
 export interface FetchFocusDateAction {
   type: FETCH_FOCUS_DATE,
-  data,
+  data: string,
 }
 
 export interface FetchTodoListAction {
   type: FETCH_TODO_LIST,
-  data,
+  data: TodoList,
 }
 
 export interface FetchCurStatusAction {
   type: FETCH_CUR_STATUS,
-  data,
+  data: todoStatus,
 }
 export interface FetchEditFlagAction {
   type: FETCH_EDIT_FLAG,
-  data,
+  data: boolean,
 }
 export interface FetchSelectedItemAction {
   type: FETCH_SELECTED_ITEM,
-  data,
+  data: TodoItem,
 }
 
 export interface ThunkDispatch {

@@ -7,7 +7,7 @@ import { deleteSelectedItem, setSelectedItem, toggleEditFlag } from "../../store
 const TodoItem = ({info, idx}) =>{
 
   const dispatch = useDispatch();
-  const handleDeleteItem = useCallback((id)=>{
+  const handleDeleteItem = useCallback((id:number)=>{
     dispatch(deleteSelectedItem(id));
   },[dispatch])
   

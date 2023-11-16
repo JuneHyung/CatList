@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurStatus, setTodoList, toggleEditFlag } from "../../stores/actions/todo";
 import TodoItem from "./TodoItem";
 import TodoEdit from "./TodoEdit";
+import { todoInitialState, todoStatus } from "../../types/todo";
 
 const TodoList = ({ today }) => {
   // const [ editFlag, setEditFlag ] = useState(false);
-  const { todoList, focusDate, editFlag } = useSelector((state) => state.todo);
+  const { todoList, focusDate, editFlag } = useSelector((state: todoInitialState) => state.todo);
   const dispatch = useDispatch();
-  const handleGetTodo = useCallback(
-    (status) => {
+  const handleGetTodo = useCallback((status: todoStatus) => {
       dispatch(setTodoList(status, focusDate));
       dispatch(setCurStatus(status));
       dispatch(toggleEditFlag(false));

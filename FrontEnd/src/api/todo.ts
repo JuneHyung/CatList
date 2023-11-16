@@ -1,9 +1,10 @@
 import { deleteFetch, getFetch, postFetch, putFetch } from ".";
+import { DeleteResponseBody, PostResponseBody, PutResponseBody, PutTodoItemStatusRequestBody, TodoItem, TodoItemRequestBody, TodoList } from "../types/todo";
 const url = process.env.REACT_APP_BACKEND_URL;
-export const getAllTodoList = async (status, focusDate) =>{
+export const getAllTodoList = async (status:string, focusDate:string): Promise<TodoList>=>{
   try{
     const res = await getFetch(`${url}/todo/search/${status}/${focusDate}`);
-    const data = await res.json();
+    const data: TodoList = await res.json();
     return data;
   }catch(err){
     console.error(`Error: ${err}`)
@@ -11,10 +12,10 @@ export const getAllTodoList = async (status, focusDate) =>{
   }
 }
 
-export const putTodoItemStatus = async (body) =>{
+export const putTodoItemStatus = async (body: PutTodoItemStatusRequestBody): Promise<PutResponseBody> =>{
   try{
     const res = await putFetch(`${url}/todo/status`, body);
-    const data = await res.json();
+    const data:PutResponseBody = await res.json();
     return data;
   }catch(err){
     console.log(`Error : ${err}`)
@@ -22,22 +23,20 @@ export const putTodoItemStatus = async (body) =>{
   }
 }
 
-export const postTodoItem = async (body) =>{
+export const postTodoItem = async (body: TodoItemRequestBody): Promise<PostResponseBody> =>{
   try{
     const res = await postFetch(`${url}/todo/item`, body);
-    const data = await res.json();
+    const data: PostResponseBody = await res.json();
     return data;
   }catch(err){
     console.log(`Error : ${err}`)
     throw err;
   }
 }
-export const putTodoItem = async (body) =>{
+export const putTodoItem = async (body: TodoItemRequestBody): Promise<PutResponseBody> =>{
   try{
-    console.log('body')
-    console.log(body)
     const res = await putFetch(`${url}/todo/item`, body);
-    const data = await res.json();
+    const data: PutResponseBody = await res.json();
     return data;
   }catch(err){
     console.log(`Error : ${err}`)
@@ -45,10 +44,10 @@ export const putTodoItem = async (body) =>{
   }
 }
 
-export const deleteTodoItem = async (id) =>{
+export const deleteTodoItem = async (id:number): Promise<DeleteResponseBody> =>{
   try{
     const res = await deleteFetch(`${url}/todo/item/${id}`);
-    const data = await res.json();
+    const data: DeleteResponseBody = await res.json();
     return data;
   }catch(err){
     console.log(`Error : ${err}`)
