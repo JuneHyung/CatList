@@ -5,10 +5,12 @@ import { useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { setFocusDate, setTodoList } from '../../stores/actions/todo';
+import { ThunkDispatch } from '../../types/action';
+import { todoInitialState } from '../../types/todo';
 
 const CustomCalendar = () => {
-  const {todoList, curStatus, focusDate} = useSelector((state)=>state.todo);
-  const dispatch = useDispatch()
+  const {todoList, curStatus, focusDate} = useSelector((state: todoInitialState)=>state.todo);
+  const dispatch: ThunkDispatch = useDispatch()
   const myCalendar = useRef(null);
   const handleFocusDate = useCallback((v)=>{
     const focusDate = dayjs(v.date).format('YYYY-MM-DD');

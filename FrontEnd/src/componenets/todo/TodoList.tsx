@@ -4,11 +4,12 @@ import { setCurStatus, setTodoList, toggleEditFlag } from "../../stores/actions/
 import TodoItem from "./TodoItem";
 import TodoEdit from "./TodoEdit";
 import { todoInitialState, todoStatus } from "../../types/todo";
+import { ThunkDispatch } from "../../types/action";
 
 const TodoList = ({ today }) => {
   // const [ editFlag, setEditFlag ] = useState(false);
   const { todoList, focusDate, editFlag } = useSelector((state: todoInitialState) => state.todo);
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch = useDispatch();
   const handleGetTodo = useCallback((status: todoStatus) => {
       dispatch(setTodoList(status, focusDate));
       dispatch(setCurStatus(status));

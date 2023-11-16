@@ -3,10 +3,11 @@ import MdiIcon from "../common/MdiIcon";
 import StatusList from "./statusList";
 import { useCallback } from "react";
 import { deleteSelectedItem, setSelectedItem, toggleEditFlag } from "../../stores/actions/todo";
+import { ThunkDispatch } from "../../types/action";
 
 const TodoItem = ({info, idx}) =>{
 
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch = useDispatch();
   const handleDeleteItem = useCallback((id:number)=>{
     dispatch(deleteSelectedItem(id));
   },[dispatch])

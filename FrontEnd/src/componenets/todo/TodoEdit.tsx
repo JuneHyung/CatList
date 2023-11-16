@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postNewTodoItem, putCurTodoItem, toggleEditFlag } from "../../stores/actions/todo";
-import { todoInitialState } from "../../types/todo";
+import { TodoItemRequestBody, todoInitialState } from "../../types/todo";
+import { ThunkDispatch } from "../../types/action";
 
 const TodoEdit = () =>{
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch = useDispatch();
   const {selectedItem} = useSelector((state: todoInitialState)=>state.todo);
   const [updateFlag, setUpdateFlag] = useState(false);
-  const [formData, setFormData] = useState({
-    todo_id: '',
+  const [formData, setFormData] = useState<TodoItemRequestBody>({
+    todo_id: 0,
     title: '',
     content: '',
     start: '',
@@ -25,7 +26,7 @@ const TodoEdit = () =>{
   },[selectedItem])
 
   // input 변경 시 form데이터 변경
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>)=>{
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>| React.ChangeEvent<HTMLSelectElement>)=>{
     const {name, value} = e.target;
     setFormData({
       ...formData,
@@ -46,7 +47,7 @@ const TodoEdit = () =>{
   // 취소
   const handleResetFormData = () =>{
     setFormData({
-      todo_id: '',
+      todo_id: 0,
       title: '',
       content: '',
       start: '',
