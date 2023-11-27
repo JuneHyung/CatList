@@ -17,7 +17,7 @@ const CatListArea = () => {
     <div className="cat-list-wrap">
       <CatKindList />
       {
-        selectedCat.cat_code===undefined ? <CatList /> : <CatDetail />      
+        selectedCat.cat_code===-1 ? <CatList /> : <CatDetail />      
       }
     </div>
   );

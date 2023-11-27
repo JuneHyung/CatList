@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback } from "react";
+import { ChangeEvent, KeyboardEventHandler, useCallback } from "react";
 import MdiIcon from "../common/MdiIcon";
 import { useState } from "react";
 import BadgeItem from "./BadgeItem";
@@ -27,7 +27,7 @@ const SearchBar = () => {
   }, [inputValue])
 
   // Enter Key Search
-  const handleEnterKey = useCallback((event: KeyboardEvent) => {
+  const handleEnterKey: KeyboardEventHandler<HTMLInputElement> = useCallback((event) => {
     if (event.key === "Enter") {
       dispatch(resetIsEndData());
       dispatch(getCatListByKeyword({keyword:inputValue, curPage: 1}))
@@ -55,7 +55,7 @@ const SearchBar = () => {
       </div>
       <ul className="badge-bar jh-my-sm">
         {searchItem.map((item, idx) => (
-          <BadgeItem key={`${item}${idx}`} item={item} >{item}</BadgeItem>
+          <BadgeItem key={`${item}${idx}`} item={item} />
         ))}
       </ul>
       {isOpen && <CustomKeyboard inputValue={inputValue} setInputValue={setInputValue} setIsOpen={setIsOpen} handleClickSearch={handleClickSearch}/>}

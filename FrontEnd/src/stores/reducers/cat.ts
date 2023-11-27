@@ -10,7 +10,7 @@ const initialState: CatInitialState ={
   selectedKindCode: '',
   curPage: 1,
   selectedCat: {
-    cat_code: 0,
+    cat_code: -1,
     cat_name: '',
     cat_age: 0,
     kind_code: '',
