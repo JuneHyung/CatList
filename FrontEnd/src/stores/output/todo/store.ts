@@ -1,4 +1,4 @@
-import { AnyAction, Dispatch, MiddlewareAPI, createStore, compose, applyMiddleware } from "redux";
+import { AnyAction, Dispatch, MiddlewareAPI, legacy_createStore as createStore, compose, applyMiddleware } from "redux";
 import reducer from '../../reducers';
 import {composeWithDevTools} from 'redux-devtools-extension';
 

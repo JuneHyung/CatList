@@ -4,7 +4,7 @@ import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
 
 const BadgeItem = ({item}) =>{
-  const {isLoading} = useSelector((state: any)=> state.cat)
+  const {isLoading} = useSelector((state:{cat: CatInitialState})=> state.cat)
   const bgNameList =  [
     'warmFlame',
     'nightFade',

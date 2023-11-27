@@ -1,7 +1,7 @@
 interface KindInfo {
   kind_code: string,
   kind_name: string,
-  kind_profile: Blob,
+  kind_profile: Blob | null,
   kind_form: string,
   kind_fur: string,
   kind_fur_pattern: string,
@@ -25,7 +25,7 @@ interface CatInfo {
   kind_code: KindInfo['kind_code'],
   description: string,
   create_date: string,
-  profile: Blob,
+  profile: Blob | string | null,
   address: string,
   charc_id: CharcInfo['charc_id'],
   see: number,
@@ -47,3 +47,16 @@ type GetCatListByKeywordReqeustParams = {
 }
 
 type selectedKindInfo = Pick<KindInfo, 'kind_code' | 'kind_name'>
+
+interface CatInitialState {
+  catList: CatList,
+  catKindList: KindList,
+  lastKeyword: string,
+  selectedKindName: selectedKindInfo['kind_name'],
+  selectedKindCode: selectedKindInfo['kind_code'],
+  curPage: number,
+  selectedCat: CatItem,
+  selectedCharc: CharcInfo
+  isEndData: boolean,
+  isLoading: boolean, 
+}

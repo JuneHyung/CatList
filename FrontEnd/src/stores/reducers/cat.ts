@@ -1,13 +1,28 @@
+import { AnyAction } from "redux";
+
 const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } = require("../constant/variable");
 
-const initialstate = {
+const initialState: CatInitialState ={
   catList: [],
   catKindList: [],
   lastKeyword: '',
   selectedKindName: '',
   selectedKindCode: '',
   curPage: 1,
-  selectedCat: {},
+  selectedCat: {
+    cat_code: 0,
+    cat_name: '',
+    cat_age: 0,
+    kind_code: '',
+    description: '',
+    create_date: '',
+    profile: '',
+    address: '',
+    charc_id: '',
+    see: 0,
+    kind_name: '',
+    kind_profile: ''
+  },
   selectedCharc: {
     charc_id: "",
     curious: 0,
@@ -21,11 +36,11 @@ const initialstate = {
   isLoading: false,
 }
 
-const catReducer = (prevState = initialstate, action: any) =>{
+const catReducer = (prevState = initialState, action: AnyAction) =>{
   // console.log(action.type, action.data)
   switch(action.type){
     case CLEAR_ALL_CAT_DATA:
-      return {catList: [], selectedKindName: '', selectedCat: {}};
+      return initialState;
     case CLEAR_CAT_LIST:
       return {...prevState, catList: []};
     case CLEAR_SELECTED_CAT:
@@ -41,7 +56,7 @@ const catReducer = (prevState = initialstate, action: any) =>{
     case FETCH_CAT_TYPE_LIST:
       return {...prevState, catKindList: action.data};
     case FETCH_SELECTED_CAT:
-      return {...prevState, catList: [], selectedCat: action.data,}
+      return {...prevState, catList: [], selectedCat: action.data}
     case FETCH_SELECTED_KIND:
       return {...prevState, selectedKindName: action.data.kind_name, selectedKindCode: action.data.kind_code};
     case FETCH_SELECTED_CHARC:

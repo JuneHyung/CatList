@@ -1,8 +1,7 @@
-import { MiddlewareAPI, Dispatch, AnyAction, compose, applyMiddleware, createStore } from "redux";
+import { MiddlewareAPI, Dispatch, AnyAction, compose, applyMiddleware, legacy_createStore as createStore } from "redux";
 import reducer from '../../reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
-const initialstate = {
+const initialstate:{cat: CatInitialState} = {
   cat: {
     catList: [],
     catKindList: [],
@@ -10,7 +9,20 @@ const initialstate = {
     selectedKindName: '',
     selectedKindCode: '',
     curPage: 1,
-    selectedCat: {},
+    selectedCat: {
+      cat_code: 0,
+      cat_name: '',
+      cat_age: 0,
+      kind_code: '',
+      description: '',
+      create_date: '',
+      profile: '',
+      address: '',
+      charc_id: '',
+      see: 0,
+      kind_name: '',
+      kind_profile: ''
+    },
     selectedCharc: {
       charc_id: "",
       curious: 0,

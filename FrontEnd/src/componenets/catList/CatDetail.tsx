@@ -8,9 +8,16 @@ import KakaoMap from "../kakao/KakaoMap";
 import FurInfo from "./FurInfo";
 
 const CatDetailPage = () => {
-  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: any) => state.cat);
+  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: {cat: CatInitialState}) => state.cat);
   const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
-  const [kindInfo, setKindInfo] = useState('')
+  const [kindInfo, setKindInfo] = useState({
+    kind_code: '',
+    kind_name: '',
+    kind_profile: null,
+    kind_form: '',
+    kind_fur: '',
+    kind_fur_pattern: '',
+  })
 
   const calculatedSeries = useMemo(() => {
     if (selectedCharc !== undefined && selectedCharc.charc_id.length !== 0) {
@@ -27,7 +34,14 @@ const CatDetailPage = () => {
       const code = selectedCat.kind_code;
       setKindInfo(catKindList.find(el=>el.kind_code===code))
     }else{
-      setKindInfo({})
+      setKindInfo({
+        kind_code: '',
+        kind_name: '',
+        kind_profile: null,
+        kind_form: '',
+        kind_fur: '',
+        kind_fur_pattern: '',
+      })
     }
   }, [catKindList, isOpenFurInfo, selectedCat.kind_code])
   return (

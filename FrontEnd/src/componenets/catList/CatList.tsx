@@ -7,7 +7,7 @@ import { getCatListByKeyword, getCatListByKind } from "../../stores/actions/cat"
 import { ThunkDispatch } from "../../types/action";
 
 const CatList = () => {
-  const {catList, selectedKindCode, lastKeyword, curPage, isLoading} = useSelector((state: any)=> state.cat)
+  const {catList, selectedKindCode, lastKeyword, curPage, isLoading} = useSelector((state: {cat: CatInitialState})=> state.cat)
   const dispatch: ThunkDispatch = useDispatch();
   const handleOnScroll = useCallback((e)=>{
     const bottom = e.target.scrollHeight <= e.target.scrollTop + e.target.clientHeight;
