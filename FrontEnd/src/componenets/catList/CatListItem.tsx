@@ -21,7 +21,7 @@ const CatListItem = ({ item }) => {
         </div>
       </div>
       <div className="cat-photo">
-        {item.profile.length===0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${item.profile}`} alt={item.catName} className="cat-profile" />}
+        {item.profile.toString().length===0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${item.profile}`} alt={item.catName} className="cat-profile" />}
       </div>
       <p className="cat-description">{item.description}</p>
     </li>

@@ -44,7 +44,7 @@ const catReducer = (prevState = initialState, action: AnyAction) =>{
     case CLEAR_CAT_LIST:
       return {...prevState, catList: []};
     case CLEAR_SELECTED_CAT:
-      return {...prevState, selectedCat: {}}
+      return {...prevState, selectedCat: initialState.selectedCat}
     case CLEAR_SELECTED_KIND:
       return {...prevState, selectedKindName: '', selectedKindCode: '',};
     case CLEAR_SELECTED_CHARC:
@@ -52,7 +52,7 @@ const catReducer = (prevState = initialState, action: AnyAction) =>{
     case CLEAR_CAT_TYPE_LIST:
       return {...prevState, catKindList: []};
     case FETCH_CAT_LIST:
-      return {...prevState, catList: action.data, selectedCat: {}};
+      return {...prevState, catList: action.data, selectedCat: initialState.selectedCat};
     case FETCH_CAT_TYPE_LIST:
       return {...prevState, catKindList: action.data};
     case FETCH_SELECTED_CAT:

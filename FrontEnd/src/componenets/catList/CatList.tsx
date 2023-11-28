@@ -2,15 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import NoData from "../common/NoData";
 import Spinner from "../common/Spinner";
 import CatListItem from "./CatListItem";
-import { useCallback } from "react";
+import { UIEvent, useCallback } from "react";
 import { getCatListByKeyword, getCatListByKind } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
 
 const CatList = () => {
   const {catList, selectedKindCode, lastKeyword, curPage, isLoading} = useSelector((state: {cat: CatInitialState})=> state.cat)
   const dispatch: ThunkDispatch = useDispatch();
-  const handleOnScroll = useCallback((e)=>{
-    const bottom = e.target.scrollHeight <= e.target.scrollTop + e.target.clientHeight;
+  const handleOnScroll = useCallback((e:UIEvent<HTMLUListElement>)=>{
+    const bottom = e.currentTarget.scrollHeight <= e.currentTarget.scrollTop + e.currentTarget.clientHeight;
     // console.log(e.target.scrollHeight, e.target.scrollTop, e.target.clientHeight)
     if(bottom){
       if(selectedKindCode.length!==0) dispatch(getCatListByKind({kind_code: selectedKindCode ,curPage: curPage+1}));

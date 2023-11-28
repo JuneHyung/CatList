@@ -8,7 +8,7 @@ const CatKindItem = ({item}) =>{
   const {selectedKindName, isLoading} = useSelector((state: {cat: CatInitialState})=> state.cat)
   const dispatch: ThunkDispatch = useDispatch();
   
-  const handleOnClick = useCallback(() =>{
+  const handleOnClick = useCallback(async() =>{
     if(!isLoading){
       dispatch(resetIsEndData())
       dispatch(setSelectedKind({kind_code: item.kind_code, kind_name: item.kind_name}));

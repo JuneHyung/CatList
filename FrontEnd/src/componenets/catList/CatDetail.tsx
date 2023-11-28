@@ -51,7 +51,7 @@ const CatDetailPage = () => {
       ) : (
         <div className="cat-detail-wrap">
           <div className="top-info-wrap">
-            <div className="profile-box">{selectedCat.profile.length === 0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${selectedCat.profile}`} alt="Kind Profile" />}</div>
+            <div className="profile-box">{selectedCat.profile.toString().length === 0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${selectedCat.profile}`} alt="Kind Profile" />}</div>
             <div className="info-box">
               <p>품종 : {selectedCat.kind_name} <MdiIcon name="mdiInformationVariantCircle" className="fur-info-icon" onClick={toggleFeatureInfo}/></p>
               {isOpenFurInfo ? <FurInfo info={kindInfo}/> : <div></div>}

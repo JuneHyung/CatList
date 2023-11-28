@@ -1,6 +1,6 @@
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction"
+import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction"
 import { useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
@@ -12,7 +12,7 @@ const CustomCalendar = () => {
   const {todoList, curStatus, focusDate} = useSelector((state: todoInitialState)=>state.todo);
   const dispatch: ThunkDispatch = useDispatch()
   const myCalendar = useRef(null);
-  const handleFocusDate = useCallback((v)=>{
+  const handleFocusDate = useCallback((v: DateClickArg )=>{
     const focusDate = dayjs(v.date).format('YYYY-MM-DD');
     dispatch(setFocusDate(focusDate))
     dispatch(setTodoList(curStatus, focusDate))

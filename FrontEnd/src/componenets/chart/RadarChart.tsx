@@ -1,14 +1,15 @@
 // import {ApexChart} from 'apexcharts'
 import { useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts';
+import { ApexOptions } from "apexcharts";
 
 const RadarChart = ({customCategories , customSeries}) =>{
-  const [series, setSeries] = useState([{
+  const [series, setSeries] = useState<ApexAxisChartSeries>([{
     name: '',
     data: [],
   }]);
 
-  const [options, setOptions] = useState({
+  const [options, setOptions] = useState<ApexOptions>({
     chart: {
       type: 'radar',
     },
