@@ -5,18 +5,49 @@
   height:100%;
   justify-content: center;
   align-items: center;
-  flex-direction:column;
 
-.editor-wrap-box{
-  width:100%;
-  height:100%;
-  .editor-content{
-    background-color:#fff;
+  .editor-wrap-box{
     width:100%;
-    height:calc(100% - 60px);
-    overflow:auto;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    .editor-menu-group-wrap{
+      display:flex;
+      .editor-menu-group{
+        &:nth-child(2){
+          margin: 0 16px;   
+        }
+        display:flex;
+
+        .editor-menu-button{
+          width:48px; height:48px;
+          display:flex;
+          justify-content:center;
+          align-items: center;
+          border:1px solid $middleColor;
+          background:none;
+          margin-bottom:0.5rem;
+          cursor:pointer;
+          transition:all 0.2s;
+          
+          &:hover{
+            background-color:$pointColor;
+            
+            .custom-icon path{fill:$lowColor;}
+          }
+          .custom-icon{
+            path{fill:$pointColor;}
+          }
+        }
+      }
+    }
+    .editor-content{
+      background-color:#fff;
+      width:100%;
+      height:calc(100% - 60px);
+      overflow:auto;
+    }
   }
-}
 }
 
 .has-focus{
