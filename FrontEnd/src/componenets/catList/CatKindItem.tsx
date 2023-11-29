@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { ThunkDispatch } from "../../types/action";
 
 const CatKindItem = ({item}) =>{
-  const {selectedKindName, isLoading} = useSelector((state: {cat: CatInitialState})=> state.cat)
+  const {selectedKindName, isLoading} = useSelector((state: CatInitialState)=> state)
   const dispatch: ThunkDispatch = useDispatch();
   
   const handleOnClick = useCallback(async() =>{

@@ -1,12 +1,25 @@
+import { useMemo, useState } from "react";
 import MenuItem from "./MenuItem"
+import { useSelector } from "react-redux";
 
 const Menu = () => {
-  const menuList = [
-    {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},
-    {path: '/catList', label: 'CatList', icon: 'mdiCat'},
-    {path: '/tiptap', label: 'TipTap', icon: 'mdiNoteEdit'},
-    {path: '/todoList', label: 'Todo List', icon: 'mdiCalendarMonth'},
-  ]
+  const isLogin = useSelector((state:{isLogin:boolean})=>state.isLogin);
+  // const {isLogin} = userStore.getState(); 
+  const menuList =useMemo(()=>{
+    let result = [
+      {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},
+      {path: '/catList', label: 'CatList', icon: 'mdiCat'},
+      {path: '/tiptap', label: 'TipTap', icon: 'mdiNoteEdit'},
+      {path: '/todoList', label: 'Todo List', icon: 'mdiCalendarMonth'},
+    ];
+    if(!isLogin) {
+      result.splice(1, 0, {path: '/login', label: 'Login', icon: 'mdiAccount'})
+    }else{
+      result.splice(1, 0, {path: '/user', label: 'JuneHyung', icon: 'mdiAccount'})
+    }
+    return result
+  },[isLogin])
+  
   return (
     <nav className="menu-list">
       <input type="checkbox" className="menu-open" name="menu-open" id="menu-open" />

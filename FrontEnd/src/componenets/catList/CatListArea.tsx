@@ -7,7 +7,7 @@ import { setCatKindList } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
 
 const CatListArea = () => {
-  const {selectedCat} = useSelector((state: {cat: CatInitialState})=> state.cat);
+  const {selectedCat} = useSelector((state: CatInitialState)=> state);
   const dispatch:ThunkDispatch = useDispatch();
   useEffect(()=>{
     dispatch(setCatKindList());

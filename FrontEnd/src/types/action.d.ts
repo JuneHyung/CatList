@@ -77,6 +77,12 @@ export interface FetchSelectedItemAction {
   data: TodoItem,
 }
 
+export interface FetchIsLogin {
+  type: FETCH_IS_LOGIN,
+  data: boolean,
+}
+
+
 export interface ThunkDispatch {
   (thunkAction: ThunkAction): void;
   <A>(action: A): A;

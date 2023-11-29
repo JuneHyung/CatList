@@ -1,4 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  redirect,
+} from "react-router-dom";
 import IntroPage from "../../pages/IntroPage";
 import CatListPage from "../../pages/CatListPage";
 import TipTapPage from "../../pages/TipTapPage";
@@ -7,13 +13,48 @@ import Menu from "../menu/Menu";
 import { Provider } from "react-redux";
 import catStore from "../../stores/output/cat/store";
 import todoStore from "../../stores/output/todo/store";
+import userStore from "../../stores/output/user/store";
+import LoginPage from "../../pages/LoginPage";
+import UserPage from "../../pages/UserPage";
+import ErrorPage from "../../pages/ErrorPage";
+import NotFoundPage from "../../pages/NotFoundPage";
+
 const Content = () => {
+  const { isLogin } = userStore.getState();
+  console.log(isLogin);
   return (
     <div className="content-box">
       <BrowserRouter>
-        <Menu />
+        <Provider store={userStore}>
+          <Menu />
+        </Provider>
         <Routes>
-          <Route path="/" element={<IntroPage />} />
+          <Route
+            path="/"
+            element={<IntroPage />}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/login"
+            element={
+                <Provider store={userStore}>
+                  <LoginPage />
+                </Provider>
+              
+            }
+            
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/user"
+            element={
+                <Provider store={userStore}>
+                  <UserPage />
+                </Provider>
+
+            }
+            errorElement={<ErrorPage />}
+          />
           <Route
             path="/catList"
             element={
@@ -21,9 +62,14 @@ const Content = () => {
                 <CatListPage />
               </Provider>
             }
+            errorElement={<ErrorPage />}
           />
-          
-          <Route path="/tiptap" element={<TipTapPage />} />
+
+          <Route
+            path="/tiptap"
+            element={<TipTapPage />}
+            errorElement={<ErrorPage />}
+          />
 
           <Route
             path="/todoList"
@@ -32,7 +78,9 @@ const Content = () => {
                 <TodoListPage />
               </Provider>
             }
+            errorElement={<ErrorPage />}
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -8,7 +8,7 @@ import { todoInitialState } from "../types/todo";
 import { ThunkDispatch } from "../types/action";
 
 const TodoListPage = () => {
-  const {focusDate} = useSelector((state: todoInitialState)=>state.todo)
+  const {focusDate} = useSelector((state:todoInitialState)=>state)
   const dispatch: ThunkDispatch = useDispatch();
   useEffect(()=>{
     const today = dayjs().format('YYYY-MM-DD');

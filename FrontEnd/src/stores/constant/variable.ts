@@ -24,3 +24,5 @@ export const FETCH_CUR_STATUS = 'FETCH_CUR_STATUS' as const;
 export const FETCH_EDIT_FLAG = 'FETCH_EDIT_FLAG' as const;
 export const FETCH_SELECTED_ITEM = 'FETCH_SELECTED_ITEM' as const;
 export const FETCH_IS_LOADING = 'FETCH_IS_LOADING' as const;
+
+export const FETCH_IS_LOGIN = 'FETCH_IS_LOGIN' as const;

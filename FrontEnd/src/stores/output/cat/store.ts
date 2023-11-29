@@ -1,8 +1,7 @@
 import { MiddlewareAPI, Dispatch, AnyAction, compose, applyMiddleware, legacy_createStore as createStore } from "redux";
-import reducer from '../../reducers';
+import reducer from '../../reducers/cat';
 import { composeWithDevTools } from 'redux-devtools-extension';
-const initialstate:{cat: CatInitialState} = {
-  cat: {
+const initialstate: CatInitialState = {
     catList: [],
     catKindList: [],
     lastKeyword: '',
@@ -34,7 +33,6 @@ const initialstate:{cat: CatInitialState} = {
     },
     isEndData: false,
     isLoading: false,
-  }
 }
 
 const firstMiddleware = (store: MiddlewareAPI) => (dispatch: Dispatch<AnyAction>) => (action: AnyAction) => {

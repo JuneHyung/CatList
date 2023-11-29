@@ -6,7 +6,7 @@ import { ThunkDispatch } from "../../types/action";
 
 const TodoEdit = () =>{
   const dispatch: ThunkDispatch = useDispatch();
-  const {selectedItem} = useSelector((state: todoInitialState)=>state.todo);
+  const {selectedItem} = useSelector((state: todoInitialState)=>state);
   const [updateFlag, setUpdateFlag] = useState(false);
   const [formData, setFormData] = useState<TodoItemRequestBody>({
     todo_id: 0,
