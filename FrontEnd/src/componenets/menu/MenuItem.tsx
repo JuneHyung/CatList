@@ -5,7 +5,7 @@ const MenuItem = ({itemInfo}) => {
   return (
     <li className="menu-item" key={itemInfo.path}>
       <Link to={itemInfo.path}>
-        <MdiIcon name={itemInfo.icon as string} onClick={null}/>
+        <MdiIcon name={itemInfo.icon as string} />
         <span className="jh-ml-sm">{itemInfo.label}</span>
       </Link>
     </li>
