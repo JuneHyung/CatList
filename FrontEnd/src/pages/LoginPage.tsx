@@ -15,12 +15,18 @@ const LoginPage = () =>{
   }
 
   return (
-    <div>
-      <img src={require('./../assets/images/intro-logo.png')} alt='logo'></img>
-      <form>
-        <input type="text" />
-        <input type="password" />
-        <button onClick={handleLogin}>변경</button>
+    <div className="login-page">
+      <div className="login-logo">
+        <img src={require('./../assets/images/intro-logo.png')} alt='logo'></img>
+      </div>
+      <form className="login-form">
+        <label className="login-input" >
+          <input type="text" placeholder="Enter Your ID"/>
+        </label>
+        <label className="login-input" >
+          <input type="password" placeholder="Enter Your Password" />
+        </label>
+        <button onClick={handleLogin} className="login-button" >로그인</button>
       </form>
     </div>
   )

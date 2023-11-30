@@ -1,0 +1,53 @@
+.login-page {
+  display: flex;
+  flex: 0 1 200px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    .login-input {
+      display: flex;
+      flex-direction: column;
+      flex: 0 1;
+      width: 200px;
+      margin: 8px 0;
+      input {
+        height: 36px;
+        background-color: $lowColor;
+        // border: 2px solid $pointColor;
+        border: none;
+        color: $pointColor;
+        border-radius: 4px;
+        padding: 4px;
+        &:focus {
+          outline: 2px solid $pointColor;
+        }
+      }
+
+      input[type="password"] {
+        font-family: 'Noto-Sans', sans-serif;
+        color: $pointColor;
+        &::placeholder{
+          font-family: 'Goyang', sans-serif;
+        }
+      }
+    }
+    .login-button {
+      background-color: $pointColor;
+      color: $lowColor;
+      border-radius: 4px;
+      border: none;
+      height: 48px;
+      cursor: pointer;
+      transition: all 0.4s;
+
+      &:hover {
+        background-color: $lowColor;
+        color: $pointColor;
+      }
+    }
+  }
+}
