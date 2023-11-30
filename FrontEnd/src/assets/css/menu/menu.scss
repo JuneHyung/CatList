@@ -119,6 +119,11 @@
           transition-duration: 380ms;
           transform: translate3d(0px, -350px, 0);
         }
+
+        &:nth-child(7) {
+          transition-duration: 380ms;
+          transform: translate3d(0px, -440px, 0);
+        }
       }
     }
   }
