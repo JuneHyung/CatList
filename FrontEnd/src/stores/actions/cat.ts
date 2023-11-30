@@ -29,8 +29,8 @@ export const setSelectedKind = (kind: selectedKindInfo): ThunkAction =>{
 
 export const getCatListByKind = (params: GetCatListByKindReqeustParams): ThunkAction =>{
   return async (dispatch, getState) => {
-    const prevList = getState().cat.catList;
-    const isEnd = getState().cat.isEndData;
+    const prevList = getState().catList;
+    const isEnd = getState().isEndData;
 
     dispatch(fetchIsLoading(true))
 
@@ -77,8 +77,8 @@ export const setSelectedCat = (cat: CatInfo): ThunkAction => {
 // searchbar
 export const getCatListByKeyword = (params: GetCatListByKeywordReqeustParams): ThunkAction =>{
   return async (dispatch, getState) =>{
-    const prevList = getState().cat.catList;
-    const isEnd = getState().cat.isEndData;
+    const prevList = getState().catList;
+    const isEnd = getState().isEndData;
 
     dispatch(fetchIsLoading(true))
 

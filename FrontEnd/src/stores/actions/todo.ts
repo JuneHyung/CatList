@@ -40,7 +40,7 @@ export const putCurItemStatus = (body:PutTodoItemStatusRequestBody): ThunkAction
   return async (dispatch, getState) => {
     const {code, message} = await putTodoItemStatus(body);
     if(code===200){
-      const {curStatus, focusDate} = getState().todo
+      const {curStatus, focusDate} = getState()
       console.log(message);
       await dispatch(setTodoList(curStatus, focusDate))
     }
@@ -52,7 +52,7 @@ export const postNewTodoItem = (body: TodoItemRequestBody): ThunkAction =>{
     const {code, message} = await postTodoItem(body);
     if(code===200){
       console.log(message);
-      const {curStatus, focusDate} = getState().todo
+      const {curStatus, focusDate} = getState()
       await dispatch(toggleEditFlag(false))
       await dispatch(setTodoList(curStatus, focusDate))
     }
@@ -64,7 +64,7 @@ export const putCurTodoItem = (body: TodoItemRequestBody): ThunkAction =>{
     const {code, message} = await putTodoItem(body);
     if(code===200){
       console.log(message);
-      const {curStatus, focusDate} = getState().todo
+      const {curStatus, focusDate} = getState()
       await dispatch(toggleEditFlag(false))
       await dispatch(setTodoList(curStatus, focusDate))
     }
@@ -76,7 +76,7 @@ export const deleteSelectedItem = (id: number): ThunkAction => {
     const {code, message} = await deleteTodoItem(id);
     if(code===200){
       console.log(message);
-      const {curStatus, focusDate} = getState().todo
+      const {curStatus, focusDate} = getState()
       await dispatch(setTodoList(curStatus, focusDate))
     }
   }
