@@ -25,6 +25,9 @@ class Todo extends Sequelize.Model {
       status:{
         type: Sequelize.STRING(20),
       },
+      user_id:{
+        type: Sequelize.STRING(20),
+      }
     }, {
       sequelize,
       timestamps: false,
@@ -35,6 +38,9 @@ class Todo extends Sequelize.Model {
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });
+  }
+  static associate(db) {
+    db.Todo.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'user_id', onDelete: 'CASCADE', onUpdate: 'CASCADE'  })
   }
 }
 

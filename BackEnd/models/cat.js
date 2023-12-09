@@ -38,6 +38,9 @@ class Cat extends Sequelize.Model {
       see:{
         type: Sequelize.INTEGER,
       },
+      user_id: {
+        type: Sequelize.STRING(20),
+      },
     }, {
       sequelize,
       timestamps: false,
@@ -53,6 +56,7 @@ class Cat extends Sequelize.Model {
   static associate(db) {
     db.Cat.hasOne(db.Kind, {foreignKey: 'kind_code', sourceKey: 'kind_code' })
     db.Cat.hasOne(db.Charc, {foreignKey: 'charc_id', sourceKey: 'charc_id' })
+    db.Cat.belongsTo(db.User, {foreignKey: 'user_id', targetKey: 'user_id', onDelete: 'CASCADE', onUpdate: 'CASCADE'  })
   }
 }
 

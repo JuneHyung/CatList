@@ -10,6 +10,7 @@ const kindRoutes = require('./routes/kind');
 const catRoutes = require('./routes/cat');
 const charcRoutes = require('./routes/charc');
 const todoRoutes = require('./routes/todo');
+const userRoutes = require('./routes/user');
 
 
 app.set('port', process.env.PORT || 3001);
@@ -28,6 +29,7 @@ app.use("/api/kind", kindRoutes);
 app.use("/api/cat", catRoutes);
 app.use("/api/charc", charcRoutes);
 app.use("/api/todo", todoRoutes);
+app.use("/api/user", userRoutes);
 
 // use swagger
 const {swaggerUi, specs} = require('./swagger/swagger');
