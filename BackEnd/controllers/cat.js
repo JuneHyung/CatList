@@ -48,6 +48,12 @@ exports.getAllCatsByKeyword = async (req, res, next) => {
 
 exports.getAllCatsByKind = async (req, res, next) => {
   const {kind_code, curPage} = req.query;
+  console.log(req.headers)
+  if(req.headers["authorization"] && req.headers["refresh"]){
+    const accessToken = req.headers["authorization"].split(' ')[1];
+    const decoded = jwt.decode(accessToken);
+    console.log(decoded)
+  }
   try{
     const allCats = await Cat.findAll({
       where:{
