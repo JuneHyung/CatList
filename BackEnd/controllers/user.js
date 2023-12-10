@@ -19,7 +19,6 @@ exports.getLogin = async (req, res) => {
     // Exception ID 불일치
     if(userId!==userInfo.user_id) return res.status(401).send("ID 불일치해요.");
 
-
     // Exception PW 불일치
     if(userPw !== userInfo.password) return res.status(401).send("비밀번호가 불일치 해요.")
 

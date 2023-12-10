@@ -21,7 +21,8 @@ const initialState: CatInitialState ={
     charc_id: '',
     see: 0,
     kind_name: '',
-    kind_profile: ''
+    kind_profile: '',
+    user_id: ''
   },
   selectedCharc: {
     charc_id: "",

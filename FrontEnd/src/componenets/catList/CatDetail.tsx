@@ -53,9 +53,10 @@ const CatDetailPage = () => {
           <div className="top-info-wrap">
             <div className="profile-box">{selectedCat.profile.toString().length === 0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${selectedCat.profile}`} alt="Kind Profile" />}</div>
             <div className="info-box">
+              <p>이름 : {selectedCat.cat_name}</p>
               <p>품종 : {selectedCat.kind_name} <MdiIcon name="mdiInformationVariantCircle" className="fur-info-icon" onClick={toggleFeatureInfo}/></p>
               {isOpenFurInfo ? <FurInfo info={kindInfo}/> : <div></div>}
-              <p>이름 : {selectedCat.cat_name}</p>
+              <p>집사님 : {selectedCat.user_id}</p>
               <p>나이 : {selectedCat.cat_age} 살</p>
               <p>등록일 : {selectedCat.create_date}</p>
               <p>

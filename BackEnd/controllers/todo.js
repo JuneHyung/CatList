@@ -18,6 +18,7 @@ exports.getAllTodoList = async (req, res, next) => {
             [Op.and]: [{ start: { [Op.gte]: startDate } }, { end: { [Op.lte]: endDate } }],
           },
           { status: todoStatus },
+          { user_id: 'test'} // user쪽 손볼때 decode해서 넣도록 수정 필요.
         ],
       },
       order: [["start", "ASC"]],
@@ -55,18 +56,25 @@ exports.updateCurStatus = async (req, res, next) => {
 };
 
 exports.postTodoItem = async (req, res, next) => {
-  const { title,content,start,end,status } = req.body;
-  try {
-    await Todo.create({
-      title,
-      content,
-      start,
-      end,
-      status
-    });
-    res.status(200).json({ code: 200, message: "추가 성공!" });
-  } catch (err) {
-    next(err);
+  const accessToken = req.headers["authorization"].split(' ')[1];
+  const decoded = jwt.decode(accessToken);
+  const user_id = decoded.id;
+  const { title, content, start, end, status } = req.body;
+  if(user_id) res.status(400).json({ code: 400, message: "Error" });
+  else{
+    try {
+      await Todo.create({
+        title,
+        content,
+        start,
+        end,
+        status,
+        user_id
+      });
+      res.status(200).json({ code: 200, message: "추가 성공!" });
+    } catch (err) {
+      next(err);
+    }
   }
 };
 

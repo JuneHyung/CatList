@@ -5,7 +5,7 @@ const initialstate = {
   editFlag: false,
   curStatus: 'todo',
   todoList: [],
-  selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo'}
+  selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo', user_id:''}
 }
 
 const todoReducer = (prevState = initialstate, action : any) =>{

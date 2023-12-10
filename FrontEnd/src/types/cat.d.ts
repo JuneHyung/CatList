@@ -29,6 +29,7 @@ interface CatInfo {
   address: string,
   charc_id: CharcInfo['charc_id'],
   see: number,
+  user_id: string
 }
 
 interface CatItem extends CatInfo{

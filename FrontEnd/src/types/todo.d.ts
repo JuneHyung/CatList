@@ -1,12 +1,13 @@
 export type todoStatus = 'todo' | 'doing' | 'done';
 
 export interface TodoItem{
-  todo_id: number,
+  todo_id: number | '',
   title: string,
   content: string,
   start: string,
   end: string,
   status: todoStatus,
+  user_id: string
 }
 
 export type TodoList = TodoItem[];
@@ -35,9 +36,9 @@ export interface DeleteResponseBody{
 
 export type TodoItemRequestBody = Partial<TodoItem>
 export interface todoInitialState {
-    focusDate: string,
-    curStatus: todoStatus,
-    todoList: TodoList,
-    editFlag: boolean,
-    selectedItem: todoItem
+  focusDate: string,
+  curStatus: todoStatus,
+  todoList: TodoList,
+  editFlag: boolean,
+  selectedItem: TodoItem
 }

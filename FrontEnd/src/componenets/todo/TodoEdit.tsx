@@ -9,7 +9,7 @@ const TodoEdit = () =>{
   const {selectedItem} = useSelector((state: todoInitialState)=>state);
   const [updateFlag, setUpdateFlag] = useState(false);
   const [formData, setFormData] = useState<TodoItemRequestBody>({
-    todo_id: 0,
+    todo_id: '',
     title: '',
     content: '',
     start: '',
@@ -19,7 +19,7 @@ const TodoEdit = () =>{
 
   // edit인지 update인지 체크
   useEffect(()=>{
-    if(selectedItem.todo_id.length!==0){
+    if(typeof selectedItem.todo_id==='string' &&selectedItem.todo_id.length!==0){
       setUpdateFlag(true);
       setFormData(selectedItem)
     }
@@ -47,7 +47,7 @@ const TodoEdit = () =>{
   // 취소
   const handleResetFormData = () =>{
     setFormData({
-      todo_id: 0,
+      todo_id: '',
       title: '',
       content: '',
       start: '',

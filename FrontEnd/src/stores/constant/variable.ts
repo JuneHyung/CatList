@@ -26,3 +26,4 @@ export const FETCH_SELECTED_ITEM = 'FETCH_SELECTED_ITEM' as const;
 export const FETCH_IS_LOADING = 'FETCH_IS_LOADING' as const;
 
 export const FETCH_IS_LOGIN = 'FETCH_IS_LOGIN' as const;
+export const FETCH_LOGIN = 'FETCH_LOGIN' as const;

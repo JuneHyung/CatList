@@ -8,7 +8,7 @@ const initialstate:todoInitialState = {
     curStatus: 'todo',
     todoList: [],
     editFlag: false,
-    selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo'}
+    selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo', user_id: '',}
 }
 
 const firstMiddleware = (store: MiddlewareAPI) => (dispatch: Dispatch<AnyAction>) => (action: AnyAction) => {
