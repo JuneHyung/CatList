@@ -27,10 +27,10 @@ export const getFetch = async <T>(url:string, params?:T) => {
   const token = await getTokenFromLocal();
   const options = defaultOptions('GET')
   if(token!==null){
-    options["refresh"] = token.refreshToken;
-    options["authorization"] = `Bearer ${token.accessToken}`;
+    options.headers["refresh"] = token.refreshToken;
+    options.headers["authorization"] = `Bearer ${token.accessToken}`;
   }
-
+  
   if(params===undefined || params===null){
     return await fetch(`${url}`, options)
   }else{

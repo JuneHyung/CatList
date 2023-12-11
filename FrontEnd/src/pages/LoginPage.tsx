@@ -5,25 +5,26 @@ import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { onLogin } from "../api/user";
 
 const LoginPage = () =>{
-  const [userId, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const isLogin = useSelector((state: {isLogin: boolean})=>state.isLogin);
+  const [userId, setUserId] = useState('');
+  const [userPw, setUserPw] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const submitLoginForm = useCallback(async (e: FormEvent<HTMLFormElement>) =>{
+    console.log(userId, userPw)
     e.preventDefault();
-    dispatch(fetchIsLogin(!isLogin))
-    onLogin({userId, password})
-    
-    navigate('/user')
-  },[dispatch, isLogin, navigate])
+    const flag = await onLogin({userId, userPw})
+    if(flag){
+      dispatch(fetchIsLogin(true))
+      navigate('/catList')
+    }
+  },[userId, userPw, dispatch, navigate])
   
   const handleIdInput = useCallback((e: ChangeEvent<HTMLInputElement>) =>{
-    setId(e.target.value);
+    setUserId(e.target.value);
   }, [])
   const handlePasswordInput = useCallback((e: ChangeEvent<HTMLInputElement>)=>{
-    setPassword(e.target.value);
+    setUserPw(e.target.value);
   },[])
 
   return (

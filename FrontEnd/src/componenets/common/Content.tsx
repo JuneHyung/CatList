@@ -1,9 +1,7 @@
 import {
   BrowserRouter,
-  Navigate,
   Route,
   Routes,
-  redirect,
 } from "react-router-dom";
 import IntroPage from "../../pages/IntroPage";
 import CatListPage from "../../pages/CatListPage";
@@ -18,9 +16,18 @@ import LoginPage from "../../pages/LoginPage";
 import UserPage from "../../pages/UserPage";
 import ErrorPage from "../../pages/ErrorPage";
 import NotFoundPage from "../../pages/NotFoundPage";
+import { verifyTokens } from "../../api/user";
+import { fetchIsLogin } from "../../stores/actions/user";
 
 const Content = () => {
-  // const { isLogin } = userStore.getState();
+  const { isLogin } = userStore.getState();
+  if(!isLogin){
+    verifyTokens().then(flag=>{
+      userStore.dispatch(fetchIsLogin(flag));
+      if(!flag) console.log('다시 로그인 해주세요.')
+    });
+  }
+
   return (
     <div className="content-box">
       <BrowserRouter>

@@ -5,9 +5,8 @@ import { useNavigate } from "react-router";
 const UserPage = () =>{
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log('userPage', 1)
   const handleLogout = () => {
-    console.log('logout')
+    localStorage.removeItem('Tokens')
     dispatch(fetchIsLogin(false));
     navigate('/login');
   }

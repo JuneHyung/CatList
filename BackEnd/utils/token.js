@@ -1,12 +1,12 @@
 require("dotenv").config();
-const Token = require("../models/Token");
+const Token = require("../models/token");
 const jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.ACCESS_TOKEN_SECRET;
 
 // accessToken 발급
 exports.makeToken = (obj) => {
   const token = jwt.sign(obj, JWT_KEY, { expiresIn: "2m" });
-  console.log(`make token : ${token}`);
+  // console.log(`make token : ${token}`);
   return token;
 };
 
@@ -14,7 +14,7 @@ exports.makeToken = (obj) => {
 exports.makeRefreshToken = () => {
   const refreshToken = jwt.sign({}, JWT_KEY, {
     algorithm: "HS256",
-    expiresIn: "10m",
+    expiresIn: "3m",
   });
   console.log(`make refresh token : ${refreshToken}`);
   return refreshToken;
@@ -25,10 +25,10 @@ exports.refreshVerify = async (token, userId) => {
   try {
     const result = await Token.findOne({
       attributes: ["token"],
-      where: { email: userId },
+      where: { user_id: userId },
     });
-    console.log(token)
-    console.log(result.token)
+    // console.log(token)
+    // console.log(result.token)
     if (token === result.token) {
       try {
         jwt.verify(token, JWT_KEY);

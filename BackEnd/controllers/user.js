@@ -12,7 +12,7 @@ exports.getLogin = async (req, res) => {
         user_id: userId
       }
     })
-
+    
     // Exception DB에서 ID찾기
     if(userInfo===null) return res.status(401).send("사용자가 없습니다. 관리자에게 문의해주세요.");
 
@@ -47,7 +47,7 @@ exports.getLogin = async (req, res) => {
       return res.status(200).json({userId, accessToken, refreshToken})
     }else{
       await Token.create({
-        email: userId,
+        user_id: userId,
         token: refreshToken
       })
       return res.status(200).json({userId, accessToken, refreshToken})
@@ -60,6 +60,7 @@ const successResponse = (code, data) => {return {code, data}}
 const failResponse = (code, message) => {code, message}
 
 exports.getRefresh = async (req, res) =>{
+  console.log(req.headers["authorization"], req.headers["refresh"])
   if(req.headers["authorization"] && req.headers["refresh"]){
     const accessToken = req.headers["authorization"].split(' ')[1];
     const refreshToken = req.headers["refresh"];
@@ -93,7 +94,7 @@ exports.getRefresh = async (req, res) =>{
     }else{
       console.log(3)
       // 3. accessToken이 만료되지 않은 경우 => refresh할 필요 없음.
-      res.status(400).send(failResponse(400, "Access Token is not expired!"));
+      res.status(200).send(failResponse(200, "Access Token is not expired!"));
     }
   }else{
     console.log(4)

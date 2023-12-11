@@ -3,16 +3,13 @@ const Sequelize = require('sequelize');
 class Token extends Sequelize.Model{
   static initiate(sequelize){
     Token.init({
-      token_id: {
-        type: Sequelize.STRING(200),
-        primaryKey:true,
-        allowNull: false,
-      },
       token: {
         type: Sequelize.STRING(500),
       },
       user_id:{
         type: Sequelize.STRING(20),
+        primaryKey:true,
+        allowNull: false,
       }
     },{
       sequelize,
