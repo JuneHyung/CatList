@@ -7,8 +7,15 @@ import { todoInitialState, todoStatus } from "../../types/todo";
 import { ThunkDispatch } from "../../types/action";
 
 const TodoList = ({ today }) => {
-  // const [ editFlag, setEditFlag ] = useState(false);
-  const { todoList, focusDate, editFlag } = useSelector((state: todoInitialState) => state);
+  const todoList = useSelector((state: todoInitialState)=>state.todoList)
+  const focusDate = useSelector((state: todoInitialState)=>state.focusDate)
+  const editFlag = useSelector((state: todoInitialState)=>state.editFlag)
+  // const { todoList, focusDate, editFlag } = useSelector((state: todoInitialState) => ({
+  //     todoList: state.todoList,
+  //     focusDate: state.focusDate,
+  //     editFlag: state.editFlag
+  //   })
+  // );
   const dispatch: ThunkDispatch = useDispatch();
   const handleGetTodo = useCallback((status: todoStatus) => {
       dispatch(setTodoList(status, focusDate));

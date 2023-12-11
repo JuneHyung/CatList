@@ -20,8 +20,7 @@ import ErrorPage from "../../pages/ErrorPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 
 const Content = () => {
-  const { isLogin } = userStore.getState();
-  console.log(isLogin);
+  // const { isLogin } = userStore.getState();
   return (
     <div className="content-box">
       <BrowserRouter>

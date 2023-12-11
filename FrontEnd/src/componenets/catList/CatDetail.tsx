@@ -8,7 +8,17 @@ import KakaoMap from "../kakao/KakaoMap";
 import FurInfo from "./FurInfo";
 
 const CatDetailPage = () => {
-  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: CatInitialState) => state);
+  const catKindList = useSelector((state:CatInitialState)=>state.catKindList)
+  const selectedCat = useSelector((state:CatInitialState)=>state.selectedCat)
+  const selectedCharc = useSelector((state:CatInitialState)=>state.selectedCharc)
+  const isLoading = useSelector((state:CatInitialState)=>state.isLoading)
+  // const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: CatInitialState) => ({
+  //     catKindList: state.catKindList,
+  //     selectedCat: state.selectedCat,
+  //     selectedCharc: state.selectedCharc,
+  //     isLoading: state.isLoading,
+  //   })
+  // );
   const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
   const [kindInfo, setKindInfo] = useState<KindInfo>({
     kind_code: '',

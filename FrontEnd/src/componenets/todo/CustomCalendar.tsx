@@ -9,7 +9,16 @@ import { ThunkDispatch } from '../../types/action';
 import { todoInitialState } from '../../types/todo';
 
 const CustomCalendar = () => {
-  const {todoList, curStatus, focusDate} = useSelector((state: todoInitialState)=>state);
+  const todoList = useSelector((state: todoInitialState)=> state.todoList)
+  const curStatus = useSelector((state: todoInitialState)=> state.curStatus)
+  const focusDate = useSelector((state: todoInitialState)=> state.focusDate)
+
+  // const {todoList, curStatus, focusDate} = useSelector((state: todoInitialState)=>({
+  //     todoList: state.todoList,
+  //     curStatus: state.curStatus,
+  //     focusDate: state.focusDate
+  //   })
+  // );
   const dispatch: ThunkDispatch = useDispatch()
   const myCalendar = useRef(null);
   const handleFocusDate = useCallback((v: DateClickArg )=>{
