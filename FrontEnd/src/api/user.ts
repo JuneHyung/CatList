@@ -7,6 +7,7 @@ export const onLogin = async (body): Promise<{userName: string}> => {
     const data = await res.json();
     if(res.status===200){
       localStorage.setItem('Tokens', JSON.stringify({
+        'userName': data.userName,
         'accessToken': data.accessToken,
         'refreshToken': data.refreshToken,
       }))
@@ -29,9 +30,9 @@ export const getTokenFromLocal = () =>{
   }
 }
 
-
-export const verifyTokens = async (): Promise<boolean> => {
+export const verifyTokens = async (): Promise<{userName: string}> => {
   const token = await getTokenFromLocal();
+
   if(token===null) console.log('돌아가')
   else{
     try{
@@ -40,24 +41,20 @@ export const verifyTokens = async (): Promise<boolean> => {
       console.log(res)
 
       // accessToken 만료, refreshToken 정상 -> 재발급된 accessToken 저장 후 자동 로그인
-      // localStorage.setItem(`Tokens`,JSON.stringify({
-      //   ...token,
-      //   'accessToken': res.data.data.accessToken
-      // }))
       if(res.status===200){
         console.log('Refresh 로그인 성공')
-        return true;
+        return {userName: token.userName};
       }else {
         console.log('다시 로그인해주세요.')
         localStorage.removeItem('Tokens');
-        return false;
+        return null;
       }
     }catch(err){
       const code = err.response.data.code;
       console.log(err.response)
       if(code===401) console.error('401 Auth')
       else console.error('Error!');
-      return false;
+      return null;
     }
   }
 }

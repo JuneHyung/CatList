@@ -17,7 +17,7 @@ import UserPage from "../../pages/UserPage";
 import ErrorPage from "../../pages/ErrorPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import { getTokenFromLocal, verifyTokens } from "../../api/user";
-import { fetchIsLogin } from "../../stores/actions/user";
+import { fetchIsLogin, fetchUserName } from "../../stores/actions/user";
 
 const Content = () => {
   const { isLogin } = userStore.getState();
@@ -25,8 +25,13 @@ const Content = () => {
 
   if(token!==null && !isLogin){
     verifyTokens().then(flag=>{
-      userStore.dispatch(fetchIsLogin(flag));
-      if(!flag) console.log('다시 로그인 해주세요.')
+      if(flag){
+        userStore.dispatch(fetchUserName(flag.userName));
+        userStore.dispatch(fetchIsLogin(true));
+      }else{
+        console.log('다시 로그인 해주세요.')
+        userStore.dispatch(fetchIsLogin(false));
+      }
     });
   }
 

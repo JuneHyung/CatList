@@ -27,8 +27,7 @@ exports.refreshVerify = async (token, userId) => {
       attributes: ["token"],
       where: { user_id: userId },
     });
-    // console.log(token)
-    // console.log(result.token)
+
     if (token === result.token) {
       try {
         jwt.verify(token, JWT_KEY);

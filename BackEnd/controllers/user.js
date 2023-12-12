@@ -82,9 +82,10 @@ exports.getRefresh = async (req, res) =>{
       else{
         console.log(2)
         // 2. accessToken이 만료되고, refreshToken은 만료되지 않은 경우 => 새로운 accessToken 발급
-        const newAccessToken = makeToken({id: decoded.id});
+        const newAccessToken = makeToken({id: decoded.id, userName: decoded.userName});
 
         res.status(200).send(successResponse(200, {
+          userName: decoded.userName,
           accessToken: newAccessToken,
           refreshToken,
         }))
