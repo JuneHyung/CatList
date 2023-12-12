@@ -1,27 +1,27 @@
 import { getFetch, postFetch } from ".";
 const url = process.env.REACT_APP_BACKEND_URL;
-export const onLogin = async (body): Promise<boolean> => {
-  console.log(body)
+
+export const onLogin = async (body): Promise<{userName: string}> => {
   try{
     const res = await postFetch(`${url}/user/login`, body);
     const data = await res.json();
-    console.log(res)
     if(res.status===200){
       localStorage.setItem('Tokens', JSON.stringify({
         'accessToken': data.accessToken,
         'refreshToken': data.refreshToken,
       }))
+      
       console.log('로그인 성공')
-      return true;
-    }else return false;
+      return {userName: data.userName};
+    }else return null;
   }catch(err){
     console.error(err);
   }
 }
 
-export const getTokenFromLocal = async () =>{
+export const getTokenFromLocal = () =>{
   try {
-    const val = await localStorage.getItem("Tokens");
+    const val = localStorage.getItem("Tokens");
     if(val!==null) return JSON.parse(val);
     else return null;
   }catch(e){
@@ -32,7 +32,6 @@ export const getTokenFromLocal = async () =>{
 
 export const verifyTokens = async (): Promise<boolean> => {
   const token = await getTokenFromLocal();
-  console.log(token)
   if(token===null) console.log('돌아가')
   else{
     try{

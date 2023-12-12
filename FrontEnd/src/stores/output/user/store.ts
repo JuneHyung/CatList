@@ -4,6 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 const initialstate = {
   isLogin: false,
+  userName: ''
 }
 
 const firstMiddleware = (store: MiddlewareAPI) => (dispatch: Dispatch<AnyAction>) => (action: AnyAction) => {

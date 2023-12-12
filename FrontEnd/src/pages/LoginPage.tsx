@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { fetchIsLogin } from "../stores/actions/user";
+import { useDispatch } from "react-redux";
+import { fetchIsLogin, fetchUserName } from "../stores/actions/user";
 import { useNavigate } from "react-router";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
-import { onLogin } from "../api/user";
+import { getTokenFromLocal, onLogin } from "../api/user";
 
 const LoginPage = () =>{
   const [userId, setUserId] = useState('');
@@ -11,10 +11,10 @@ const LoginPage = () =>{
   const navigate = useNavigate();
 
   const submitLoginForm = useCallback(async (e: FormEvent<HTMLFormElement>) =>{
-    console.log(userId, userPw)
     e.preventDefault();
     const flag = await onLogin({userId, userPw})
     if(flag){
+      dispatch(fetchUserName(flag.userName))
       dispatch(fetchIsLogin(true))
       navigate('/catList')
     }

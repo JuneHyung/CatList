@@ -12,7 +12,6 @@ exports.getLogin = async (req, res) => {
         user_id: userId
       }
     })
-    
     // Exception DB에서 ID찾기
     if(userInfo===null) return res.status(401).send("사용자가 없습니다. 관리자에게 문의해주세요.");
 
@@ -26,7 +25,7 @@ exports.getLogin = async (req, res) => {
     if(userInfo.authStatus !== 1) return res.status(401).send('이메일 인증을 완료하세요.')
 
     // id, pw 같은 경우 토큰 발급
-    const accessToken = makeToken({id: userId});
+    const accessToken = makeToken({id: userId, userName: userInfo.user_name});
     const refreshToken = makeRefreshToken();
 
     const existingToken = await Token.findOne({
@@ -44,13 +43,13 @@ exports.getLogin = async (req, res) => {
           }
         }
       );
-      return res.status(200).json({userId, accessToken, refreshToken})
+      return res.status(200).json({userName: userInfo.user_name, accessToken, refreshToken})
     }else{
       await Token.create({
         user_id: userId,
         token: refreshToken
       })
-      return res.status(200).json({userId, accessToken, refreshToken})
+      return res.status(200).json({userName: userInfo.user_name, accessToken, refreshToken})
     }
   }catch(err) {throw err;}
 }
@@ -60,7 +59,6 @@ const successResponse = (code, data) => {return {code, data}}
 const failResponse = (code, message) => {code, message}
 
 exports.getRefresh = async (req, res) =>{
-  console.log(req.headers["authorization"], req.headers["refresh"])
   if(req.headers["authorization"] && req.headers["refresh"]){
     const accessToken = req.headers["authorization"].split(' ')[1];
     const refreshToken = req.headers["refresh"];

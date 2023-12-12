@@ -77,9 +77,13 @@ export interface FetchSelectedItemAction {
   data: TodoItem,
 }
 
-export interface FetchIsLogin {
+export interface FetchIsLoginAction {
   type: FETCH_IS_LOGIN,
-  data: boolean,
+  data: boolean| Promise<boolean>,
+}
+export interface FetchUserNameAction {
+  type: FETCH_USER_NAME,
+  data: string,
 }
 
 

@@ -3,7 +3,8 @@ import MenuItem from "./MenuItem"
 import { useSelector } from "react-redux";
 
 const Menu = () => {
-  const isLogin = useSelector((state:{isLogin:boolean})=>state.isLogin);
+  const isLogin = useSelector((state:{isLogin:boolean, userName:string})=>state.isLogin);
+  const userName = useSelector((state:{isLogin:boolean, userName:string})=>state.userName);
   // const {isLogin} = userStore.getState(); 
   const menuList =useMemo(()=>{
     let result = [
@@ -15,10 +16,10 @@ const Menu = () => {
     if(!isLogin) {
       result.splice(1, 0, {path: '/login', label: 'Login', icon: 'mdiAccount'})
     }else{
-      result.splice(1, 0, {path: '/user', label: 'JuneHyung', icon: 'mdiAccount'})
+      result.splice(1, 0, {path: '/user', label: userName, icon: 'mdiAccount'})
     }
     return result
-  },[isLogin])
+  },[isLogin, userName])
   
   return (
     <nav className="menu-list">
