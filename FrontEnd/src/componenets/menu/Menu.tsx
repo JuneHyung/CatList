@@ -8,13 +8,14 @@ const Menu = () => {
     let result = [
       {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},
       {path: '/catList', label: 'CatList', icon: 'mdiCat'},
-      {path: '/tiptap', label: 'TipTap', icon: 'mdiNoteEdit'},
-      {path: '/todoList', label: 'Todo List', icon: 'mdiCalendarMonth'},
+      // {path: '/tiptap', label: 'TipTap', icon: 'mdiNoteEdit'},
+      // {path: '/todoList', label: 'Todo List', icon: 'mdiCalendarMonth'},
     ];
     if(!isLogin) {
       result.splice(1, 0, {path: '/login', label: 'Login', icon: 'mdiAccount'})
     }else{
       result.splice(1, 0, {path: '/user', label: userName, icon: 'mdiAccount'})
+      result.push({path: '/todoList', label: 'Todo List', icon: 'mdiCalendarMonth'})
     }
     return result
   },[isLogin, userName])
