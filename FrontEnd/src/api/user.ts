@@ -38,7 +38,6 @@ export const verifyTokens = async (): Promise<{userName: string}> => {
     try{
       // const res = await getFetch(`${url}/refresh`, {headers: headersConfig})
       const res = await getFetch(`${url}/user/refresh`)
-      console.log(res)
 
       // accessToken 만료, refreshToken 정상 -> 재발급된 accessToken 저장 후 자동 로그인
       if(res.status===200){

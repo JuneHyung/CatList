@@ -1,4 +1,5 @@
 import { getFetch } from ".";
+import { CatInfo, CatList, CharcInfo, GetCatListByKeywordReqeustParams, GetCatListByKindReqeustParams, KindList } from "../types/cat";
 const url = process.env.REACT_APP_BACKEND_URL;
 export const getAllKind = async () =>{
   try{
