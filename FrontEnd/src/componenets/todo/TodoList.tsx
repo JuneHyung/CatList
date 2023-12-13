@@ -5,9 +5,10 @@ import TodoItem from "./TodoItem";
 import TodoEdit from "./TodoEdit";
 import { todoStatus } from "../../types/todo";
 import { ThunkDispatch } from "../../types/action";
+import { TotalInitialstate } from "../../types";
 
 const TodoList = ({ today }) => {
-  const { todoList, focusDate, editFlag } = useSelector((state: any) => state.todo);
+  const { todoList, focusDate, editFlag } = useSelector((state: TotalInitialstate) => state.todo);
   const dispatch: ThunkDispatch = useDispatch();
   const handleGetTodo = useCallback((status: todoStatus) => {
       dispatch(setTodoList(status, focusDate));

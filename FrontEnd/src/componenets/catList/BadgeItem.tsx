@@ -2,9 +2,10 @@ import { FC, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
+import { TotalInitialstate } from "../../types";
 
 const BadgeItem = ({item}) =>{
-  const {isLoading} = useSelector((state:any)=> state.cat)
+  const {isLoading} = useSelector((state:TotalInitialstate)=> state.cat)
   const bgNameList =  [
     'warmFlame',
     'nightFade',

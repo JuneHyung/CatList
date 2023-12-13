@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import CatKindItem from "./CatKindItem";
 import NoData from "../common/NoData";
+import { TotalInitialstate } from "../../types";
 
 const CatKindList = () =>{
-  const catKindList = useSelector((state: any)=> state.cat.catKindList)
+  const catKindList = useSelector((state: TotalInitialstate)=> state.cat.catKindList)
 
   return (
     <ul className="cat-kind-list">

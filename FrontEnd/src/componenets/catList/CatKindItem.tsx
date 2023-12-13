@@ -3,9 +3,10 @@ import { getCatListByKind, resetIsEndData, setSelectedKind } from "../../stores/
 import Avatar from "../common/Avatar";
 import { useCallback } from "react";
 import { ThunkDispatch } from "../../types/action";
+import { TotalInitialstate } from "../../types";
 
 const CatKindItem = ({item}) =>{
-  const {selectedKindName, isLoading} = useSelector((state: any)=> state.cat);
+  const {selectedKindName, isLoading} = useSelector((state: TotalInitialstate)=> state.cat);
   const dispatch: ThunkDispatch = useDispatch();
   
   const handleOnClick = useCallback(async() =>{

@@ -1,6 +1,8 @@
+import { TodoInitialState } from "../../types/todo";
+
 const { CLEAR_FOCUS_DATE, CLEAR_TODO_LIST, FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_EDIT_FLAG, FETCH_SELECTED_ITEM } = require("../constant/variable");
 
-const initialstate = {
+const initialstate:TodoInitialState = {
   focusDate: '',
   editFlag: false,
   curStatus: 'todo',

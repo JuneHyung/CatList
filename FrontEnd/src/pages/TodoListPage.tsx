@@ -5,9 +5,10 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { setFocusDate } from "../stores/actions/todo";
 import { ThunkDispatch } from "../types/action";
+import { TotalInitialstate } from "../types";
 
 const TodoListPage = () => {
-  const {focusDate} = useSelector((state:any)=>state.todo)
+  const {focusDate} = useSelector((state:TotalInitialstate)=>state.todo)
   const dispatch: ThunkDispatch = useDispatch();
   useEffect(()=>{
     const today = dayjs().format('YYYY-MM-DD');

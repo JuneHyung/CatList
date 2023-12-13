@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { TotalInitialstate } from "../../types";
 
 const CatEdit = () => {
-  const {selectedCat, selectedKindCode, editFlag} = useSelector((state: any) => state.cat);
+  const {selectedCat, selectedKindCode, editFlag} = useSelector((state: TotalInitialstate) => state.cat);
   console.log(selectedCat, selectedKindCode, editFlag)
   // selectedCat의 코드가 없으면 edit, 있으면 수정
   const [catCode, setCatCode] = useState('');

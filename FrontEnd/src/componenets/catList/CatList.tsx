@@ -8,9 +8,10 @@ import { ThunkDispatch } from "../../types/action";
 import { CatInfo } from "../../types/cat";
 import CatPlusButton from "./CatPlusButton";
 import CatEdit from "./CatEdit";
+import { TotalInitialstate } from "../../types";
 
 const CatList = () => {
-  const {catList, selectedKindCode, lastKeyword, curPage, isLoading, editFlag} = useSelector((state: any)=> state.cat)
+  const {catList, selectedKindCode, lastKeyword, curPage, isLoading, editFlag} = useSelector((state: TotalInitialstate)=> state.cat)
   const {isLogin} = useSelector((state: any)=> state.user)
   const dispatch: ThunkDispatch = useDispatch();
   const handleOnScroll = useCallback((e:UIEvent<HTMLUListElement>)=>{

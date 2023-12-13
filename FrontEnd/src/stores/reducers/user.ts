@@ -1,6 +1,7 @@
+import { UserInitialState } from "../../types/user";
 import { FETCH_IS_LOGIN, FETCH_USER_NAME } from "../constant/variable";
 
-const initialstate = {
+const initialstate: UserInitialState = {
   isLogin: false,
   userName: '',
 }

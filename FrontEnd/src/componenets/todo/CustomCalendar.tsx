@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { setFocusDate, setTodoList } from '../../stores/actions/todo';
 import { ThunkDispatch } from '../../types/action';
+import { TotalInitialstate } from '../../types';
 
 const CustomCalendar = () => {
-  const {todoList, curStatus, focusDate} = useSelector((state: any)=>state.todo);
+  const {todoList, curStatus, focusDate} = useSelector((state: TotalInitialstate)=>state.todo);
   const dispatch: ThunkDispatch = useDispatch()
   const myCalendar = useRef(null);
   const handleFocusDate = useCallback((v: DateClickArg )=>{

@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
 import MenuItem from "./MenuItem"
 import { useSelector } from "react-redux";
+import { TotalInitialstate } from "../../types";
 
 const Menu = () => {
-  const {isLogin, userName} = useSelector((state:any)=>state.user);
+  const {isLogin, userName} = useSelector((state:TotalInitialstate)=>state.user);
   const menuList =useMemo(()=>{
     let result = [
       {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},

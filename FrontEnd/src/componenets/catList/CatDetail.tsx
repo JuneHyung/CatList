@@ -7,9 +7,10 @@ import NoImage from "../common/NoImage";
 import KakaoMap from "../kakao/KakaoMap";
 import FurInfo from "./FurInfo";
 import { KindInfo } from "../../types/cat";
+import { TotalInitialstate } from "../../types";
 
 const CatDetailPage = () => {
-  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: any) => state.cat);
+  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: TotalInitialstate) => state.cat);
   const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
   const [kindInfo, setKindInfo] = useState<KindInfo>({
     kind_code: '',
