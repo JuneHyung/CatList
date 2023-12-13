@@ -1,5 +1,6 @@
 import { AnyAction } from "redux";
 import { CatInitialState } from "../../types/cat";
+import { FETCH_EDIT_FLAG } from "../constant/variable";
 
 const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } = require("../constant/variable");
 
@@ -36,6 +37,7 @@ const initialState: CatInitialState ={
   },
   isEndData: false,
   isLoading: false,
+  editFlag: false,
 }
 
 const catReducer = (prevState = initialState, action: AnyAction) =>{
@@ -71,6 +73,8 @@ const catReducer = (prevState = initialState, action: AnyAction) =>{
       return {...prevState, isEndData: action.data};
     case FETCH_IS_LOADING:
       return {...prevState, isLoading: action.data};
+    case FETCH_EDIT_FLAG:
+      return {...prevState, editFlag: action.data};
     default:
       return prevState
   }

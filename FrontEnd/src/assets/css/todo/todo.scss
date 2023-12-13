@@ -45,23 +45,7 @@
         }
       }
     }
-    .plus-item-button {
-      height: 60px;
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-      color: $pointColor;
-      font-weight: 900;
-      border: 3px dashed $pointColor;
-      border-radius: 0.25rem;
-      transition: all 0.4s;
-      cursor: pointer;
-      &:hover {
-        background-color: $pointColor;
-        color: $lowColor;
-      }
-    }
+    
     .todo-list {
       display: flex;
       flex: 1;

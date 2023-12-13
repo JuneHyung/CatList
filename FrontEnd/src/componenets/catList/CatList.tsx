@@ -6,9 +6,11 @@ import { UIEvent, useCallback } from "react";
 import { getCatListByKeyword, getCatListByKind } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
 import { CatInfo } from "../../types/cat";
+import CatPlusButton from "./CatPlusButton";
+import CatEdit from "./CatEdit";
 
 const CatList = () => {
-  const {catList, selectedKindCode, lastKeyword, curPage, isLoading} = useSelector((state: any)=> state.cat)
+  const {catList, selectedKindCode, lastKeyword, curPage, isLoading, editFlag} = useSelector((state: any)=> state.cat)
   const {isLogin} = useSelector((state: any)=> state.user)
   const dispatch: ThunkDispatch = useDispatch();
   const handleOnScroll = useCallback((e:UIEvent<HTMLUListElement>)=>{
@@ -20,7 +22,8 @@ const CatList = () => {
   },[curPage, dispatch, lastKeyword, selectedKindCode])
   return (
     <ul className="cat-list" onScroll={handleOnScroll}>
-      {isLoading 
+      {isLogin && !isLoading && !editFlag? <CatPlusButton/> : null}
+      {editFlag ? <CatEdit /> : isLoading 
       ? (<Spinner />) 
       : catList.length === 0 ? <NoData /> : catList.map((item: CatInfo) => <CatListItem item={item} key={item.cat_code} />)}
     </ul>

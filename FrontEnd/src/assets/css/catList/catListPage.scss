@@ -92,6 +92,7 @@
 
     .cat-list {
       display: flex;
+      flex-direction: row;
       flex: 9;
       flex-wrap: wrap;
       overflow-y: auto;

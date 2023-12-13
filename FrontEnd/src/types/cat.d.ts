@@ -60,4 +60,5 @@ export interface CatInitialState {
   selectedCharc: CharcInfo
   isEndData: boolean,
   isLoading: boolean, 
+  editFlag: boolean,
 }
