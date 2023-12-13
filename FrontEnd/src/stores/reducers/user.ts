@@ -6,7 +6,6 @@ const initialstate = {
 }
 
 const userReducer = (prevState = initialstate, action : any) =>{
-  console.log(action.type, action.data)
   switch(action.type){
     case FETCH_USER_NAME:
       return {...prevState, userName: action.data};

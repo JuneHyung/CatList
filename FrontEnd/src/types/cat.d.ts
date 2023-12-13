@@ -1,4 +1,4 @@
-interface KindInfo {
+export interface KindInfo {
   kind_code: string,
   kind_name: string,
   kind_profile: Blob | string,
@@ -6,9 +6,9 @@ interface KindInfo {
   kind_fur: string,
   kind_fur_pattern: string,
 }
-type KindList = KindInfo[];
+export type KindList = KindInfo[];
 
-interface CharcInfo{
+export interface CharcInfo{
   charc_id: string,
   extrovert: number,
   introvert: number,
@@ -18,7 +18,7 @@ interface CharcInfo{
   friendly: number
 }
 
-interface CatInfo {
+export interface CatInfo {
   cat_code: number,
   cat_name: string,
   cat_age: number,
@@ -32,24 +32,24 @@ interface CatInfo {
   user_id: string
 }
 
-interface CatItem extends CatInfo{
+export interface CatItem extends CatInfo{
   kind_name: KindInfo[kind_name],
   kind_profile: KindInfo[kind_profile],
 }
-type CatList = CatItem[];
+export type CatList = CatItem[];
 
-type GetCatListByKindReqeustParams = {
+export type GetCatListByKindReqeustParams = {
   kind_code: KindInfo['kind_code'],
   curPage: number
 }
-type GetCatListByKeywordReqeustParams = {
+export type GetCatListByKeywordReqeustParams = {
   keyword: string,
   curPage: number
 }
 
-type selectedKindInfo = Pick<KindInfo, 'kind_code' | 'kind_name'>
+export type selectedKindInfo = Pick<KindInfo, 'kind_code' | 'kind_name'>
 
-interface CatInitialState {
+export interface CatInitialState {
   catList: CatList,
   catKindList: KindList,
   lastKeyword: string,

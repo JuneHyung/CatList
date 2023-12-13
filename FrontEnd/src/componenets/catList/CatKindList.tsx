@@ -3,7 +3,7 @@ import CatKindItem from "./CatKindItem";
 import NoData from "../common/NoData";
 
 const CatKindList = () =>{
-  const catKindList = useSelector((state: CatInitialState)=> state.catKindList)
+  const catKindList = useSelector((state: any)=> state.cat.catKindList)
 
   return (
     <ul className="cat-kind-list">

@@ -6,19 +6,10 @@ import { useCallback, useMemo, useState } from "react";
 import NoImage from "../common/NoImage";
 import KakaoMap from "../kakao/KakaoMap";
 import FurInfo from "./FurInfo";
+import { KindInfo } from "../../types/cat";
 
 const CatDetailPage = () => {
-  const catKindList = useSelector((state:CatInitialState)=>state.catKindList)
-  const selectedCat = useSelector((state:CatInitialState)=>state.selectedCat)
-  const selectedCharc = useSelector((state:CatInitialState)=>state.selectedCharc)
-  const isLoading = useSelector((state:CatInitialState)=>state.isLoading)
-  // const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: CatInitialState) => ({
-  //     catKindList: state.catKindList,
-  //     selectedCat: state.selectedCat,
-  //     selectedCharc: state.selectedCharc,
-  //     isLoading: state.isLoading,
-  //   })
-  // );
+  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: any) => state.cat);
   const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
   const [kindInfo, setKindInfo] = useState<KindInfo>({
     kind_code: '',

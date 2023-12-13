@@ -1,7 +1,9 @@
 import { MiddlewareAPI, Dispatch, AnyAction, compose, applyMiddleware, legacy_createStore as createStore } from "redux";
-import reducer from '../../reducers/cat';
+import reducer from '../reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
-const initialstate: CatInitialState = {
+import { CatInitialState } from "../../types/cat";
+import { TodoInitialState } from "../../types/todo";
+const catInitialState: CatInitialState = {
     catList: [],
     catKindList: [],
     lastKeyword: '',
@@ -35,7 +37,22 @@ const initialstate: CatInitialState = {
     isEndData: false,
     isLoading: false,
 }
-
+const todoInitialState:TodoInitialState = {
+  focusDate: '',
+  curStatus: 'todo',
+  todoList: [],
+  editFlag: false,
+  selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo', user_id: '',}
+}
+const userInitialState = {
+  isLogin: false,
+  userName: ''
+}
+const initialState = {
+  cat: catInitialState,
+  todo: todoInitialState,
+  user: userInitialState
+}
 const firstMiddleware = (store: MiddlewareAPI) => (dispatch: Dispatch<AnyAction>) => (action: AnyAction) => {
   dispatch(action)
 }
@@ -60,7 +77,7 @@ const enhancer = process.env.NODE_ENV === 'production'
     ),
   );
 
-const store = createStore(reducer, initialstate, enhancer);
+const store = createStore(reducer, initialState, enhancer);
 
 
 export default store;

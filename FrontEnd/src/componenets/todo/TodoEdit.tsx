@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postNewTodoItem, putCurTodoItem, toggleEditFlag } from "../../stores/actions/todo";
-import { TodoItemRequestBody, todoInitialState } from "../../types/todo";
+import { TodoItemRequestBody } from "../../types/todo";
 import { ThunkDispatch } from "../../types/action";
 
 const TodoEdit = () =>{
   const dispatch: ThunkDispatch = useDispatch();
-  const selectedItem = useSelector((state: todoInitialState)=>state.selectedItem);
+  const {selectedItem} = useSelector((state: any)=>state.todo);
   const [updateFlag, setUpdateFlag] = useState(false);
   const [formData, setFormData] = useState<TodoItemRequestBody>({
     todo_id: '',

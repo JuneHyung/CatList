@@ -3,19 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurStatus, setTodoList, toggleEditFlag } from "../../stores/actions/todo";
 import TodoItem from "./TodoItem";
 import TodoEdit from "./TodoEdit";
-import { todoInitialState, todoStatus } from "../../types/todo";
+import { todoStatus } from "../../types/todo";
 import { ThunkDispatch } from "../../types/action";
 
 const TodoList = ({ today }) => {
-  const todoList = useSelector((state: todoInitialState)=>state.todoList)
-  const focusDate = useSelector((state: todoInitialState)=>state.focusDate)
-  const editFlag = useSelector((state: todoInitialState)=>state.editFlag)
-  // const { todoList, focusDate, editFlag } = useSelector((state: todoInitialState) => ({
-  //     todoList: state.todoList,
-  //     focusDate: state.focusDate,
-  //     editFlag: state.editFlag
-  //   })
-  // );
+  const { todoList, focusDate, editFlag } = useSelector((state: any) => state.todo);
   const dispatch: ThunkDispatch = useDispatch();
   const handleGetTodo = useCallback((status: todoStatus) => {
       dispatch(setTodoList(status, focusDate));

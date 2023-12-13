@@ -1,6 +1,7 @@
 import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND } from "../constant/variable";
 import { getAllCatByKind, getAllKind, getAllCatByKeyword, getCharcByCharcId } from "../../api/cats";
 import { ClearAllCatDataAction, ClearCatListAction, ClearSelectedCatAction, ClearSelectedCharcAction, ClearSelectedKindAction, FetchCatKindListAction, FetchCatListAction, FetchCurPageAction, FetchIsEndDataAction, FetchIsLoadingAction, FetchLastKeywordAction, FetchSelectedCatAction, FetchSelectedCharcAction, FetchSelectedKindAction, ThunkAction } from "../../types/action";
+import { CatInfo, CatList, CharcInfo, GetCatListByKeywordReqeustParams, GetCatListByKindReqeustParams, KindList, selectedKindInfo } from "../../types/cat";
 
 
 export const setCatKindList = (): ThunkAction => {

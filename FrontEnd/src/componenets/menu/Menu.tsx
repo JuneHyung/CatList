@@ -3,9 +3,7 @@ import MenuItem from "./MenuItem"
 import { useSelector } from "react-redux";
 
 const Menu = () => {
-  const isLogin = useSelector((state:{isLogin:boolean, userName:string})=>state.isLogin);
-  const userName = useSelector((state:{isLogin:boolean, userName:string})=>state.userName);
-  // const {isLogin} = userStore.getState(); 
+  const {isLogin, userName} = useSelector((state:any)=>state.user);
   const menuList =useMemo(()=>{
     let result = [
       {path: '/', label: 'Intro', icon: 'mdiHumanGreetingVariant'},

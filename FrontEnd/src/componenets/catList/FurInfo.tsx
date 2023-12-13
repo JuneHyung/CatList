@@ -1,3 +1,5 @@
+import { KindInfo } from "../../types/cat"
+
 const FurInfo = ({info}: {info: KindInfo}) =>{
   return (
     <div className="fur-info">

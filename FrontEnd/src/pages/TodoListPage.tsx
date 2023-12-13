@@ -4,11 +4,10 @@ import TodoList from "../componenets/todo/TodoList";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { setFocusDate } from "../stores/actions/todo";
-import { todoInitialState } from "../types/todo";
 import { ThunkDispatch } from "../types/action";
 
 const TodoListPage = () => {
-  const focusDate = useSelector((state:todoInitialState)=>state.focusDate)
+  const {focusDate} = useSelector((state:any)=>state.todo)
   const dispatch: ThunkDispatch = useDispatch();
   useEffect(()=>{
     const today = dayjs().format('YYYY-MM-DD');
