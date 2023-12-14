@@ -69,4 +69,143 @@ router.get('/search/', catController.getAllCatsByKeyword);
  */
 router.get('/kind', catController.getAllCatsByKind);
 
+/**
+ * @swagger
+ * paths:
+ *  /api/cats/add:
+ *    post:
+ *      summary: "고양이 정보 추가"
+ *      description: "고양이 정보를 가지고, Cat과 Charc에 추가. charc_id는 catCharc + cat_code형태, create_date는 자동생성"
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                cat_name:
+ *                  type: string
+ *                  description: "고양이 이름"
+ *                cat_age:
+ *                  type: number
+ *                  description: "고양이 나이"
+ *                kind_code:
+ *                  type: string
+ *                  description: "고양이 종류"
+ *                description:
+ *                  type: string
+ *                  description: "고양이 소개"
+ *                profile:
+ *                  type: string
+ *                  description: "고양이 사진"
+ *                address:
+ *                  type: string
+ *                  description: "주소"
+ *                extrovert:
+ *                  type: number
+ *                  description: "외향적 성격값"
+ *                introvert:
+ *                  type: number
+ *                  description: "내성적 성격값"
+ *                curious:
+ *                  type: number
+ *                  description: "호기심 성격값"
+ *                tranquil:
+ *                  type: number
+ *                  description: "조용한 성격값"
+ *                independence:
+ *                  type: number
+ *                  description: "독립적 성격값"
+ *                friendly:
+ *                  type: number
+ *                  description: "친근함 성격값"
+ *      tags: [Cat]
+ *      responses:
+ *       "200":
+ *          description: 고양이 추가 성공
+ */
+router.post('/add', catController.postCatInfo);
+
+/**
+ * @swagger
+ * paths:
+ *  /api/cats/udpate:
+ *    put:
+ *      summary: "고양이 정보 수정"
+ *      description: "고양이 코드를 가지고, Cat과 Charc정보 수정."
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                cat_code:
+ *                  type: number
+ *                  description: "고양이 코드"
+ *                cat_name:
+ *                  type: string
+ *                  description: "고양이 이름"
+ *                cat_age:
+ *                  type: number
+ *                  description: "고양이 나이"
+ *                kind_code:
+ *                  type: string
+ *                  description: "고양이 종류"
+ *                description:
+ *                  type: string
+ *                  description: "고양이 소개"
+ *                profile:
+ *                  type: string
+ *                  description: "고양이 사진"
+ *                address:
+ *                  type: string
+ *                  description: "주소"
+*                charc_id:
+ *                  type: string
+ *                  description: "고양이 성격 코드"
+ *                extrovert:
+ *                  type: number
+ *                  description: "외향적 성격값"
+ *                introvert:
+ *                  type: number
+ *                  description: "내성적 성격값"
+ *                curious:
+ *                  type: number
+ *                  description: "호기심 성격값"
+ *                tranquil:
+ *                  type: number
+ *                  description: "조용한 성격값"
+ *                independence:
+ *                  type: number
+ *                  description: "독립적 성격값"
+ *                friendly:
+ *                  type: number
+ *                  description: "친근함 성격값"
+ *      tags: [Cat]
+ *      responses:
+ *       "200":
+ *          description: 고양이 추가 성공
+ */
+router.put('/update', catController.putCatInfo);
+/**
+ * @swagger
+ * paths:
+ *  /api/cats/delete/{id}:
+ *    delete:
+ *      summary: "CatInfo 삭제"
+ *      description: "userId가 일치한다면, cat_code를 가지고, 해당 Cat정보와 연관된 Charc정보가 삭제된다."
+ *      parameters:
+ *        - in: path
+ *          name: cat_code
+ *          description: "삭제할 고양이정보의 code"
+ *          required: true
+ *          schema:
+ *            type: string
+ *      tags: [Cat]
+ *      responses:
+ *       "200":
+ *          description: 고양이 정보를 삭제합니다.
+ */
+router.delete('/delete', catController.deleteCatInfo);
 module.exports = router;

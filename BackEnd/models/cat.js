@@ -34,6 +34,7 @@ class Cat extends Sequelize.Model {
       },
       charc_id:{
         type: Sequelize.STRING(45),
+        onDelete: 'CASCADE' // 연쇄 삭제 옵션 설정
       },
       see:{
         type: Sequelize.INTEGER,
