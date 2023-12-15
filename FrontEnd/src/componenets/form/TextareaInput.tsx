@@ -1,11 +1,7 @@
-import { ChangeEvent, useCallback } from "react"
+import { ChangeEvent, TextareaHTMLAttributes, useCallback } from "react"
 
-interface Props {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement>{
   label: string,
-  value: string,
-  name: string,
-  maxLength: number,
-  rows: number,
   formData: Object,
   onChange: (v: Object)=>void,
 }

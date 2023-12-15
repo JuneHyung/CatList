@@ -1,9 +1,7 @@
-import { ChangeEvent, useCallback } from "react"
+import { ChangeEvent, InputHTMLAttributes, useCallback } from "react"
 
-interface Props {
+interface Props extends InputHTMLAttributes<HTMLInputElement>{
   label: string,
-  value: string,
-  name: string,
   formData: Object,
   onChange: (v: Object)=>void,
 }

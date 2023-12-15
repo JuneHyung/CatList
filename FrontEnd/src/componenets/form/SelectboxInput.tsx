@@ -1,14 +1,12 @@
-import { ChangeEvent, useCallback } from "react"
+import { ChangeEvent, SelectHTMLAttributes, useCallback } from "react"
 interface SelectboxItem {
   dtlCd: string,
   dtlNm: string
 }
 type SelectboxList = SelectboxItem[]
-interface Props {
+interface Props extends SelectHTMLAttributes<HTMLSelectElement>{
   label: string,
-  value: string,
   list: SelectboxList
-  name: string,
   formData: Object,
   onChange: (v: Object)=>void,
 }
