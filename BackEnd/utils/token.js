@@ -5,7 +5,7 @@ const JWT_KEY = process.env.ACCESS_TOKEN_SECRET;
 
 // accessToken 발급
 exports.makeToken = (obj) => {
-  const token = jwt.sign(obj, JWT_KEY, { expiresIn: "2m" });
+  const token = jwt.sign(obj, JWT_KEY, { expiresIn: "5m" });
   // console.log(`make token : ${token}`);
   return token;
 };
@@ -14,7 +14,7 @@ exports.makeToken = (obj) => {
 exports.makeRefreshToken = () => {
   const refreshToken = jwt.sign({}, JWT_KEY, {
     algorithm: "HS256",
-    expiresIn: "3m",
+    expiresIn: "10m",
   });
   console.log(`make refresh token : ${refreshToken}`);
   return refreshToken;
