@@ -38,6 +38,7 @@ class Cat extends Sequelize.Model {
       },
       see:{
         type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       user_id: {
         type: Sequelize.STRING(20),

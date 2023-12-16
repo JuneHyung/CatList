@@ -50,23 +50,23 @@ const catReducer = (prevState = initialState, action: AnyAction) =>{
     case CLEAR_SELECTED_CAT:
       return {...prevState, selectedCat: initialState.selectedCat}
     case CLEAR_SELECTED_KIND:
-      return {...prevState, selectedKindName: '', selectedKindCode: '',};
+      return {...prevState, selectedKindName: '', selectedKindCode: '', editFlag: false};
     case CLEAR_SELECTED_CHARC:
       return {...prevState, selectedCharc: {}};
     case CLEAR_CAT_TYPE_LIST:
       return {...prevState, catKindList: []};
     case FETCH_CAT_LIST:
-      return {...prevState, catList: action.data, selectedCat: initialState.selectedCat};
+      return {...prevState, catList: action.data, selectedCat: initialState.selectedCat, editFlag: false};
     case FETCH_CAT_TYPE_LIST:
       return {...prevState, catKindList: action.data};
     case FETCH_SELECTED_CAT:
       return {...prevState, catList: [], selectedCat: action.data}
     case FETCH_SELECTED_KIND:
-      return {...prevState, selectedKindName: action.data.kind_name, selectedKindCode: action.data.kind_code};
+      return {...prevState, selectedKindName: action.data.kind_name, selectedKindCode: action.data.kind_code, lastKeyword: '', editFlag: false};
     case FETCH_SELECTED_CHARC:
       return {...prevState, selectedCharc: action.data};
     case FETCH_LAST_KEYWORD:
-      return {...prevState, lastKeyword: action.data};
+      return {...prevState, lastKeyword: action.data, selectedKindCode: '', selectedKindName: '',  editFlag: false};
     case FETCH_CUR_PAGE:
       return {...prevState, curPage: action.data};
     case FETCH_IS_END_DATA:

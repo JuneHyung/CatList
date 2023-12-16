@@ -1,4 +1,4 @@
-import { getFetch } from ".";
+import { getFetch, postFetch, putFetch } from ".";
 import { CatInfo, CatList, CharcInfo, GetCatListByKeywordReqeustParams, GetCatListByKindReqeustParams, KindList } from "../types/cat";
 const url = process.env.REACT_APP_BACKEND_URL;
 export const getAllKind = async () =>{
@@ -30,7 +30,7 @@ export const getAllCatByKind = async (params: GetCatListByKindReqeustParams) => 
 
 export const getAllCatByKeyword = async (params:GetCatListByKeywordReqeustParams) => {
   const queryParams = new URLSearchParams()
-  queryParams.append('kind_code', params.keyword.toString())
+  queryParams.append('keyword', params.keyword.toString())
   queryParams.append('curPage', params.curPage.toString())
 
   try{
@@ -51,6 +51,28 @@ export const getCharcByCharcId = async (params: CatInfo['charc_id']) => {
     return data;
   }catch(err){
     console.log(`Error: ${err}`);
+    throw err;
+  }
+}
+
+export const postCatInfo = async (body: any): Promise<any> =>{
+  try{
+    const res = await postFetch<any>(`${url}/cat/info`, body);
+    const data: any = await res.json();
+    return data;
+  }catch(err){
+    console.log(`Error : ${err}`)
+    throw err;
+  }
+}
+
+export const putCatInfo = async (body: any): Promise<any> =>{
+  try{
+    const res = await putFetch<any>(`${url}/cat/info`, body);
+    const data: any = await res.json();
+    return data;
+  }catch(err){
+    console.log(`Error : ${err}`)
     throw err;
   }
 }

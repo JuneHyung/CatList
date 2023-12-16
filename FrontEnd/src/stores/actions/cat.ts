@@ -1,5 +1,5 @@
 import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_EDIT_FLAG, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND } from "../constant/variable";
-import { getAllCatByKind, getAllKind, getAllCatByKeyword, getCharcByCharcId } from "../../api/cats";
+import { getAllCatByKind, getAllKind, getAllCatByKeyword, getCharcByCharcId, postCatInfo, putCatInfo } from "../../api/cats";
 import { ClearAllCatDataAction, ClearCatListAction, ClearSelectedCatAction, ClearSelectedCharcAction, ClearSelectedKindAction, FetchCatKindListAction, FetchCatListAction, FetchCurPageAction, FetchEditFlagAction, FetchIsEndDataAction, FetchIsLoadingAction, FetchLastKeywordAction, FetchSelectedCatAction, FetchSelectedCharcAction, FetchSelectedKindAction, ThunkAction } from "../../types/action";
 import { CatInfo, CatList, CharcInfo, GetCatListByKeywordReqeustParams, GetCatListByKindReqeustParams, KindList, selectedKindInfo } from "../../types/cat";
 
@@ -32,9 +32,9 @@ export const getCatListByKind = (params: GetCatListByKindReqeustParams): ThunkAc
   return async (dispatch, getState) => {
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
-
+    const editFlag = getState().cat.editFlag;
     dispatch(fetchIsLoading(true))
-
+    if(editFlag) dispatch(fetchEditFlag(false));
     try{
       if(!isEnd){
         setTimeout(async()=>{
@@ -80,9 +80,9 @@ export const getCatListByKeyword = (params: GetCatListByKeywordReqeustParams): T
   return async (dispatch, getState) =>{
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
-
+    const editFlag = getState().cat.editFlag;
     dispatch(fetchIsLoading(true))
-
+    if(editFlag) dispatch(fetchEditFlag(false));
     try{
       if(!isEnd){
         setTimeout(async ()=>{
@@ -139,6 +139,31 @@ export const toggleIsLoading = (flag: boolean): ThunkAction =>{
 
 export const toggleEditFlag = (status: boolean): ThunkAction => {
   return async (dispatch) => {dispatch(fetchEditFlag(status))}
+}
+
+export const postNewCatInfo = (body: any): ThunkAction => {
+  return async (dispatch, getState) => {
+    const {code, message} = await postCatInfo(body);
+    if(code===200){
+      const {selectedKindCode, lastKeyword} = getState().cat
+      console.log(message)
+      dispatch(toggleEditFlag(false));
+      if(selectedKindCode.length!==0) dispatch(getCatListByKind({kind_code: selectedKindCode, curPage: 1}))
+      if(lastKeyword.length!==0) dispatch(getCatListByKeyword({keyword: lastKeyword, curPage: 1}));
+    }
+  }
+}
+export const putCurCatInfo = (body: any): ThunkAction => {
+  return async (dispatch, getState) => {
+    const {code, message} = await putCatInfo(body);
+    if(code===200){
+      const {selectedKindCode, lastKeyword} = getState().cat
+      console.log(message)
+      dispatch(toggleEditFlag(false));
+      if(selectedKindCode.length!==0) dispatch(getCatListByKind({kind_code: selectedKindCode, curPage: 1}))
+      if(lastKeyword.length!==0) dispatch(getCatListByKeyword({keyword: lastKeyword, curPage: 1}));
+    }
+  }
 }
 
 const clearAllCatData = (): ClearAllCatDataAction =>{

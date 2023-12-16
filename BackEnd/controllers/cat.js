@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const Cat = require('../models/cat');
 const Kind = require('../models/kind');
+const dayjs = require("dayjs");
 const jwt = require('jsonwebtoken');
 const perPage = 10;
 
@@ -87,30 +88,33 @@ exports.postCatInfo = async (req, res, next) => {
   const user_id = decoded.id;
   
   const { cat_name, cat_age, kind_code, description, profile, address, extrovert, introvert, curious,tranquil, independence, friendly } = req.body;
-  if(user_id) res.status(400).json({ code: 400, message: "Error" });
+  if(!user_id) res.status(400).json({ code: 400, message: "Error" });
   else{
     try {
+      console.log('dd?')
       const maxCode = await Cat.max('cat_code');
-      const createDate = dayjs().format('YYYY-MM-DD');
+      const createDate = await dayjs().format('YYYY-MM-DD');
+      console.log(maxCode, createDate)
+      const nextCode = maxCode+1;
       await Cat.create({
         cat_name,
-        cat_age,
+        cat_age:Number(cat_age),
         kind_code,
         description,
         create_date: createDate,
         profile,
         address,
-        charc_id: `catCharc${Number(maxCode)+1}`,
+        charc_id: `catCharc${nextCode}`,
         user_id
       });
       await Charc.create({
-        charc_id: `catCharc${Number(maxCode)+1}`,
-        extrovert,
-        introvert,
-        curious,
-        tranquil,
-        independence,
-        friendly
+        charc_id: `catCharc${nextCode}`,
+        extrovert: Number(extrovert),
+        introvert: Number(introvert),
+        curious: Number(curious),
+        tranquil: Number(tranquil),
+        independence: Number(independence),
+        friendly: Number(friendly),
       })
 
       res.status(200).json({ code: 200, message: "추가 성공!" });
@@ -125,7 +129,7 @@ exports.putCatInfo = async (req, res, next) => {
   const decoded = jwt.decode(accessToken);
   const user_id = decoded.id;
   const { cat_code, cat_name, cat_age, kind_code, description, profile, address, charc_id, extrovert, introvert, curious,tranquil, independence, friendly } = req.body;
-  if(user_id) res.status(400).json({ code: 400, message: "Error" });
+  if(!user_id) res.status(400).json({ code: 400, message: "Error" });
   else{
     try {
       await Cat.update({
@@ -160,11 +164,11 @@ exports.deleteCatInfo = async (req, res, next) => {
   const accessToken = req.headers["authorization"].split(' ')[1];
   const decoded = jwt.decode(accessToken);
   const user_id = decoded.id;
-  const {catCode} = req.params;
+  const {cat_code} = req.params;
   if(user_id) res.status(400).json({ code: 400, message: "Error" });
   else{
     try {
-      await Cat.destroy({where: {cat_code: catCode, user_id}});
+      await Cat.destroy({where: {cat_code, user_id}});
       
       res.status(200).json({ code: 200, message: "수정 성공!" });
     } catch (err) {

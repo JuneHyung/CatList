@@ -1,41 +1,66 @@
-.edit-label {
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  margin: 8px 0;
-  .edit-text {
+.edit-form{
+  .edit-button-wrap {
     display: flex;
-    flex: 1 1 80px;
-    color: $pointColor;
-    align-items: center;
-    font-weight: 900;
-  }
-  .edit-input {
-    display: flex;
-    flex: 11;
-    height: 2rem;
-    align-items: center;
-    color: $pointColor;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: $middleColor;
-    padding: 4px;
-    &:focus {
-      outline: 2px solid $pointColor;
+    justify-content: right;
+    margin: 4px 0;
+    .edit-button {
+      display: flex;
+      flex: 0 1 100px;
+      background-color: $pointColor;
+      border-radius: 0.25rem;
+      justify-content: center;
+      align-items: center;
+      color: $lowColor;
+      border: none;
+      height: 2rem;
+      font-weight: 900;
+      transition: all 0.4s;
+      cursor: pointer;
+      &:hover {
+        background-color: $lowColor;
+        color: $pointColor;
+      }
     }
   }
-  .edit-input-area {
+  .edit-label {
     display: flex;
-    flex: 11;
-    align-items: center;
-    color: $pointColor;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: $middleColor;
-    padding: 4px;
-    resize: none;
-    &:focus {
-      outline: 2px solid $pointColor;
+    flex: 1;
+    justify-content: space-between;
+    margin: 8px 0;
+    .edit-text {
+      display: flex;
+      flex: 1 1 80px;
+      color: $pointColor;
+      align-items: center;
+      font-weight: 900;
+    }
+    .edit-input {
+      display: flex;
+      flex: 11;
+      height: 2rem;
+      align-items: center;
+      color: $pointColor;
+      border: none;
+      border-radius: 0.25rem;
+      background-color: $middleColor;
+      padding: 4px;
+      &:focus {
+        outline: 2px solid $pointColor;
+      }
+    }
+    .edit-input-area {
+      display: flex;
+      flex: 11;
+      align-items: center;
+      color: $pointColor;
+      border: none;
+      border-radius: 0.25rem;
+      background-color: $middleColor;
+      padding: 4px;
+      resize: none;
+      &:focus {
+        outline: 2px solid $pointColor;
+      }
     }
   }
 }

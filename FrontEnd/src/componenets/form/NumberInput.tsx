@@ -3,15 +3,23 @@ import { ChangeEvent, InputHTMLAttributes, useCallback } from "react"
 interface Props extends InputHTMLAttributes<HTMLInputElement>{
   label: string,
   formData: Object,
+  min: number,
+  max: number,
   onChange: (v: Object)=>void,
 }
 
 const NumberInput = ({label, value, onChange, name, formData, min, max}: Props) =>{
   const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) =>{
     const {name, value} = e.target;
+    const targetValue = Number(value);
+    let result = 0;
+    if(targetValue<min) result = min;
+    else if(targetValue>max) result = max;
+    else result = targetValue;
+    
     onChange({
       ...formData,
-      [name]: value
+      [name]: result
     })
   },[formData, onChange])
   

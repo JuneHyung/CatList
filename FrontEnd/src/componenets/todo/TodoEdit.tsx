@@ -57,11 +57,11 @@ const TodoEdit = () =>{
     dispatch(toggleEditFlag(false))
   }
   return(
-    <form className="todo-edit-form">
-      <ul className="todo-edit-button-wrap">
-        <button type="button" className="todo-edit-button" onClick={handleSaveFormData}>Save</button>
-        <button type="button" className="todo-edit-button jh-mx-xs" onClick={handleResetFormData}>Reset</button>
-        <button type="button" className="todo-edit-button" onClick={handleCancel}>Cancel</button>
+    <form className="edit-form">
+      <ul className="edit-button-wrap">
+        <button type="button" className="edit-button" onClick={handleSaveFormData}>Save</button>
+        <button type="button" className="edit-button jh-mx-xs" onClick={handleResetFormData}>Reset</button>
+        <button type="button" className="edit-button" onClick={handleCancel}>Cancel</button>
       </ul>
       <TextInput label="제목" value={formData.title} onChange={setFormData} name="title" formData={formData}/>
       <DateInput label="시작 날짜" value={formData.start} onChange={setFormData} name="start" formData={formData}/>

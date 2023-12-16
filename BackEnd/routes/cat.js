@@ -124,7 +124,7 @@ router.get('/kind', catController.getAllCatsByKind);
  *       "200":
  *          description: 고양이 추가 성공
  */
-router.post('/add', catController.postCatInfo);
+router.post('/info', catController.postCatInfo);
 
 /**
  * @swagger
@@ -187,7 +187,7 @@ router.post('/add', catController.postCatInfo);
  *       "200":
  *          description: 고양이 추가 성공
  */
-router.put('/update', catController.putCatInfo);
+router.put('/info', catController.putCatInfo);
 /**
  * @swagger
  * paths:
@@ -207,5 +207,5 @@ router.put('/update', catController.putCatInfo);
  *       "200":
  *          description: 고양이 정보를 삭제합니다.
  */
-router.delete('/delete', catController.deleteCatInfo);
+router.delete('/info/:cat_code', catController.deleteCatInfo);
 module.exports = router;
