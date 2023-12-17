@@ -10,8 +10,9 @@ import { TotalInitialstate } from "../../types";
 const TodoList = ({ today }) => {
   const { todoList, focusDate, todoEditFlag } = useSelector((state: TotalInitialstate) => state.todo);
   const dispatch: ThunkDispatch = useDispatch();
-  const handleGetTodo = useCallback((status: todoStatus) => {
-    dispatch(setCurStatus(status));
+  const handleGetTodo = useCallback(
+    (status: todoStatus) => {
+      dispatch(setCurStatus(status));
       dispatch(setTodoList(status, focusDate));
       dispatch(toggleEditFlag(false));
     },
@@ -38,7 +39,9 @@ const TodoList = ({ today }) => {
         <TodoEdit />
       ) : (
         <>
-          <div className="plus-item-button jh-my-xs" onClick={()=>dispatch(toggleEditFlag(true))}>PLUS ITEM</div>
+          <div className="plus-item-button jh-my-xs" onClick={() => dispatch(toggleEditFlag(true))}>
+            PLUS ITEM
+          </div>
           <ul className="todo-list">
             {todoList.map((v, idx) => {
               return <TodoItem key={v.todo_id} info={v} idx={idx} />;

@@ -23,7 +23,7 @@ export const FETCH_CUR_STATUS = 'FETCH_CUR_STATUS' as const;
 
 export const FETCH_TODO_EDIT_FLAG = 'FETCH_TODO_EDIT_FLAG' as const;
 
-export const FETCH_SELECTED_ITEM = 'FETCH_SELECTED_ITEM' as const;
+// export const FETCH_SELECTED_ITEM = 'FETCH_SELECTED_ITEM' as const;
 export const FETCH_IS_LOADING = 'FETCH_IS_LOADING' as const;
 
 export const FETCH_IS_LOGIN = 'FETCH_IS_LOGIN' as const;
@@ -31,4 +31,4 @@ export const FETCH_USER_NAME = 'FETCH_USER_NAME' as const;
 export const FETCH_LOGIN = 'FETCH_LOGIN' as const;
 
 export const FETCH_EDIT_FLAG = 'FETCH_EDIT_FLAG' as const;
-export const FETCH_TODO_SELECTED_ITEM = 'FETCH_TODO_SELECTED_ITEM' as const;
+export const FETCH_SELECTED_TODO_INFO = 'FETCH_SELECTED_TODO_INFO' as const;

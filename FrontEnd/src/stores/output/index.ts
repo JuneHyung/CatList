@@ -43,7 +43,7 @@ const todoInitialState:TodoInitialState = {
   curStatus: 'todo',
   todoList: [],
   todoEditFlag: false,
-  todoSelectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo', user_id: '',}
+  selectedTodoInfo: {todo_id: -1, title:'', content:'', start:'', end:'', status: 'todo', user_id: '',}
 }
 const userInitialState = {
   isLogin: false,

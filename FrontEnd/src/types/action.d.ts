@@ -74,8 +74,8 @@ export interface FetchTodoEditFlagAction {
   type: FETCH_TODO_EDIT_FLAG,
   data: boolean,
 }
-export interface FetchTodoSelectedItemAction {
-  type: FETCH_TODO_SELECTED_ITEM,
+export interface FetchSelectedTodoInfoAction {
+  type: FETCH_SELECTED_TODO_INFO,
   data: TodoItem,
 }
 

@@ -1,7 +1,7 @@
 import { deleteTodoItem, getAllTodoList, postTodoItem, putTodoItem, putTodoItemStatus } from "../../api/todo";
-import { FetchCurStatusAction, FetchFocusDateAction, FetchTodoEditFlagAction, FetchTodoListAction, FetchTodoSelectedItemAction, ThunkAction} from "../../types/action";
+import { FetchCurStatusAction, FetchFocusDateAction, FetchTodoEditFlagAction, FetchTodoListAction, FetchSelectedTodoInfoAction, ThunkAction} from "../../types/action";
 import { PutTodoItemStatusRequestBody, TodoItem, TodoItemRequestBody, TodoList, todoStatus } from "../../types/todo";
-import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_TODO_EDIT_FLAG, FETCH_TODO_SELECTED_ITEM } from "../constant/variable"
+import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_TODO_EDIT_FLAG, FETCH_SELECTED_TODO_INFO } from "../constant/variable"
 
 // status와 focusDate로 해당상태의 날짜에 todoList목록들을 가져와 TodoList 세팅
 // api조회 후 리스트 재조회 시 focusDate 다시 세팅필요없다 생각해 fetchFocusDate 추가 X.
@@ -30,16 +30,17 @@ export const setCurStatus = (status: todoStatus): ThunkAction => {
 }
 
 // detail을 보기위한 selectedItem변경
-export const setTodoSelectedItem = (info: TodoItem): ThunkAction => {
+export const setSelectedTodoInfo = (info: TodoItem): ThunkAction => {
   return async (dispatch) => {
-    dispatch(fetchTodoSelectedItem(info));
+    console.log(info)
+    dispatch(fetchSelectedTodoInfo(info));
   }
 }
 
 // EditFlag 변경
 // selectedItem 초기화까지 진행.
 export const toggleEditFlag = (status: boolean): ThunkAction => {
-  return async (dispatch) => {dispatch(fetchEditFlag(status))}
+  return async (dispatch) => {dispatch(fetchTodoEditFlag(status))}
 }
 
 // 기존 이템의 status변경
@@ -81,7 +82,7 @@ export const putCurTodoItem = (body: TodoItemRequestBody): ThunkAction =>{
 }
 
 // TodoItem 삭제
-export const deleteSelectedItem = (id: number): ThunkAction => {
+export const deleteSelectedTodoInfo = (id: number): ThunkAction => {
   return async (dispatch, getState) => {
     const {code, message} = await deleteTodoItem(id);
     if(code===200){
@@ -114,15 +115,15 @@ const fetchCurStatus = (data: todoStatus): FetchCurStatusAction =>{
     data,
   }
 }
-const fetchEditFlag = (data: boolean): FetchTodoEditFlagAction =>{
+const fetchTodoEditFlag = (data: boolean): FetchTodoEditFlagAction =>{
   return {
     type: FETCH_TODO_EDIT_FLAG,
     data,
   }
 }
-const fetchTodoSelectedItem = (data: TodoItem): FetchTodoSelectedItemAction =>{
+const fetchSelectedTodoInfo = (data: TodoItem): FetchSelectedTodoInfoAction =>{
   return {
-    type: FETCH_TODO_SELECTED_ITEM,
+    type: FETCH_SELECTED_TODO_INFO,
     data,
   }
 }

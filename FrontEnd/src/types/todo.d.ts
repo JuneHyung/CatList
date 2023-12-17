@@ -1,7 +1,7 @@
 export type todoStatus = 'todo' | 'doing' | 'done';
 
 export interface TodoItem{
-  todo_id: number | '',
+  todo_id: number,
   title: string,
   content: string,
   start: string,
@@ -40,5 +40,5 @@ export interface TodoInitialState {
   todoEditFlag: boolean,
   curStatus: todoStatus,
   todoList: TodoList,
-  todoSelectedItem: TodoItem
+  selectedTodoInfo: TodoItem
 }
