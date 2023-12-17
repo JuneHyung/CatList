@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import MdiIcon from "../common/MdiIcon";
 import StatusList from "./statusList";
 import { useCallback } from "react";
-import { deleteSelectedItem, setSelectedItem, toggleEditFlag } from "../../stores/actions/todo";
+import { deleteSelectedItem, setTodoSelectedItem, toggleEditFlag } from "../../stores/actions/todo";
 import { ThunkDispatch } from "../../types/action";
 
 const TodoItem = ({info, idx}) =>{
@@ -14,7 +14,7 @@ const TodoItem = ({info, idx}) =>{
   
   const handleUpdateItem = useCallback(()=>{
     dispatch(toggleEditFlag(true))
-    dispatch(setSelectedItem(info))
+    dispatch(setTodoSelectedItem(info))
   },[dispatch, info])
 
   return (

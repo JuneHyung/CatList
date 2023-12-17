@@ -37,8 +37,8 @@ export interface DeleteResponseBody{
 export type TodoItemRequestBody = Partial<TodoItem>
 export interface TodoInitialState {
   focusDate: string,
+  todoEditFlag: boolean,
   curStatus: todoStatus,
   todoList: TodoList,
-  editFlag: boolean,
-  selectedItem: TodoItem
+  todoSelectedItem: TodoItem
 }

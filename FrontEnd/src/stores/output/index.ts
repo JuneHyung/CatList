@@ -42,8 +42,8 @@ const todoInitialState:TodoInitialState = {
   focusDate: '',
   curStatus: 'todo',
   todoList: [],
-  editFlag: false,
-  selectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo', user_id: '',}
+  todoEditFlag: false,
+  todoSelectedItem: {todo_id: '', title:'', content:'', start:'', end:'', status: 'todo', user_id: '',}
 }
 const userInitialState = {
   isLogin: false,

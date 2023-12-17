@@ -54,6 +54,8 @@ export interface FetchIsLoadingAction {
   data
 }
 
+
+// Todo Actions
 export interface FetchFocusDateAction {
   type: FETCH_FOCUS_DATE,
   data: string,
@@ -68,15 +70,16 @@ export interface FetchCurStatusAction {
   type: FETCH_CUR_STATUS,
   data: todoStatus,
 }
-export interface FetchEditFlagAction {
-  type: FETCH_EDIT_FLAG,
+export interface FetchTodoEditFlagAction {
+  type: FETCH_TODO_EDIT_FLAG,
   data: boolean,
 }
-export interface FetchSelectedItemAction {
-  type: FETCH_SELECTED_ITEM,
+export interface FetchTodoSelectedItemAction {
+  type: FETCH_TODO_SELECTED_ITEM,
   data: TodoItem,
 }
 
+// User Actions
 export interface FetchIsLoginAction {
   type: FETCH_IS_LOGIN,
   data: boolean| Promise<boolean>,

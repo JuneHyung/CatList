@@ -8,11 +8,11 @@ import { ThunkDispatch } from "../../types/action";
 import { TotalInitialstate } from "../../types";
 
 const TodoList = ({ today }) => {
-  const { todoList, focusDate, editFlag } = useSelector((state: TotalInitialstate) => state.todo);
+  const { todoList, focusDate, todoEditFlag } = useSelector((state: TotalInitialstate) => state.todo);
   const dispatch: ThunkDispatch = useDispatch();
   const handleGetTodo = useCallback((status: todoStatus) => {
+    dispatch(setCurStatus(status));
       dispatch(setTodoList(status, focusDate));
-      dispatch(setCurStatus(status));
       dispatch(toggleEditFlag(false));
     },
     [dispatch, focusDate]
@@ -34,7 +34,7 @@ const TodoList = ({ today }) => {
           </li>
         </ul>
       </ul>
-      {editFlag ? (
+      {todoEditFlag ? (
         <TodoEdit />
       ) : (
         <>

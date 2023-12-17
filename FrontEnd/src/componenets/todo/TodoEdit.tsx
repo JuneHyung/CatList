@@ -11,7 +11,7 @@ import TextareaInput from "../form/TextareaInput";
 
 const TodoEdit = () =>{
   const dispatch: ThunkDispatch = useDispatch();
-  const {selectedItem} = useSelector((state: TotalInitialstate)=>state.todo);
+  const {todoSelectedItem} = useSelector((state: TotalInitialstate)=>state.todo);
   const [updateFlag, setUpdateFlag] = useState(false);
   const [formData, setFormData] = useState<TodoItemRequestBody>({
     todo_id: '',
@@ -24,11 +24,11 @@ const TodoEdit = () =>{
   const statusList = [{dtlCd: 'todo', dtlNm: 'Todo'}, {dtlCd: 'doing', dtlNm: 'Doing'}, {dtlCd: 'done', dtlNm: 'Done'}, ]
   // edit인지 update인지 체크
   useEffect(()=>{
-    if(typeof selectedItem.todo_id==='string' &&selectedItem.todo_id.length!==0){
+    if(typeof todoSelectedItem.todo_id==='string' &&todoSelectedItem.todo_id.length!==0){
       setUpdateFlag(true);
-      setFormData(selectedItem)
+      setFormData(todoSelectedItem)
     }
-  },[selectedItem])
+  },[todoSelectedItem])
 
 
   // 저장
