@@ -9,7 +9,7 @@ import SelectboxInput from "../form/SelectboxInput";
 import TextareaInput from "../form/TextareaInput";
 
 const CatEdit = () => {
-  const { selectedCat, selectedKindCode, editFlag, catKindList } = useSelector(
+  const { selectedCat, selectedKindCode, catKindList } = useSelector(
     (state: TotalInitialstate) => state.cat
   );
   const kindList = useMemo(()=>catKindList.map(el=>{return {dtlCd: el.kind_code, dtlNm: el.kind_name}}),[catKindList])

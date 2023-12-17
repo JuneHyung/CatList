@@ -1,6 +1,6 @@
-import { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_CHARC, CLEAR_SELECTED_KIND, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_EDIT_FLAG, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND } from "../constant/variable";
+import { CLEAR_ALL_CAT_DATA, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_CUR_PAGE, FETCH_CAT_EDIT_FLAG, FETCH_IS_END_DATA, FETCH_IS_LOADING, FETCH_LAST_KEYWORD, FETCH_SELECTED_CAT, FETCH_SELECTED_CHARC, FETCH_SELECTED_KIND } from "../constant/variable";
 import { getAllCatByKind, getAllKind, getAllCatByKeyword, getCharcByCharcId, postCatInfo, putCatInfo } from "../../api/cats";
-import { ClearAllCatDataAction, ClearCatListAction, ClearSelectedCatAction, ClearSelectedCharcAction, ClearSelectedKindAction, FetchCatKindListAction, FetchCatListAction, FetchCurPageAction, FetchIsEndDataAction, FetchIsLoadingAction, FetchLastKeywordAction, FetchSelectedCatAction, FetchSelectedCharcAction, FetchSelectedKindAction, ThunkAction } from "../../types/action";
+import { ClearAllCatDataAction, ClearSelectedCatAction, FetchCatEditFlagAction, FetchCatKindListAction, FetchCatListAction, FetchCurPageAction, FetchIsEndDataAction, FetchIsLoadingAction, FetchLastKeywordAction, FetchSelectedCatAction, FetchSelectedCharcAction, FetchSelectedKindAction, ThunkAction } from "../../types/action";
 import { CatInfo, CatList, CharcInfo, GetCatListByKeywordReqeustParams, GetCatListByKindReqeustParams, KindList, selectedKindInfo } from "../../types/cat";
 
 
@@ -11,7 +11,6 @@ export const setCatKindList = (): ThunkAction => {
       dispatch(fetchCatKindList(data));
     }catch(e){
       console.log(e);
-      dispatch(clearCatList());
     }
   }
 }
@@ -22,7 +21,6 @@ export const setSelectedKind = (kind: selectedKindInfo): ThunkAction =>{
       dispatch(fetchSelectedKind(kind))
     }catch(e){
       console.log(e);
-      dispatch(clearCatList());
     }
   }
 }
@@ -32,23 +30,22 @@ export const getCatListByKind = (params: GetCatListByKindReqeustParams): ThunkAc
   return async (dispatch, getState) => {
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
-    const editFlag = getState().cat.editFlag;
+    const catEditFlag = getState().cat.catEditFlag;
     dispatch(fetchIsLoading(true))
-    if(editFlag) dispatch(fetchEditFlag(false));
+    if(catEditFlag) dispatch(fetchEditFlag(false));
     try{
       if(!isEnd){
         setTimeout(async()=>{
           const list = await getAllCatByKind(params);
           if(list.length!==0){
             const result: CatList = params.curPage===1 ? list : [...prevList, ...list]
-  
+            
             list.length < 10 ? dispatch(fetchIsEndData(true)) : dispatch(fetchIsEndData(false));
-  
             dispatch(fetchCurPage(params.curPage))
+  
             dispatch(fetchCatList(result));
           }else{
             dispatch(fetchCatList([]))
-            dispatch(fetchIsLoading(false))
           }
           dispatch(fetchIsLoading(false))
         }, 3000);
@@ -80,15 +77,15 @@ export const getCatListByKeyword = (params: GetCatListByKeywordReqeustParams): T
   return async (dispatch, getState) =>{
     const prevList = getState().cat.catList;
     const isEnd = getState().cat.isEndData;
-    const editFlag = getState().cat.editFlag;
+    const catEditFlag = getState().cat.catEditFlag;
     dispatch(fetchIsLoading(true))
-    if(editFlag) dispatch(fetchEditFlag(false));
+    if(catEditFlag) dispatch(fetchEditFlag(false));
     try{
       if(!isEnd){
         setTimeout(async ()=>{
-          const list = await getAllCatByKeyword(params);
           dispatch(fetchLastKeyword(params.keyword))
-          dispatch(clearSelectedKind());
+          const list = await getAllCatByKeyword(params);
+          
           if(list.length!==0){
             const result: CatList = params.curPage===1 ? list : [...prevList, ...list]
             
@@ -98,7 +95,6 @@ export const getCatListByKeyword = (params: GetCatListByKeywordReqeustParams): T
             dispatch(fetchCatList(result));
           }else{
             dispatch(fetchCatList([]));
-            dispatch(fetchIsLoading(false))
           }
           dispatch(fetchIsLoading(false))
         }, 3000)
@@ -120,7 +116,6 @@ export const setSelectedCharc = (charcId: CatInfo['charc_id']): ThunkAction => {
       dispatch(fetchSelectedCharc(result));
     }catch(e){
       console.log(e);
-      dispatch(clearSelectedCharc());
     }
   }
 }
@@ -166,32 +161,18 @@ export const putCurCatInfo = (body: any): ThunkAction => {
   }
 }
 
-const clearAllCatData = (): ClearAllCatDataAction =>{
+export const clearAllCatData = (): ClearAllCatDataAction =>{
   return {
     type: CLEAR_ALL_CAT_DATA
   }
 }
-const clearCatList = (): ClearCatListAction =>{
-  return {
-    type: CLEAR_CAT_LIST
-  }
-}
 
-const clearSelectedKind = ():ClearSelectedKindAction =>{
-  return {
-    type: CLEAR_SELECTED_KIND
-  }
-}
 const clearSelectedCat = ():ClearSelectedCatAction =>{
   return {
     type: CLEAR_SELECTED_CAT
   }
 }
-const clearSelectedCharc = ():ClearSelectedCharcAction =>{
-  return {
-    type: CLEAR_SELECTED_CHARC
-  }
-}
+
 const fetchCatList = (data: CatList):FetchCatListAction =>{
   return {
     type: FETCH_CAT_LIST,
@@ -248,9 +229,9 @@ const fetchIsLoading = (data:boolean):FetchIsLoadingAction => {
   }
 }
 
-const fetchEditFlag = (data: boolean):any => {
+const fetchEditFlag = (data: boolean):FetchCatEditFlagAction => {
   return {
-    type: FETCH_EDIT_FLAG,
+    type: FETCH_CAT_EDIT_FLAG,
     data
   }
 }

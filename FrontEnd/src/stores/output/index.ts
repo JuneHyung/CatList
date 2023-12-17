@@ -36,7 +36,7 @@ const catInitialState: CatInitialState = {
     },
     isEndData: false,
     isLoading: false,
-    editFlag: false
+    catEditFlag: false
 }
 const todoInitialState:TodoInitialState = {
   focusDate: '',

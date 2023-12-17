@@ -1,8 +1,8 @@
 import { AnyAction } from "redux";
 import { CatInitialState } from "../../types/cat";
-import { FETCH_EDIT_FLAG } from "../constant/variable";
+import { FETCH_CAT_EDIT_FLAG } from "../constant/variable";
 
-const { CLEAR_ALL_CAT_DATA, CLEAR_CAT_LIST, CLEAR_SELECTED_CAT, CLEAR_SELECTED_KIND, CLEAR_CAT_TYPE_LIST, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, CLEAR_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } = require("../constant/variable");
+const { CLEAR_ALL_CAT_DATA, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } = require("../constant/variable");
 
 const initialState: CatInitialState ={
   catList: [],
@@ -37,7 +37,7 @@ const initialState: CatInitialState ={
   },
   isEndData: false,
   isLoading: false,
-  editFlag: false,
+  catEditFlag: false,
 }
 
 const catReducer = (prevState = initialState, action: AnyAction) =>{
@@ -45,36 +45,28 @@ const catReducer = (prevState = initialState, action: AnyAction) =>{
   switch(action.type){
     case CLEAR_ALL_CAT_DATA:
       return initialState;
-    case CLEAR_CAT_LIST:
-      return {...prevState, catList: []};
     case CLEAR_SELECTED_CAT:
       return {...prevState, selectedCat: initialState.selectedCat}
-    case CLEAR_SELECTED_KIND:
-      return {...prevState, selectedKindName: '', selectedKindCode: '', editFlag: false};
-    case CLEAR_SELECTED_CHARC:
-      return {...prevState, selectedCharc: {}};
-    case CLEAR_CAT_TYPE_LIST:
-      return {...prevState, catKindList: []};
     case FETCH_CAT_LIST:
-      return {...prevState, catList: action.data, selectedCat: initialState.selectedCat, editFlag: false};
+      return {...prevState, catList: action.data, selectedCat: initialState.selectedCat, catEditFlag: false};
     case FETCH_CAT_TYPE_LIST:
-      return {...prevState, catKindList: action.data};
+      return {...prevState, catKindList: action.data, selectedKindName: '', selectedKindCode: '',};
     case FETCH_SELECTED_CAT:
-      return {...prevState, catList: [], selectedCat: action.data}
-    case FETCH_SELECTED_KIND:
-      return {...prevState, selectedKindName: action.data.kind_name, selectedKindCode: action.data.kind_code, lastKeyword: '', editFlag: false};
+      return {...prevState, selectedCat: action.data}
     case FETCH_SELECTED_CHARC:
       return {...prevState, selectedCharc: action.data};
+    case FETCH_SELECTED_KIND:
+      return {...prevState, selectedKindName: action.data.kind_name, selectedKindCode: action.data.kind_code, catEditFlag: false};
     case FETCH_LAST_KEYWORD:
-      return {...prevState, lastKeyword: action.data, selectedKindCode: '', selectedKindName: '',  editFlag: false};
+      return {...prevState, lastKeyword: action.data, selectedKindCode: '', selectedKindName: '',  catEditFlag: false};
     case FETCH_CUR_PAGE:
       return {...prevState, curPage: action.data};
     case FETCH_IS_END_DATA:
       return {...prevState, isEndData: action.data};
     case FETCH_IS_LOADING:
       return {...prevState, isLoading: action.data};
-    case FETCH_EDIT_FLAG:
-      return {...prevState, editFlag: action.data};
+    case FETCH_CAT_EDIT_FLAG:
+      return {...prevState, catEditFlag: action.data};
     default:
       return prevState
   }

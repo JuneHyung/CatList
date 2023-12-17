@@ -3,19 +3,11 @@ import { TodoList } from "./todo"
 export interface ClearAllCatDataAction {
   type: typeof CLEAR_ALL_CAT_DATA,
 }
-export interface ClearCatListAction {
-  type: typeof CLEAR_CAT_LIST,
-}
 
-export interface ClearSelectedKindAction {
-  type: typeof CLEAR_SELECTED_KIND,
-}
 export interface ClearSelectedCatAction {
   type: typeof CLEAR_SELECTED_CAT,
 }
-export interface ClearSelectedCharcAction {
-  type: typeof CLEAR_SELECTED_CHARC,
-}
+
 export interface FetchCatListAction {
   type: typeof FETCH_CAT_LIST,
   data
@@ -69,6 +61,10 @@ export interface FetchTodoListAction {
 export interface FetchCurStatusAction {
   type: FETCH_CUR_STATUS,
   data: todoStatus,
+}
+export interface FetchCatEditFlagAction {
+  type: FETCH_CAT_EDIT_FLAG,
+  data: boolean,
 }
 export interface FetchTodoEditFlagAction {
   type: FETCH_TODO_EDIT_FLAG,

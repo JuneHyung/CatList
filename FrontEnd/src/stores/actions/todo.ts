@@ -1,7 +1,7 @@
 import { deleteTodoItem, getAllTodoList, postTodoItem, putTodoItem, putTodoItemStatus } from "../../api/todo";
 import { FetchCurStatusAction, FetchFocusDateAction, FetchTodoEditFlagAction, FetchTodoListAction, FetchSelectedTodoInfoAction, ThunkAction} from "../../types/action";
 import { PutTodoItemStatusRequestBody, TodoItem, TodoItemRequestBody, TodoList, todoStatus } from "../../types/todo";
-import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_TODO_EDIT_FLAG, FETCH_SELECTED_TODO_INFO } from "../constant/variable"
+import { FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_TODO_EDIT_FLAG, FETCH_SELECTED_TODO_INFO, CLEAR_ALL_TODO_DATA } from "../constant/variable"
 
 // status와 focusDate로 해당상태의 날짜에 todoList목록들을 가져와 TodoList 세팅
 // api조회 후 리스트 재조회 시 focusDate 다시 세팅필요없다 생각해 fetchFocusDate 추가 X.
@@ -93,8 +93,12 @@ export const deleteSelectedTodoInfo = (id: number): ThunkAction => {
   }
 }
 
-
 // Actions
+export const clearAllTodoData = (): any => {
+  return {
+    type: CLEAR_ALL_TODO_DATA,
+  }
+}
 const fetchFocusDate = (data: string): FetchFocusDateAction => {
   return {
     type: FETCH_FOCUS_DATE,

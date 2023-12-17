@@ -11,7 +11,7 @@ import CatEdit from "./CatEdit";
 import { TotalInitialstate } from "../../types";
 
 const CatList = () => {
-  const {catList, selectedKindCode, lastKeyword, curPage, isLoading, editFlag} = useSelector((state: TotalInitialstate)=> state.cat)
+  const {catList, selectedKindCode, lastKeyword, curPage, isLoading, catEditFlag} = useSelector((state: TotalInitialstate)=> state.cat)
   const {isLogin} = useSelector((state: any)=> state.user)
   const dispatch: ThunkDispatch = useDispatch();
   const handleOnScroll = useCallback((e:UIEvent<HTMLUListElement>)=>{
@@ -23,8 +23,8 @@ const CatList = () => {
   },[curPage, dispatch, lastKeyword, selectedKindCode])
   return (
     <ul className="cat-list" onScroll={handleOnScroll}>
-      {isLogin && !isLoading && !editFlag? <CatPlusButton/> : null}
-      {editFlag ? <CatEdit /> : isLoading 
+      {isLogin && !isLoading && !catEditFlag? <CatPlusButton/> : null}
+      {catEditFlag ? <CatEdit /> : isLoading 
       ? (<Spinner />) 
       : catList.length === 0 ? <NoData /> : catList.map((item: CatInfo) => <CatListItem item={item} key={item.cat_code} />)}
     </ul>

@@ -23,7 +23,7 @@ const CatDetailPage = () => {
 
   const calculatedSeries = useMemo(() => {
     if (selectedCharc !== undefined && selectedCharc.charc_id.length !== 0) {
-      const { charc_id, curious, extrovert, friendly, independence, introvert, tranquil } = selectedCharc;
+      const { curious, extrovert, friendly, independence, introvert, tranquil } = selectedCharc;
       return [extrovert, introvert, tranquil, curious, independence, friendly];
     } else return [0, 0, 0, 0, 0, 0];
   }, [selectedCharc]);

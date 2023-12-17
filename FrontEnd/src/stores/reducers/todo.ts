@@ -1,5 +1,5 @@
 import { TodoInitialState } from "../../types/todo";
-import {FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_TODO_EDIT_FLAG, FETCH_SELECTED_TODO_INFO}from "../constant/variable";
+import {FETCH_FOCUS_DATE, FETCH_TODO_LIST, FETCH_CUR_STATUS, FETCH_TODO_EDIT_FLAG, FETCH_SELECTED_TODO_INFO, CLEAR_ALL_TODO_DATA}from "../constant/variable";
 
 const initialstate:TodoInitialState = {
   focusDate: '',
@@ -12,6 +12,8 @@ const initialstate:TodoInitialState = {
 const todoReducer = (prevState = initialstate, action : any) =>{
   // console.log(action.type, action.data)
   switch(action.type){
+    case CLEAR_ALL_TODO_DATA:
+      return initialstate;
     case FETCH_FOCUS_DATE:
       return {...prevState, focusDate: action.data};
     case FETCH_CUR_STATUS:

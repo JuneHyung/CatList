@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCatListByKeyword, resetIsEndData } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
@@ -24,7 +24,7 @@ const BadgeItem = ({item}: {item: string}) =>{
     'rareWind',
     'nearMoon',
   ];
-  const [bgName, setBgName] = useState( `bg-${bgNameList[Math.floor(Math.random() * bgNameList.length)]}`);
+  const [bgName,] = useState( `bg-${bgNameList[Math.floor(Math.random() * bgNameList.length)]}`);
 
   const dispatch: ThunkDispatch = useDispatch();
   

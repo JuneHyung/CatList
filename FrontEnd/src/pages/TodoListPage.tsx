@@ -3,7 +3,7 @@ import CustomCalendar from "../componenets/todo/CustomCalendar";
 import TodoList from "../componenets/todo/TodoList";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
-import { setFocusDate } from "../stores/actions/todo";
+import { clearAllTodoData, setFocusDate } from "../stores/actions/todo";
 import { ThunkDispatch } from "../types/action";
 import { TotalInitialstate } from "../types";
 
@@ -12,6 +12,7 @@ const TodoListPage = () => {
   const dispatch: ThunkDispatch = useDispatch();
   useEffect(()=>{
     const today = dayjs().format('YYYY-MM-DD');
+    dispatch(clearAllTodoData())
     dispatch(setFocusDate(today))
   },[dispatch])
   return (
