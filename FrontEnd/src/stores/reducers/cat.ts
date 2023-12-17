@@ -2,7 +2,7 @@ import { AnyAction } from "redux";
 import { CatInitialState } from "../../types/cat";
 import { FETCH_CAT_EDIT_FLAG } from "../constant/variable";
 
-const { CLEAR_ALL_CAT_DATA, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } = require("../constant/variable");
+import { CLEAR_ALL_CAT_DATA, CLEAR_SELECTED_CAT, FETCH_CAT_LIST, FETCH_CAT_TYPE_LIST, FETCH_SELECTED_CAT, FETCH_SELECTED_KIND, FETCH_SELECTED_CHARC, FETCH_LAST_KEYWORD, FETCH_CUR_PAGE, FETCH_IS_END_DATA, FETCH_IS_LOADING } from "../constant/variable";
 
 const initialState: CatInitialState ={
   catList: [],

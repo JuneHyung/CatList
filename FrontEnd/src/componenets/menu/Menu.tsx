@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import MenuItem from "./MenuItem"
 import { useSelector } from "react-redux";
 import { TotalInitialstate } from "../../types";

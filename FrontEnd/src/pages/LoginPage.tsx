@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { fetchIsLogin, fetchUserName } from "../stores/actions/user";
 import { useNavigate } from "react-router";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
-import { getTokenFromLocal, onLogin } from "../api/user";
+import { onLogin } from "../api/user";
 
 const LoginPage = () =>{
   const [userId, setUserId] = useState('');

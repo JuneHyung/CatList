@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 
 // default center position;
 const centerPos = { lat: 33.450701, lng: 126.570667 };
