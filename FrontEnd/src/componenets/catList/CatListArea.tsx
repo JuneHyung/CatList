@@ -6,10 +6,13 @@ import { useEffect } from "react";
 import { setCatKindList } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
 import { TotalInitialstate } from "../../types";
+import Spinner from "../common/Spinner";
+import CatEdit from "./CatEdit";
 
 const CatListArea = () => {
-  const {selectedCat} = useSelector((state: TotalInitialstate)=> state.cat);
+  const {selectedCat, isLoading, catEditFlag} = useSelector((state: TotalInitialstate)=> state.cat);
   const dispatch:ThunkDispatch = useDispatch();
+
   useEffect(()=>{
     dispatch(setCatKindList());
   }, [dispatch])
@@ -18,7 +21,13 @@ const CatListArea = () => {
     <div className="cat-list-wrap">
       <CatKindList />
       {
-        selectedCat.cat_code===-1 ? <CatList /> : <CatDetail />      
+        isLoading 
+        ? <Spinner /> 
+        : selectedCat.cat_code===-1 && !catEditFlag
+        ? <CatList /> 
+        : selectedCat.cat_code!==-1 && !catEditFlag
+        ? <CatDetail />      
+        : <CatEdit />
       }
     </div>
   );

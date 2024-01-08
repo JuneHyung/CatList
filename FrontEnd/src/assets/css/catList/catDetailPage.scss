@@ -32,7 +32,29 @@
       box-sizing: border-box;
       margin-left:8px;
       position:relative;
-      
+      .button-wrap{
+        display:flex; 
+        justify-content: flex-end;
+        .edit-button{
+          display: flex;
+          flex: 0 1 100px;
+          background-color: $pointColor;
+          border-radius: 0.25rem;
+          justify-content: center;
+          align-items: center;
+          color: $lowColor;
+          border: none;
+          height: 2rem;
+          font-weight: 900;
+          transition: all 0.4s;
+          cursor: pointer;
+          &:hover {
+            background-color: $lowColor;
+            color: $pointColor;
+          }
+        }
+      }
+
       p{
         display:flex;
         align-items: center;

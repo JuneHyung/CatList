@@ -1,82 +1,131 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MdiIcon from "../common/MdiIcon";
 import RadarChart from "../chart/RadarChart";
-import Spinner from "../common/Spinner";
 import { useCallback, useMemo, useState } from "react";
 import NoImage from "../common/NoImage";
 import KakaoMap from "../kakao/KakaoMap";
 import FurInfo from "./FurInfo";
 import { KindInfo } from "../../types/cat";
 import { TotalInitialstate } from "../../types";
+import { ThunkDispatch } from "../../types/action";
+import { toggleEditFlag } from "../../stores/actions/cat";
 
 const CatDetailPage = () => {
-  const { catKindList, selectedCat, selectedCharc, isLoading } = useSelector((state: TotalInitialstate) => state.cat);
+  const { catKindList, selectedCat, selectedCharc } = useSelector(
+    (state: TotalInitialstate) => state.cat
+  );
+  const { isLogin } = useSelector((state: any) => state.user);
+  const dispatch: ThunkDispatch = useDispatch();
+
   const [isOpenFurInfo, setIsOpenFurInfo] = useState(false);
   const [kindInfo, setKindInfo] = useState<KindInfo>({
-    kind_code: '',
-    kind_name: '',
-    kind_profile: '',
-    kind_form: '',
-    kind_fur: '',
-    kind_fur_pattern: '',
-  })
+    kind_code: "",
+    kind_name: "",
+    kind_profile: "",
+    kind_form: "",
+    kind_fur: "",
+    kind_fur_pattern: "",
+  });
 
   const calculatedSeries = useMemo(() => {
     if (selectedCharc !== undefined && selectedCharc.charc_id.length !== 0) {
-      const { curious, extrovert, friendly, independence, introvert, tranquil } = selectedCharc;
+      const {
+        charc_id,
+        curious,
+        extrovert,
+        friendly,
+        independence,
+        introvert,
+        tranquil,
+      } = selectedCharc;
       return [extrovert, introvert, tranquil, curious, independence, friendly];
     } else return [0, 0, 0, 0, 0, 0];
   }, [selectedCharc]);
 
-  const charcCategories = ["외향적", "내향적", "차분함", "호기심", "독립성", "친근함"];
-  const toggleFeatureInfo = useCallback(() =>{
-    const nextFlag = !isOpenFurInfo
-    setIsOpenFurInfo(nextFlag) 
-    if(nextFlag){
+  const charcCategories = [
+    "외향적",
+    "내향적",
+    "차분함",
+    "호기심",
+    "독립성",
+    "친근함",
+  ];
+  const toggleFeatureInfo = useCallback(() => {
+    const nextFlag = !isOpenFurInfo;
+    setIsOpenFurInfo(nextFlag);
+    if (nextFlag) {
       const code = selectedCat.kind_code;
-      setKindInfo(catKindList.find(el=>el.kind_code===code))
-    }else{
+      setKindInfo(catKindList.find((el) => el.kind_code === code));
+    } else {
       setKindInfo({
-        kind_code: '',
-        kind_name: '',
-        kind_profile: '',
-        kind_form: '',
-        kind_fur: '',
-        kind_fur_pattern: '',
-      })
+        kind_code: "",
+        kind_name: "",
+        kind_profile: "",
+        kind_form: "",
+        kind_fur: "",
+        kind_fur_pattern: "",
+      });
     }
-  }, [catKindList, isOpenFurInfo, selectedCat.kind_code])
+  }, [catKindList, isOpenFurInfo, selectedCat.kind_code]);
+
   return (
     <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div className="cat-detail-wrap">
-          <div className="top-info-wrap">
-            <div className="profile-box">{selectedCat.profile.toString().length === 0 ? <NoImage /> : <img src={`data:image/jpeg;base64,${selectedCat.profile}`} alt="Kind Profile" />}</div>
-            <div className="info-box">
-              <p>이름 : {selectedCat.cat_name}</p>
-              <p>품종 : {selectedCat.kind_name} <MdiIcon name="mdiInformationVariantCircle" className="fur-info-icon" onClick={toggleFeatureInfo}/></p>
-              {isOpenFurInfo ? <FurInfo info={kindInfo}/> : <div></div>}
-              <p>집사님 : {selectedCat.user_id}</p>
-              <p>나이 : {selectedCat.cat_age} 살</p>
-              <p>등록일 : {selectedCat.create_date}</p>
-              <p>
-                <MdiIcon name="mdiEye" /> : {selectedCat.see}
-              </p>
-              <p className="jh-mt-sm">{selectedCat.description}</p>
-            </div>
+      <div className="cat-detail-wrap">
+        <div className="top-info-wrap">
+          <div className="profile-box">
+            {selectedCat.profile.toString().length === 0 ? (
+              <NoImage />
+            ) : (
+              <img
+                src={`data:image/jpeg;base64,${selectedCat.profile}`}
+                alt="Kind Profile"
+              />
+            )}
           </div>
-          <div className="bottom-info-wrap jh-mt-sm">
-            <div className="chart-box">
-              <RadarChart customCategories={charcCategories} customSeries={calculatedSeries} />
-            </div>
-            <div className="map-box jh-ml-sm">
-              <KakaoMap address={selectedCat.address} />
-            </div>
+          <div className="info-box">
+            {isLogin ? (
+              <ul className="button-wrap">
+                <button
+                  type="button"
+                  className="edit-button"
+                  onClick={() => dispatch(toggleEditFlag(true))}
+                >
+                  update
+                </button>
+              </ul>
+            ) : null}
+
+            <p>이름 : {selectedCat.cat_name}</p>
+            <p>
+              품종 : {selectedCat.kind_name}{" "}
+              <MdiIcon
+                name="mdiInformationVariantCircle"
+                className="fur-info-icon"
+                onClick={toggleFeatureInfo}
+              />
+            </p>
+            {isOpenFurInfo ? <FurInfo info={kindInfo} /> : <div></div>}
+            <p>집사님 : {selectedCat.user_id}</p>
+            <p>나이 : {selectedCat.cat_age} 살</p>
+            <p>등록일 : {selectedCat.create_date}</p>
+            <p>
+              <MdiIcon name="mdiEye" /> : {selectedCat.see}
+            </p>
+            <p className="jh-mt-sm">{selectedCat.description}</p>
           </div>
         </div>
-      )}
+        <div className="bottom-info-wrap jh-mt-sm">
+          <div className="chart-box">
+            <RadarChart
+              customCategories={charcCategories}
+              customSeries={calculatedSeries}
+            />
+          </div>
+          <div className="map-box jh-ml-sm">
+            <KakaoMap address={selectedCat.address} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

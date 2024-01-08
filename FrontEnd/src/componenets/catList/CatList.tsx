@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import NoData from "../common/NoData";
-import Spinner from "../common/Spinner";
 import CatListItem from "./CatListItem";
 import { UIEvent, useCallback } from "react";
 import { getCatListByKeyword, getCatListByKind } from "../../stores/actions/cat";
 import { ThunkDispatch } from "../../types/action";
 import { CatInfo } from "../../types/cat";
 import CatPlusButton from "./CatPlusButton";
-import CatEdit from "./CatEdit";
 import { TotalInitialstate } from "../../types";
 
 const CatList = () => {
@@ -21,12 +19,11 @@ const CatList = () => {
       else if(lastKeyword.length!==0) dispatch(getCatListByKeyword({keyword: lastKeyword, curPage: curPage+1}));
     }
   },[curPage, dispatch, lastKeyword, selectedKindCode])
+
   return (
     <ul className="cat-list" onScroll={handleOnScroll}>
       {isLogin && !isLoading && !catEditFlag? <CatPlusButton/> : null}
-      {catEditFlag ? <CatEdit /> : isLoading 
-      ? (<Spinner />) 
-      : catList.length === 0 ? <NoData /> : catList.map((item: CatInfo) => <CatListItem item={item} key={item.cat_code} />)}
+      {catList.length === 0 ? <NoData /> : catList.map((item: CatInfo) => <CatListItem item={item} key={item.cat_code} />)}
     </ul>
   );
 };

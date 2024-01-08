@@ -7,30 +7,32 @@ import { ThunkDispatch } from "../../types/action";
 import NumberInput from "../form/NumberInput";
 import SelectboxInput from "../form/SelectboxInput";
 import TextareaInput from "../form/TextareaInput";
+import { CatInfo, CharcInfo } from "../../types/cat";
 
 const CatEdit = () => {
-  const { selectedCat, selectedKindCode, catKindList } = useSelector(
+  const { selectedCat, selectedKindCode, selectedCharc, catKindList } = useSelector(
     (state: TotalInitialstate) => state.cat
   );
   const kindList = useMemo(()=>catKindList.map(el=>{return {dtlCd: el.kind_code, dtlNm: el.kind_name}}),[catKindList])
   const dispatch: ThunkDispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    cat_code: "",
+  const [formData, setFormData] = useState<Partial<CatInfo & CharcInfo>>({
+    cat_code: -1,
     cat_name: "",
     cat_age: 0,
     kind_code: "",
     description: "",
     profile: "",
     address: "",
-    extrovert: "",
-    introvert: "",
-    curious: "",
-    tranquil: "",
-    independence: "",
-    friendly: "",
+    extrovert: -1,
+    introvert: -1,
+    curious: -1,
+    tranquil: -1,
+    independence: -1,
+    friendly: -1,
   });
   const [updateFlag, setUpdateFlag] = useState(false);
   useEffect(() => {
+    // 종류 선택해서 조회 후 edit인 경우 해당 종류 세팅
     if (selectedKindCode) {
       setFormData({
         ...formData,
@@ -38,13 +40,17 @@ const CatEdit = () => {
       });
     }
 
+    // 선택한 고양이값이 있으면,
     if(selectedCat.cat_code!==-1){
+      const unionData = {...selectedCat, ...selectedCharc};
+      setFormData({...unionData})
       setUpdateFlag(true)
     }else{
       setUpdateFlag(false)
     }
   }, []);
 
+  // 저장 시 updateFlag에 따라 다른 method
   const handleSaveFormData = () => {
     if(updateFlag){
       dispatch(putCurCatInfo(formData))
@@ -53,21 +59,23 @@ const CatEdit = () => {
       dispatch(postNewCatInfo(formData))
     }
   };
+
+  // 폼데이터 초기화.
   const handleResetFormData = () => {
     setFormData({
-      cat_code: "",
+      cat_code: -1,
       cat_name: "",
       cat_age: 0,
       kind_code: "",
       description: "",
       profile: "",
       address: "",
-      extrovert: "",
-      introvert: "",
-      curious: "",
-      tranquil: "",
-      independence: "",
-      friendly: "",
+      extrovert: -1,
+      introvert: -1,
+      curious: -1,
+      tranquil: -1,
+      independence: -1,
+      friendly: -1,
     });
   };
   const handleCancel = () => {
@@ -75,6 +83,7 @@ const CatEdit = () => {
   };
 
   return (
+    <div className="cat-edit-page">
       <form action="" className="edit-form">
         <TextInput
           label="고양이 이름"
@@ -116,7 +125,7 @@ const CatEdit = () => {
         />
         <TextInput
           label="프로필 사진"
-          value={formData.profile}
+          value={formData.profile as string}
           onChange={setFormData}
           name="profile"
           formData={formData}
@@ -182,7 +191,7 @@ const CatEdit = () => {
           className="edit-button"
           onClick={handleSaveFormData}
         >
-          Save
+          {updateFlag ? "Update" : "Save"}
         </button>
         <button
           type="button"
@@ -200,6 +209,7 @@ const CatEdit = () => {
         </button>
       </ul>
       </form>
+      </div>
   );
 };
 
